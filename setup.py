@@ -100,7 +100,7 @@ setup(
         "cryptography",
         "python-magic",
 	       "timg",
-           "scikit-image"
+           "scikit-image", "pyzbar", "termcolor"
     ],
     extras_require={},
 )

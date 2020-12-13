@@ -4,6 +4,8 @@ import argparse
 import requests
 from requests.exceptions import HTTPError
 from bs4 import BeautifulSoup
+from termcolor import colored
+
 
 def printQR(input):
 
@@ -87,4 +89,12 @@ def printQR(input):
             F = open(ARGS.out, 'wb')
             F.write(CODE)
         else:
-            print(CODE.decode(CP).replace("\n","█████████████\n"))
+            CRED = '\033[0m'
+            CEND = '\033[107m'
+            print(CRED + "" + CEND)
+            print("")
+            print("")
+            # print(" ",colored(CODE.decode(CP),'white'))
+            print("  "+CODE.decode(CP))
+            print("")
+            print("")

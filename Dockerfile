@@ -10,3 +10,8 @@ COPY requirements /app/requirements
 
 # Install any needed packages specified in base.txt
 RUN pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
+
+RUN apt update -y
+
+RUN apt-get install apt-utils libzbar-dev -y
+RUN apt-get install libzbar0 -y
