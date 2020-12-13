@@ -87,4 +87,4 @@ def printQR(input):
             F = open(ARGS.out, 'wb')
             F.write(CODE)
         else:
-            print(CODE.decode(CP).replace("\n","█████████████\n"))
+            print(CODE.decode(CP))

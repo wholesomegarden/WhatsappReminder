@@ -31,6 +31,7 @@ from skimage import io
 
 from webwhatsapi import WhatsAPIDriver
 driver = WhatsAPIDriver(username="mkhase")
+# driver.get_status()
 img = driver.get_qr("i.png")
 print(img)
 # time.sleep(4)

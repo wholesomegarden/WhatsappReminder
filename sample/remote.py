@@ -150,7 +150,7 @@ while True:
 		for message in contact.messages:
 			print(json.dumps(message.get_js_obj(), indent=4))
 			sender = message.get_js_obj()["chat"]["contact"]["formattedName"]
-
+			
 			for contact in driver.get_contacts():
 				# print("CCCC",contact.get_safe_name() )
 				if  sender in contact.get_safe_name():
