@@ -64,7 +64,7 @@ print("XXXXXXXX")
 #
 # image_rescaled = rescale(image, 0.25, anti_aliasing=False)
 # io.imsave(img, image_rescaled)
-print("XXXXXXXX")
+print("XXXXXXXXX")
 import timg
 obj = timg.Renderer()
 obj.load_image_from_file(img)
