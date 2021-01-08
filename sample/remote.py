@@ -247,7 +247,7 @@ def flaskRun():
 	t.start()
 
 def flaskRunAsync(data):
-	input()
+	# input()
 	print("AAAAAAAAAAAA ASYNC")
 	runReminder()
 

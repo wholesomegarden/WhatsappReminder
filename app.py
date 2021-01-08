@@ -12,10 +12,10 @@ id = "0547772000"
 # Manager.process(id, msg)
 #
 #
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!1")
 print()
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!2")
+print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!3")
 
 
 msg = "call omer thursday morning"
@@ -45,13 +45,13 @@ from skimage.transform import rescale, resize, downscale_local_mean
 from webwhatsapi import WhatsAPIDriver
 from skimage import io
 
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@1")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@2")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@3")
 driver = WhatsAPIDriver(executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@6")
 
 def runReminder():
 	print("####################")
@@ -166,12 +166,13 @@ def flaskRun():
 	t.start()
 
 def flaskRunAsync(data):
-	input()
+	# input()
 	print("AAAAAAAAAAAA ASYNC")
 	runReminder()
 
 if __name__ == '__main__':
-	flaskRun()
+	# flaskRun()
+	print("STARTING APP")
 	app.run(debug=True, host='0.0.0.0')
 # 4. In case the QR code expires, you can use the reload_qr function to reload it
 # driver.reload_qr()
