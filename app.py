@@ -7,6 +7,14 @@ from threading import Thread
 
 id = "0547772000"
 
+
+# https://github.com/pyronlaboratory/heroku-integrated-firefox-geckodriver
+
+# https://www.reddit.com/r/firefox/comments/h8s7qd/how_do_i_make_firefox_work_on_heroku/
+# https://github.com/evosystem-jp/heroku-buildpack-firefox
+# https://stackoverflow.com/questions/43713445/selenium-unable-to-find-a-matching-set-of-capabilities-despite-driver-being-in
+# https://www.guru99.com/selenium-python.html
+
 #
 # msg = "send message to Omer tomorrow morning "
 # Manager.process(id, msg)
@@ -48,7 +56,8 @@ from skimage import io
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@1")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@2")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@3")
-driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
+# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
+driver = WhatsAPIDriver(username="wholesomegarden")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@6")

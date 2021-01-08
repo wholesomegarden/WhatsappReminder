@@ -185,8 +185,7 @@ class WhatsAPIDriver(object):
         logger=None,
         extra_params=None,
         chrome_options=None,
-        executable_path=None,
-        
+        executable_path=None
     ):
         """Initialises the webdriver"""
 
@@ -245,13 +244,12 @@ class WhatsAPIDriver(object):
                     capabilities=capabilities,
                     options=options,
                     executable_path=executable_path,
-                    firefox_binary=firefox_binary,
                     **extra_params,
                 )
             else:
                 self.logger.info("Starting webdriver")
                 self.driver = webdriver.Firefox(
-                    capabilities=capabilities, options=options,firefox_binary=firefox_binary, **extra_params
+                    capabilities=capabilities, options=options, **extra_params
                 )
 
         elif self.client == "chrome":
