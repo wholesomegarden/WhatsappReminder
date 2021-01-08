@@ -48,7 +48,7 @@ from skimage import io
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@1")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@2")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@3")
-driver = WhatsAPIDriver(executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
+driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@6")

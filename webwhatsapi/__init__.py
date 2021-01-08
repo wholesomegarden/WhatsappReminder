@@ -186,7 +186,7 @@ class WhatsAPIDriver(object):
         extra_params=None,
         chrome_options=None,
         executable_path=None,
-        firefox_binary="/app/vendor/firefox/firefox"
+        
     ):
         """Initialises the webdriver"""
 
