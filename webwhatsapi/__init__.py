@@ -30,7 +30,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 # from selenium import webdriver
-firefox_binary = FirefoxBinary('/app/vendor/firefox/firefox')
+# firefox_binary = FirefoxBinary('/app/vendor/firefox/firefox')
 # firefox_binary = FirefoxBinary('/usr/bin/firefox/')
 
 # driver = webdriver.Firefox(firefox_binary=firefox_binary)
@@ -192,7 +192,8 @@ class WhatsAPIDriver(object):
         logger=None,
         extra_params=None,
         chrome_options=None,
-        executable_path="/app/vendor/geckodriver/"
+        # executable_path="/app/vendor/geckodriver/"
+        executable_path=None
     ):
         """Initialises the webdriver"""
 
@@ -247,7 +248,8 @@ class WhatsAPIDriver(object):
                 executable_path = os.path.abspath(executable_path)
 
                 self.logger.info("Starting webdriver")
-                self.driver = webdriver.Firefox(firefox_binary=firefox_binary,
+                self.driver = webdriver.Firefox(
+                    # firefox_binary=firefox_binary,
                     capabilities=capabilities,
                     options=options,
                     executable_path=executable_path,
@@ -255,7 +257,8 @@ class WhatsAPIDriver(object):
                 )
             else:
                 self.logger.info("Starting webdriver")
-                self.driver = webdriver.Firefox(firefox_binary=firefox_binary,
+                self.driver = webdriver.Firefox(
+                    # firefox_binary=firefox_binary,
                     capabilities=capabilities, options=options, **extra_params
                 )
 
@@ -271,7 +274,7 @@ class WhatsAPIDriver(object):
                 for option in chrome_options:
                     self._profile.add_argument(option)
             self.logger.info("Starting webdriver")
-            self.driver = webdriver.Chrome(chrome_options=self._profile, **extra_params)
+            self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=self._profile, **extra_params)
 
         elif client == "remote":
             if self._profile_path is not None:

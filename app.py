@@ -56,8 +56,28 @@ from skimage import io
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@1")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@2")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@3")
+
+from selenium import webdriver
+import os
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-dev-shm-usage")
+chrome_options.add_argument("--no-sandbox")
+print("AAAAAAAA")
+print()
+# driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+print("BBBBBBBBBB")
+driver1.get("https://google.com")
+print(driver1.page_source)
+print("CCCCCCCCCC")
+
 # driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-driver = WhatsAPIDriver(username="wholesomegarden")
+driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
+
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@6")
