@@ -30,7 +30,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 # from selenium import webdriver
-firefox_binary = FirefoxBinary('/app/vendor/firefox/')
+firefox_binary = FirefoxBinary('/app/vendor/firefox/firefox')
 # firefox_binary = FirefoxBinary('/usr/bin/firefox/')
 
 # driver = webdriver.Firefox(firefox_binary=firefox_binary)
@@ -192,7 +192,7 @@ class WhatsAPIDriver(object):
         logger=None,
         extra_params=None,
         chrome_options=None,
-        executable_path=None
+        executable_path="/app/vendor/geckodriver/geckodriver"
     ):
         """Initialises the webdriver"""
 
