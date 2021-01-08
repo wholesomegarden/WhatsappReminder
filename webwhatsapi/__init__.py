@@ -192,7 +192,7 @@ class WhatsAPIDriver(object):
         logger=None,
         extra_params=None,
         chrome_options=None,
-        executable_path="/app/vendor/geckodriver/geckodriver"
+        executable_path="/app/vendor/geckodriver/"
     ):
         """Initialises the webdriver"""
 
