@@ -271,7 +271,7 @@ class WhatsAPIDriver(object):
             if headless:
                 self._profile.add_argument("headless")
             if chrome_options is not None:
-                self._profile = webdriver.ChromeOptions()
+                self._profile = chrome_options
                 ## for option in chrome_options:
                 ##     self._profile.add_argument(option)
             self.logger.info("Starting webdriver")
