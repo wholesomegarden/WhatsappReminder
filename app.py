@@ -5,7 +5,7 @@ from WhatsappReminder import *
 from threading import Thread
 
 
-id = "0547772001"
+id = "0547772000"
 
 
 # https://github.com/pyronlaboratory/heroku-integrated-firefox-geckodriver
