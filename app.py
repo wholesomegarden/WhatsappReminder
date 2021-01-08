@@ -49,7 +49,13 @@ from skimage.transform import rescale, resize, downscale_local_mean
 from webwhatsapi import WhatsAPIDriver
 from skimage import io
 
-driver = WhatsAPIDriver(username="mkhase")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+driver = WhatsAPIDriver(executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
 Manager.go(driver)
 # driver.get_status()
 img = driver.get_qr("i.png")
