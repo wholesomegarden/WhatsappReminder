@@ -28,6 +28,13 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+# from selenium import webdriver
+firefox_binary = FirefoxBinary('/app/vendor/firefox/firefox')
+# firefox_binary = FirefoxBinary('/usr/bin/firefox/')
+
+# driver = webdriver.Firefox(firefox_binary=firefox_binary)
+
 from .objects.chat import UserChat, factory_chat
 from .objects.contact import Contact
 from .objects.message import MessageGroup, factory_message
@@ -240,7 +247,7 @@ class WhatsAPIDriver(object):
                 executable_path = os.path.abspath(executable_path)
 
                 self.logger.info("Starting webdriver")
-                self.driver = webdriver.Firefox(
+                self.driver = webdriver.Firefox(firefox_binary=firefox_binary,
                     capabilities=capabilities,
                     options=options,
                     executable_path=executable_path,
@@ -248,7 +255,7 @@ class WhatsAPIDriver(object):
                 )
             else:
                 self.logger.info("Starting webdriver")
-                self.driver = webdriver.Firefox(
+                self.driver = webdriver.Firefox(firefox_binary=firefox_binary,
                     capabilities=capabilities, options=options, **extra_params
                 )
 
