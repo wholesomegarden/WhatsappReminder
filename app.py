@@ -68,7 +68,7 @@ chrome_options.add_argument("--no-sandbox")
 print("AAAAAAAA")
 print()
 # driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
-driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 print("BBBBBBBBBB")
 driver1.get("https://google.com")
