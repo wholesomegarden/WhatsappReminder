@@ -72,7 +72,7 @@ driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), 
 
 print("BBBBBBBBBB")
 driver1.get("https://google.com")
-print(driver1.page_source)
+print(driver1.page_source[:100])
 print("CCCCCCCCCC")
 
 # driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
