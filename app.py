@@ -56,81 +56,116 @@ driver = WhatsAPIDriver(executable_path='/app/vendor/geckodriver/geckodriver',us
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
-Manager.go(driver)
-# driver.get_status()
-img = driver.get_qr("i.png")
-print(img)
-# time.sleep(4)
-QRCode = QRMatrix("decode", img)
-print(QRCode.decode())
-print("@@@@@@@@@@@@@@@@@@")
-print("XXXXXXXX")
-# # i = io.imread(img)
-# # image = color.rgb2gray(i)
-#
-# image_rescaled = rescale(image, 0.25, anti_aliasing=False)
-# io.imsave(img, image_rescaled)
-print("XXXXXXXXX")
-import timg
-obj = timg.Renderer()
-obj.load_image_from_file(img)
-obj.resize(106,106)
-obj.render(timg.Ansi24HblockMethod)
-#
-#
-# for contact in driver.get_contacts():
-#     print("CCCC",contact.get_safe_name() )
-#     if  "@@@@@@@@@@@@@@@@@@@@@@@@@" in contact.get_safe_name():
-#         chat = contact.get_chat()
-#         chat.send_message("Hi Jack")
 
-lastm = None
-while True:
-	time.sleep(.71)
-	print("Checking for more messages, status", driver.get_status())
-	for contact in driver.get_unread():
-		for message in contact.messages:
-			lastm = message
-			print(json.dumps(message.get_js_obj(), indent=4))
-			sender = message.get_js_obj()["chat"]["contact"]["formattedName"]
-			for contact in driver.get_contacts():
-				# print("CCCC",contact.get_safe_name() )
-				if  sender in contact.get_safe_name():
-					chat = contact.get_chat()
-					chat.send_message("Hi "+sender+" !!!*"+message.content+"*")
-			print()
-			print()
-			print(sender)
-			print()
-			print()
-			print("class", message.__class__.__name__)
-			print("message", message)
-			print("id", message.id)
-			print("type", message.type)
-			print("timestamp", message.timestamp)
-			print("chat_id", message.chat_id)
-			print("sender", message.sender)
-			print("sender.id", message.sender.id)
-			print("sender.safe_name", message.sender.get_safe_name())
-			if message.type == "chat":
-				print("-- Chat")
-				print("safe_content", message.safe_content)
-				print("content", message.content)
-				# contact.chat.send_message(message.safe_content)
-			elif message.type == "image" or message.type == "video":
-				print("-- Image or Video")
-				print("filename", message.filename)
-				print("size", message.size)
-				print("mime", message.mime)
-				print("caption", message.caption)
-				print("client_url", message.client_url)
-				message.save_media("./")
-			else:
-				print("-- Other")
-			print("PROCESSING MESSAGE:",message)
-			Manager.process(message.sender.id,message.content)
+def runReminder():
+	Manager.go(driver)
+	# driver.get_status()
+	img = driver.get_qr("i.png")
+	print(img)
+	# time.sleep(4)
+	QRCode = QRMatrix("decode", img)
+	print(QRCode.decode())
+	print("@@@@@@@@@@@@@@@@@@")
+	print("XXXXXXXX")
+	# # i = io.imread(img)
+	# # image = color.rgb2gray(i)
+	#
+	# image_rescaled = rescale(image, 0.25, anti_aliasing=False)
+	# io.imsave(img, image_rescaled)
+	print("XXXXXXXXX")
+	import timg
+	obj = timg.Renderer()
+	obj.load_image_from_file(img)
+	obj.resize(106,106)
+	obj.render(timg.Ansi24HblockMethod)
+	#
+	#
+	# for contact in driver.get_contacts():
+	#     print("CCCC",contact.get_safe_name() )
+	#     if  "@@@@@@@@@@@@@@@@@@@@@@@@@" in contact.get_safe_name():
+	#         chat = contact.get_chat()
+	#         chat.send_message("Hi Jack")
+
+	lastm = None
+	while True:
+		time.sleep(.71)
+		print("Checking for more messages, status", driver.get_status())
+		for contact in driver.get_unread():
+			for message in contact.messages:
+				lastm = message
+				print(json.dumps(message.get_js_obj(), indent=4))
+				sender = message.get_js_obj()["chat"]["contact"]["formattedName"]
+				for contact in driver.get_contacts():
+					# print("CCCC",contact.get_safe_name() )
+					if  sender in contact.get_safe_name():
+						chat = contact.get_chat()
+						chat.send_message("Hi "+sender+" !!!*"+message.content+"*")
+				print()
+				print()
+				print(sender)
+				print()
+				print()
+				print("class", message.__class__.__name__)
+				print("message", message)
+				print("id", message.id)
+				print("type", message.type)
+				print("timestamp", message.timestamp)
+				print("chat_id", message.chat_id)
+				print("sender", message.sender)
+				print("sender.id", message.sender.id)
+				print("sender.safe_name", message.sender.get_safe_name())
+				if message.type == "chat":
+					print("-- Chat")
+					print("safe_content", message.safe_content)
+					print("content", message.content)
+					# contact.chat.send_message(message.safe_content)
+				elif message.type == "image" or message.type == "video":
+					print("-- Image or Video")
+					print("filename", message.filename)
+					print("size", message.size)
+					print("mime", message.mime)
+					print("caption", message.caption)
+					print("client_url", message.client_url)
+					message.save_media("./")
+				else:
+					print("-- Other")
+				print("PROCESSING MESSAGE:",message)
+				Manager.process(message.sender.id,message.content)
 
 
+from flask import Flask, render_template
+# app = Flask(__name__)
+app=Flask(__name__,template_folder='templates')
+
+
+import os
+arr = os.listdir()
+for a in arr:
+	# print(a)
+	pass
+# input()
+
+PEOPLE_FOLDER = os.path.join('static', 'img')
+app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
+
+@app.route('/')
+def hello_world():
+
+	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "newQR.png")
+	return render_template("index.html", user_image = full_filename)
+
+def flaskRun():
+	t = Thread(target=flaskRunAsync,args=[None,])
+	t.start()
+
+def flaskRunAsync(data):
+	input()
+	print("AAAAAAAAAAAA ASYNC")
+	runReminder()
+
+if __name__ == '__main__':
+	flaskRun()
+	app.run(debug=True, host='0.0.0.0')
 # 4. In case the QR code expires, you can use the reload_qr function to reload it
 # driver.reload_qr()
 # driver.view_unread()
