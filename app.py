@@ -13,14 +13,10 @@ id = "0547772000"
 #
 #
 print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+print()
 print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
 
 msg = "call omer thursday morning"
 # Manager.process(id, msg)
@@ -58,8 +54,19 @@ print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
 def runReminder():
+	print("####################")
+	print("####################")
+	print("####################")
 	Manager.go(driver)
+	print("MANAGER StarteD")
+	print("####################")
+	print("####################")
+	print("####################")
+
 	# driver.get_status()
+
+	print("")
+	print("waiting for qr code")
 	img = driver.get_qr("i.png")
 	print(img)
 	# time.sleep(4)
