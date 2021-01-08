@@ -8,6 +8,9 @@ WORKDIR /app
 COPY requirements.txt /app
 COPY requirements /app/requirements
 
+RUN export PATH="/app:$PATH"
+
+
 # Install any needed packages specified in base.txt
 RUN pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 

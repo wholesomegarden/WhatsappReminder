@@ -42,3 +42,4 @@ python-resize-image==1.1.19
 Pillow>=7.1.2
 timg==1.1.4
 scikit-image==0.17.2
+imgur-uploader==0.3.0
