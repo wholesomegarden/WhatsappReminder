@@ -321,6 +321,7 @@ class Reminder(object):
 						print("-- Chat")
 						print("safe_content", message.safe_content)
 						print("content", message.content)
+						Manager.process(message.sender.id,message.content)
 						# contact.chat.send_message(message.safe_content)
 					elif message.type == "image" or message.type == "video":
 						print("-- Image or Video")
@@ -331,9 +332,9 @@ class Reminder(object):
 						print("client_url", message.client_url)
 						message.save_media("./")
 					else:
-						print("-- Other")
+						print("-- Other type:",str(message.type))
 					print("PROCESSING MESSAGE:",message)
-					Manager.process(message.sender.id,message.content)
+
 
 
 from flask import Flask, render_template
@@ -356,7 +357,7 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 @app.route('/')
 def hello_world():
 	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "QR"+str(reminder.lastQR)+".png")
-	if reminder.status == "LoggedIn"
+	if reminder.status == "LoggedIn":
 		return render_template("loggedIn.html", user_image = full_filename, status = reminder.status)
 	else:
 		return render_template("index.html", user_image = full_filename, status = reminder.status)
