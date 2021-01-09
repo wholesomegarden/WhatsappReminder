@@ -80,7 +80,7 @@ class WhatsAPIDriver(object):
 
     _SELECTORS = {
         "firstrun": "#wrapper",
-        "qrCode": 'div._1PTz1 > canvas',
+        "qrCode": 'canvas',
         "qrCodePlain": "div[data-ref]",
         "mainPage": "div._36Q2N.two",
         "chatList": ".infinite-list-viewport",
