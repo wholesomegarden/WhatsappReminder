@@ -336,6 +336,8 @@ def hello_world():
 	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "newQR.png")
 	return render_template("index.html", user_image = full_filename)
 
+runners = 0
+
 def flaskRun():
 	print("GONNA RUN ASYNC")
 	print("GONNA RUN ASYNC")
@@ -345,14 +347,23 @@ def flaskRun():
 	print("GONNA RUN ASYNC")
 	print("GONNA RUN ASYNC")
 	print("GONNA RUN ASYNC")
-	t = Thread(target=flaskRunAsync,args=[None,])
-	t.start()
+	if runners < 1:
+		runners += 1
+		t = Thread(target=flaskRunAsync,args=[None,])
+		t.start()
+	else:
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
 	print("AFTER GONNA RUN ASYNC")
 	print("AFTER GONNA RUN ASYNC")
 	print("AFTER GONNA RUN ASYNC")
 	print("AFTER GONNA RUN ASYNC")
 
-runners = 0
 
 def flaskRunAsync(data):
 	# input()
@@ -363,17 +374,7 @@ def flaskRunAsync(data):
 	print("AAAAAAAAAAAA ASYNC")
 	print("AAAAAAAAAAAA ASYNC")
 	print("AAAAAAAAAAAA ASYNC")
-	if runners < 1:
-		runners += 1
-		runReminder()
-	else:
-		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
-		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
-		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
-		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
-		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
-		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
-		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+	runReminder()
 
 
 if __name__ == '__main__':
