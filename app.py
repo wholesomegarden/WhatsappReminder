@@ -84,7 +84,7 @@ class Reminder(object):
 
 	def runReminder(self):
 		# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-		driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
+		driver = WhatsAPIDriver(client='chrome', profile="session.default" chrome_options=chrome_options,username="wholesomegarden")
 
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
@@ -372,7 +372,7 @@ def flaskRun(reminder):
 
 
 def flaskRunAsync(data):
-	reminder = data[0]
+	reminder = data
 	# input()
 	print("AAAAAAAAAAAA ASYNC")
 	print("AAAAAAAAAAAA ASYNC")
