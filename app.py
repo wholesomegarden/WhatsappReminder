@@ -162,7 +162,7 @@ class Reminder(object):
 
 			print("AAAAAAAAAAAAA")
 			self.lastQR += 1
-			img = driver.get_qr("static/img/QR"+self.lastQR+".png")
+			img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
@@ -347,7 +347,7 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 @app.route('/')
 def hello_world():
 	print("MANAGER",reminder,reminder.lastQR)
-	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "QR"+reminder.lastQR+".png")
+	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "QR"+str(reminder.lastQR)+".png")
 	return render_template("index.html", user_image = full_filename)
 
 
