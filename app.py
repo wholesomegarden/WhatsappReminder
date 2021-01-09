@@ -167,10 +167,10 @@ class Reminder(object):
 
 			print("AAAAAAAAAAAAA")
 			self.lastQR += 1
-			# try:
-			img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
-			# except :
-			# 	print("QR ERROR XXX")
+			try:
+				img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
+			except :
+				print("QR ERROR XXX")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
