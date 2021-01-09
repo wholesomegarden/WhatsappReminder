@@ -153,14 +153,15 @@ class Reminder(object):
 		print("AAA")
 		c = 0
 		s = 60
-		status = driver.get_status()
+		try:
+			status = driver.get_status()
+		except :
+			status = "XXXXXXXX"
+			print("STATUS ERROR XXX")
 		img = None
 		while status is not "LoggedIn":
 			c+=1
 			print("status", status)
-
-
-			print("Checking qr, status", status)
 
 			print("AAAAAAAAAAAAA")
 			self.lastQR += 1
@@ -208,8 +209,13 @@ class Reminder(object):
 			# 	print("@@@@@@@@@@@@@@@@@@@XXXXXXXX")
 
 
-			status = driver.get_status()
-			# output = qr_scanner.extract(img)
+			print("Checking qr, status", status)
+
+			try:
+				status = driver.get_status()
+			except :
+				status = "XXXXXXXX"
+				print("STATUS ERROR XXX")			# output = qr_scanner.extract(img)
 			# print(output,"!!!!!!!!!!!!!!!!WDIOUSICNOIUCJ)(Z*UCINJ)(ZP*DFJYUF)((P*SUD)(UASIDMUJ))")
 			# print(qr.decode(img))
 			# print(qr.data)
