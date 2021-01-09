@@ -97,7 +97,7 @@ def runReminder():
 	print("")
 	print("waiting for qr code")
 	img = driver.get_qr("newQR.png")
-	os.system("cp newQR.png sample/static/img/newQR.png")
+	os.system("cp newQR.png static/img/newQR.png")
 
 	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
