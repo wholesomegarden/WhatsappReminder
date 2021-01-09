@@ -339,7 +339,7 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 
 @app.route('/')
 def hello_world():
-	print("MANAGER",manager)
+	print("MANAGER",reminder)
 	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "QR"+reminder.lastQR+".png")
 	return render_template("index.html", user_image = full_filename)
 
