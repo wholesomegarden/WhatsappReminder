@@ -139,6 +139,7 @@ def runReminder():
 	c = 0
 	s = 60
 	status = "NotLoggedIn"
+	img = None
 	while status is not "LoggedIn":
 		c+=1
 		print("status", status)
@@ -148,6 +149,13 @@ def runReminder():
 
 		print("AAAAAAAAAAAAA")
 		img = driver.get_qr("static/img/newQR.png")
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+		print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",str(img)[:100])
 		# im_path = os.path.join("static/img/newQR.png")
 
 		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
@@ -219,17 +227,17 @@ def runReminder():
 
 
 	print("")
-	print("waiting for qr code")
-	img = driver.get_qr("static/img/newQR.png")
+	# print("waiting for qr code")
+	# img = driver.get_qr("static/img/newQR.png")
 	# os.system("cp newQR.png static/img/newQR.png")
 
-	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",str(img)[:100])
+	# print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	# print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	# print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	# print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	# print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	# print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	# print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",str(img)[:100])
 	# time.sleep(4)
 	# QRCode = QRMatrix("decode", img)
 	# print(QRCode.decode())
