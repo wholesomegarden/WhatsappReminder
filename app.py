@@ -290,9 +290,13 @@ class Reminder(object):
 		#         chat.send_message("Hi Jack")
 
 		lastm = None
+		loopc = 0
 		while True:
-			time.sleep(.71)
-			print("Checking for more messages, status", driver.get_status())
+			loopc += 1
+			loopc = loopc % 120
+			time.sleep(.5)
+			if loopc % 20 == 0:
+				print("Checking for more messages, status", driver.get_status())
 			for contact in driver.get_unread():
 				for message in contact.messages:
 					lastm = message
