@@ -76,14 +76,16 @@ chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWeb
 # print(str(driver1.page_source)[:100])
 # print("CCCCCCCCCC")
 
-# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
-
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@6")
 
 def runReminder():
+
+	# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
+	driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
+
+	print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
+	print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
+	print("@@@@@@@@@@@@@@@@@@@@@@@@@@6")
+
 	print("####################")
 	print("####################")
 	print("####################")
