@@ -167,10 +167,10 @@ class Reminder(object):
 
 			print("AAAAAAAAAAAAA")
 			self.lastQR += 1
-			try:
-				img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
-			except :
-				print("QR ERROR XXX")
+			# try:
+			img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
+			# except :
+			# 	print("QR ERROR XXX")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
@@ -300,7 +300,8 @@ class Reminder(object):
 			loopc = loopc % 120
 			time.sleep(.5)
 			if loopc % 20 == 0:
-				print("Checking for more messages, status", driver.get_status())
+				self.status = driver.get_status()
+				print("Checking for more messages, status", self.status)
 			for contact in driver.get_unread():
 				for message in contact.messages:
 					lastm = message
