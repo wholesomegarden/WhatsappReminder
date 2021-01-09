@@ -268,7 +268,7 @@ class Reminder(object):
 		# time.sleep(4)
 		# QRCode = QRMatrix("decode", img)
 		# print(QRCode.decode())
-		print("@@@@@@@@@@@@@@@@@@")
+		print("@@@@@@@@@@@@@@@@@@@")
 		print("DONEEEEEEEEEEEEEEEE")
 		print("DONEEEEEEEEEEEEEEEE")
 		print("DONEEEEEEEEEEEEEEEE")
