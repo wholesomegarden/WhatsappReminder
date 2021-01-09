@@ -97,8 +97,8 @@ def runReminder():
 
 	print("")
 	print("waiting for qr code")
-	img = driver.get_qr("newQR.png")
-	os.system("cp newQR.png static/img/newQR.png")
+	img = driver.get_qr("static/img/newQR.png")
+	# os.system("cp newQR.png static/img/newQR.png")
 
 	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
@@ -108,8 +108,8 @@ def runReminder():
 	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",str(img)[:100])
 	# time.sleep(4)
-	QRCode = QRMatrix("decode", img)
-	print(QRCode.decode())
+	# QRCode = QRMatrix("decode", img)
+	# print(QRCode.decode())
 	print("@@@@@@@@@@@@@@@@@@")
 	print("XXXXXXXX")
 	# # i = io.imread(img)
