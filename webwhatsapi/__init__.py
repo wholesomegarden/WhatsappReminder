@@ -79,7 +79,7 @@ class WhatsAPIDriver(object):
     _LOCAL_STORAGE_FILE = "localStorage.json"
 
     _SELECTORS = {
-        "firstrun": "#wrapper",
+        "firstrun": "#wrapper",#x
         "qrCode": 'div[class="_1PTz1"] > canvas,
         "qrCodePlain": "div[data-ref]",
         "mainPage": ".two",
