@@ -84,6 +84,7 @@ class Reminder(object):
 		self.lastQR = 0
 		self.runners = 0
 		self.driver = None
+		self.status = "INIT"
 
 	def quit(self):
 		self.driver.quit()
@@ -154,9 +155,9 @@ class Reminder(object):
 		c = 0
 		s = 60
 		try:
-			status = driver.get_status()
+			self.status = status = driver.get_status()
 		except :
-			status = "XXXXXXXX"
+			self.status = status = "XXXXXXXX"
 			print("STATUS ERROR XXX")
 		img = None
 		while status is not "LoggedIn":
@@ -212,9 +213,9 @@ class Reminder(object):
 			print("Checking qr, status", status)
 
 			try:
-				status = driver.get_status()
+				self.status = status = driver.get_status()
 			except :
-				status = "XXXXXXXX"
+				self.status = status = "XXXXXXXX"
 				print("STATUS ERROR XXX")			# output = qr_scanner.extract(img)
 			# print(output,"!!!!!!!!!!!!!!!!WDIOUSICNOIUCJ)(Z*UCINJ)(ZP*DFJYUF)((P*SUD)(UASIDMUJ))")
 			# print(qr.decode(img))
@@ -356,7 +357,7 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 def hello_world():
 	print("MANAGER",reminder,reminder.lastQR)
 	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "QR"+str(reminder.lastQR)+".png")
-	return render_template("index.html", user_image = full_filename)
+	return render_template("index.html", user_image = full_filename, status = reminder.status)
 
 
 def flaskRun(reminder):
