@@ -80,7 +80,7 @@ class WhatsAPIDriver(object):
 
     _SELECTORS = {
         "firstrun": "#wrapper",
-        "qrCode": 'div._1PTz1',
+        "qrCode": 'div._1PTz1 > canvas',
         "qrCodePlain": "div[data-ref]",
         "mainPage": "div._36Q2N.two",
         "chatList": ".infinite-list-viewport",
@@ -349,6 +349,21 @@ class WhatsAPIDriver(object):
 
     def get_qr(self, filename=None):
         """Get pairing QR code from client"""
+
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print(self.driver.page_source)
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
+        print("XXXXXXXXXXXXXXXXXXX")
         if "Click to reload QR code" in self.driver.page_source:
             self.reload_qr()
         qr = self.driver.find_element_by_css_selector(self._SELECTORS["qrCode"])
