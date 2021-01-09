@@ -112,7 +112,7 @@ class Reminder(object):
 		# driver.get_status()
 		print("Waiting for Login")
 		driver.wait_for_login()
-		print("Saving session")
+		# print("Saving session")
 
 
 		# from qrtools import qrtools
@@ -355,9 +355,11 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 
 @app.route('/')
 def hello_world():
-	print("MANAGER",reminder,reminder.lastQR)
 	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "QR"+str(reminder.lastQR)+".png")
-	return render_template("index.html", user_image = full_filename, status = reminder.status)
+	if reminder.status == "LoggedIn"
+		return render_template("loggedIn.html", user_image = full_filename, status = reminder.status)
+	else:
+		return render_template("index.html", user_image = full_filename, status = reminder.status)
 
 
 def flaskRun(reminder):
