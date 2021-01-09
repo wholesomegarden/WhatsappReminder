@@ -144,11 +144,11 @@ def runReminder():
 		print("status", status)
 
 
-		# print("Checking qr, status", driver.get_status())
+		print("Checking qr, status", status)
 
 		print("AAAAAAAAAAAAA")
-		# img = driver.get_qr("static/img/newQR.png")
-		im_path = os.path.join("static/img/newQR.png")
+		img = driver.get_qr("static/img/newQR.png")
+		# im_path = os.path.join("static/img/newQR.png")
 
 		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
 		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
