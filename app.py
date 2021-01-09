@@ -150,11 +150,11 @@ def runReminder():
 		# img = driver.get_qr("static/img/newQR.png")
 		im_path = os.path.join("static/img/newQR.png")
 
-		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-		
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
+
 		# pathlib.Path().absolute()
 		# os.system("cp newQR.png sample/static/img/newQR.png")
 
@@ -170,18 +170,18 @@ def runReminder():
 		# print(decoded, "#######################")
 		# print(decoded, "#######################")
 
-		for barcode in decoded:
-			print("@@@@@@@@@@@@@@@@@@@")
-					# the barcode data is a bytes object so if we want to draw it
-			# on our output image we need to convert it to a string first
-			# barcodeData = barcode.data.decode("utf-8")
-			# barcodeType = barcode.type
-			# # draw the barcode data and barcode type on the image
-			# text = "{} ({})".format(barcodeData, barcodeType)
-			print("@@@@@@@@@@@@@@@@@@@")
-			# print(text)
-			# printQR(barcodeData)
-			print("@@@@@@@@@@@@@@@@@@@XXXXXXXX")
+		# for barcode in decoded:
+		# 	print("@@@@@@@@@@@@@@@@@@@")
+		# 			# the barcode data is a bytes object so if we want to draw it
+		# 	# on our output image we need to convert it to a string first
+		# 	# barcodeData = barcode.data.decode("utf-8")
+		# 	# barcodeType = barcode.type
+		# 	# # draw the barcode data and barcode type on the image
+		# 	# text = "{} ({})".format(barcodeData, barcodeType)
+		# 	print("@@@@@@@@@@@@@@@@@@@")
+		# 	# print(text)
+		# 	# printQR(barcodeData)
+		# 	print("@@@@@@@@@@@@@@@@@@@XXXXXXXX")
 
 
 		status = driver.get_status()
