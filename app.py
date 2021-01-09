@@ -7,7 +7,7 @@ from threading import Thread
 
 id = "0547772000"
 
-
+# heroku config:set WEB_CONCURRENCY=1 -a whatsappreminder
 # https://github.com/pyronlaboratory/heroku-integrated-firefox-geckodriver
 
 # https://www.reddit.com/r/firefox/comments/h8s7qd/how_do_i_make_firefox_work_on_heroku/
@@ -154,7 +154,7 @@ class Reminder(object):
 		print("AAA")
 		c = 0
 		s = 60
-		maxtries = 30
+		maxtries = 40
 		try:
 			self.status = status = driver.get_status()
 		except :
@@ -167,7 +167,10 @@ class Reminder(object):
 
 			print("AAAAAAAAAAAAA")
 			self.lastQR += 1
-			img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
+			try:
+				img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
+			except :
+				print("QR ERROR XXX")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
