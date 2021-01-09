@@ -364,6 +364,15 @@ def flaskRunAsync(data):
 	if runners < 1:
 		runners += 1
 		runReminder()
+	else:
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+		print(runners,"!!!!!!!!!!!!!!!!!!!!!!!!!RUNNERS")
+
 
 if __name__ == '__main__':
 	flaskRun()
