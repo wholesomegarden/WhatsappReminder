@@ -80,10 +80,9 @@ class WhatsAPIDriver(object):
 
     _SELECTORS = {
         "firstrun": "#wrapper",
-        "qrCode": 'canvas[aria-label="Scan me!"]',
+        "qrCode": 'canvas[aria-label="Scan me!"],
         "qrCodePlain": "div[data-ref]",
-        # "mainPage": ".two",xxxxxx
-        "mainPage": "div._36Q2N.two",
+        "mainPage": ".two",
         "chatList": ".infinite-list-viewport",
         "messageList": "#main > div > div:nth-child(1) > div > div.message-list",
         "unreadMessageBar": "#main > div > div:nth-child(1) > div > div.message-list > div.msg-unread",
