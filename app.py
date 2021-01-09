@@ -96,8 +96,16 @@ def runReminder():
 
 	print("")
 	print("waiting for qr code")
-	img = driver.get_qr("i.png")
-	print(img)
+	img = driver.get_qr("newQR.png")
+	os.system("cp newQR.png sample/static/img/newQR.png")
+
+	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
+	print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",str(img)[:100])
 	# time.sleep(4)
 	QRCode = QRMatrix("decode", img)
 	print(QRCode.decode())
@@ -200,7 +208,7 @@ def flaskRunAsync(data):
 	runReminder()
 
 if __name__ == '__main__':
-	# flaskRun()
+	flaskRun()
 	print("STARTING APP")
 	app.run(debug=True, host='0.0.0.0')
 # 4. In case the QR code expires, you can use the reload_qr function to reload it
