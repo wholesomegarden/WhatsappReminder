@@ -357,7 +357,7 @@ class WhatsAPIDriver(object):
         # print("XXXXXXXXXXXXXXXXXXX")
         # print("XXXXXXXXXXXXXXXXXXX")x
         # print(self.driver.page_source)
-        # print("XXXXXXXXXXXXXXXXXXX")
+        # print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         # print("XXXXXXXXXXXXXXXXXXX")
         # print("XXXXXXXXXXXXXXXXXXX")
         # print("XXXXXXXXXXXXXXXXXXX")

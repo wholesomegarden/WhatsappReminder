@@ -76,6 +76,8 @@ chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWeb
 # print(str(driver1.page_source)[:100])
 # print("CCCCCCCCCC")
 
+running = 0
+
 class Reminder(object):
 
 	def __init__(self):
@@ -360,7 +362,9 @@ def flaskRun(reminder):
 	print("GONNA RUN ASYNC")
 	print("GONNA RUN ASYNC")
 	print("GONNA RUN ASYNC")
-	if reminder.runners < 1:
+	global running
+	if reminder.runners < 1 and running < 1:
+		running += 1
 		reminder.runners += 1
 		t = Thread(target=flaskRunAsync,args=[reminder,])
 		t.start()
