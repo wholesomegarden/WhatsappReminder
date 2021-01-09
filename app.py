@@ -199,8 +199,11 @@ def hello_world():
 	return render_template("index.html", user_image = full_filename)
 
 def flaskRun():
+	print("GONNA RUN ASYNC")
 	t = Thread(target=flaskRunAsync,args=[None,])
 	t.start()
+	print("AFTER GONNA RUN ASYNC")
+
 
 def flaskRunAsync(data):
 	# input()
