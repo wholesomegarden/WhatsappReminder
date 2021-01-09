@@ -242,7 +242,11 @@ def runReminder():
 	# QRCode = QRMatrix("decode", img)
 	# print(QRCode.decode())
 	print("@@@@@@@@@@@@@@@@@@")
-	print("XXXXXXXX")
+	print("DONEEEEEEEEEEEEEEEE")
+	print("DONEEEEEEEEEEEEEEEE")
+	print("DONEEEEEEEEEEEEEEEE")
+	print("DONEEEEEEEEEEEEEEEE")
+	print("DONEEEEEEEEEEEEEEEE")
 	# # i = io.imread(img)
 	# # image = color.rgb2gray(i)
 	#
