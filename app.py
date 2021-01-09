@@ -350,17 +350,22 @@ def flaskRun():
 	print("AFTER GONNA RUN ASYNC")
 	print("AFTER GONNA RUN ASYNC")
 
+runners = 0
 
 def flaskRunAsync(data):
 	# input()
 	print("AAAAAAAAAAAA ASYNC")
 	print("AAAAAAAAAAAA ASYNC")
+	print("AAAAAAAAAAAA ASYNC")QQQQQQQQQQQQQQQQQQQQQQQ
+2021-01-09T11:27:50.094690+00:00 app[web.1]: QQQQQQQQQQ
+
 	print("AAAAAAAAAAAA ASYNC")
 	print("AAAAAAAAAAAA ASYNC")
 	print("AAAAAAAAAAAA ASYNC")
 	print("AAAAAAAAAAAA ASYNC")
-	print("AAAAAAAAAAAA ASYNC")
-	runReminder()
+	if runners < 1:
+		runners += 1
+		runReminder()
 
 if __name__ == '__main__':
 	flaskRun()
