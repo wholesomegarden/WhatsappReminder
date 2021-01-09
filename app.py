@@ -94,6 +94,129 @@ def runReminder():
 	print("####################")
 
 	# driver.get_status()
+	print("Waiting for QR")
+	driver.wait_for_login()
+	print("Saving session")
+
+
+	# from qrtools import qrtools
+	# from PIL import Image
+	# import zbarlight
+	# qr = qrtools.QR()
+
+	#
+	# from PIL import Image
+
+	# import os
+	# import numpy as np
+	# import pyboof as pb
+
+	# # pb.init_memmap() #Optional
+	#
+	# class QR_Extractor:
+	#     # Src: github.com/lessthanoptimal/PyBoof/blob/master/examples/qrcode_detect.py
+	#     def __init__(self):
+	#         self.detector = pb.FactoryFiducial(np.uint8).qrcode()
+	#
+	#     def extract(self, img_path):
+	#         if not os.path.isfile(img_path):
+	#             print('File not found:', img_path)
+	#             return None
+	#         image = pb.load_single_band(img_path, np.uint8)
+	#         self.detector.detect(image)
+	#         qr_codes = []
+	#         for qr in self.detector.detections:
+	#             qr_codes.append({
+	#                 'text': qr.message,
+	#                 'points': qr.bounds.convert_tuple()
+	#             })
+	#         return qr_codes
+
+
+	# qr_scanner = QR_Extractor()
+
+	print("AAA")
+	c = 0
+	s = 60
+	status = "NotLoggedIn"
+	while status is not "LoggedIn":
+		c+=1
+		print("status", status)
+
+
+		# print("Checking qr, status", driver.get_status())
+
+		print("AAAAAAAAAAAAA")
+		# img = driver.get_qr("static/img/newQR.png")
+		im_path = os.path.join("static/img/newQR.png")
+
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+		print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+		
+		# pathlib.Path().absolute()
+		# os.system("cp newQR.png sample/static/img/newQR.png")
+
+		# img = driver.get_qr("newQR.png")
+		# from PIL import Image
+		# print("BBBBBBBBBBBBBBB")
+		# decoded = decode(Image.open(im_path))
+		# print(decoded, "#######################")
+		# print(decoded, "#######################")
+		# print(decoded, "#######################")
+		# print(decoded, "#######################")
+		# print(decoded, "#######################")
+		# print(decoded, "#######################")
+		# print(decoded, "#######################")
+
+		for barcode in decoded:
+			print("@@@@@@@@@@@@@@@@@@@")
+					# the barcode data is a bytes object so if we want to draw it
+			# on our output image we need to convert it to a string first
+			# barcodeData = barcode.data.decode("utf-8")
+			# barcodeType = barcode.type
+			# # draw the barcode data and barcode type on the image
+			# text = "{} ({})".format(barcodeData, barcodeType)
+			print("@@@@@@@@@@@@@@@@@@@")
+			# print(text)
+			# printQR(barcodeData)
+			print("@@@@@@@@@@@@@@@@@@@XXXXXXXX")
+
+
+		status = driver.get_status()
+		# output = qr_scanner.extract(img)
+		# print(output,"!!!!!!!!!!!!!!!!WDIOUSICNOIUCJ)(Z*UCINJ)(ZP*DFJYUF)((P*SUD)(UASIDMUJ))")
+		# print(qr.decode(img))
+		# print(qr.data)
+
+		# print("BBBB2")
+		# with open(img, 'r+b') as f:
+		#     with Image.open(f) as image:
+		#         cover = resizeimage.resize_cover(image, [57, 57])
+		#         cover.save(img, image.format)
+		# #
+		# qr.decode(img)
+		# print (qr.data)
+		# print(retval,"!!!!!!!!!!!!!!!!!!!")
+		#
+		# print("CCC",img)
+		# obj.load_image_from_file(img)
+
+		# obj.resize(s,s)
+		# s-=1
+		# print(obj)
+		# obj.render(timg.Ansi24HblockMethod)
+		# print("DDD",s,s,s,s)
+		# time.sleep(10)
+		# driver.save_firefox_profile(remove_old=False)
+		# time.sleep(3)
+		# try:
+		#     driver.reload_qr()
+		# except:
+		#     print("refresh finised")
+	print("Bot started")
+
 
 	print("")
 	print("waiting for qr code")
