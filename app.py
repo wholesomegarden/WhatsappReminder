@@ -48,10 +48,10 @@ import sys
 
 from QRMatrix import *
 
-from skimage import data, color
-from skimage.transform import rescale, resize, downscale_local_mean
+# from skimage import data, color
+# from skimage.transform import rescale, resize, downscale_local_mean
 from webwhatsapi import WhatsAPIDriver
-from skimage import io
+# from skimage import io
 
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@1")
 print("@@@@@@@@@@@@@@@@@@@@@@@@@@2")
@@ -117,11 +117,11 @@ def runReminder():
 	# image_rescaled = rescale(image, 0.25, anti_aliasing=False)
 	# io.imsave(img, image_rescaled)
 	print("XXXXXXXXX")
-	import timg
-	obj = timg.Renderer()
-	obj.load_image_from_file(img)
-	obj.resize(106,106)
-	obj.render(timg.Ansi24HblockMethod)
+	# import timg
+	# obj = timg.Renderer()
+	# obj.load_image_from_file(img)
+	# obj.resize(106,106)
+	# obj.render(timg.Ansi24HblockMethod)
 	#
 	#
 	# for contact in driver.get_contacts():
@@ -200,8 +200,18 @@ def hello_world():
 
 def flaskRun():
 	print("GONNA RUN ASYNC")
+	print("GONNA RUN ASYNC")
+	print("GONNA RUN ASYNC")
+	print("GONNA RUN ASYNC")
+	print("GONNA RUN ASYNC")
+	print("GONNA RUN ASYNC")
+	print("GONNA RUN ASYNC")
+	print("GONNA RUN ASYNC")
 	t = Thread(target=flaskRunAsync,args=[None,])
 	t.start()
+	print("AFTER GONNA RUN ASYNC")
+	print("AFTER GONNA RUN ASYNC")
+	print("AFTER GONNA RUN ASYNC")
 	print("AFTER GONNA RUN ASYNC")
 
 
@@ -219,7 +229,20 @@ def flaskRunAsync(data):
 if __name__ == '__main__':
 	flaskRun()
 	print("STARTING APP")
+	print("STARTING APP")
+	print("STARTING APP")
+	print("STARTING APP")
+	print("STARTING APP")
 	app.run(debug=True, host='0.0.0.0')
+else:
+	flaskRun()
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+
 # 4. In case the QR code expires, you can use the reload_qr function to reload it
 # driver.reload_qr()
 # driver.view_unread()
