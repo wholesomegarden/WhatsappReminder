@@ -81,10 +81,15 @@ class Reminder(object):
 	def __init__(self):
 		self.lastQR = 0
 		self.runners = 0
+		self.driver = None
+
+	def quit(self):
+		self.driver.quit()
 
 	def runReminder(self):
 		# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
 		driver = WhatsAPIDriver(client='chrome', profile="session.default", chrome_options=chrome_options,username="wholesomegarden")
+		self.driver = driver
 
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
@@ -100,7 +105,7 @@ class Reminder(object):
 		print("####################")
 
 		# driver.get_status()
-		print("Waiting for QR")
+		print("Waiting for Login")
 		driver.wait_for_login()
 		print("Saving session")
 
@@ -144,7 +149,7 @@ class Reminder(object):
 		print("AAA")
 		c = 0
 		s = 60
-		status = "NotLoggedIn"
+		status = driver.get_status()
 		img = None
 		while status is not "LoggedIn":
 			c+=1
