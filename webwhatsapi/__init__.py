@@ -80,9 +80,9 @@ class WhatsAPIDriver(object):
 
     _SELECTORS = {
         "firstrun": "#wrapper",
-        "qrCode": 'canvas',
+        "qrCode": 'div._1PTz1',
         "qrCodePlain": "div[data-ref]",
-        "mainPage": ".two",
+        "mainPage": "div._36Q2N.two",
         "chatList": ".infinite-list-viewport",
         "messageList": "#main > div > div:nth-child(1) > div > div.message-list",
         "unreadMessageBar": "#main > div > div:nth-child(1) > div > div.message-list > div.msg-unread",
@@ -351,8 +351,7 @@ class WhatsAPIDriver(object):
         """Get pairing QR code from client"""
         if "Click to reload QR code" in self.driver.page_source:
             self.reload_qr()
-        qr = self.driver.find_element_by_tag_name(self._SELECTORS["qrCode"])
-        qr = self.driver.find
+        qr = self.driver.find_element_by_css_selector(self._SELECTORS["qrCode"])
         if filename is None:
             fd, fn_png = tempfile.mkstemp(prefix=self.username, suffix=".png")
         else:
