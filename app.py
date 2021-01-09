@@ -84,7 +84,7 @@ class Reminder(object):
 
 	def runReminder(self):
 		# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-		driver = WhatsAPIDriver(client='chrome', profile="session.default" chrome_options=chrome_options,username="wholesomegarden")
+		driver = WhatsAPIDriver(client='chrome', profile="session.default", chrome_options=chrome_options,username="wholesomegarden")
 
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
@@ -339,7 +339,7 @@ app.config['UPLOAD_FOLDER'] = PEOPLE_FOLDER
 
 @app.route('/')
 def hello_world():
-	print("MANAGER",reminder)
+	print("MANAGER",reminder,reminder.lastQR)
 	full_filename = os.path.join(app.config['UPLOAD_FOLDER'], "QR"+reminder.lastQR+".png")
 	return render_template("index.html", user_image = full_filename)
 
