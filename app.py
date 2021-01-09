@@ -154,13 +154,14 @@ class Reminder(object):
 		print("AAA")
 		c = 0
 		s = 60
+		maxtries = 30
 		try:
 			self.status = status = driver.get_status()
 		except :
 			self.status = status = "XXXXXXXX"
 			print("STATUS ERROR XXX")
 		img = None
-		while status is not "LoggedIn":
+		while status is not "LoggedIn" and c < maxtries:
 			c+=1
 			print("status", status)
 
@@ -176,10 +177,10 @@ class Reminder(object):
 			print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",str(img)[:100])
 			# im_path = os.path.join("static/img/newQR.png")
 
-			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
-			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
-			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
-			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c)
+			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c,"/",maxtries)
+			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c,"/",maxtries)
+			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c,"/",maxtries)
+			print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",c,"/",maxtries)
 
 			# pathlib.Path().absolute()
 			# os.system("cp newQR.png sample/static/img/newQR.png")
