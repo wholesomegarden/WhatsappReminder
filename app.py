@@ -68,7 +68,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
-chrome_options.add_argument("user-data-dir=/app/session.default/Default");
+chrome_options.add_argument("user-data-dir=/app/session.default/new");
 
 # print("AAAAAAAA")
 # print()
@@ -153,7 +153,7 @@ class Reminder(object):
 
 	def runReminder(self):
 		# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-		profile = "/app/session.default/Default"
+		profile = "/app/session.default/new"
 		# profile = None
 		driver = WhatsAPIDriver(profile = profile, client='chrome', chrome_options=chrome_options,username="wholesomegarden")
 		# driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
