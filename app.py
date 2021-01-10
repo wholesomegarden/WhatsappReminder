@@ -131,6 +131,7 @@ print("================================")
 print("================================")
 print("================================")
 print(" ")
+driver1.quit()
 
 # driver.get("http://www.python.org")
 # print("CCCCCCCCCC")
