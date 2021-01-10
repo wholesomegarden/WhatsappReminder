@@ -5,7 +5,9 @@ from selenium.webdriver.common.keys import Keys
 
 import os, time
 
-driver1 = webdriver.Firefox()
+# chrome_options.add_argument("user-data-dir=session.default");
+
+driver1 = webdriver.Firefox(firefox_profile="session.default")
 
 driver1.get("https://accounts.random.org/")
 
