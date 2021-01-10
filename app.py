@@ -98,6 +98,10 @@ class Reminder(object):
 		driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
 		self.driver = driver
 
+		driver.driver.get("chrome://version")
+		print(str(driver.driver.page_source))
+		print("")
+
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@6")
@@ -253,12 +257,7 @@ class Reminder(object):
 			# except:
 			#     print("refresh finised")
 		print("Bot started")
-		print("Bot started")
-		print("Bot started")
 
-		driver.get("chrome://version")
-		print(str(driver.page_source))
-		print("")
 		# print("waiting for qr code")
 		# img = driver.get_qr("static/img/newQR.png")
 		# os.system("cp newQR.png static/img/newQR.png")
