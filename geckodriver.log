@@ -1796,3 +1796,141 @@ JavaScript warning: https://web.whatsapp.com/app.6be31a9914b3f8e528be.js, line 1
 Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
+1610273868697	geckodriver	INFO	Listening on 127.0.0.1:48301
+1610273868710	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilekmnOLh"
+
+(firefox:3271): Gtk-WARNING **: 12:17:49.303: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:3378): Gtk-WARNING **: 12:17:50.449: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:3404): Gtk-WARNING **: 12:17:50.532: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610273871091	Marionette	INFO	Listening on port 34887
+1610273871136	Marionette	WARN	TLS certificate errors will be ignored for this session
+1610273900670	Marionette	INFO	Stopped listening on port 34887
+1610274096454	geckodriver	INFO	Listening on 127.0.0.1:55137
+1610274096458	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilebw5sp5"
+
+(firefox:4377): Gtk-WARNING **: 12:21:36.494: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:4445): Gtk-WARNING **: 12:21:37.903: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:4465): Gtk-WARNING **: 12:21:37.980: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274098487	Marionette	INFO	Listening on port 43657
+1610274098605	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 697))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://accounts.random.org"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://accounts.random.org"
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+1610274229023	Marionette	INFO	Stopped listening on port 43657
+1610274230501	geckodriver	INFO	Listening on 127.0.0.1:45553
+1610274230505	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile65YPco"
+
+(firefox:5037): Gtk-WARNING **: 12:23:50.542: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:5124): Gtk-WARNING **: 12:23:51.928: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:5144): Gtk-WARNING **: 12:23:52.010: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274232505	Marionette	INFO	Listening on port 33089
+1610274232526	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+(/usr/lib/firefox/firefox:5240): Gtk-WARNING **: 12:26:34.877: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:5607): Gtk-WARNING **: 12:26:36.225: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+1610274539178	Marionette	INFO	Stopped listening on port 33089
+1610274542950	geckodriver	INFO	Listening on 127.0.0.1:38213
+1610274542954	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileckWFVS"
+
+(firefox:6279): Gtk-WARNING **: 12:29:02.990: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6358): Gtk-WARNING **: 12:29:04.399: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6378): Gtk-WARNING **: 12:29:04.481: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274544979	Marionette	INFO	Listening on port 33897
+1610274545089	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:6460): Gtk-WARNING **: 12:29:27.264: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6521): Gtk-WARNING **: 12:29:36.562: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+1610274614699	Marionette	INFO	Stopped listening on port 33897
+1610274615906	geckodriver	INFO	Listening on 127.0.0.1:51643
+1610274615910	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileg3Cg4Q"
+
+(firefox:6833): Gtk-WARNING **: 12:30:15.947: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6909): Gtk-WARNING **: 12:30:17.320: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6934): Gtk-WARNING **: 12:30:17.437: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274617888	Marionette	INFO	Listening on port 39879
+1610274617943	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:7021): Gtk-WARNING **: 12:30:45.156: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:7164): Gtk-WARNING **: 12:30:55.666: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+1610274699537	Marionette	INFO	Stopped listening on port 39879
+1610274701214	geckodriver	INFO	Listening on 127.0.0.1:56261
+1610274701218	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile27inil"
+
+(firefox:7359): Gtk-WARNING **: 12:31:41.254: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:7450): Gtk-WARNING **: 12:31:42.084: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:7471): Gtk-WARNING **: 12:31:42.163: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274702679	Marionette	INFO	Listening on port 38195
+1610274702742	Marionette	WARN	TLS certificate errors will be ignored for this session
+1610274727537	Marionette	INFO	Stopped listening on port 38195
+1610274729120	geckodriver	INFO	Listening on 127.0.0.1:57803
+1610274729124	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilelQaWQk"
+
+(firefox:7698): Gtk-WARNING **: 12:32:09.158: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:7772): Gtk-WARNING **: 12:32:10.525: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:7792): Gtk-WARNING **: 12:32:10.607: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274731099	Marionette	INFO	Listening on port 43725
+1610274731143	Marionette	WARN	TLS certificate errors will be ignored for this session
+1610274875901	Marionette	INFO	Stopped listening on port 43725
+1610274877211	geckodriver	INFO	Listening on 127.0.0.1:54175
+1610274877215	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYTRxSo"
+
+(firefox:8263): Gtk-WARNING **: 12:34:37.251: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8345): Gtk-WARNING **: 12:34:38.642: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8387): Gtk-WARNING **: 12:34:38.736: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274879190	Marionette	INFO	Listening on port 37043
+1610274879233	Marionette	WARN	TLS certificate errors will be ignored for this session
+1610274903846	Marionette	INFO	Stopped listening on port 37043
+1610274918534	geckodriver	INFO	Listening on 127.0.0.1:45539
+1610274918538	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilehnIdgL"
+
+(firefox:8651): Gtk-WARNING **: 12:35:18.575: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8723): Gtk-WARNING **: 12:35:19.961: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8743): Gtk-WARNING **: 12:35:20.034: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610274920602	Marionette	INFO	Listening on port 43593
+1610274920684	Marionette	WARN	TLS certificate errors will be ignored for this session
+1610274942794	Marionette	INFO	Stopped listening on port 43593

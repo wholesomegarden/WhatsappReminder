@@ -58,6 +58,8 @@ from webwhatsapi import WhatsAPIDriver
 
 
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
 import os
 
 chrome_options = webdriver.ChromeOptions()
@@ -81,67 +83,46 @@ print("================================")
 print("================================")
 print("================================")
 print(" ")
-driver1.get("http://www.facebook.com")
-# Step 3) Search & Enter the Email or Phone field & Enter Password
-# print(str(driver1.page_source))
+
+
+driver1.get("https://accounts.random.org/")
+
+print(driver1.page_source)
 
 try:
-	username = driver1.find_element_by_id("email")
-	password = driver1.find_element_by_id("pass")
+    block = driver1.find_element_by_id("account-overview-block")
+    print("==========================")
+    print(" LOGGED IN!!!!!!!!! A",block)
+    print("==========================")
 except:
-	print(" NO EMAIL OR PASS ~~~~~~~~~~~~~~~~~~~~~")
-	print(" NO EMAIL OR PASS ~~~~~~~~~~~~~~~~~~~~~")
-	print(" NO EMAIL OR PASS ~~~~~~~~~~~~~~~~~~~~~")
-try:
-	submit   = driver1.find_element_by_name("login")
-	print("A!!!!!",submit)
-except:
-	print("*********************")
-	print("*********************")
-	print("*********************")
-	print("NO LOGIN BUTTON!!!!!A")
-
-try:
-	watch   = driver1.find_element_by_class_name("sjgh65i0")
-	print("WATCH AAAAAAA !!!!!",watch)
-	print("WATCH AAAAAAA !!!!!",watch)
-	print("WATCH AAAAAAA !!!!!",watch)
-	print("WATCH AAAAAAA !!!!!",watch)
-except:
-	print("*********************")
-	print("*********************")
-	print("*********************")
-	print("NO WATCH FOUND!!!!!A")
+    print("==========================")
+    print(" NO BLOCK LOGGED OUT A ")
+    print("==========================")
 
 
+username = driver1.find_element_by_id("login-login")
+password = driver1.find_element_by_id("login-password")
+# btn   = driver1.find_element_by_css_selector("button.btn btn-primary")
 
-username.send_keys("fire17@gmail.com")
-password.send_keys("cloudK!Q@F")
+username.send_keys("takeyo")
+password.send_keys("12345678abcd")
+password.send_keys(Keys.ENTER)
 # Step 4) Click Login
-submit.click()
-time.sleep(15)
-print(" ")
-print("================================")
-print("================================")
-print("================================")
-print("================================")
-print("================================")
-print("================================")
-print(" ")
+time.sleep(5)
+block = driver1.find_element_by_id("account-overview-block")
+
 
 try:
-	watch   = driver1.find_element_by_class_name("sjgh65i0")
-	print("WATCH!!!!!",watch)
-	print("WATCH!!!!!",watch)
-	print("WATCH!!!!!",watch)
-	print("WATCH!!!!!",watch)
-	print("LOGGED IN FB")
+    block = driver1.find_element_by_id("account-overview-block")
+    print("==========================")
+    print(" LOGGED IN!!!!!!!!! B",block)
+    print("==========================")
 except:
-	print("*********************")
-	print("*********************")
-	print("*********************")
-	print("NO WATCH FOUND!!!!!A")
+    print("==========================")
+    print(" NO BLOCK LOGGED OUT B")
+    print("==========================")
 
+	
 print(" ")
 print("================================")
 print("================================")
