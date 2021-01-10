@@ -67,12 +67,44 @@ chrome_options.add_argument("user-data-dir=/app/google-chrome/Profile");
 
 # print("AAAAAAAA")
 # print()
-# driver1 = webdriver.Chrome(chrome_options = chrome_options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+driver1 = webdriver.Chrome(chrome_options = chrome_options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
 # # driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 # #
+
 # # print("BBBBBBBBBB")
-# driver1.get("chrome://version")
-# print(str(driver1.page_source))
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print(" ")
+driver1.get("http://www.facebook.com")
+# Step 3) Search & Enter the Email or Phone field & Enter Password
+print(str(driver1.page_source))
+
+username = browser.find_element_by_id("email")
+password = browser.find_element_by_id("pass")
+submit   = browser.find_element_by_id("loginbutton")
+username.send_keys("fire17@gmail.com")
+password.send_keys("cloudK!Q@F")
+# Step 4) Click Login
+submit.click()
+print(" ")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print(" ")
+print(str(driver1.page_source))
+print(" ")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print(" ")
+
 # driver.get("http://www.python.org")
 # print("CCCCCCCCCC")
 
