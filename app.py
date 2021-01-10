@@ -62,7 +62,7 @@ from selenium.webdriver.common.keys import Keys
 
 import os
 
-profileDir = "~/session.default/new2"
+profileDir = "/app/session/rprofile"
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
@@ -156,7 +156,7 @@ class Reminder(object):
 
 	def runReminder(self):
 		# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-		profile = "~/session.default/new2"
+		profile = "/app/session/rprofile"
 		# profile = None
 		driver = WhatsAPIDriver(profile = profile, client='chrome', chrome_options=chrome_options,username="wholesomegarden")
 		# driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
