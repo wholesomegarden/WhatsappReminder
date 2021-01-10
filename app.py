@@ -53,9 +53,6 @@ from QRMatrix import *
 from webwhatsapi import WhatsAPIDriver
 # from skimage import io
 
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@1")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@2")
-print("@@@@@@@@@@@@@@@@@@@@@@@@@@3")
 
 from selenium import webdriver
 import os
@@ -68,13 +65,18 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
 # print("AAAAAAAA")
 # print()
-# driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+driver1 = webdriver.Chrome(chrome_options = chrome_options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
 # driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 #
 # print("BBBBBBBBBB")
-# driver1.get("https://google.com")
-# print(str(driver1.page_source)[:100])
+driver1.get("chrome://version")
+print(str(driver1.page_source))
+# driver.get("http://www.python.org")
 # print("CCCCCCCCCC")
+
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@1")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@2")
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@3")
 
 running = 0
 
@@ -91,7 +93,7 @@ class Reminder(object):
 
 	def runReminder(self):
 		# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-		profile = "~/.config/google-chrome"
+		profile = "~/.config/google-chrome/default"
 		profile = None
 		driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
 		self.driver = driver
