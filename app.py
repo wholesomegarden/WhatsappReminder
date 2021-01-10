@@ -93,14 +93,14 @@ class Reminder(object):
 
 	def runReminder(self):
 		# driver = WhatsAPIDriver(firefox_binary="/app/vendor/firefox/firefox",executable_path='/app/vendor/geckodriver/geckodriver',username="wholesomegarden")
-		profile = "~/.config/google-chrome/default"
-		profile = None
+		profile = "/tmp/.com.google.Chrome.l7O0KN/Default"
+		# profile = None
 		driver = WhatsAPIDriver(client='chrome', chrome_options=chrome_options,username="wholesomegarden")
 		self.driver = driver
 
-		driver.driver.get("chrome://version")
-		print(str(driver.driver.page_source))
-		print("")
+		# driver.driver.get("chrome://version")
+		# print(str(driver.driver.page_source))
+		# print("")
 
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@4")
 		print("@@@@@@@@@@@@@@@@@@@@@@@@@@5")
