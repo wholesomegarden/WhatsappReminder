@@ -68,7 +68,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
-chrome_options.add_argument("user-data-dir=/app/google-chrome/Profile");
+chrome_options.add_argument("user-data-dir=session.default");
 
 # print("AAAAAAAA")
 # print()
@@ -122,7 +122,7 @@ except:
     print(" NO BLOCK LOGGED OUT B")
     print("==========================")
 
-	
+
 print(" ")
 print("================================")
 print("================================")
