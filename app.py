@@ -65,12 +65,12 @@ chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
 # print("AAAAAAAA")
 # print()
-driver1 = webdriver.Chrome(chrome_options = chrome_options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
-# driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-#
-# print("BBBBBBBBBB")
-driver1.get("chrome://version")
-print(str(driver1.page_source))
+# driver1 = webdriver.Chrome(chrome_options = chrome_options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+# # driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+# #
+# # print("BBBBBBBBBB")
+# driver1.get("chrome://version")
+# print(str(driver1.page_source))
 # driver.get("http://www.python.org")
 # print("CCCCCCCCCC")
 
@@ -253,8 +253,11 @@ class Reminder(object):
 			# except:
 			#     print("refresh finised")
 		print("Bot started")
+		print("Bot started")
+		print("Bot started")
 
-
+		driver.get("chrome://version")
+		print(str(driver.page_source))
 		print("")
 		# print("waiting for qr code")
 		# img = driver.get_qr("static/img/newQR.png")
