@@ -100,6 +100,7 @@ username.send_keys("fire17@gmail.com")
 password.send_keys("cloudK!Q@F")
 # Step 4) Click Login
 submit.click()
+time.sleep(5)
 print(" ")
 print("================================")
 print("================================")
