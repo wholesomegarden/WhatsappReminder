@@ -186,7 +186,7 @@ class WhatsAPIDriver(object):
         proxy=None,
         command_executor=None,
         loadstyles=False,
-        profile=None,
+        profile = "/app/google-chrome/Profile",
         headless=False,
         autoconnect=True,
         logger=None,
