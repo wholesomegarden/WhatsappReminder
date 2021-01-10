@@ -1,0 +1,5 @@
+2021/01/10-11:37:35.380 46fe Reusing MANIFEST /home/magic/.config/google-chrome/Profile 6/IndexedDB/https_www.facebook.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/01/10-11:38:19.201 4e7d Level-0 table #5: started
+2021/01/10-11:38:19.210 4e7d Level-0 table #5: 1411 bytes OK
+2021/01/10-11:38:19.212 4e7d Delete type=0 #3
+2021/01/10-11:38:19.212 4e7d Manual compaction at level-0 from (begin) .. (end); will stop at (end)
