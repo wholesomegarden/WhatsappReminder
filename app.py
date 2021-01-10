@@ -87,8 +87,15 @@ driver1.get("http://www.facebook.com")
 
 username = driver1.find_element_by_id("email")
 password = driver1.find_element_by_id("pass")
-submit   = driver1.find_element_by_id("loginbutton")
-print("!!!!!",submit)
+try:
+	submit   = driver1.find_element_by_name("login")
+	print("!!!!!",submit)
+except:
+	print("*********************")
+	print("*********************")
+	print("*********************")
+	print("NO LOGIN BUTTON!!!!!A")
+
 username.send_keys("fire17@gmail.com")
 password.send_keys("cloudK!Q@F")
 # Step 4) Click Login
@@ -101,8 +108,15 @@ print("================================")
 print("================================")
 print("================================")
 print(" ")
-submit   = driver1.find_element_by_id("loginbutton")
-print("!!!!!",submit)
+try:
+	submit   = driver1.find_element_by_name("login")
+	print("!!!!!",submit)
+except:
+	print("*********************")
+	print("*********************")
+	print("*********************")
+	print("NO LOGIN BUTTON!!!!!B")
+
 print(" ")
 print("================================")
 print("================================")
