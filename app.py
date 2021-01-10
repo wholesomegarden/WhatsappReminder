@@ -119,7 +119,7 @@ username.send_keys("fire17@gmail.com")
 password.send_keys("cloudK!Q@F")
 # Step 4) Click Login
 submit.click()
-time.sleep(10)
+time.sleep(15)
 print(" ")
 print("================================")
 print("================================")
@@ -130,7 +130,7 @@ print("================================")
 print(" ")
 
 try:
-	watch   = driver1.find_element_by_class_name("a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv")
+	watch   = driver1.find_element_by_class_name("sjgh65i0")
 	print("WATCH!!!!!",watch)
 	print("WATCH!!!!!",watch)
 	print("WATCH!!!!!",watch)
