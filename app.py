@@ -85,38 +85,62 @@ driver1.get("http://www.facebook.com")
 # Step 3) Search & Enter the Email or Phone field & Enter Password
 # print(str(driver1.page_source))
 
-username = driver1.find_element_by_id("email")
-password = driver1.find_element_by_id("pass")
+try:
+	username = driver1.find_element_by_id("email")
+	password = driver1.find_element_by_id("pass")
+except:
+	print(" NO EMAIL OR PASS ~~~~~~~~~~~~~~~~~~~~~")
+	print(" NO EMAIL OR PASS ~~~~~~~~~~~~~~~~~~~~~")
+	print(" NO EMAIL OR PASS ~~~~~~~~~~~~~~~~~~~~~")
 try:
 	submit   = driver1.find_element_by_name("login")
-	print("!!!!!",submit)
+	print("A!!!!!",submit)
 except:
 	print("*********************")
 	print("*********************")
 	print("*********************")
 	print("NO LOGIN BUTTON!!!!!A")
 
-username.send_keys("fire17@gmail.com")
-password.send_keys("cloudK!Q@F")
-# Step 4) Click Login
-submit.click()
-time.sleep(5)
-print(" ")
-print("================================")
-print("================================")
-print("================================")
-print("================================")
-print("================================")
-print("================================")
-print(" ")
 try:
-	submit   = driver1.find_element_by_name("login")
-	print("!!!!!",submit)
+	watch   = driver1.find_element_by_class_name("a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv")
+	print("WATCH AAAAAAA !!!!!",watch)
+	print("WATCH AAAAAAA !!!!!",watch)
+	print("WATCH AAAAAAA !!!!!",watch)
+	print("WATCH AAAAAAA !!!!!",watch)
 except:
 	print("*********************")
 	print("*********************")
 	print("*********************")
-	print("NO LOGIN BUTTON!!!!!B")
+	print("NO WATCH FOUND!!!!!A")
+
+
+
+username.send_keys("fire17@gmail.com")
+password.send_keys("cloudK!Q@F")
+# Step 4) Click Login
+submit.click()
+time.sleep(10)
+print(" ")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print("================================")
+print(" ")
+
+try:
+	watch   = driver1.find_element_by_class_name("a8c37x1j ms05siws hwsy1cff b7h9ocf4 em6zcovv")
+	print("WATCH!!!!!",watch)
+	print("WATCH!!!!!",watch)
+	print("WATCH!!!!!",watch)
+	print("WATCH!!!!!",watch)
+	print("LOGGED IN FB")
+except:
+	print("*********************")
+	print("*********************")
+	print("*********************")
+	print("NO WATCH FOUND!!!!!A")
 
 print(" ")
 print("================================")
