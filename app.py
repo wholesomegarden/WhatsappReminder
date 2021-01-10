@@ -7,6 +7,9 @@ from threading import Thread
 
 id = "0547772000"
 
+## import geckodriver
+# https://www.askpython.com/python/examples/python-automate-facebook-login
+
 # heroku config:set WEB_CONCURRENCY=1 -a whatsappreminder
 # https://github.com/pyronlaboratory/heroku-integrated-firefox-geckodriver
 
@@ -67,7 +70,7 @@ chrome_options.add_argument("user-data-dir=/app/google-chrome/Profile");
 
 # print("AAAAAAAA")
 # print()
-driver1 = webdriver.Chrome(chrome_options = chrome_options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+driver1 = webdriver.Chrome(options = chrome_options, executable_path=os.environ.get("CHROMEDRIVER_PATH"))
 # # driver1 = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 # #
 
@@ -99,7 +102,8 @@ print("================================")
 print("================================")
 print(" ")
 submit   = driver1.find_element_by_id("loginbutton")
-print("!!!!!",submit)print(" ")
+print("!!!!!",submit)
+print(" ")
 print("================================")
 print("================================")
 print("================================")
