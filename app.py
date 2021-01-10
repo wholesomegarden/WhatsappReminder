@@ -63,7 +63,7 @@ chrome_options.add_argument("--headless")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
-chrome_options.addArguments("/app/google-chrome/Profile");
+chrome_options.add_argument("/app/google-chrome/Profile");
 
 # print("AAAAAAAA")
 # print()
@@ -259,6 +259,7 @@ class Reminder(object):
 			# except:
 			#     print("refresh finised")
 		print("Bot started")
+		# driver.save_firefox_profile()
 
 		# print("waiting for qr code")
 		# img = driver.get_qr("static/img/newQR.png")
