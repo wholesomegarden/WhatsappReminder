@@ -1,2 +1,3 @@
 # WhatsappReminder.py
-from Manager import *
+# from Manager import *
+from ReminderService import *

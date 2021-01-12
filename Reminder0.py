@@ -17,7 +17,7 @@ class Reminder(JSONEncoder):
 
 	def toJSON(self):
 		return json.dumps(self, default=lambda o: o.__dict__,
-			sort_keys=True, indent=0)
+			sort_keys=True, indent=4)
 
 	def jsonRemsToRems(d):
 		D = {"sent":{},"unsent":{}}
@@ -51,7 +51,7 @@ class Reminder(JSONEncoder):
 		self.message     = message
 		self.sendTime    = sendTime
 		self.repeat      = repeat
-		self.hasTime     = sendTime is not None
+		self.hasTime     = t is not None
 
 		print("NEW REMINDER CREATED!",self,self.id         ,
 self.userID     ,

@@ -1,5 +1,0 @@
-2021/01/10-13:45:17.757 49e6 Reusing MANIFEST /home/magic/.config/google-chrome/Profile 6/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/01/10-13:46:25.524 49e6 Level-0 table #5: started
-2021/01/10-13:46:25.531 49e6 Level-0 table #5: 101305 bytes OK
-2021/01/10-13:46:25.533 49e6 Delete type=0 #3
-2021/01/10-13:46:25.534 49e6 Manual compaction at level-0 from (begin) .. (end); will stop at (end)

@@ -1,8 +1,0 @@
-2021/01/10-11:14:40.194 43dc Reusing MANIFEST /home/magic/.config/google-chrome/Profile 6/IndexedDB/https_1041c552194c7fe32da851b431192309.safeframe.googlesyndication.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/01/10-11:14:40.195 43dc Recovering log #7
-2021/01/10-11:14:40.195 43dc Reusing old log /home/magic/.config/google-chrome/Profile 6/IndexedDB/https_1041c552194c7fe32da851b431192309.safeframe.googlesyndication.com_0.indexeddb.leveldb/000007.log 
-2021/01/10-11:14:46.090 46fd Level-0 table #11: started
-2021/01/10-11:14:46.090 46fd Level-0 table #11: 0 bytes OK
-2021/01/10-11:14:46.158 46fd Delete type=0 #7
-2021/01/10-11:14:46.158 46fd Manual compaction at level-0 from (begin) .. (end); will stop at (end)
-2021/01/10-11:14:46.158 46fd Manual compaction at level-1 from (begin) .. (end); will stop at (end)

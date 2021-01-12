@@ -1,5 +1,0 @@
-2021/01/10-11:11:32.154 43dc Reusing MANIFEST /home/magic/.config/google-chrome/Profile 6/IndexedDB/https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/01/10-11:58:39.360 4e7c Level-0 table #5: started
-2021/01/10-11:58:39.366 4e7c Level-0 table #5: 1165 bytes OK
-2021/01/10-11:58:39.368 4e7c Delete type=0 #3
-2021/01/10-11:58:39.368 4e7c Manual compaction at level-0 from (begin) .. (end); will stop at (end)
