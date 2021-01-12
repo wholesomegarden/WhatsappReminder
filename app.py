@@ -241,6 +241,9 @@ class Master(object):
 			lastDB = self.loadDB()
 			self.db = lastDB
 			self.db["init"] = time.time()
+			self.db["backupInterval"] = 10*60
+			self.db["lastBackup"] = 0
+			self.db["lastBackupServices"] = 0
 			self.backup()
 			print(''' :::::::::::::::::::::::::::::::::::: ''')
 			print(''' :::::::::::::::::::::::::::::::::::: ''')
@@ -253,9 +256,9 @@ class Master(object):
 			print()
 
 			''' Load Services '''
-			print("SSSSSSSSSSSSSSSSSSSSs")
+			# print("SSSSSSSSSSSSSSSSSSSSs")
 			self.LoadServices()
-			print("SSSSSSSSSSSSSSSSSSSSs")
+			# print("SSSSSSSSSSSSSSSSSSSSs")
 
 			''' process incoming '''
 			process = Thread(target = self.ProcessIncoming, args=[None])
@@ -271,6 +274,14 @@ class Master(object):
 
 
 	def backupService(self,db = None, service = None):
+		bT = Thread(target = self.backupServiceAsync,args = [[db,service]])
+		bT.start()
+
+	def backupServiceAsync(self,data):
+		db, service = data
+		if time.time() - self.db["lastBackupServices"] < self.db["backupInterval"]:
+			return False
+
 		if service is None or len(service) == 0:
 			return None
 
@@ -296,10 +307,18 @@ class Master(object):
 				return self.loadDB(backupChat)
 		else:
 			print(" ::: ERROR - BackupChat NOT FOUND for :"+service+": service ::: \n")
+		self.db["lastBackupServices"] = time.time()
 
 
 
 	def backup(self):
+		bT = Thread(target = self.backupAsync,args = [None])
+		bT.start()
+
+	def backupAsync(self,data):
+		if time.time() - self.db["lastBackup"] < self.db["backupInterval"]:
+			return False
+		self.db["lastBackup"] = time.time()
 		return self.driver.updateDB(self.db,number=self.db["id"])
 
 
@@ -329,21 +348,21 @@ class Master(object):
 
 				''' all unread messages '''
 				for contact in self.driver.get_unread():
-					print("MMMMMMMMMMXXX",contact)
-					print("MMMMMMMMMMXXX",contact)
-					print("MMMMMMMMMMXXX",contact)
-					print("MMMMMMMMMMXXX",contact)
-					print("MMMMMMMMMMXXX",contact)
+					# print("MMMMMMMMMMXXX",contact)
+					# print("MMMMMMMMMMXXX",contact)
+					# print("MMMMMMMMMMXXX",contact)
+					# print("MMMMMMMMMMXXX",contact)
+					# print("MMMMMMMMMMXXX",contact)
 					for message in contact.messages:
 						print("MMMMMMMMMM",message)
 
-						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						pprint(vars(contact))
-						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						pprint(vars(message))
-						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						# pprint(vars(contact))
+						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						# pprint(vars(message))
+						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
 						if runLocal:
 							chatID = message.chat_id["_serialized"]
 						else:
@@ -711,23 +730,23 @@ def flaskRunAsync(data):
 if __name__ == '__main__':
 	flaskRun(master)
 	print("STARTING APP")
-	print("STARTING APP")
-	print("STARTING APP")
-	print("STARTING APP")
-	print("STARTING APP")
+	# print("STARTING APP")
+	# print("STARTING APP")
+	# print("STARTING APP")
+	# print("STARTING APP")
 	if runLocal :
 		pass
-		# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+		app.run(debug=True, host='0.0.0.0',use_reloader=False)
 	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
 else:
 	flaskRun(master)
-	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	app.run(debug=True, host='0.0.0.0',use_reloader=False)
 	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
+	# print("STARTING APP22222222222")
+	# print("STARTING APP22222222222")
+	# print("STARTING APP22222222222")
+	# print("STARTING APP22222222222")
+	# print("STARTING APP22222222222")
 
 
 

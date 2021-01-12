@@ -245,15 +245,15 @@ class ReminderService():
 		if res is None:
 			return txt, when, timestr
 		if True:#try:
-			print("######################",formatted)
-			print(res)
+			# print("######################",formatted)
+			# print(res)
 			date = res[0][1].timestamp()
 			timestr = res[0][0]
 			lang = res[0][2]
 			## remove timestr from reminder
 
 			diff = time.time()-date
-			print("DIFF",diff, time.ctime(date))
+			# print("DIFF",diff, time.ctime(date))
 			if diff > 0 and tries < 3:
 				print("RETRY ")
 				if tries == 0:
@@ -272,7 +272,7 @@ class ReminderService():
 		return formatted, when, timestr
 
 	def changeDay(txt):
-		print("CCCCCCCCCCCCC C C C C C C, ",txt,"\n")
+		# print("CCCCCCCCCCCCC C C C C C C, ",txt,"\n")
 		temp = txt + ""
 		today = datetime.date.today().strftime("%A")
 		currday = days.index(today)

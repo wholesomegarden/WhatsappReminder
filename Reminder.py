@@ -45,7 +45,12 @@ class Reminder(JSONEncoder):
 		id			= d["id"]
 		userID		= d["userID"]
 		message				= d["message"]
-		sendTime		 = float(d["sendTime"])
+		sendTime		 = d["sendTime"]
+		if sendTime is not None:
+			try:
+				sendTime = float(sendTime)
+			except :
+				pass
 		repeat			= d["repeat"]
 		return Reminder(id, userID = userID, message = message, sendTime = sendTime, repeat = repeat)
 
