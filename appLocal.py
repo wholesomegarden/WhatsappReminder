@@ -693,10 +693,10 @@ if __name__ == '__main__':
 	print("STARTING APP")
 	print("STARTING APP")
 	print("STARTING APP")
-	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	app.run(debug=True, host='0.0.0.0',use_reloader=False)
 else:
 	flaskRun(master)
-	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	app.run(debug=True, host='0.0.0.0',use_reloader=False)
 
 	print("STARTING APP22222222222")
 	print("STARTING APP22222222222")
