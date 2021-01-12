@@ -327,10 +327,15 @@ class Master(object):
 
 				''' all unread messages '''
 				for contact in self.driver.get_unread():
+					print("MMMMMMMMMMXXX",contact)
 					for message in contact.messages:
-
+						print("MMMMMMMMMM",message)
 						chatID = message.chat_id["_serialized"]
-						chat = self.driver.get_chat_from_id(chatID)
+						try:
+							chat = self.driver.get_chat_from_id(chatID)
+						except Exception as e:
+							print(" ::: ERROR - _serialized chatID ::: "+chatID+" ::: ","\n",e,e.args,"\n")
+
 						''' incoming from: '''
 						''' Personal Chat  '''
 						senderName = message.get_js_obj()["chat"]["contact"]["formattedName"]
@@ -693,17 +698,18 @@ if __name__ == '__main__':
 	print("STARTING APP")
 	print("STARTING APP")
 	print("STARTING APP")
-	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	app.run(debug=True, host='0.0.0.0',use_reloader=False)
 else:
 	flaskRun(master)
-	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
-
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
-	print("STARTING APP22222222222")
+	if runLocal:
+		app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	else:
+		print("STARTING APP22222222222")
+		print("STARTING APP22222222222")
+		print("STARTING APP22222222222")
+		print("STARTING APP22222222222")
+		print("STARTING APP22222222222")
+		print("STARTING APP22222222222")
 
 
 

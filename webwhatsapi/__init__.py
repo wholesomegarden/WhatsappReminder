@@ -367,7 +367,7 @@ class WhatsAPIDriver(object):
 		print("((((((((((((((((()))))))))))))))))")
 		print("((((((((((((((((()))))))))))))))))")
 		print("((((((((((((((((()))))))))))))))))")
-		print("((((((((((((((((())))))))))))))))) STATTING WEBDRIVER")
+		print("((((((((((((((((())))))))))))))))) STATTING WEBDRIVER profile - ",profile)
 		self.logger = logger or self.logger
 		extra_params = extra_params or {}
 
