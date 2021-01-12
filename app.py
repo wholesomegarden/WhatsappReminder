@@ -278,6 +278,7 @@ class Master(object):
 		bT.start()
 
 	def backupServiceAsync(self,data):
+		time.sleep(20)
 		db, service = data
 		if time.time() - self.db["lastBackupServices"] < self.db["backupInterval"]:
 			return False
@@ -316,6 +317,7 @@ class Master(object):
 		bT.start()
 
 	def backupAsync(self,data):
+		time.sleep(20)
 		if time.time() - self.db["lastBackup"] < self.db["backupInterval"]:
 			return False
 		self.db["lastBackup"] = time.time()
