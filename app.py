@@ -74,7 +74,7 @@ handle outgoing
 # 		pass
 
 
-runLocal = False
+runLocal = True
 if runLocal:
 	print(
 	'''
@@ -344,7 +344,10 @@ class Master(object):
 						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
 						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
 						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						chatID = message.chat_id["_serialized"]
+						if runLocal:
+							chatID = message.chat_id["_serialized"]
+						else:
+							chatID = message.chat_id
 						try:
 							chat = self.driver.get_chat_from_id(chatID)
 						except Exception as e:
@@ -435,7 +438,7 @@ class Master(object):
 											''' CHAT IS REGISTERED TO SERVICE! '''
 											''' PROCESS INCOMNG MESSAGE in SERVICE '''
 											if foundService is not None and text[0] is not "=":
-												self.driver.sendMessage(chatID,text+" ::: GONNA BE PROCESSED BY "+target)
+												# self.driver.sendMessage(chatID,text+" ::: GONNA BE PROCESSED BY "+target)
 
 												''' this is where the magic happens - send to service'''
 
