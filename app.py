@@ -11,7 +11,7 @@ from WhatsappReminder import *
 
 # export PATH="$HOME/wholesomegarden/WhatsappReminder:$PATH"
 
-
+later = None
 print(
 '''
 :::::::::::::::::::::::::::::::::
@@ -330,6 +330,7 @@ class Master(object):
 					print("MMMMMMMMMMXXX",contact)
 					for message in contact.messages:
 						print("MMMMMMMMMM",message)
+						later = [contact,message]
 						chatID = message.chat_id["_serialized"]
 						try:
 							chat = self.driver.get_chat_from_id(chatID)
@@ -698,18 +699,19 @@ if __name__ == '__main__':
 	print("STARTING APP")
 	print("STARTING APP")
 	print("STARTING APP")
-	app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	if runLocal :
+		pass
+		# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
 else:
 	flaskRun(master)
-	if runLocal:
-		app.run(debug=True, host='0.0.0.0',use_reloader=False)
-	else:
-		print("STARTING APP22222222222")
-		print("STARTING APP22222222222")
-		print("STARTING APP22222222222")
-		print("STARTING APP22222222222")
-		print("STARTING APP22222222222")
-		print("STARTING APP22222222222")
+	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
+	print("STARTING APP22222222222")
 
 
 

@@ -14,14 +14,14 @@ class Conv():
 		return json.dumps(self, default=lambda o: o.__dict__,
 			sort_keys=True, indent=0)
 
-	def dictToConv(d):
+	def dictToConv(d, maxHist = 5):
 		userID			= d["userID"]
 		lastTurn		= d["lastTurn"]
 		ongoing			= d["ongoing"]
 		fin				= d["fin"]
 		tries		 = d["tries"]
-		human_msg	 = d["human_msg"]
-		manager_msg = d["manager_msg"]
+		human_msg	 = d["human_msg"][:maxHist]
+		manager_msg = d["manager_msg"][:maxHist]
 		return Conv(userID, lastTurn = lastTurn, ongoing = ongoing, fin = fin, tries = tries, human_msg = human_msg, manager_msg = manager_msg)
 
 		# return Conv(id, prefs= prefs, reminders = reminders, remCount = remCount, conv = conv, lastRem = lastRem)

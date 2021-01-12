@@ -25,8 +25,12 @@ class Reminder(JSONEncoder):
 		print("dddddddddddddddddd")
 		print(d)
 		print("dddddddddddddddddd")
-		for u in d["sent"]:
-			D["sent"][u] = Reminder.dictToRem(d["sent"][u])
+		disableHistory = True
+		if not disableHistory:
+			for u in d["sent"]:
+				D["sent"][u] = Reminder.dictToRem(d["sent"][u])
+		else:
+			D["sent"] = {}
 		for u in d["unsent"]:
 			D["unsent"][u] = Reminder.dictToRem(d["unsent"][u])
 
