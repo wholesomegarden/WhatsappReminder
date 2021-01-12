@@ -239,11 +239,16 @@ class WhatsAPIDriver(object):
 		return self.getMessages(number)[::-1][offset].content
 
 
+	def sendAsync(self, data):
+		chat, content = data
+		chat.send_message(content)
+
 	def sendMessage(self, number, content):
 		print("SENDING MESSAGE::::::::::",number, "::::::",content)
 		chat = self.getChat(number)
 		print("GOT CHAT::::::::::",chat)
-		chat.send_message(content)
+		msgT = Thread(target = self.sendAsync, args = [[chat,content]]
+		# chat.send_message(content)
 		print("FINISHED SENDING")
 		return True
 
