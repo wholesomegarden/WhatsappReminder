@@ -8021,3 +8021,9 @@ JavaScript warning: https://web.whatsapp.com/app.6be31a9914b3f8e528be.js, line 1
 
 ###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+
+(/usr/lib/firefox/firefox:26984): Gtk-WARNING **: 19:21:25.898: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.

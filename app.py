@@ -7,6 +7,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webwhatsapi import WhatsAPIDriver
 
+from pprint import pprint
+
 from WhatsappReminder import *
 
 # export PATH="$HOME/wholesomegarden/WhatsappReminder:$PATH"
@@ -328,9 +330,20 @@ class Master(object):
 				''' all unread messages '''
 				for contact in self.driver.get_unread():
 					print("MMMMMMMMMMXXX",contact)
+					print("MMMMMMMMMMXXX",contact)
+					print("MMMMMMMMMMXXX",contact)
+					print("MMMMMMMMMMXXX",contact)
+					print("MMMMMMMMMMXXX",contact)
 					for message in contact.messages:
 						print("MMMMMMMMMM",message)
-						later = [contact,message]
+
+						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						pprint(vars(contact))
+						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						pprint(vars(message))
+						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+						print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
 						chatID = message.chat_id["_serialized"]
 						try:
 							chat = self.driver.get_chat_from_id(chatID)
