@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webwhatsapi import WhatsAPIDriver
 
-from WhatsappReminder import *
+from ServiceImporter import *
 
 # export PATH="$HOME/wholesomegarden/WhatsappReminder:$PATH"
 

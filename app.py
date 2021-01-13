@@ -9,7 +9,7 @@ from webwhatsapi import WhatsAPIDriver
 
 from pprint import pprint
 
-from WhatsappReminder import *
+from ServiceImporter import *
 
 # export PATH="$HOME/wholesomegarden/WhatsappReminder:$PATH"
 
@@ -104,11 +104,11 @@ class Master(object):
 	db = {
 		"masters":["972512170493", "972547932000"],
 		"users":{"id":{"services":{"groupID":None}}},
-		"services":{"Reminders":{"dbID":None,"incomingTarget":None},"Proxy":{"dbID":None,"incomingTarget":None}},
+		"services":{"Reminders":{"dbID":None,"incomingTarget":None},"Proxy":{"dbID":None,"incomingTarget":None},"Danilator":{"dbID":None,"incomingTarget":None}},
 		"groups": {"id":"service"},
 		"id":"972547932000-1610379075@g.us"}
 
-	serviceFuncs = {"services":{ "Reminder":None,"Proxy":None}}
+	serviceFuncs = {"services":{ "Reminder":None, "Proxy":None, "Danilator":None}}
 	serviceThreads = { }
 
 	def LoadServices(self):
@@ -127,6 +127,7 @@ class Master(object):
 					newGroup = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1])
 					newGroupID = newGroup.id
 					self.db["services"][service]["dbID"] = newGroupID
+					self.driver.sendMessage(newGroupID, '{"init":"TRUE"}')
 					self.backup()
 				else:
 					print("-------------------------------")
@@ -145,6 +146,16 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=ReminderService.process
+
+			if "danilator".lower() == service.lower():
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
+				self.serviceFuncs["services"][service]=DanilatorService.process
 
 	''' start master driver and log in '''
 	def __init__(self, profileDir = "/app/session/rprofile2"):
@@ -231,6 +242,8 @@ class Master(object):
 			print(''' ::::                           ::::: ''')
 			print(''' :::::::::::::::::::::::::::::::::::: ''')
 			print(''' :::::::::::::::::::::::::::::::::::: ''')
+			# if runLocal:
+			# 	self.driver.save_firefox_profile(remove_old=False)
 
 			''' load DB '''
 			## overwrite to init db
@@ -242,6 +255,13 @@ class Master(object):
 			self.db = lastDB
 			self.db["init"] = time.time()
 			self.db["backupInterval"] = 10*60
+			if runLocal:
+				self.db["backupInterval"] = 0
+
+			self.db["backupDelay"] = 10
+			if runLocal:
+				self.db["backupDelay"] = 3
+
 			self.db["lastBackup"] = 0
 			self.db["lastBackupServices"] = 0
 			self.backup()
@@ -274,12 +294,16 @@ class Master(object):
 
 
 	def backupService(self,db = None, service = None):
-		bT = Thread(target = self.backupServiceAsync,args = [[db,service]])
+
+		data = [db,service]
+		# self.backupServiceAsync(data)
+		bT = Thread(target = self.backupServiceAsync,args = [data])
 		bT.start()
 
 	def backupServiceAsync(self,data):
-		time.sleep(20)
+		time.sleep(self.db["backupDelay"])
 		db, service = data
+		print("SSSSSSSSS",service,db)
 		if time.time() - self.db["lastBackupServices"] < self.db["backupInterval"]:
 			return False
 
@@ -296,6 +320,9 @@ class Master(object):
 				except Exception as e:
 					print(" ::: ERROR - COULD NOT GET BACKUPCHAT"+e+" ::: ","\n")
 				if bchat is not None:
+					print("FFFFFFFFFFFFFFFUCKKK")
+					# self.driver.sendMessage(chatID,"FFFFFFFFFFFFFFFUCKKK")
+
 					backupChat = chatID
 			else:
 				print(" ::: ERROR - SERVICE HAS NO BACKUPCHAT"+" ::: ","\n")
@@ -312,17 +339,29 @@ class Master(object):
 
 
 
-	def backup(self):
-		bT = Thread(target = self.backupAsync,args = [None])
+	def backup(self, now = None):
+		bT = Thread(target = self.backupAsync,args = [now])
 		bT.start()
 
 	def backupAsync(self,data):
-		time.sleep(20)
-		if time.time() - self.db["lastBackup"] < self.db["backupInterval"]:
-			return False
+		now = data
+		if now is None:
+			time.sleep(self.db["backupDelay"])
+			if time.time() - self.db["lastBackup"] < self.db["backupInterval"]:
+				return False
 		self.db["lastBackup"] = time.time()
 		return self.driver.updateDB(self.db,number=self.db["id"])
 
+	def ProcessServiceAsync(self, service, chatID, message):
+		serviceT = Thread(target = self.ProcessService, args = [[service, chatID, message]])
+		serviceT.start()
+
+	def ProcessService(self, data):
+		# try:
+		service, chatID, text = data
+		self.serviceFuncs["services"][service](chatID, text)
+		# except Exception as e:
+		# 	print(" ::: ERROR - Processing Service ::: ",serice,":::",chatID,":::",text,":::","\n",e,e.args,"\n")
 
 	def ProcessIncoming(self, data):
 		print(
@@ -405,6 +444,26 @@ class Master(object):
 							''' subscribe to service '''
 
 							''' SENT FROM GROUP CHAT '''
+
+							if "%%%!%%%" in text:
+
+								print("YYYYYYYYYYYYYYYYYYYY")
+								print("YYYYYYYYYYYYYYYYYYYY")
+								print("YYYYYYYYYYYYYYYYYYYY")
+								target = text.split(u"%%%!%%%")[1]
+								self.driver.sendMessage(chatID,"Adding Service to DB: "+target)
+								self.db["services"][target] = {"dbID":None,"incomingTarget":None}
+								self.LoadServices()
+								# self.serviceFuncs["services"][target] = None
+
+								self.backup(now = True)
+							else:
+								print("XXXXXXXXXXXXXXXXXXX")
+								print("XXXXXXXXXXXXXXXXXXX")
+								print("XXXXXXXXXXXXXXXXXXX")
+
+
+
 							if fromGroup is True:
 								''' GOT REGISTRATION COMMAND '''
 								if text[0] is "=":
@@ -421,9 +480,10 @@ class Master(object):
 												targetService = self.db["groups"][chatID]
 												print("TTTTTTTTTTTTTTTTTTTT")
 												print(targetService, service)
-												if targetService.lower() == service.lower():
-													foundChat = True
-													self.driver.sendMessage(chatID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
+												if targetService is not None:
+													if targetService.lower() == service.lower():
+														foundChat = True
+														self.driver.sendMessage(chatID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
 
 											if not foundChat:
 												print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
@@ -462,8 +522,8 @@ class Master(object):
 												# self.driver.sendMessage(chatID,text+" ::: GONNA BE PROCESSED BY "+target)
 
 												''' this is where the magic happens - send to service'''
+												self.ProcessServiceAsync(service,chatID,text)
 
-												self.serviceFuncs["services"][service](chatID, text)
 
 
 									if foundService is None:
@@ -484,6 +544,8 @@ class Master(object):
 								''' check target service in db '''
 								serviceFound = False
 								for service in self.db["services"]:
+									print("______________ ----------"+service)
+									print("")
 									if not serviceFound and target.lower() == service.lower():
 										''' service found '''
 										serviceFound = True

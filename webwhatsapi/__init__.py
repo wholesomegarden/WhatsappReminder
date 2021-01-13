@@ -112,6 +112,9 @@ class WhatsAPIDriver(object):
 	logger = logging.getLogger(__name__)
 	driver = None
 
+	Q = []
+	Qstarted = False
+
 	# Profile points to the Firefox profile for firefox and Chrome cache for chrome
 	# Do not alter this
 	_profile = None
@@ -201,14 +204,14 @@ class WhatsAPIDriver(object):
 				time.sleep(.5)
 
 
-		print("XXXXXXXXXXXXXXXXXX")
-		print("OLD",len(oldChats),oldChats)
-		print()
-		print()
-		print("NEW",len(newChats),newChats)
+		# print("XXXXXXXXXXXXXXXXXX")
+		# print("OLD",len(oldChats),oldChats)
+		# print()
+		# print()
+		# print("NEW",len(newChats),newChats)
 		# diff =  self.tryOut(self.dictDiff(newChats,oldChats))
 		diff =  self.listDiff(newChats,oldChats)
-		print("DIFF",diff)
+		# print("DIFF",diff)
 		if len(diff) == 1:
 			return diff[0]
 		return diff
@@ -235,26 +238,62 @@ class WhatsAPIDriver(object):
 		print("CHATID",chat.id)
 		return chat.get_messages(include_me=True, include_notifications=False)
 
-	def getLastMessage(self, number,offset=0):
-		return self.getMessages(number)[::-1][offset].content
+	def getLastMessage(self, number,offset=0,report = False):
+
+		lastMSG = self.getMessages(number)[::-1][offset].content
+		if report:
+			self.sendMessage(number,"REPORTING")
+		return lastMSG
 
 
 	def sendAsync(self, data):
 		chat, content = data
 		chat.send_message(content)
 
-	def sendMessage(self, number, content):
-		print("SENDING MESSAGE::::::::::",number, "::::::",content)
-		chat = self.getChat(number)
-		print("GOT CHAT::::::::::",chat)
-		msgT = Thread(target = self.sendAsync, args = [[chat,content]])
+	def startQ(self):
+		msgT = Thread(target = self.rollQAsync, args = [None])
 		msgT.start()
-		# chat.send_message(content)
-		print("FINISHED SENDING")
+
+	def rollQAsync(self, data = None):
+		while True:
+			time.sleep(0.1)
+			if len(self.Q) > 0:
+				print("Q LENGTH",len(self.Q))
+				q = self.Q.pop(0)
+				if q is not None and len(q) == 2:
+					number, content = q
+					print("Q SENDING",number,"\n",content)
+					try:
+						res = self.send_message_to_id(number,content)
+						print("RES",res)
+						print("MESSAGE SENT!",number,"\n",content)
+						print(":::::::::::::::::::::::::::::::::")
+
+					except Exception as e:
+						print("ERROR SENDING MESSAGE TO ",number, "E:",e)
+
+
+	def sendMessage(self, number, content):
+		self.Q.append([number,content])
+		if not self.Qstarted:
+			self.Qstarted = True
+			self.startQ()
+
+
+		# print("SENDING MESSAGE::::::::::",number, "::::::",content)
+		# chat = self.getChat(number)
+		# print("GOT CHAT::::::::::",chat)
+		# msgT = Thread(target = self.sendAsync, args = [[chat,content]])
+		# msgT.start()
+		# # chat.send_message(content)
+		# print("FINISHED SENDING")
 		return True
 
 	def jsonToDict(self, json_msg):
+		# print("@@@@@@@@@@@@@@@@@")
+		# print(json_msg)
 		dict = json.loads(json_msg)
+		# print("@@@@@@@@@@@@@@@@@")
 		return dict
 
 	def dictToJson(self, dict):
@@ -263,13 +302,20 @@ class WhatsAPIDriver(object):
 
 	def loadDB(self, number = "DB"):
 		return self.getDB(number)
+
 	def getDB(self, number = "DB"):
 		db = {}
+		# if True:
 		try:
-			lastMsg = self.getLastMessage(number)
-			if "*" in lastMsg:
-				lastMsg = lastMsg.split("*")[1]
+			# print("NNNNNNNNNNN",number)
+			lastMsg = self.getLastMessage(number, report = False)
+			# if "*" in lastMsg:
+			# 	lastMsg = lastMsg.split("*")[1]
+			print(lastMsg)
+			# print("NNNNNNNNN")
+
 			db = self.jsonToDict(lastMsg)
+		# else:
 		except Exception as e:
 			print("EEEEEEEEEEEEEEEE loading db",e)
 

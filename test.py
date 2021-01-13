@@ -1,6 +1,6 @@
 # test.py
 from dateparser.search import search_dates
-from WhatsappReminder import *
+from ServiceImporter import *
 id = "0547772000"
 
 #
