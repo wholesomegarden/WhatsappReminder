@@ -280,7 +280,7 @@ class Master(object):
 				try:
 					bchat = self.driver.getChat(chatID)
 				except Exception as e:
-					print(" ::: ERROR - COULD NOT GET BACKUPCHAT"+e+" ::: ","\n")
+					print(" ::: ERROR - COULD NOT GET BACKUPCHAT",e+, ::: ","\n")
 				if bchat is not None:
 					backupChat = chatID
 			else:

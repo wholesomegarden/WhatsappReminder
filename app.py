@@ -128,7 +128,8 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=ReminderService.process
-				self.serviceGroupNames[service] = "🔔 Reminders 🔔"
+				# self.serviceGroupNames[service] = "🔔 Reminders 🔔"
+				self.serviceGroupNames[service] = "Reminders"
 
 
 			if "danilator".lower() == service.lower():
@@ -140,7 +141,8 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=DanilatorService.process
-				self.serviceGroupNames[service] = "💚 Danilator 💚"
+				# self.serviceGroupNames[service] = "💚 Danilator 💚"
+				self.serviceGroupNames[service] = "Danilator"
 
 			try:
 				if "dbID" not in self.db["services"][service]:
@@ -328,7 +330,7 @@ class Master(object):
 				try:
 					bchat = self.driver.getChat(chatID)
 				except Exception as e:
-					print(" ::: ERROR - COULD NOT GET BACKUPCHAT"+e+" ::: ","\n")
+					print(" ::: ERROR - COULD NOT GET BACKUPCHAT",e," ::: ","\n")
 				if bchat is not None:
 					print("FFFFFFFFFFFFFFFUCKKK")
 					# self.driver.sendMessage(chatID,"FFFFFFFFFFFFFFFUCKKK")
