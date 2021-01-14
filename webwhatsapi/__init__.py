@@ -198,7 +198,7 @@ class WhatsAPIDriver(object):
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 				print("NEW GRUP WITH EMOJI! ",newGroupName)
-				self.driver.execute_command(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName+Keys.ENTER)
+				self.driver.execute_script(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName+Keys.ENTER)
 
 
 		newChats = self.get_all_chats()
