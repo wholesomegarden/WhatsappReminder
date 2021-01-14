@@ -75,6 +75,7 @@ handle outgoing
 
 
 
+# runLocal = True
 runLocal = False
 if runLocal:
 	print(
@@ -261,7 +262,7 @@ class Master(object):
 			## overwrite to init db
 			initOverwrite = False
 			if initOverwrite:
-				self.backup()
+				self.backup(now = True)
 			# driver.updateDB(self.db,number=self.db["id"])
 			lastDB = self.loadDB()
 			self.db = lastDB
