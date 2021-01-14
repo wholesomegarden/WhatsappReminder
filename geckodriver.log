@@ -11209,3 +11209,35 @@ JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: 
 Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
+1610614942581	geckodriver	INFO	Listening on 127.0.0.1:59767
+1610614942588	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileeJxSrD"
+
+(firefox:23450): Gtk-WARNING **: 11:02:22.636: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:23509): Gtk-WARNING **: 11:02:23.392: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:23552): Gtk-WARNING **: 11:02:23.506: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610614944248	Marionette	INFO	Listening on port 41491
+1610614944362	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1610614972725	geckodriver	INFO	Listening on 127.0.0.1:59699
+1610614972732	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileBjW6x9"
+
+(firefox:23851): Gtk-WARNING **: 11:02:52.777: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:23922): Gtk-WARNING **: 11:02:53.599: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:23943): Gtk-WARNING **: 11:02:53.703: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610614974570	Marionette	INFO	Listening on port 46835
+1610614974657	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
