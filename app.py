@@ -74,6 +74,7 @@ handle outgoing
 # 		pass
 
 
+
 runLocal = False
 if runLocal:
 	print(
@@ -601,9 +602,6 @@ class Master(object):
 											newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0])
 											newGroupID = newGroup.id
 											self.newG = newGroupID
-
-
-
 
 											self.db["users"][chatID]['services'][service] = newGroupID
 											self.db["groups"][newGroupID] = target
