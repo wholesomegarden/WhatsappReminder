@@ -76,7 +76,7 @@ handle outgoing
 
 
 runLocal = False
-runLocal = True
+# runLocal = True
 if runLocal:
 	print(
 	'''
@@ -638,11 +638,11 @@ class Master(object):
 											 ''' + senderID +" is NOW SUBSCRIBED TO "+ target +" :D "+'''
 											===============================================
 											'''
+											)
 
-											self.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \nPlease check your new group :)")
+											self.driver.sendMessage(senderID,"Thank you! you are now subscribed  to: "+chatName+" \nPlease check your new group :)")
 											self.driver.sendMessage(serviceChat,welcome)
 											# self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
-											)
 
 								if not serviceFound:
 									self.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
