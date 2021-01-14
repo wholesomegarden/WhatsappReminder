@@ -201,7 +201,7 @@ class WhatsAPIDriver(object):
 			# contact = self.tryOut(driver1.find_element_by_class_name,'q2PP6',click=True)
 			# next = self.tryOut(driver1.find_element_by_class_name,'_2_g1_',click=True)
 			nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
-			if local or False:
+			if local:
 				nameInput.send_keys(newGroupName+Keys.ENTER)
 			else:
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
@@ -216,7 +216,7 @@ class WhatsAPIDriver(object):
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-				
+
 				# nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
 				# nameInput.send_keys(" xxx "+Keys.ENTER)
 
