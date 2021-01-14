@@ -198,13 +198,14 @@ class WhatsAPIDriver(object):
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 				print("NEW GRUP WITH EMOJI! ",newGroupName)
-				self.driver.execute_script(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName+Keys.ENTER)
+				self.driver.execute_script(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName)
+				nameInput.send_keys(Keys.ENTER)
 
 
 		newChats = self.get_all_chats()
 		res = None
 		t = time.time()
-		timeout = 3
+		timeout = 10
 		while(len(newChats) == len(oldChats) and time.time() - t < timeout):
 			try:
 				newChats = self.get_all_chats()
