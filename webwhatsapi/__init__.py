@@ -79,7 +79,7 @@ JS_ADD_TEXT_TO_INPUT = """
   elm.dispatchEvent(new Event('keydown', {bubbles: true}));
   elm.dispatchEvent(new Event('keypress', {bubbles: true}));
   elm.dispatchEvent(new Event('input', {bubbles: true}));
-  elm.dispatchEvent(new Event('keyup', {bubbles: true}));`;
+  elm.dispatchEvent(new Event('keyup', {bubbles: true}));
   """
 
 
