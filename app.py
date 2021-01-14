@@ -75,8 +75,8 @@ handle outgoing
 
 
 
-# runLocal = True
 runLocal = False
+runLocal = True
 if runLocal:
 	print(
 	'''
@@ -147,7 +147,7 @@ class Master(object):
 				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=DanilatorService.process
 				groupName = "💚 Danilator 💚"
-				self.serviceGroupNames[service] =
+				self.serviceGroupNames[service] = groupName
 				self.db["services"][service]["welcome"] = DanilatorService.welcome
 				self.db["services"][service]["groupName"] = groupName
 
