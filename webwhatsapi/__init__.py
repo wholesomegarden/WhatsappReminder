@@ -199,6 +199,7 @@ class WhatsAPIDriver(object):
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 				print("NEW GRUP WITH EMOJI! ",newGroupName)
 				self.driver.execute_script(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName)
+				nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
 				nameInput.send_keys(" xxx "+Keys.ENTER)
 
 
