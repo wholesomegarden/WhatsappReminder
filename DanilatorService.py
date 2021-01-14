@@ -26,7 +26,7 @@ class DanilatorService():
 	init = False
 	serviceName= "Danilator"
 	groupName = "💚 Danilator 💚"
-
+	welcome =  "*Welcome to Danilator 💚 Service*\nYou can now send a name of a song to get it's lyrics translations :)\nתוכלו לשלוח שם של שיר כדי לגבל תרגום למילים שלו :)\nYou could also share a song from Youtube or Spotify!\nתוכלו גם לשתף שיר ישר מיוטוב או ספוטיפיי!"
 
 	def getDB():
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")

@@ -23,6 +23,8 @@ class ReminderService():
 	init = False
 	serviceName= "Reminders"
 	groupName = "🔔 Reminders 🔔"
+	welcome =  "*Welcome to Reminders 🔔 Service*\nYou can now send a message and we will send you a reminder :)\nשלחו הודעה ואנחנו כבר נזכיר לכם :)\n\nFor example:\nThats awesome in 5 seconds\nלהתקשר לברוך מחר בבוקר"
+
 
 	def getDB():
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")

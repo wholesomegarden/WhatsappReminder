@@ -11485,3 +11485,6 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 1610631892436	Marionette	WARN	TLS certificate errors will be ignored for this session
 JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
 JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.

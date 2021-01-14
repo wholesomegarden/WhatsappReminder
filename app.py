@@ -120,6 +120,7 @@ class Master(object):
 		for service in self.db["services"]:
 
 
+
 			if "reminders".lower() == service.lower():
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
@@ -129,7 +130,10 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=ReminderService.process
-				self.serviceGroupNames[service] = "🔔 Reminders 🔔"
+				groupName = "🔔 Reminders 🔔"
+				self.serviceGroupNames[service] = groupName
+				self.db["services"][service]["welcome"] = ReminderService.welcome
+				self.db["services"][service]["groupName"] = groupName
 				# self.serviceGroupNames[service] = "Reminders"
 
 
@@ -142,7 +146,12 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=DanilatorService.process
-				self.serviceGroupNames[service] = "💚 Danilator 💚"
+				groupName = "💚 Danilator 💚"
+				self.serviceGroupNames[service] =
+				self.db["services"][service]["welcome"] = DanilatorService.welcome
+				self.db["services"][service]["groupName"] = groupName
+
+
 				# self.serviceGroupNames[service] = "Danilator"
 
 			try:
@@ -573,7 +582,6 @@ class Master(object):
 											''' known user '''
 
 
-
 										foundChat = None
 										if service in self.db["users"][chatID]["services"]:
 
@@ -582,21 +590,33 @@ class Master(object):
 											# self.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
 											try:
 												foundChat = self.driver.get_chat_from_id(serviceChat)
+
 											except:
 												print('chat could not be found')
 
+
+										chatName = target
+										welcome = "Thank you for Subscribing to "+target
+										try:
+											chatName = 	self.db["services"][service]["groupName"]
+											welcome = "Thank you for Subscribing to "+chatName
+											welcome = self.db["services"][service]["welcome"]
+										except:
+											pass
 										if foundChat is not None:
+
+
 											check_participents = False
 											if check_participents:
 												if senderID in foundChat.get_participants_ids() or True:
 													'''##### check that user is participant '''
-													self.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
-													self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
+													self.driver.sendMessage(senderID,"You are already subscirbed to: "+chatName+" \nYou can unsubscribe with -"+target.lower())
+													self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
 												else:
 													foundChat = None
 											else:
-												self.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
-												self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
+												self.driver.sendMessage(senderID,"You are already subscirbed to: "+chatName+" \nYou can unsubscribe with -"+target.lower())
+												self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
 
 										''' create new group '''
 										if foundChat is None:
@@ -618,6 +638,10 @@ class Master(object):
 											 ''' + senderID +" is NOW SUBSCRIBED TO "+ target +" :D "+'''
 											===============================================
 											'''
+
+											self.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \nPlease check your new group :)")
+											self.driver.sendMessage(serviceChat,welcome)
+											# self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
 											)
 
 								if not serviceFound:
