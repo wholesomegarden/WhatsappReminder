@@ -741,7 +741,7 @@ def all_routes(text):
 		print("EXITTT")
 		print("EXITTT")
 		print("EXITTT")
-
+		return redirect("https://chat.whatsapp.com/JmnYDofCd7v0cXzfBgcVDO")
 		return render_template("exit.html", user_image = "full_filename", status = "s")
 
 
