@@ -67,11 +67,21 @@ class ChatNotFoundError(WhatsAPIException):
 class ContactNotFoundError(WhatsAPIException):
 	pass
 
-JS_ADD_TEXT_TO_INPUT = """
+JS_ADD_TEXT_TO_INPUTX = """
   var elm = arguments[0], txt = arguments[1];
   elm.value += txt;
   elm.dispatchEvent(new Event('change'));
   """
+
+JS_ADD_TEXT_TO_INPUT = """
+  var elm = arguments[0], txt = arguments[1];
+  elm.value += txt;
+  elm.dispatchEvent(new Event('keydown', {bubbles: true}));
+  elm.dispatchEvent(new Event('keypress', {bubbles: true}));
+  elm.dispatchEvent(new Event('input', {bubbles: true}));
+  elm.dispatchEvent(new Event('keyup', {bubbles: true}));`;
+  """
+
 
 class WhatsAPIDriver(object):
 	"""
@@ -191,7 +201,7 @@ class WhatsAPIDriver(object):
 			# contact = self.tryOut(driver1.find_element_by_class_name,'q2PP6',click=True)
 			# next = self.tryOut(driver1.find_element_by_class_name,'_2_g1_',click=True)
 			nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
-			if local or True:
+			if local or False:
 				nameInput.send_keys(newGroupName+Keys.ENTER)
 			else:
 				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
