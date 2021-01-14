@@ -128,8 +128,8 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=ReminderService.process
-				# self.serviceGroupNames[service] = "🔔 Reminders 🔔"
-				self.serviceGroupNames[service] = "Reminders"
+				self.serviceGroupNames[service] = "🔔 Reminders 🔔"
+				# self.serviceGroupNames[service] = "Reminders"
 
 
 			if "danilator".lower() == service.lower():
@@ -141,8 +141,8 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=DanilatorService.process
-				# self.serviceGroupNames[service] = "💚 Danilator 💚"
-				self.serviceGroupNames[service] = "Danilator"
+				self.serviceGroupNames[service] = "💚 Danilator 💚"
+				# self.serviceGroupNames[service] = "Danilator"
 
 			try:
 				if "dbID" not in self.db["services"][service]:
