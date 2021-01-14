@@ -11241,3 +11241,19 @@ JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1
 Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
+1610617065696	geckodriver	INFO	Listening on 127.0.0.1:33077
+1610617065702	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilep4rVU8"
+
+(firefox:27851): Gtk-WARNING **: 11:37:45.749: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:27918): Gtk-WARNING **: 11:37:46.658: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:27938): Gtk-WARNING **: 11:37:46.752: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610617067433	Marionette	INFO	Listening on port 34425
+1610617067552	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.08e64142322a660ee4a9.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
