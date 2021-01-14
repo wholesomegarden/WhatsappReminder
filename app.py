@@ -641,7 +641,7 @@ class Master(object):
 											)
 
 											self.driver.sendMessage(senderID,"Thank you! you are now subscribed  to: "+chatName+" \nPlease check your new group :)")
-											self.driver.sendMessage(serviceChat,welcome)
+											self.driver.sendMessage(newGroupID,welcome)
 											# self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
 
 								if not serviceFound:
