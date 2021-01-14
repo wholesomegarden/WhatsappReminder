@@ -128,7 +128,7 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=ReminderService.process
-				self.serviceGroupNames[service] = "&#128276; Reminders &#128276;"
+				self.serviceGroupNames[service] = "\\ud83d Reminders \\ud83d\\udc0b"
 
 			if "danilator".lower() == service.lower():
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
