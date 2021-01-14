@@ -176,8 +176,8 @@ class WhatsAPIDriver(object):
 	def newGroup(self,
 	f = 1,
 	newGroupName = 'New Group Name',
-	number = "+972512170493"
-	local = True
+	number = "+972512170493",
+	local = False
 	):
 		oldChats = self.get_all_chats()
 
