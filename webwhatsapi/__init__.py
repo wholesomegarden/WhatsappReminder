@@ -67,6 +67,11 @@ class ChatNotFoundError(WhatsAPIException):
 class ContactNotFoundError(WhatsAPIException):
 	pass
 
+JS_ADD_TEXT_TO_INPUT = """
+  var elm = arguments[0], txt = arguments[1];
+  elm.value += txt;
+  elm.dispatchEvent(new Event('change'));
+  """
 
 class WhatsAPIDriver(object):
 	"""
@@ -172,6 +177,7 @@ class WhatsAPIDriver(object):
 	f = 1,
 	newGroupName = 'New Group Name',
 	number = "+972512170493"
+	local = True
 	):
 		oldChats = self.get_all_chats()
 
@@ -185,7 +191,14 @@ class WhatsAPIDriver(object):
 			# contact = self.tryOut(driver1.find_element_by_class_name,'q2PP6',click=True)
 			# next = self.tryOut(driver1.find_element_by_class_name,'_2_g1_',click=True)
 			nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
-			nameInput.send_keys(newGroupName+Keys.ENTER)
+			if local:
+				nameInput.send_keys(newGroupName+Keys.ENTER)
+			else:
+				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+				print("NEW GRUP WITH EMOJI! ",newGroupName)
+				self.driver.execute_command(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName+Keys.ENTER)
 
 
 		newChats = self.get_all_chats()

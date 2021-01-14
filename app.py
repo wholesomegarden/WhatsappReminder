@@ -153,7 +153,7 @@ class Master(object):
 					print("-------------------------------")
 					groupName = service
 
-					newGroup = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1])
+					newGroup = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1], local = runLocal)
 					newGroupID = newGroup.id
 					self.db["services"][service]["dbID"] = newGroupID
 					self.driver.sendMessage(newGroupID, '{"init":"TRUE"}')
@@ -599,7 +599,7 @@ class Master(object):
 											if service in self.serviceGroupNames:
 												groupName = self.serviceGroupNames[service]
 
-											newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0])
+											newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = runLocal)
 											newGroupID = newGroup.id
 											self.newG = newGroupID
 
