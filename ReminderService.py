@@ -22,6 +22,7 @@ class ReminderService():
 	upcoming = {}
 	init = False
 	serviceName= "Reminders"
+	groupName = "🔔 Reminders 🔔"
 
 	def getDB():
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")

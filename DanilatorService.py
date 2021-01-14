@@ -25,6 +25,8 @@ class DanilatorService():
 	upcoming = {}
 	init = False
 	serviceName= "Danilator"
+	groupName = "💚 Danilator 💚"
+
 
 	def getDB():
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")

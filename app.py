@@ -109,11 +109,37 @@ class Master(object):
 		"id":"972547932000-1610379075@g.us"}
 
 	serviceFuncs = {"services":{ "Reminder":None, "Proxy":None, "Danilator":None}}
+	serviceGroupNames = {}
+
 	serviceThreads = { }
 
 	def LoadServices(self):
 		# load list of services
 		for service in self.db["services"]:
+
+
+			if "reminders".lower() == service.lower():
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
+				self.serviceFuncs["services"][service]=ReminderService.process
+				self.serviceGroupNames[service] = "🔔 Reminders 🔔"
+
+			if "danilator".lower() == service.lower():
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
+				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
+				self.serviceFuncs["services"][service]=DanilatorService.process
+				self.serviceGroupNames[service] = "💚 Danilator 💚"
+
 			try:
 				if "dbID" not in self.db["services"][service]:
 					self.db["services"][service]["dbID"] = None
@@ -124,6 +150,8 @@ class Master(object):
 					print("-------------------------------")
 					print("     CREATING NEW DB GROUP   "+service)
 					print("-------------------------------")
+					groupName = service
+
 					newGroup = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1])
 					newGroupID = newGroup.id
 					self.db["services"][service]["dbID"] = newGroupID
@@ -136,26 +164,6 @@ class Master(object):
 
 			except Exception as e:
 				print(" ::: ERROR - LOAD SERVICES ::: ","\n",e,e.args,"\n")
-
-			if "reminders".lower() == service.lower():
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
-				self.serviceFuncs["services"][service]=ReminderService.process
-
-			if "danilator".lower() == service.lower():
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
-				self.serviceFuncs["services"][service]=DanilatorService.process
 
 	''' start master driver and log in '''
 	def __init__(self, profileDir = "/app/session/rprofile2"):
@@ -586,9 +594,16 @@ class Master(object):
 
 										''' create new group '''
 										if foundChat is None:
-											newGroup = self.driver.newGroup(newGroupName = target, number = "+"+senderID.split("@")[0])
+											groupName = service
+											if service in self.serviceGroupNames:
+												groupName = self.serviceGroupNames[service]
+
+											newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0])
 											newGroupID = newGroup.id
 											self.newG = newGroupID
+
+
+
 
 											self.db["users"][chatID]['services'][service] = newGroupID
 											self.db["groups"][newGroupID] = target
