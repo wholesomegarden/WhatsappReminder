@@ -128,7 +128,7 @@ class Master(object):
 				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
 				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
 				self.serviceFuncs["services"][service]=ReminderService.process
-				self.serviceGroupNames[service] = "🔔 Reminders 🔔".encode('unicode-escape').decode('ASCII')
+				self.serviceGroupNames[service] = "🔔 Reminders 🔔"
 
 
 			if "danilator".lower() == service.lower():
@@ -550,6 +550,7 @@ class Master(object):
 								''' person registering service with ='''
 								target = text[1:]
 								dbChanged = False
+								now = False
 
 								''' check target service in db '''
 								serviceFound = False
@@ -607,6 +608,7 @@ class Master(object):
 											self.db["users"][chatID]['services'][service] = newGroupID
 											self.db["groups"][newGroupID] = target
 											dbChanged = True
+											now = True
 											print(
 											'''
 											===============================================
@@ -625,7 +627,7 @@ class Master(object):
 									'''
 									)
 								if dbChanged:
-									self.backup()
+									self.backup(now=now)
 
 
 
