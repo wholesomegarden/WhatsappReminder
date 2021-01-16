@@ -5,6 +5,9 @@ from Conv import Conv
 # from app import Service
 # from ctparse import ctparemidrse
 # from datetime import datetime
+from bs4 import BeautifulSoup
+import requests
+
 from dateparser.search import search_dates
 
 import time
@@ -18,12 +21,265 @@ days = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(",")
 
 # class ReminderService(Service):
 class ReminderService():
-	users = {}
-	upcoming = {}
-	init = False
-	serviceName= "Reminders"
-	groupName = "🔔 Reminders 🔔"
+	id = "Reminders"
+	name = "🔔 Reminders 🔔"
 	welcome =  "*Welcome to Reminders 🔔 Service*\nYou can now send a message and we will send you a reminder :)\nשלחו הודעה ואנחנו כבר נזכיר לכם :)\n\nFor example:\nThats awesome in 5 seconds\nלהתקשר לברוך מחר בבוקר"
+	help = "Reminders help message"
+	share = None
+
+	def __init__(self,db, api):
+		ReminderService.share = self
+		self.db = db
+		self.api = api
+		if "upcoming" not in self.db or "dict" not in str(type(self.db["upcoming"])):
+			self.db["upcoming"] = {}
+		if "users" not in self.db:
+			self.db["users"] = {}
+
+
+		self.id = ReminderService.id
+		self.name = ReminderService.name
+		self.welcome = ReminderService.welcome
+		self.help = ReminderService.help
+
+
+	def go(self):
+		while(True):
+
+			if "upcoming" not in self.db or "dict" not in str(type(self.db["upcoming"])):
+				self.db["upcoming"] = {}
+			if "users" not in self.db :
+				self.db["users"] = {}
+
+			# while len(self.db["upcoming"]) > 0:
+			# 	key = self.db["upcoming"].pop(0)
+			# 	origin, content = item
+
+			for key in list(self.db["upcoming"].keys()):
+				t = self.db["upcoming"][key]
+				if time.time()-t > 0:
+					userID,remID = key.split("_")
+					self.remind(userID, remID)
+				# self.api.backup(self.db)
+
+
+
+			time.sleep(1)
+
+
+	def remind(self, userID, remID):
+		userID, remID = str(userID), str(remID)
+		combID = userID+"_"+remID
+		if userID in self.db["users"]:
+			user = self.db["users"][userID]
+			if remID in user.reminders["unsent"]:
+				rem = user.reminders["unsent"][remID]
+				print("!!!!!!!",rem)
+				if self.api.send(userID,rem.message):
+					if user.markSent(remID):
+						if combID in self.db["upcoming"]:
+							self.db["upcoming"].pop(combID)
+							self.backup()
+							# ReminderService.backup()
+						else:
+							print("EEEEEEEEE", "wasn't in upcoming")
+
+					else:
+						print("EEEEEEEEE", "could not mark!")
+
+				else:
+					print("EEEEEEEEE", "could not send!")
+
+	def updateDB(self, db):
+		# self.db = db
+		if "upcoming" not in db:
+			db["upcoming"] = {}
+
+		if "users" not in db:
+			db["users"] = {}
+
+		self.db = {"upcoming":db["upcoming"], "users":User.jsonUsersToUsers(db["users"])}
+
+	def process(self, info):
+		origin, user, content = None, None, None
+		if "origin" in info:
+			origin = info["origin"]
+		if "user" in info:
+			user = info["user"]
+		if "content" in info:
+			content = info["content"]
+
+		if "users" not in self.db:
+			self.db["users"] = {}
+
+		dbChanged = False
+
+		userID = str(origin)
+		if userID not in self.db["users"]:
+
+			user = User(userID)
+			self.db["users"][userID] = user
+
+			# user.conv.manager("WELCOME "+userID)
+			# self.api.send(userID, "WELCOME "+userID)
+			dbChanged = True
+
+		user = self.db["users"][userID]
+		user.conv.human(content)
+		timestr = ""
+
+		if not user.conv.ongoing:
+		# check for commands
+			print("AAAAAAAAAAAAAAAAAA")
+			m, t, timestr = ReminderService.parseMsg(content)
+			if t is None:
+				user.conv.manager("When to remind you?"	)
+				self.api.send(userID, "When shall I remind you ?")
+				user.conv.ongoing = True
+			else:
+				self.convFinished(user, set = True)
+
+			rem = self.newReminder(userID, m, t)
+
+
+
+		else:
+			print("BBBBBBBBBBBBBBBBBBBBB")
+			user.conv.tries += 1
+			m, t, timestr = ReminderService.parseMsg(content)
+			## GET LAST REMINDER
+
+			if t is None:
+				user.conv.manager("Sorry I didnt understand when  "+ str(user.conv.tries))
+				self.api.send(userID, "Sorry I didn't unserstand when...")
+
+			else:
+				rem = user.lastRem
+				rem.sendTime = t
+
+				self.convFinished(user, set = True)
+
+		if self.convFinished(user):
+			rem = user.lastRem
+
+			if rem.sendTime is not None:
+				user.conv.manager(" ".join(["THANK YOU! WILL REMIND YOU TO ",rem.message, "at",time.ctime(rem.sendTime)," (",timestr,")"]))
+				self.api.send(userID, " ".join(["THANK YOU! WILL REMIND YOU TO ",rem.message, "at",time.ctime(rem.sendTime)," (",timestr,")"]))
+
+				combID = userID+"_"+rem.id
+				self.db["upcoming"][combID] = rem.sendTime
+				dbChanged = True
+			else:
+				print("XXXXXXXXXXXXXXXXXXXXXXXX", "unhandled")
+
+			self.convFinished(user, set = None)
+			user.conv.ongoing = False
+		else:
+			print("***continue conv!!!!!!!!!!!!!!!!!!")
+
+		if dbChanged:
+			self.backup()
+			# self.api.backup(self.db)
+
+	def backup(self):
+		# self.api.backup(self.db)
+		self.api.backup({"upcoming":self.db["upcoming"],"users":User.usersToJSONusers(self.db["users"])})
+
+	def process1(self, info):
+		origin, user, content = None, None, None
+		if "origin" in info:
+			origin = info["origin"]
+		if "user" in info:
+			user = info["user"]
+		if "content" in info:
+			content = info["content"]
+
+		if "users" not in self.db:
+				self.db["users"] = {}
+
+		if user not in self.db["users"]:
+			self.db["users"][user] = user
+			# self.api.send(origin, "WELCOME "+user)
+			# self.api.backup(self.db)
+			self.backup()
+
+
+		# self.db["upcoming"].append([origin, content])
+		dbChanged = False
+		userID = str(user)
+
+		# dbChanged = False
+		if userID not in self.db["users"]:
+			user = User(userID)
+			self.db["users"][userID] = user
+
+			user.conv.manager("WELCOME "+userID)
+			# self.api.send(userID, "*Welcome to Danilator 💚 Service*\nYou can now send a name of a song to get it's lyrics translations :)")
+			dbChanged = True
+
+		user = self.db["users"][userID]
+		#
+		# for a in range(10):
+		# 	self.api.send(userID, str(a))
+		target = content
+		urlChecks = ["http","youtu","spotify.com"]
+		url = False
+		for check in urlChecks:
+			if check.lower() in target.lower():
+				url = True
+		if url:
+			target = str(re.search("(?P<url>https?://[^\s]+)", target).group("url"))
+
+		self.api.send(origin, "Checking Lyrics for:\n*"+target+"*\n"+"Please wait a bit")
+
+		# self.api.send(userID, )
+
+		# import requests
+		# from bs4 import BeautifulSoupYO
+		# example = "We are the champions"
+		# song = example.replace(" ","+")
+
+		target = target.replace(" ","+")
+		lyricsLink = "http://danilator.wholesome.garden/lyrics/"+target
+		print (lyricsLink)
+		page = requests.get(lyricsLink)
+		# if str(page.status_code) == "200":
+		soup = BeautifulSoup(page.content, 'html.parser')
+		# print(soup.prettify())
+		# print(soup.body[""])
+
+		# txt = str(str(P).split('))
+
+		title = soup.findAll("h3")[0].text.replace("                   ","").replace("                ","").replace("\n","")
+		while title[-1:] is " ":
+			title = title[:-1]
+
+		P = soup.find_all('p')
+		lyrics = []
+		for pp in P:
+			lyrics.append(pp.text.replace("\n","").replace("                ","").replace("              ",""))
+
+		for l in lyrics:
+			print("LLL:",l)
+
+		firstLang = lyrics[0::4][:-1]
+		secondLang = lyrics[1::4][:-1]
+
+		cleanLyrics = "💚 *Danilator* 💚\n"
+		cleanLyrics += "*"+title+"*"+"\n\n"
+
+		for i in range(len(firstLang)):
+			cleanLyrics += firstLang[i] +"\n"+ secondLang[i]+"\n\n"
+		cleanLyrics+="Made with 💚\n"
+		cleanLyrics+="from "+lyricsLink
+
+		# self.api.send(userID, cleanLyrics)
+		self.api.send(origin, cleanLyrics)
+
+		if dbChanged:
+			self.backup()
+			# self.api.backup(self.db)
+
 
 
 	def getDB():
@@ -31,13 +287,13 @@ class ReminderService():
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("USERS")
-		print(ReminderService.users)
+		print(self.db["users"])
 
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("JSON")
-		jsonUsers = User.usersToJSONusers(ReminderService.users)
+		jsonUsers = User.usersToJSONusers(self.db["users"])
 		print(jsonUsers)
 
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -46,18 +302,18 @@ class ReminderService():
 		print("recovered USERS")
 		print(User.jsonUsersToUsers(jsonUsers))
 
-		return {"users":jsonUsers,"upcoming":ReminderService.upcoming}
-		# return {"users":ReminderService.users,"upcoming":ReminderService.upcoming}
+		return {"users":jsonUsers,"upcoming":self.db["upcoming"]}
+		# return {"users":self.db["users"],"upcoming":self.db["upcoming"]}
 
 
-	def setDB(db):
-		ReminderService.upcoming = db["upcoming"]
-		ReminderService.users = User.jsonUsersToUsers(db["users"])
+	def setDB0(db):
+		self.db["upcoming"] = db["upcoming"]
+		self.db["users"] = User.jsonUsersToUsers(db["users"])
 
-	def backup():
+	def backup0():
 		ReminderService.backupDelegate(db = ReminderService.getDB(),service = ReminderService.serviceName)
 
-	def loadDB():
+	def loadDB0():
 		res = ReminderService.backupDelegate(db = None,service = ReminderService.serviceName)
 		if res is not None:
 			resave = False
@@ -78,14 +334,15 @@ class ReminderService():
 		print("YOY YOYOYOY YOY OY OY ")
 		print("YOY YOYOYOY YOY OY OY ")
 		print("YOY YOYOYOY YOY OY OY ")
+		print("DANILATOR")
 		t = Thread(target = ReminderService.rollUpcoming,args = [None,])
 		t.start()
 
 	def rollUpcoming(data):
 		"!!!!!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@"
 		while(True):
-			for key in list(ReminderService.upcoming.keys()):
-				t = ReminderService.upcoming[key]
+			for key in list(self.db["upcoming"].keys()):
+				t = self.db["upcoming"][key]
 				if time.time()-t > 0:
 					userID,remID = key.split("_")
 					ReminderService.send(userID, remID)
@@ -98,11 +355,11 @@ class ReminderService():
 	#     shared = sel
 	#     pass #load from back
 
-	def go(sendDelegate = None, backupDelegate = None):
+	def go0(sendDelegate = None, backupDelegate = None):
 		## LOAD FROM DAL
 
-		ReminderService.users = {}
-		ReminderService.upcoming = {}
+		self.db["users"] = {}
+		self.db["upcoming"] = {}
 		ReminderService.init = True
 		ReminderService.asyncRoll()
 		ReminderService.sendDelegate = sendDelegate
@@ -110,81 +367,152 @@ class ReminderService():
 		ReminderService.loadDB()
 
 
-	def process(userID, message):
+	def process0(userID, message):
+
 		print(ReminderService.init,"!!!!!!!!!!!!")
 		if not ReminderService.init:
 			ReminderService.go()
 
+
 		dbChanged = False
-
 		userID = str(userID)
-		if userID not in ReminderService.users:
 
+		# dbChanged = False
+		if userID not in self.db["users"]:
 			user = User(userID)
-			ReminderService.users[userID] = user
+			self.db["users"][userID] = user
 
-			user.conv.manager("WELCOME "+userID)
-			ReminderService.actuallySend(userID, "WELCOME "+userID)
+			# user.conv.manager("WELCOME "+userID)
+			# self.api.send(userID, "*Welcome to Danilator 💚 Service*\nYou can now send a name of a song to get it's lyrics translations :)")
 			dbChanged = True
 
-		user = ReminderService.users[userID]
-		user.conv.human(message)
-		timestr = ""
+		user = self.db["users"][userID]
+		#
+		# for a in range(10):
+		# 	self.api.send(userID, str(a))
+		target = content
+		urlChecks = ["http","youtu","spotify.com"]
+		url = False
+		for check in urlChecks:
+			if check.lower() in target.lower():
+				url = True
+		if url:
+			target = str(re.search("(?P<url>https?://[^\s]+)", target).group("url"))
+		self.api.send(userID, "Checking Lyrics for:\n*"+target+"*\n"+"Please wait a bit")
 
-		if not user.conv.ongoing:
-		# check for commands
-			print("AAAAAAAAAAAAAAAAAA")
-			m, t, timestr = ReminderService.parseMsg(message)
-			if t is None:
-				user.conv.manager("When to remind you?")
-				ReminderService.actuallySend(userID, "When shall I remind you ?")
-				user.conv.ongoing = True
-			else:
-				ReminderService.convFinished(user, set = True)
+		# import requests
+		# from bs4 import BeautifulSoupYO
+		# example = "We are the champions"
+		# song = example.replace(" ","+")
 
-			rem = ReminderService.newReminder(userID, m, t)
+		target = target.replace(" ","+")
+		lyricsLink = "http://danilator.wholesome.garden/lyrics/"+target
+		print (lyricsLink)
+		page = requests.get(lyricsLink)
+		# if str(page.status_code) == "200":
+		soup = BeautifulSoup(page.content, 'html.parser')
+		# print(soup.prettify())
+		# print(soup.body[""])
+
+		# txt = str(str(P).split('))
+
+		title = soup.findAll("h3")[0].text.replace("                   ","").replace("                ","").replace("\n","")
+		while title[-1:] is " ":
+			title = title[:-1]
+
+		P = soup.find_all('p')
+		lyrics = []
+		for pp in P:
+			lyrics.append(pp.text.replace("\n","").replace("                ","").replace("              ",""))
+
+		for l in lyrics:
+			print("LLL:",l)
+
+		firstLang = lyrics[0::4][:-1]
+		secondLang = lyrics[1::4][:-1]
+
+		cleanLyrics = "💚 *Danilator* 💚\n"
+		cleanLyrics += "*"+title+"*"+"\n\n"
+
+		for i in range(len(firstLang)):
+			cleanLyrics += firstLang[i] +"\n"+ secondLang[i]+"\n\n"
+		cleanLyrics+="Made with 💚\n"
+		cleanLyrics+="from "+lyricsLink
+
+		self.api.send(userID, cleanLyrics)
+		# if False:
+		# 	self.api.send(userID, "Could not fetch lyrics %0AE: "+e)
 
 
-
-		else:
-				print("BBBBBBBBBBBBBBBBBBBBB")
-				user.conv.tries += 1
-				m, t, timestr = ReminderService.parseMsg(message)
-				## GET LAST REMINDER
-
-				if t is None:
-					user.conv.manager("Sorry I didnt understand when  "+ str(user.conv.tries))
-					ReminderService.actuallySend(userID, "Sorry I didn't unserstand when...")
-
-				else:
-					rem = user.lastRem
-					rem.sendTime = t
-
-					ReminderService.convFinished(user, set = True)
-
-		if ReminderService.convFinished(user):
-			rem = user.lastRem
-
-			if rem.sendTime is not None:
-				user.conv.manager(" ".join(["THANK YOU! WILL REMIND YOU TO ",rem.message, "at",time.ctime(rem.sendTime)," (",timestr,")"]))
-				ReminderService.actuallySend(userID, " ".join(["THANK YOU! WILL REMIND YOU TO ",rem.message, "at",time.ctime(rem.sendTime)," (",timestr,")"]))
-
-				combID = userID+"_"+rem.id
-				ReminderService.upcoming[combID] = rem.sendTime
-				dbChanged = True
-			else:
-				print("XXXXXXXXXXXXXXXXXXXXXXXX", "unhandled")
-
-			ReminderService.convFinished(user, set = None)
-			user.conv.ongoing = False
-		else:
-			print("***continue conv!!!!!!!!!!!!!!!!!!")
-
+		#
+		# for l in lyrics:
+		# 	print(":::"+l+"::::")
+		#
+		# Made with 💚
+		#
+		# lyrics
+		#
+		#
+		#
+		#
+		#
+		# user.conv.human(message)
+		# timestr = ""
+		#
+		# if not user.conv.ongoing:
+		# # check for commands
+		# 	print("AAAAAAAAAAAAAAAAAA")
+		# 	m, t, timestr = ReminderService.parseMsg(message)
+		# 	if t is None:
+		# 		user.conv.manager("When to remind you?")
+		# 		self.api.send(userID, "When shall I remind you ?")
+		# 		user.conv.ongoing = True
+		# 	else:
+		# 		self.convFinished(user, set = True)
+		#
+		# 	rem = self.newReminder(userID, m, t)
+		#
+		#
+		#
+		# else:
+		# 		print("BBBBBBBBBBBBBBBBBBBBB")
+		# 		user.conv.tries += 1
+		# 		m, t, timestr = ReminderService.parseMsg(message)
+		# 		## GET LAST REMINDER
+		#
+		# 		if t is None:
+		# 			user.conv.manager("Sorry I didnt understand when  "+ str(user.conv.tries))
+		# 			self.api.send(userID, "Sorry I didn't unserstand when...")
+		#
+		# 		else:
+		# 			rem = user.lastRem
+		# 			rem.sendTime = t
+		#
+		# 			self.convFinished(user, set = True)
+		#
+		# if self.convFinished(user):
+		# 	rem = user.lastRem
+		#
+		# 	if rem.sendTime is not None:
+		# 		user.conv.manager(" ".join(["THANK YOU! WILL REMIND YOU TO ",rem.message, "at",time.ctime(rem.sendTime)," (",timestr,")"]))
+		# 		self.api.send(userID, " ".join(["THANK YOU! WILL REMIND YOU TO ",rem.message, "at",time.ctime(rem.sendTime)," (",timestr,")"]))
+		#
+		# 		combID = userID+"_"+rem.id
+		# 		self.db["upcoming"][combID] = rem.sendTime
+		# 		dbChanged = True
+		# 	else:
+		# 		print("XXXXXXXXXXXXXXXXXXXXXXXX", "unhandled")
+		#
+		# 	self.convFinished(user, set = None)
+		# 	user.conv.ongoing = False
+		# else:
+		# 	print("***continue conv!!!!!!!!!!!!!!!!!!")
+		#
 		if dbChanged:
 			ReminderService.backup()
 
 
-	def convFinished(user, set = -1):
+	def convFinished(self, user, set = -1):
 		if set is -1:
 			convFin = True
 			for key in user.conv.fin:
@@ -195,18 +523,18 @@ class ReminderService():
 			for key in user.conv.fin:
 				user.conv.fin[key] = set
 
-	def send(userID, remID):
+	def send0(userID, remID):
 		userID, remID = str(userID), str(remID)
 		combID = userID+"_"+remID
-		if userID in ReminderService.users:
-			user = ReminderService.users[userID]
+		if userID in self.db["users"]:
+			user = self.db["users"][userID]
 			if remID in user.reminders["unsent"]:
 				rem = user.reminders["unsent"][remID]
 				print("!!!!!!!",rem)
-				if ReminderService.actuallySend(userID,rem.message):
+				if self.api.send(userID,rem.message):
 					if user.markSent(remID):
-						if combID in ReminderService.upcoming:
-							ReminderService.upcoming.pop(combID)
+						if combID in self.db["upcoming"]:
+							self.db["upcoming"].pop(combID)
 							ReminderService.backup()
 						else:
 							print("EEEEEEEEE", "wasn't in upcoming")
@@ -304,9 +632,9 @@ class ReminderService():
 			print("NOT CHANGED DAY")
 		return txt
 
-	def newReminder(userID, message, when = None):
+	def newReminder(self, userID, message, when = None):
 
-		user = ReminderService.users[userID]
+		user = self.db["users"][userID]
 		if user is None:
 			print("user not found")
 			return None

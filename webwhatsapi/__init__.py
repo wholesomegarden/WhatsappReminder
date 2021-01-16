@@ -44,6 +44,8 @@ from .objects.message import MessageGroup, factory_message
 from .objects.number_status import NumberStatus
 from .wapi_js_wrapper import WapiJsWrapper
 
+import re
+
 __version__ = "2.0.3"
 
 
@@ -339,13 +341,18 @@ class WhatsAPIDriver(object):
 	def getDB(self, number = "DB"):
 		db = {}
 		# if True:
+		print("!!!!!!!!!!")
+		print(number)
 		try:
 			# print("NNNNNNNNNNN",number)
 			lastMsg = self.getLastMessage(number, report = False)
 			# if "*" in lastMsg:
 			# 	lastMsg = lastMsg.split("*")[1]
+			print("NNNNNNNNN")
 			print(lastMsg)
-			# print("NNNNNNNNN")
+			print("NNNNNNNNN")
+			p = re.compile('(?<!\\\\)\'')
+			lastMsg = p.sub('\"', lastMsg)
 
 			db = self.jsonToDict(lastMsg)
 		# else:
@@ -357,6 +364,10 @@ class WhatsAPIDriver(object):
 	def updateDB(self, data, number="DB"):
 		if "dict" in str(type(data)):
 			js = self.dictToJson(data)
+			print("jjjjjjjjjjssssssss",js)
+			p = re.compile('(?<!\\\\)\'')
+			js = p.sub('\"', js)
+
 			self.sendMessage(number,js)
 		else:
 			self.sendMessage(number,data)

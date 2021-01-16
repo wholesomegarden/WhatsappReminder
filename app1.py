@@ -169,7 +169,7 @@ class Master(object):
 					newGroup = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1], local = runLocal)
 					newGroupID = newGroup.id
 					self.db["services"][service]["dbID"] = newGroupID
-					self.driver.sendMessage(newGroupID, json.dumps({"init":True}))
+					self.driver.sendMessage(newGroupID, '{"init":"TRUE"}')
 					self.backup()
 				else:
 					print("-------------------------------")

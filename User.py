@@ -21,18 +21,39 @@ class User():
 
 
 	def jsonUsersToUsers(d):
+		print("dddddddddddddddddddd")
+		print(d)
+		print()
 		D = {}
 		for u in d:
-			D[u] = User.dictToUser(d[u])
+
+			try:
+				D[u] = User.dictToUser(d[u])
+			except Exception as e:
+				print("EEEEEEEEEEEEEEEEE usersToJSONusers",e)
+				print(d)
+				print()
+				D[u] = d[u]
 		return D
 
 	def usersToJSONusers(d):
 		D = {}
 		for u in d:
-			D[u] = d[u].toJSON()
+			try:
+				D[u] = d[u].toJSON()
+			except Exception as e:
+				print("EEEEEEEEEEEEEEEEE usersToJSONusers",e)
+				print(d)
+				print()
+				D[u] = str(d[u])
 		return D
 
 	def dictToUser(d):
+		print("##############################")
+		print(d)
+		if "class" not in str(type(d)) and "dict" not in str(type(d)):
+			return d
+
 		print(d)
 		print("QQQQQQQQQQQ")
 

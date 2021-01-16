@@ -16,151 +16,17 @@ import re
 
 from threading import Thread
 
+known = {"Morning":"at 08:00", "evening":"at 18:00", "in in":"in","at at":"at", "בבוקר":"08:00"}
+days = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(",")
+
 # class DanilatorService(Service):
 class DanilatorService():
-	id = "Danilator"
-	name = "💚 Danilator 💚"
+	users = {}
+	upcoming = {}
+	init = False
+	serviceName= "Danilator"
+	groupName = "💚 Danilator 💚"
 	welcome =  "*Welcome to Danilator 💚 Service*\nYou can now send a name of a song to get it's lyrics translations :)\nתוכלו לשלוח שם של שיר כדי לקבל תרגום למילים שלו :)\nYou could also share a song from Youtube or Spotify!\nתוכלו גם לשתף שיר ישר מיוטוב או ספוטיפיי!"
-	help = "Danilator help message"
-	share = None
-
-	def __init__(self,db, api):
-		DanilatorService.share = self
-
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Danilator",DanilatorService.share)
-		self.db = db
-		self.api = api
-		if "upcoming" not in self.db:
-			self.db["upcoming"] = []
-		if "users" not in self.db:
-			self.db["users"] = {}
-
-
-		self.id = DanilatorService.id
-		self.name = DanilatorService.name
-		self.welcome = DanilatorService.welcome
-		self.help = DanilatorService.help
-
-
-	def go(self):
-		while(True):
-			if "upcoming" not in self.db:
-				self.db["upcoming"] = []
-			if "users" not in self.db:
-				self.db["users"] = {}
-
-			while len(self.db["upcoming"]) > 0:
-				item = self.db["upcoming"].pop(0)
-				origin, content = item
-				# self.backup()
-
-			time.sleep(1)
-
-
-	def process(self, info):
-		origin, user, content = None, None, None
-		if "origin" in info:
-			origin = info["origin"]
-		if "user" in info:
-			user = info["user"]
-		if "content" in info:
-			content = info["content"]
-
-		if "users" not in self.db:
-			self.db["users"] = {}
-
-		if user not in self.db["users"]:
-			self.db["users"][user] = user
-			# self.api.send(origin, "WELCOME "+user)
-			self.backup()
-
-		# self.db["upcoming"].append([origin, content])
-		dbChanged = False
-		userID = str(user)
-
-		# dbChanged = False
-		if userID not in self.db["users"]:
-			user = User(userID)
-			self.db["users"][userID] = user
-
-			# user.conv.manager("WELCOME "+userID)
-			# DanilatorService.actuallySend(userID, "*Welcome to Danilator 💚 Service*\nYou can now send a name of a song to get it's lyrics translations :)")
-			dbChanged = True
-
-		user = self.db["users"][userID]
-		#
-		# for a in range(10):
-		# 	DanilatorService.actuallySend(userID, str(a))
-		target = content
-		urlChecks = ["http","youtu","spotify.com"]
-		url = False
-		for check in urlChecks:
-			if check.lower() in target.lower():
-				url = True
-		if url:
-			target = str(re.search("(?P<url>https?://[^\s]+)", target).group("url"))
-
-		self.api.send(origin, "Checking Lyrics for:\n*"+target+"*\n"+"Please wait a bit")
-
-		# DanilatorService.actuallySend(userID, )
-
-		# import requests
-		# from bs4 import BeautifulSoupYO
-		# example = "We are the champions"
-		# song = example.replace(" ","+")
-
-		target = target.replace(" ","+")
-		lyricsLink = "http://danilator.wholesome.garden/lyrics/"+target
-		print (lyricsLink)
-		page = requests.get(lyricsLink)
-		# if str(page.status_code) == "200":
-		soup = BeautifulSoup(page.content, 'html.parser')
-		# print(soup.prettify())
-		# print(soup.body[""])
-
-		# txt = str(str(P).split('))
-
-		title = soup.findAll("h3")[0].text.replace("                   ","").replace("                ","").replace("\n","")
-		while title[-1:] is " ":
-			title = title[:-1]
-
-		P = soup.find_all('p')
-		lyrics = []
-		for pp in P:
-			lyrics.append(pp.text.replace("\n","").replace("                ","").replace("              ",""))
-
-		for l in lyrics:
-			print("LLL:",l)
-
-		firstLang = lyrics[0::4][:-1]
-		secondLang = lyrics[1::4][:-1]
-
-		cleanLyrics = "💚 *Danilator* 💚\n"
-		cleanLyrics += "*"+title+"*"+"\n\n"
-
-		for i in range(len(firstLang)):
-			cleanLyrics += firstLang[i] +"\n"+ secondLang[i]+"\n\n"
-		cleanLyrics+="Made with 💚\n"
-		cleanLyrics+="from "+lyricsLink
-
-		# DanilatorService.actuallySend(userID, cleanLyrics)
-		self.api.send(origin, cleanLyrics)
-
-		if dbChanged:
-			self.backup()
-
-
-	def backup(self):
-		self.api.backup(self.db)
-
-	def updateDB(self, db):
-		self.db = db
-		# self.db = User.jsonUsersToUsers(db)
-
 
 	def getDB():
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -190,7 +56,7 @@ class DanilatorService():
 		DanilatorService.upcoming = db["upcoming"]
 		DanilatorService.users = User.jsonUsersToUsers(db["users"])
 
-	def backup0():
+	def backup():
 		DanilatorService.backupDelegate(db = DanilatorService.getDB(),service = DanilatorService.serviceName)
 
 	def loadDB():
@@ -235,7 +101,7 @@ class DanilatorService():
 	#     shared = sel
 	#     pass #load from back
 
-	def go0(sendDelegate = None, backupDelegate = None):
+	def go(sendDelegate = None, backupDelegate = None):
 		## LOAD FROM DAL
 
 		DanilatorService.users = {}
@@ -247,14 +113,14 @@ class DanilatorService():
 		DanilatorService.loadDB()
 
 
-	def process0(userID, message):
+	def process(userID, message):
 
 		print(DanilatorService.init,"!!!!!!!!!!!!")
 		if not DanilatorService.init:
 			DanilatorService.go()
 
-
 		dbChanged = False
+
 		userID = str(userID)
 
 		# dbChanged = False
@@ -270,7 +136,7 @@ class DanilatorService():
 		#
 		# for a in range(10):
 		# 	DanilatorService.actuallySend(userID, str(a))
-		target = content
+		target = message
 		urlChecks = ["http","youtu","spotify.com"]
 		url = False
 		for check in urlChecks:
