@@ -7,6 +7,7 @@ from Conv import Conv
 # from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
+import traceback
 
 from dateparser.search import search_dates
 
@@ -123,27 +124,41 @@ class DanilatorService():
 		# print(soup.body[""])
 
 		# txt = str(str(P).split('))
+		pageLoaded = False
 
-		title = soup.findAll("h3")[0].text.replace("                   ","").replace("                ","").replace("\n","")
-		while title[-1:] is " ":
-			title = title[:-1]
+		firstLang = []
+		secondLang = []
 
-		P = soup.find_all('p')
-		lyrics = []
-		for pp in P:
-			lyrics.append(pp.text.replace("\n","").replace("                ","").replace("              ",""))
+		try:
+			title = soup.findAll("h3")[0].text.replace("                   ","").replace("                ","").replace("\n","")
+			while title[-1:] is " ":
+				title = title[:-1]
 
-		for l in lyrics:
-			print("LLL:",l)
+			P = soup.find_all('p')
+			lyrics = []
+			for pp in P:
+				lyrics.append(pp.text.replace("\n","").replace("                ","").replace("              ",""))
 
-		firstLang = lyrics[0::4][:-1]
-		secondLang = lyrics[1::4][:-1]
+			for l in lyrics:
+				print("LLL:",l)
+
+			firstLang = lyrics[0::4][:-1]
+			secondLang = lyrics[1::4][:-1]
+		except Exception as e:
+			print("EEEEEEEEEEEEEEEE Danilator could not be loaded",traceback.print_exc())
 
 		cleanLyrics = "💚 *Danilator* 💚\n"
 		cleanLyrics += "*"+title+"*"+"\n\n"
 
 		for i in range(len(firstLang)):
-			cleanLyrics += firstLang[i] +"\n"+ secondLang[i]+"\n\n"
+			cleanLyrics += firstLang[i] +"\n"
+			if i<len(secondLang):
+				cleanLyrics += secondLang[i]+"\n"
+			cleanLyrics+="\n"
+
+		if len(firstLang) == 0:
+			cleanLyrics += "Could not load Danilator\n\n"
+
 		cleanLyrics+="Made with 💚\n"
 		cleanLyrics+="from "+lyricsLink
 
