@@ -138,7 +138,7 @@ class Master(object):
 
 			''' load DB '''
 			## overwrite to init db
-			initOverwrite = True
+			initOverwrite = False
 			if initOverwrite:
 				self.backup(now = True)
 			# driver.updateDB(self.db,number=self.db["id"])
