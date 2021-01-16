@@ -7,7 +7,7 @@ from youtube_search import YoutubeSearch
 class MusicService(object):
 	id = "Music"
 	name = "🔊 Music 🔊"
-	welcome = "Welcome to Music 🔊 Service \nSend us a song to get Youtube and Spotify Links :)"
+	welcome = "*Welcome to Music 🔊 Service!* \nSend us the name of a song to get *Youtube* and *Spotify* Links :)"
 	help = "send a message to get it back"
 	share = None
 
