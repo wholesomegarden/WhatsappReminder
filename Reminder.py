@@ -22,9 +22,9 @@ class Reminder(JSONEncoder):
 	def jsonRemsToRems(d):
 		D = {"sent":{},"unsent":{}}
 
-		print("dddddddddddddddddd")
-		print(d)
-		print("dddddddddddddddddd")
+		# print("dddddddddddddddddd")
+		# print(d)
+		# print("dddddddddddddddddd")
 		disableHistory = True
 		if not disableHistory:
 			for u in d["sent"]:
@@ -34,14 +34,14 @@ class Reminder(JSONEncoder):
 		for u in d["unsent"]:
 			D["unsent"][u] = Reminder.dictToRem(d["unsent"][u])
 
-		print("ddddddddddddddddddDDDD")
-		print(d)
-		print("ddddddddddddddddddDDDd")
+		# print("ddddddddddddddddddDDDD")
+		# print(d)
+		# print("ddddddddddddddddddDDDd")
 		return D
 
 	def dictToRem(d):
-		print("DDDDDDDDDDDDDDDDDD")
-		print(d)
+		# print("DDDDDDDDDDDDDDDDDD")
+		# print(d)
 		id			= d["id"]
 		userID		= d["userID"]
 		message				= d["message"]
@@ -62,9 +62,4 @@ class Reminder(JSONEncoder):
 		self.repeat      = repeat
 		self.hasTime     = sendTime is not None
 
-		print("NEW REMINDER CREATED!",self,self.id         ,
-self.userID     ,
-self.message    ,
-self.sendTime   ,
-self.repeat     ,
-self.hasTime    ,'\n')
+		print("NEW REMINDER CREATED!",self, self.i, self.userID, self.message, self.sendTime, self.repeat, self.hasTime,'\n')

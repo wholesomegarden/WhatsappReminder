@@ -189,10 +189,11 @@ class WhatsAPIDriver(object):
 	f = 1,
 	newGroupName = 'New Group Name',
 	number = "+972512170493",
-	local = False
+	local = False,
+	image = None
 	):
 		oldChats = self.get_all_chats()
-
+		invite = None
 		for a in range(f):
 			dots = self.tryOut(self.driver.find_element_by_xpath,"//span[@data-testid='menu']",click=True)
 			newgroup = self.tryOut(self.driver.find_element_by_tag_name,'li', click=True)
@@ -239,7 +240,40 @@ class WhatsAPIDriver(object):
 				time.sleep(.5)
 
 
-		# print("XXXXXXXXXXXXXXXXXX")
+		upload_img = False
+		dotsSide = self.tryOut(self.driver.find_element_by_xpath,"//div[@class='VPvMz']/div/div/div/span[@data-testid='menu']",click=True)
+		groupInfo = self.tryOut(self.driver.find_element_by_xpath,"//li",click=True)
+		if image is not None and upload_img:
+			print("!!!!!!!")
+			changePhoto = self.tryOut(self.driver.find_element_by_xpath,"//div[@class='_1huBh']",click=True)
+			# time.sleep(3)
+			# print("!!!!!!!")
+			uploadPicture = self.tryOut(self.driver.find_element_by_xpath,"//div[@title='Upload photo']",click=True)
+			uploadPicture.send_keys(image)
+			# time.sleep(3)
+			# print("!!!!!!!")
+			# uploadPicture.send_keys(image+Keys.ENTER)
+
+		''' try to get invite '''
+		inviteToChat = self.tryOut(self.driver.find_element_by_xpath,"//div[text()='Invite to group via link']",click=True)
+		inviteURL = self.tryOut(self.driver.find_element_by_xpath,"//a[@id='group-invite-link-anchor']",click=True)
+		invite = inviteURL.get_attribute('outerHTML').split("</a>")[0].split(">")[1]
+		back = self.tryOut(self.driver.find_element_by_xpath,"//button[@class='hYtwT']",click=True)
+		back = self.tryOut(self.driver.find_element_by_xpath,"//button[@class='hYtwT']",click=True)
+
+		# xit = self.tryOut(self.driver.find_element_by_xpath,"//button[@data-testid='x']",click=True)
+
+		print("XXXXXXXXXXXXXXXXXX")
+		print("    NEW GROUP     ")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX",invite)
+
+		# invite
+
 		# print("OLD",len(oldChats),oldChats)
 		# print()
 		# print()
@@ -248,8 +282,8 @@ class WhatsAPIDriver(object):
 		diff =  self.listDiff(newChats,oldChats)
 		# print("DIFF",diff)
 		if len(diff) == 1:
-			return diff[0]
-		return diff
+			return diff[0], invite
+		return diff, invite
 		'''
 		from app import *
 		'''
@@ -341,16 +375,16 @@ class WhatsAPIDriver(object):
 	def getDB(self, number = "DB"):
 		db = {}
 		# if True:
-		print("!!!!!!!!!!")
-		print(number)
+		# print("!!!!!!!!!!")
+		# print(number)
 		try:
 			# print("NNNNNNNNNNN",number)
 			lastMsg = self.getLastMessage(number, report = False)
 			# if "*" in lastMsg:
 			# 	lastMsg = lastMsg.split("*")[1]
-			print("NNNNNNNNN")
-			print(lastMsg)
-			print("NNNNNNNNN")
+			# print("NNNNNNNNN")
+			# print(lastMsg)
+			# print("NNNNNNNNN")
 			p = re.compile('(?<!\\\\)\'')
 			lastMsg = p.sub('\"', lastMsg)
 
@@ -995,7 +1029,8 @@ class WhatsAPIDriver(object):
 		"""
 		imgBase64 = self.convert_to_base64(path, is_thumbnail=True)
 		if url not in text:
-			return False
+			print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+		# 	return False
 		return self.wapi_functions.sendMessageWithThumb(
 			imgBase64, url, title, description, text, chatid
 		)
@@ -1008,6 +1043,10 @@ class WhatsAPIDriver(object):
 		:type chat_id: str
 		"""
 		return self.wapi_functions.sendSeen(chat_id)
+
+	def get_group_metadata(self, chat_id):
+		return self.wapi_functions.getGroupMetadata(chat_id)
+
 
 	def chat_load_earlier_messages(self, chat_id):
 		self.wapi_functions.loadEarlierMessages(chat_id)

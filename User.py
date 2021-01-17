@@ -21,9 +21,9 @@ class User():
 
 
 	def jsonUsersToUsers(d):
-		print("dddddddddddddddddddd")
-		print(d)
-		print()
+		# print("dddddddddddddddddddd")
+		# print(d)
+		# print()
 		D = {}
 		for u in d:
 
@@ -49,26 +49,26 @@ class User():
 		return D
 
 	def dictToUser(d):
-		print("##############################")
-		print(d)
+		# print("##############################")
+		# print(d)
 		if "class" not in str(type(d)) and "dict" not in str(type(d)):
 			return d
 
-		print(d)
-		print("QQQQQQQQQQQ")
+		# print(d)
+		# print("QQQQQQQQQQQ")
 
 		d = json.loads(d)
-		print("DDDDDDD")
-		print(d)
+		# print("DDDDDDD")
+		# print(d)
 		lastRem		= d["lastRem"]
 		conv		= Conv.dictToConv(d["conv"])
 		remCount	= int(d["remCount"])
 		reminders	= Reminder.jsonRemsToRems(d["reminders"])
 		prefs		= d["prefs"]
 		u = User(id, prefs= prefs, reminders = reminders, remCount = remCount, conv = conv, lastRem = lastRem)
-		print("!!!!!!!!!!!!!!!")
-		print(u)
-		print("!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!")
+		# print(u)
+		# print("!!!!!!!!!!!!!!!")
 		return u
 
 	def __init__(self,id, prefs= None, reminders = None, remCount = 0, conv = None,lastRem = None):

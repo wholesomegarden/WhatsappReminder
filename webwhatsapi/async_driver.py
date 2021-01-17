@@ -190,6 +190,10 @@ class WhatsAPIDriverAsync:
     async def group_get_participants_ids(self, group_id):
         return await self._run_async(self._driver.group_get_participants_ids, group_id)
 
+    async def get_group_metadata(self, group_id):
+        return await self._run_async(self._driver.get_group_metadata, group_id)
+
+
     async def group_get_participants(self, group_id):
         participant_ids = await self.group_get_participants_ids(group_id)
 

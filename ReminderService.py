@@ -16,15 +16,17 @@ import re
 
 from threading import Thread
 
-known = {"Morning":"at 08:00", "evening":"at 18:00", "in in":"in","at at":"at", "בבוקר":"08:00"}
+known = {"morning":"at 08:00","afternoon":"at 16:00", "evening":"at 18:00", "in in":"in","at at":"at", "בבוקר":"08:00", "בצהריים":"12:00", "בערב":"18:00"}
 days = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(",")
 
 # class ReminderService(Service):
 class ReminderService():
 	id = "Reminders"
 	name = "🔔 Reminders 🔔"
-	welcome =  "*Welcome to Reminders 🔔 Service*\nYou can now send a message and we will send you a reminder :)\nשלחו הודעה ואנחנו כבר נזכיר לכם :)\n\nFor example:\nThats awesome in 5 seconds\nלהתקשר לברוך מחר בבוקר"
+	welcome =  "*Welcome to Reminders 🔔 Service*\nYou can now send a message and we will *send* you a reminder :)\n*שלחו* הודעה ואנחנו כבר נזכיר לכם :)\n\nFor example:לדוגמה\n\n*This is awesome in 5 seconds*\n*להתקשר לברוך מחר בבוקר*"
 	help = "Reminders help message"
+	imageurl = "https://cdn4.iconfinder.com/data/icons/conversation-3/100/Reminder-512.png"
+
 	share = None
 
 	def __init__(self,db, api):

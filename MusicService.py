@@ -9,16 +9,17 @@ class MusicService(object):
 	name = "🔊 Music 🔊"
 	welcome = "*Welcome to Music 🔊 Service!* \nSend us the name of a song to get *Youtube* and *Spotify* Links :)"
 	help = "send a message to get it back"
+	imageurl = "https://i.imgur.com/lpjQPk5.jpg"
 	share = None
 
 	def __init__(self,db, api):
 		MusicService.share = self
 
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Echo",MusicService.share)
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! MusicService",MusicService.share)
 		self.db = db
 		self.api = api
 		if "upcoming" not in self.db:
@@ -61,6 +62,25 @@ class MusicService(object):
 		if "users" not in self.db:
 			self.db["users"] = {}
 
+
+		if ":" == content[0]:
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
+			print(content)
+			print()
+			print()
+			self.api.send(origin, "FUCK YEA "+content)
+
 		# if user not in self.db["users"]:
 		# 	self.db["users"][user] = user
 		# 	self.api.send(origin, "WELCOME "+user)
@@ -69,8 +89,10 @@ class MusicService(object):
 		# self.db["upcoming"].append([origin, content])
 
 		# query = "sweet child"
+		thumnail = None
 		sendBack = "Sorry we could not find your song on Spotify for some reason.\n"
 		found = False
+		image = self.imageurl
 		try:
 			results = self.spotify.search(content)
 			if len(results) > 0:
@@ -78,28 +100,54 @@ class MusicService(object):
 				link = res['external_urls']['spotify']
 				title = res["name"]
 				artist = res["album"]["artists"][0]["name"]
+				image = res["album"]["images"][1]['url']
+				year = res["album"]["release_date"].split("-")[0]
+				desc = artist
+				if res["type"] == "track":
+					desc += " • Song"
+				desc += " • "+year
+				thumnail = {"imageurl":image,"title":title,"desc":desc,"link":link}
 				found = True
 		except Exception as e:
 			print("COULD NOT FIND SONG ON SPOTIFY", e)
 
 		search = content
 		if found:
-			sendBack = "*"+title+" - "+artist+"*\n"
+			sendBack = "Spotify: *"+title+" - "+artist+"*\n"
 			sendBack += link+"\n\n"
 			search = title+" "+artist
+
+		linkDefault = "spotify"
 
 		ytres = YoutubeSearch(search, max_results=1).to_dict()
 		if ytres is not None and len(ytres) == 1:
 			try:
+				print("# # # # # # # # ")
+				print("# # # # # # # # ")
+				print("# # # # # # # # ")
+				print("# # # # # # # # ")
+				print("# # # # # # # # ")
+				print(ytres[0])
 				vidID = ytres[0]['url_suffix']
+				title = ytres[0]['title']
+				ylink = "https://youtu.be"+vidID
+				desc = "yyy"
 				if vidID is not None and len(vidID) > 0:
-					sendBack+="https://youtu.be"+vidID
+					sendBack+="Youtube: *"+title+"*"+"\n"+ylink
+
+				''' thumnail for youtube '''
+				if not found or linkDefault is "youtube" or False:
+					thumnail = {"imageurl":image,"title":title,"Provided to Youtube by":desc,"link":ylink}
 
 			except Exception as e:
 				print("COULD NOT FIND SONG ON YOUTUBE", e)
 
-
-		self.api.send(origin, sendBack)
+		withLink = True
+		if withLink:
+			answer = ":answerid:555"
+			myLink = self.api.genLink(origin, answer)
+			sendBack += "\n\n"+answer+":\n"+myLink
+		self.api.send(origin, sendBack, thumnail = thumnail)
 
 	def backup(self):
 		self.api.backup(self.db)

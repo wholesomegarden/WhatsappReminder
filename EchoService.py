@@ -6,15 +6,16 @@ class EchoService(object):
 	name = "Echo!"
 	welcome = "Welcome to Echo! Service \nWe echo what you send..."
 	help = "send a message to get it back"
+	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmaJKloEMiBpQRA9woJw4XnuWXCWeN2BO70w&usqp=CAU"
 	share = None
 
 	def __init__(self,db, api):
 		EchoService.share = self
-
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Echo",EchoService.share)
 		self.db = db
 		self.api = api
@@ -33,7 +34,7 @@ class EchoService(object):
 			while len(self.db["upcoming"]) > 0:
 				item = self.db["upcoming"].pop(0)
 				origin, content = item
-				self.api.send(origin, content)
+				self.api.send(origin, content, thumnail = "test")
 				# self.api.backup(self.db)
 
 			time.sleep(1)

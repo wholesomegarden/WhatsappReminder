@@ -23,15 +23,16 @@ class DanilatorService():
 	name = "💚 Danilator 💚"
 	welcome =  "*Welcome to Danilator 💚 Service*\nYou can now send a name of a song to get it's lyrics translations :)\nתוכלו לשלוח שם של שיר כדי לקבל תרגום למילים שלו :)\nYou could also share a song from Youtube or Spotify!\nתוכלו גם לשתף שיר ישר מיוטוב או ספוטיפיי!"
 	help = "Danilator help message"
+	imageurl = "https://i.imgur.com/j1SkVVt.png"
 	share = None
 
 	def __init__(self,db, api):
 		DanilatorService.share = self
 
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Danilator",DanilatorService.share)
 		self.db = db
 		self.api = api
@@ -41,10 +42,11 @@ class DanilatorService():
 			self.db["users"] = {}
 
 
-		self.id = DanilatorService.id
-		self.name = DanilatorService.name
-		self.welcome = DanilatorService.welcome
-		self.help = DanilatorService.help
+		# self.id = DanilatorService.id
+		# self.name = DanilatorService.name
+		# self.welcome = DanilatorService.welcome
+		# self.help = DanilatorService.help
+		# self.imageurl = DanilatorService.imageurl
 
 
 	def go(self):

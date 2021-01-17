@@ -10,15 +10,15 @@ from threading import Thread
 
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, list = ["Echo", "Danilator", "Reminders", "Music"]):
+    def LoadServices(send, backup, genLink, list = ["Echo", "Danilator", "Reminders", "Music"]):
         services = {}
         for service in list:
-            services[service] = ServiceLoader.LoadService(service, send, backup,)
+            services[service] = ServiceLoader.LoadService(service, send, backup, genLink)
         return services
 
-    def LoadService(service, send, backup):
+    def LoadService(service, send, backup, genLink):
         # Load Dynamicly
-        api = API(service, send, backup)
+        # api = API(service, send, backup, genLink)
         foundServiceClass = None
         if service is "Echo":
             foundServiceClass = EchoService
@@ -30,7 +30,7 @@ class ServiceLoader(object):
             foundServiceClass = MusicService
 
         if foundServiceClass is not None:
-            api = API(service, send, backup)
+            api = API(service, send, backup, genLink)
             ServiceLoader.startService(foundServiceClass, db={}, api=api)
             return {"obj": foundServiceClass.share, "api":api}
 

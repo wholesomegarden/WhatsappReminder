@@ -1,5 +1,7 @@
 # app.py
 import os, sys, time
+import errno
+
 import json
 from threading import Thread
 
@@ -48,6 +50,7 @@ class Master(object):
 		"groups": {"id":"service"},
 		"id":"972547932000-1610379075@g.us"}
 	services = {}
+	links = {}
 
 	''' start master driver and log in '''
 	def __init__(self, profileDir = "/app/session/rprofile2"):
@@ -165,8 +168,23 @@ class Master(object):
 			print(''' :::::::::::::::::::::::::::::::::::: ''')
 			print(self.db)
 			print()
+			if "groups" in self.db:
+				for group in self.db["groups"]:
+					if "links" in self.db["groups"][group]:
+						for link in self.db["groups"][group]["links"]:
+							self.links[link] = self.db["groups"][group]["links"][link]
 
-			self.services = ServiceLoader.LoadServices(self.send, self.backupService)
+				print(''' :::::::::::::::::::::::::::::::::::: ''')
+				print(''' :::::::::::::::::::::::::::::::::::: ''')
+				print(''' ::::                           ::::: ''')
+				print(''' ::::     LINKS LOADED          ::::: ''')
+				print(''' ::::                           ::::: ''')
+				print(''' :::::::::::::::::::::::::::::::::::: ''')
+				print(''' :::::::::::::::::::::::::::::::::::: ''')
+				print(self.links)
+				print()
+
+			self.services = ServiceLoader.LoadServices(send = self.send, backup = self.backupService, genLink = self.genLink)
 			self.initServicesDB()
 			print(''' :::::::::::::::::::::::::::::::::::: ''')
 			print(''' :::::::::::::::::::::::::::::::::::: ''')
@@ -189,12 +207,71 @@ class Master(object):
 		else:
 			print(" ::: ERROR - COULD NOT LOG IN  ::: ","\n")
 
-	def send(self, api, service, target, content):
+	def makeDirs(self, filename):
+		if not os.path.exists(os.path.dirname(filename)):
+		    try:
+		        os.makedirs(os.path.dirname(filename))
+		    except OSError as exc: # Guard against race condition
+		        if exc.errno != errno.EEXIST:
+		            raise
+	def download_image(self, service="test", pic_url="https://img-authors.flaticon.com/google.jpg", img_name = 'thumnail.jpg'):
+		if service is None or pic_url is None or img_name is None:
+			return None
+
+		final_path = service+"/"+img_name
+		self.makeDirs(final_path)
+		with open(final_path, 'wb') as handle:
+		        response = requests.get(pic_url, stream=True)
+		        if not response.ok:
+		            print(response)
+		        for block in response.iter_content(1024):
+		            if not block:
+		                break
+		            handle.write(block)
+
+		return os.path.abspath(final_path)
+
+	def send(self, api, service, target, content, thumnail = None):
+		sendThread = Thread(target = self.sendAsync, args = [[api, service, target, content, thumnail]])
+		sendThread.start()
+
+	#UX WELCOME AFTER SUBSCIBING TO
+	def sendAsync(self, data):
+		api, service, target, content, thumbnail = data
 		print("!!!!!!!!!!!!")
 		if service in self.services:
 			if self.services[service]["api"] is api:
-				if target in self.db["groups"] and service.lower() == self.db["groups"][target].lower():
-					return self.driver.sendMessage(target,content)
+				if target in self.db["groups"] and "service" in self.db["groups"][target] and service.lower() == self.db["groups"][target]["service"].lower():
+					if thumbnail is not None:
+						print("T T T T T T")
+						print("T T T T T T")
+						print("T T T T T T")
+						imageurl = "https://media1.tenor.com/images/7528819f1bcc9a212d5c23be19be5bf6/tenor.gif"
+						title = "AAAAAAAAAA"
+						desc = "BBBBBBB"
+						link = imageurl
+						if "imageurl" in thumbnail:
+							imageurl = thumbnail["imageurl"]
+						if "title" in thumbnail:
+							title = thumbnail["title"]
+						if "desc" in thumbnail:
+							desc = thumbnail["desc"]
+						if "link" in thumbnail:
+							link = thumbnail["link"]
+
+						path = self.download_image(service = service, pic_url=imageurl)
+
+						# metadata = self.driver.get_group_metadata(target)
+						# print()
+						# print(metadata)
+						# print()
+
+						res = self.driver.send_message_with_thumbnail(path,target,url=link,title=title,description=desc,text=content)
+						print(res)
+						print("!!!!!!!!!!!!!!")
+						return res
+					return self.driver.sendMessage(target, content)
+
 
 
 	def Process(self,contact):
@@ -236,7 +313,8 @@ class Master(object):
 						target = text.split(u"%%%!%%%")[1]
 						self.driver.sendMessage(chatID,"Adding Service to DB: "+target)
 						self.db["services"][target] = {"dbID":None,"incomingTarget":None}
-						self.LoadServices()
+						ServiceLoader.LoadService(service = target, send = self.send, backup = self.backupService, genLink = self.genLink)
+						# self.LoadServices()
 						# self.serviceFuncs["services"][target] = None
 
 						self.backup(now = True)
@@ -245,8 +323,17 @@ class Master(object):
 						print("XXXXXXXXXXXXXXXXXXX")
 						print("XXXXXXXXXXXXXXXXXXX")
 
-					if text[0] is "=":
-						''' person registering service with ='''
+					if text[0] is "/":
+						# "//div[@class='VPvMz']/div/div/span[@data-testid='menu']"
+						print("##################################")
+						print("##################################")
+						print("#####                      #######")
+						print("##################################")
+						print("##################################", text)
+						dotsSide = self.driver.tryOut(self.driver.driver.find_element_by_xpath,text,click=True)
+
+					if text[0] is "-":
+						''' person unsubscribing service with -'''
 						target = text[1:]
 						dbChanged = False
 						now = False
@@ -258,6 +345,64 @@ class Master(object):
 							print("")
 							if not serviceFound and target.lower() == service.lower():
 								target = service
+
+								''' service found '''
+								serviceFound = True
+
+								if chatID not in self.db["users"]:
+									self.db["users"][chatID] = {}
+									dbChanged = True
+									''' first time user '''
+									# self.db["users"][senderID] = {'services': {'Reminders': {'groupID': None}}}
+								else:
+									pass
+									''' known user '''
+
+
+								foundChat = None
+								if chatID in self.db["groups"]:
+									if "service" in self.db["groups"][chatID]:
+										self.db["groups"][chatID]["service"] = None
+
+								if service in self.db["users"][chatID]:
+									serviceChat = self.db["users"][chatID][service]
+
+									# self.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
+									if serviceChat is not None:
+										try:
+											self.db["users"][chatID].pop(service)
+											self.driver.sendMessage(chatID,"Unsubscribing from: *"+service+"*")
+											print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+											print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+											print("UUUUUUU    UNSUBSCRIBING       UUUUUUUUUUUU")
+											print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+											print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+											print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",chatID,service)
+											dbChanged = True
+											now = True
+
+										except:
+											print('chat could not be found')
+						if not serviceFound:
+							self.driver.sendMessage(chatID,"you are not subscirbed to: *"+service+"*")
+
+
+					if text[0] is "=":
+						''' person registering service with ='''
+						target = text[1:]
+						dbChanged = False
+						now = False
+
+						''' check target service in db '''
+						serviceFound = False
+
+						serviceChat = ""
+						for service in self.services:
+							print("______________ ----------"+service)
+							print("")
+							if not serviceFound and target.lower() == service.lower():
+								target = service
+
 								''' service found '''
 								serviceFound = True
 
@@ -303,22 +448,63 @@ class Master(object):
 										else:
 											foundChat = None
 									else:
-										self.driver.sendMessage(senderID,"You are already subscirbed to:\n"+chatName+" \n<Link>\nYou can unsubscribe with -"+target.lower())
+										gotLink = False
+										groupName = service
+										path = self.download_image()
+										inviteLink = ""
+
+										print("$$$$$$$$$$$$$$$$$$$$$$$")
+										print(serviceChat, self.db["groups"][serviceChat]  )
+										if serviceChat in self.db["groups"] and self.db["groups"][serviceChat] is not None and "invite" in self.db["groups"][serviceChat]:
+											if self.db["groups"][serviceChat]["invite"] is not None:
+												inviteLink = self.db["groups"][serviceChat]["invite"]
+												gotLink = True
+												if service in self.services and "obj" in self.services[service] and self.services[service]["obj"] is not None:
+													groupName = self.services[service]["obj"].name
+													imageurl = self.services[service]["obj"].imageurl
+													if imageurl is not None:
+														path = self.download_image(service=service,pic_url=imageurl)
+
+
+										content = "You are already subscirbed to:\n"+chatName+" \n"
+										if gotLink:
+											content+= inviteLink
+										content+="\n"+"You can unsubscribe with -"+target.lower()
+
+										if gotLink:
+											res = self.driver.send_message_with_thumbnail(path,senderID,url=inviteLink,title="Open  "+groupName,description="xxx",text=content)
+										else:
+											self.driver.sendMessage(senderID,content)
 										self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
 
 
 								''' create new group '''
 								if foundChat is None:
+									print(
+									'''
+									===============================================
+									 ''' + senderID +" CREATING NEW GROUP "+ target +" :D "+'''
+									===============================================
+									'''
+									)
 									groupName = service
+									path = self.download_image()
 									if service in self.services and "obj" in self.services[service] and self.services[service]["obj"] is not None:
 										groupName = self.services[service]["obj"].name
+										imageurl = self.services[service]["obj"].imageurl
+										if imageurl is not None:
+											path = self.download_image(service=service,pic_url=imageurl)
 
-									newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = runLocal)
+
+
+									imagepath = path
+									newGroup, groupInvite = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = runLocal, image=imagepath)
 									newGroupID = newGroup.id
+
 									self.newG = newGroupID
 
 									self.db["users"][chatID][service] = newGroupID
-									self.db["groups"][newGroupID] = target
+									self.db["groups"][newGroupID] = {"service":target, "invite":groupInvite}
 									dbChanged = True
 									now = True
 									print(
@@ -329,7 +515,8 @@ class Master(object):
 									'''
 									)
 
-									self.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n<Link>\nPlease check your new group :)")
+									res = self.driver.send_message_with_thumbnail(path,senderID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
+									# self.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
 									self.driver.sendMessage(newGroupID,welcome)
 									# self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
 
@@ -371,7 +558,13 @@ class Master(object):
 
 								foundChat = False
 								if chatID in self.db["groups"]:
-									targetService = self.db["groups"][chatID]
+									if "service" not in self.db["groups"][chatID]:
+										invite = None
+										if "invite" in self.db["groups"][chatID]:
+											invite = self.db["groups"][chatID]["invite"]
+										self.db["groups"][chatID] = {"service":self.db["groups"][chatID],"invite":invite}
+
+									targetService = self.db["groups"][chatID]["service"]
 									print("TTTTTTTTTTTTTTTTTTTT")
 									print(targetService, service)
 									if targetService is not None:
@@ -383,8 +576,9 @@ class Master(object):
 									print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
 									print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
 									print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
-									self.driver.sendMessage(chatID,"Subscribing to service: "+service)
-									self.db["groups"][chatID] = service
+									self.driver.sendMessage(chatID,"Subscribing to service: "+self.services[service]["obj"].name)
+									self.driver.sendMessage(chatID,self.services[service]["obj"].welcome)
+									self.db["groups"][chatID] = {"service":service, "invite":None}
 									self.backup()
 
 						if foundService is None:
@@ -395,43 +589,51 @@ class Master(object):
 						# print("SSSSSSSSSSSSSSSSSSSSSS")
 						self.driver.sendMessage(chatID,"This chat is not registered with any service yet\nYou can register it by sending =service_name")
 						# print("JJJJJJJJJJJJJJ")
-						self.db["groups"][chatID] = None
+						self.db["groups"][chatID] = {"service":None, "invite":None}
 						# print("SSSSSSSSSSSSSSSSSSSSSS")
 						self.backup()
 
 					if self.db["groups"][chatID] is not None:
 						''' Chat is known '''
-						target = self.db["groups"][chatID]
+						if "service" not in self.db["groups"][chatID]:
+							invite = None
+							if "invite" in self.db["groups"][chatID]:
+								invite = self.db["groups"][chatID]["invite"]
+							self.db["groups"][chatID] = {"service":self.db["groups"][chatID],"invite":invite}
+						target = self.db["groups"][chatID]["service"]
 						print("MMMMMMMMMMMMMMMM",target)
-						''' adding new user to service from group'''
 
-						foundService = None
-						for service in self.services:
-							if target.lower() == service.lower():
-								foundService = service
+						if target is not None:
+							foundService = None
+							for service in self.services:
+								if target.lower() == service.lower():
+									foundService = service
 
-								''' CHAT IS REGISTERED TO SERVICE! '''
-								''' PROCESS INCOMNG MESSAGE in SERVICE '''
-								if foundService is not None and text[0] is not "=":
+									''' CHAT IS REGISTERED TO SERVICE! '''
+									''' PROCESS INCOMNG MESSAGE in SERVICE '''
+									if foundService is not None and text[0] is not "=":
 
-									''' this is where the magic happens - send to service'''
+										''' this is where the magic happens - send to service'''
 
-									if "obj" in self.services[foundService]:
-										obj = self.services[foundService]["obj"]
-										if obj is not None:
-											#Get Nicknames
+										if "obj" in self.services[foundService]:
+											obj = self.services[foundService]["obj"]
+											if obj is not None:
+												#Get Nicknames
 
-											self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text})
-											# obj.process({"origin":chatID, "user":senderID, "content":text})
+												self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text})
+												# obj.process({"origin":chatID, "user":senderID, "content":text})
 
-									# self.ProcessServiceAsync(service,chatID,text)
-
-
-						if foundService is None:
-							self.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
+										# self.ProcessServiceAsync(service,chatID,text)
 
 
+							if foundService is None:
+								self.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
 
+
+	def processAsync(self, data):
+		contact = data
+		if contact is not None:
+			self.Process(contact)
 	def ProcessIncoming(self, data):
 		print(
 		'''
@@ -442,11 +644,11 @@ class Master(object):
 		)
 		lastm = None
 		loopc = 0
-		delay = 0.5
+		delay = 0.25
 		while True:
 			# try:
 			if True:
-				if loopc % 20 == 0:
+				if loopc % 40 == 0:
 					''' ::: rechecking status ::: '''
 					try:
 						self.status = status = self.driver.get_status()
@@ -458,8 +660,12 @@ class Master(object):
 
 				''' all unread messages '''
 				for contact in self.driver.get_unread():
-
-					self.Process(contact)
+					inThread = False
+					if inThread:
+						cThread = Thread(target=self.processAsync, args = [contact])
+						cThread.start()
+					else:
+						self.Process(contact)
 
 
 					'''
@@ -572,187 +778,6 @@ class Master(object):
 				print(" ::: ERROR - LOAD SERVICES ::: ","\n",e,e.args,"\n")
 
 
-
-
-	def LoadServices0(self):
-		# load list of services
-		for service in self.db["services"]:
-
-
-			if "reminders".lower() == service.lower():
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				ReminderService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
-				self.serviceFuncs["services"][service]=ReminderService.process
-				groupName = "🔔 Reminders 🔔"
-				self.serviceGroupNames[service] = groupName
-				self.db["services"][service]["welcome"] = ReminderService.welcome
-				self.db["services"][service]["groupName"] = groupName
-				# self.serviceGroupNames[service] = "Reminders"
-
-
-			if "danilator".lower() == service.lower():
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				print("FFFFFFFFFFFFFFFFFFFFFFFFFFF")
-				DanilatorService.go(sendDelegate=self.driver.sendMessage,backupDelegate=self.backupService)
-				self.serviceFuncs["services"][service]=DanilatorService.process
-				groupName = "💚 Danilator 💚"
-				self.serviceGroupNames[service] = groupName
-				self.db["services"][service]["welcome"] = DanilatorService.welcome
-				self.db["services"][service]["groupName"] = groupName
-
-
-				# self.serviceGroupNames[service] = "Danilator"
-
-			try:
-				if "dbID" not in self.db["services"][service]:
-					self.db["services"][service]["dbID"] = None
-
-				dbID = self.db["services"][service]["dbID"]
-				''' create new db group '''
-				if dbID is None:
-					print("-------------------------------")
-					print("     CREATING NEW DB GROUP   "+service)
-					print("-------------------------------")
-					groupName = service
-
-					newGroup = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1], local = runLocal)
-					newGroupID = newGroup.id
-					self.db["services"][service]["dbID"] = newGroupID
-					self.driver.sendMessage(newGroupID, json.dumps({"init":True}))
-					self.backup()
-				else:
-					print("-------------------------------")
-					print("service: ",service,"  dbID: ",dbID)
-					print("-------------------------------")
-
-			except Exception as e:
-				print(" ::: ERROR - LOAD SERVICES ::: ","\n",e,e.args,"\n")
-
-	def initAsync0(self, profileDir = "/app/session/rprofile2"):
-
-		''' init driver variables '''
-		if len(Master.shares) > 1:
-			profileDir += "-"+str(len(Master.shares))
-		chrome_options = webdriver.ChromeOptions()
-		chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-		chrome_options.add_argument("--headless")
-		chrome_options.add_argument("--disable-dev-shm-usage")
-		chrome_options.add_argument("--no-sandbox")
-		chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
-		chrome_options.add_argument("user-data-dir="+profileDir);
-		chrome_options.add_argument('--profile-directory='+profileDir)
-
-		if not runLocal:
-			self.driver = WhatsAPIDriver(profile = profileDir, client='chrome', chrome_options=chrome_options,username="wholesomegarden")
-		else:
-			self.driver = WhatsAPIDriver(username="wholesomegarden",profile=None)
-		driver = self.driver
-
-		print(''' ::: waiting for login ::: ''')
-		driver.wait_for_login()
-		try:
-			self.status = status = driver.get_status()
-		except Exception as e:
-			print(" ::: ERROR - Status Init ::: ","\n",e,e.args,"\n")
-
-		''' preping for qr '''
-		if status is not "LoggedIn":
-			img = None
-			triesCount = 0
-			maxtries = 40
-
-			while status is not "LoggedIn" and triesCount < maxtries:
-				triesCount+=1
-
-				print("-------------------------------")
-				print("status:",status,"tries:",triesCount,"/",maxtries)
-				print("-------------------------------")
-
-				self.lastQR += 1
-				try:
-					img = driver.get_qr("static/img/QR"+str(self.lastQR)+".png")
-					print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-					print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-					print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-					print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-					print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-					print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ")
-					print("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ",str(img)[17:130])
-
-				except Exception as e:
-					print(" ::: ERROR - QR Fetching ::: ","\n",e,e.args,"\n")
-
-				# im_path = os.path.join("static/img/newQR.png")
-
-				print(''' ::: rechecking status ::: ''')
-				try:
-					self.status = status = driver.get_status()
-				except Exception as e :
-					self.status = status = "XXXXXXXX"
-					print(" ::: ERROR - Status Fetching ::: ","\n",e,e.args,"\n")
-
-		if status is "LoggedIn":
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			print(''' ::::                           ::::: ''')
-			print(''' ::::   MASTER IS LOGGED IN!    ::::: ''')
-			print(''' ::::                           ::::: ''')
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			# if runLocal:
-			# 	self.driver.save_firefox_profile(remove_old=False)
-
-			''' load DB '''
-			## overwrite to init db
-			initOverwrite = False
-			if initOverwrite:
-				self.backup(now = True)
-			# driver.updateDB(self.db,number=self.db["id"])
-			lastDB = self.loadDB()
-			self.db = lastDB
-			self.db["init"] = time.time()
-			self.db["backupInterval"] = 10*60
-			if runLocal:
-				self.db["backupInterval"] = 0
-
-			self.db["backupDelay"] = 10
-			if runLocal:
-				self.db["backupDelay"] = 3
-
-			self.db["lastBackup"] = 0
-			self.db["lastBackupServices"] = 0
-			self.backup()
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			print(''' ::::                           ::::: ''')
-			print(''' ::::     DATABASE LOADED       ::::: ''')
-			print(''' ::::                           ::::: ''')
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			print(''' :::::::::::::::::::::::::::::::::::: ''')
-			print(self.db)
-			print()
-			#
-			''' Load Services '''
-			# print("SSSSSSSSSSSSSSSSSSSSs")
-			self.LoadServices()
-			# print("SSSSSSSSSSSSSSSSSSSSs")
-
-			''' process incoming '''
-			process = Thread(target = self.ProcessIncoming, args=[None])
-			process.start()
-		else:
-			print(" ::: ERROR - COULD NOT LOG IN  ::: ","\n")
-
-
 	def loadDB(self, number = None):
 		if number is None:
 			number = self.db["id"]
@@ -766,6 +791,39 @@ class Master(object):
 			if self.services[service]["api"] is api:
 				bT = Thread(target = self.backupServiceAsync,args = [data])
 				bT.start()
+
+
+	def genLink(self, api = None, service = None, chatID = None, answer = None):
+		if api is None or service is None or chatID is None or answer is None:
+			return "https://google.com/x"
+
+		if service in self.services:
+			if self.services[service]["api"] is api:
+
+				target = chatID
+				if target in self.db["groups"] and "service" in self.db["groups"][target] and service.lower() == self.db["groups"][target]["service"].lower():
+					if "links" not in self.db["groups"][target]:
+						self.db["groups"][target]["links"] = {}
+
+					invite = "https://google.com/xy"
+					if "invite" in self.db["groups"][target] and self.db["groups"][target]["invite"] is not None:
+						invite = self.db["groups"][target]["invite"]
+
+					linkData = {"service":service, "chatID":chatID, "answer":answer, "invite":invite}
+
+					newLink = "AYOx1/1"
+
+					self.db["groups"][target]["links"][newLink] = linkData
+					self.links[newLink] = linkData
+
+					self.backup(now=True)
+
+					sub = "akeyo.io/w?"
+					fullLink = sub+newLink
+
+					return fullLink
+
+		return "https://google.com/x"
 
 	def backupServiceAsync(self,data):
 		time.sleep(self.db["backupDelay"])
@@ -834,327 +892,6 @@ class Master(object):
 		# 	print(" ::: ERROR - Processing Service ::: ",serice,":::",chatID,":::",text,":::","\n",e,e.args,"\n")
 
 
-	def ProcessIncoming0(self, data):
-		print(
-		'''
-		===================================
-			Processing Incoming Messages
-		===================================
-		'''
-		)
-		lastm = None
-		loopc = 0
-		delay = 0.5
-		while True:
-			# try:
-			if True:
-				if loopc % 20 == 0:
-					''' ::: rechecking status ::: '''
-					try:
-						self.status = status = self.driver.get_status()
-						print(" ::: status is",status,"::: ")
-					except Exception as e:
-						self.status = status = "XXXXXXXX"
-						print(" ::: ERROR - Status Fetching ::: ","\n",e,e.args,"\n")
-
-
-				''' all unread messages '''
-				for contact in self.driver.get_unread():
-					# print("MMMMMMMMMMXXX",contact)
-					# print("MMMMMMMMMMXXX",contact)
-					# print("MMMMMMMMMMXXX",contact)
-					# print("MMMMMMMMMMXXX",contact)
-					# print("MMMMMMMMMMXXX",contact)
-					for message in contact.messages:
-						print("MMMMMMMMMM",message)
-
-						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						# pprint(vars(contact))
-						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						# pprint(vars(message))
-						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						# print("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
-						if runLocal:
-							chatID = message.chat_id["_serialized"]
-						else:
-							chatID = message.chat_id
-						try:
-							chat = self.driver.get_chat_from_id(chatID)
-						except Exception as e:
-							print(" ::: ERROR - _serialized chatID ::: "+chatID+" ::: ","\n",e,e.args,"\n")
-
-						''' incoming from: '''
-						''' Personal Chat  '''
-						senderName = message.get_js_obj()["chat"]["contact"]["formattedName"]
-						senderID = message.sender.id
-						fromGroup = False
-						if "c" in chatID:
-							print(
-							'''
-							===================================
-							   Incoming Messages from '''+senderID+" "+senderName+'''
-							===================================
-							'''
-							)
-						# ''' Group Chat '''
-						elif "g" in chatID:
-							fromGroup = True
-							print(
-							'''
-							===============================================
-							   Incoming Messages from \"'''+senderID+" in "+senderName+'''\" GROUP
-							===============================================
-							'''
-							)
-
-						if message.type == "chat":
-							text = message.content
-
-							print("TTTTTXXXXXXXXXTTTTTTT",text)
-							''' subscribe to service '''
-
-							''' SENT FROM GROUP CHAT '''
-
-							if "%%%!%%%" in text:
-
-								print("YYYYYYYYYYYYYYYYYYYY")
-								print("YYYYYYYYYYYYYYYYYYYY")
-								print("YYYYYYYYYYYYYYYYYYYY")
-								target = text.split(u"%%%!%%%")[1]
-								self.driver.sendMessage(chatID,"Adding Service to DB: "+target)
-								self.db["services"][target] = {"dbID":None,"incomingTarget":None}
-								self.LoadServices()
-								# self.serviceFuncs["services"][target] = None
-
-								self.backup(now = True)
-							else:
-								print("XXXXXXXXXXXXXXXXXXX")
-								print("XXXXXXXXXXXXXXXXXXX")
-								print("XXXXXXXXXXXXXXXXXXX")
-
-
-
-							if fromGroup is True:
-								''' GOT REGISTRATION COMMAND '''
-								if text[0] is "=":
-									foundService = None
-									target = text[1:]
-
-									''' register group to service '''
-									for service in self.db["services"]:
-										if target.lower() == service.lower():
-											foundService = service
-
-											foundChat = False
-											if chatID in self.db["groups"]:
-												targetService = self.db["groups"][chatID]
-												print("TTTTTTTTTTTTTTTTTTTT")
-												print(targetService, service)
-												if targetService is not None:
-													if targetService.lower() == service.lower():
-														foundChat = True
-														self.driver.sendMessage(chatID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
-
-											if not foundChat:
-												print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
-												print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
-												print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
-												self.driver.sendMessage(chatID,"Subscribing to service: "+service)
-												self.db["groups"][chatID] = service
-												self.backup()
-
-									if foundService is None:
-										self.driver.sendMessage(chatID,"service: "+target+" Not Found")
-
-								''' Chat is not registered first time'''
-								if chatID not in self.db["groups"]:
-									# print("SSSSSSSSSSSSSSSSSSSSSS")
-									self.driver.sendMessage(chatID,"This chat is not registered with any service yet\nYou can register it by sending =service_name")
-									# print("JJJJJJJJJJJJJJ")
-									self.db["groups"][chatID] = None
-									# print("SSSSSSSSSSSSSSSSSSSSSS")
-									self.backup()
-								elif self.db["groups"][chatID] is not None:
-									''' Chat is known '''
-									target = self.db["groups"][chatID]
-									print("MMMMMMMMMMMMMMMM",target)
-									''' adding new user to service from group'''
-
-									foundService = None
-									for service in self.db["services"]:
-										if target.lower() == service.lower():
-											foundService = service
-
-
-											''' CHAT IS REGISTERED TO SERVICE! '''
-											''' PROCESS INCOMNG MESSAGE in SERVICE '''
-											if foundService is not None and text[0] is not "=":
-												# self.driver.sendMessage(chatID,text+" ::: GONNA BE PROCESSED BY "+target)
-
-												''' this is where the magic happens - send to service'''
-												self.ProcessServiceAsync(service,chatID,text)
-
-
-
-									if foundService is None:
-										self.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
-
-
-								else:
-									''' service is None '''
-									self.driver.sendMessage(chatID,"You can register this chat by sending =service_name")
-
-
-
-							elif text[0] is "=":
-								''' person registering service with ='''
-								target = text[1:]
-								dbChanged = False
-								now = False
-
-								''' check target service in db '''
-								serviceFound = False
-								for service in self.db["services"]:
-									print("______________ ----------"+service)
-									print("")
-									if not serviceFound and target.lower() == service.lower():
-										''' service found '''
-										serviceFound = True
-
-										if chatID not in self.db["users"]:
-											self.db["users"][chatID] = {'services': {}}
-											dbChanged = True
-											''' first time user '''
-											# self.db["users"][senderID] = {'services': {'Reminders': {'groupID': None}}}
-										else:
-											''' known user '''
-
-
-										foundChat = None
-										if service in self.db["users"][chatID]["services"]:
-
-											serviceChat = self.db["users"][chatID]["services"][service]
-
-											# self.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
-											try:
-												foundChat = self.driver.get_chat_from_id(serviceChat)
-
-											except:
-												print('chat could not be found')
-
-
-										chatName = target
-										welcome = "Thank you for Subscribing to "+target
-										try:
-											chatName = 	self.db["services"][service]["groupName"]
-											welcome = "Thank you for Subscribing to "+chatName
-											welcome = self.db["services"][service]["welcome"]
-										except:
-											pass
-										if foundChat is not None:
-
-
-											check_participents = False
-											if check_participents:
-												if senderID in foundChat.get_participants_ids() or True:
-													'''##### check that user is participant '''
-													self.driver.sendMessage(senderID,"You are already subscirbed to: "+chatName+" \nYou can unsubscribe with -"+target.lower())
-													self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
-												else:
-													foundChat = None
-											else:
-												self.driver.sendMessage(senderID,"You are already subscirbed to:\n"+chatName+" \nYou can unsubscribe with -"+target.lower())
-												self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
-
-										''' create new group '''
-										if foundChat is None:
-											groupName = service
-											if service in self.serviceGroupNames:
-												groupName = self.serviceGroupNames[service]
-
-											newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = runLocal)
-											newGroupID = newGroup.id
-											self.newG = newGroupID
-
-											self.db["users"][chatID]['services'][service] = newGroupID
-											self.db["groups"][newGroupID] = target
-											dbChanged = True
-											now = True
-											print(
-											'''
-											===============================================
-											 ''' + senderID +" is NOW SUBSCRIBED TO "+ target +" :D "+'''
-											===============================================
-											'''
-											)
-
-											self.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \nPlease check your new group :)")
-											self.driver.sendMessage(newGroupID,welcome)
-											# self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
-
-								if not serviceFound:
-									self.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
-									print(
-									'''
-									===============================================
-									  SERVICE '''+ target +" IS NOT AVAILABLE"+'''
-									===============================================
-									'''
-									)
-								if dbChanged:
-									self.backup(now=now)
-
-
-
-						'''
-						lastm = message
-						print(json.dumps(message.get_js_obj(), indent=4))
-						for contact in self.driver.get_contacts():
-							# print("CCCC",contact.get_safe_name() )
-							if  sender in contact.get_safe_name():
-								chat = contact.get_chat()
-								# chat.send_message("Hi "+sender+" !!!*"+message.content+"*")
-						print()
-						print()
-						print(sender)
-						print()
-						print()
-						print("class", message.__class__.__name__)
-						print("message", message)
-						print("id", message.id)
-						print("type", message.type)
-						print("timestamp", message.timestamp)
-						print("chat_id", message.chat_id)
-						print("sender", message.sender)
-						print("sender.id", message.sender.id)
-						print("sender.safe_name", message.sender.get_safe_name())
-						if message.type == "chat":
-							print("-- Chat")
-							print("safe_content", message.safe_content)
-							print("content", message.content)
-							# Manager.process(message.sender.id,message.content)
-							# contact.chat.send_message(message.safe_content)
-						elif message.type == "image" or message.type == "video":
-							print("-- Image or Video")
-							print("filename", message.filename)
-							print("size", message.size)
-							print("mime", message.mime)
-							print("caption", message.caption)
-							print("client_url", message.client_url)
-							message.save_media("./")
-						else:
-							print("-- Other type:",str(message.type))
-						print("PROCESSING MESSAGE:",message)
-						'''
-
-			else:
-				pass
-			# except Exception as e:
-			# 	print(" ::: ERROR - CHECKING MESSAGES ::: ","\n",e,e.args,"\n")
-
-			loopc += 1; loopc = loopc % 120
-			time.sleep(delay)
 
 	def quit(self):
 		self.driver.quit()
@@ -1209,14 +946,44 @@ def hello_world():
 
 @app.route('/<path:text>', methods=['GET', 'POST'])
 def all_routes(text):
+	master = Master.shares[0]
+
 	if "exit" in text:
 		print("EXITTT")
 		print("EXITTT")
 		print("EXITTT")
 		print("EXITTT")
+		text = text.split("exit/")[1]
+		return
 		return redirect("https://chat.whatsapp.com/JmnYDofCd7v0cXzfBgcVDO")
 		return render_template("exit.html", user_image = "full_filename", status = "s")
 
+	if text in master.links:
+		print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+		print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+		print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+		print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+		print("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+		print("SERVING LINK "+text)
+		linkData = master.links[text]
+		if linkData is not None and "service" in linkData and "chatID" in linkData and "answer" in linkData and "invite" in linkData:
+			# service = linkData["service"]
+			service, chatID, answer, invite = linkData["service"], linkData["chatID"], linkData["answer"], linkData["invite"]
+
+			if "obj" in master.services[service]:
+				obj = master.services[service]["obj"]
+				if obj is not None:
+					#Get Nicknames
+
+					master.ProcessServiceAsync(obj,{"origin":chatID, "user":chatID, "content":answer})
+
+				print("RRRRRRRRRRRRRRRRRRRRRedirecting")	#
+				print("RRRRRRRRRRRRRRRRRRRRRedirecting")	#
+				print("RRRRRRRRRRRRRRRRRRRRRedirecting")	#
+				print("RRRRRRRRRRRRRRRRRRRRRedirecting")	#
+				print("RRRRRRRRRRRRRRRRRRRRRedirecting")	#
+				print("RRRRRRRRRRRRRRRRRRRRRedirecting",invite)	#
+				return redirect(invite)
 
 	if text in refs:
 		return redirect(refs[text])
