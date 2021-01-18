@@ -147,7 +147,8 @@ class DanilatorService():
 			firstLang = lyrics[0::4][:-1]
 			secondLang = lyrics[1::4][:-1]
 		except Exception as e:
-			print("EEEEEEEEEEEEEEEE Danilator could not be loaded",traceback.print_exc())
+			print("EEEEEEEEEEEEEEEE Danilator could not be loaded",e)
+			traceback.print_exc()
 
 		cleanLyrics = "💚 *Danilator* 💚\n"
 		cleanLyrics += "*"+title+"*"+"\n\n"

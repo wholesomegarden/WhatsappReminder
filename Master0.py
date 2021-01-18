@@ -13,6 +13,7 @@ from ServiceImporter import *
 
 # export PATH="$HOME/wholesomegarden/WhatsappReminder:$PATH"
 from ServiceLoader import *
+from MasterService import *
 
 runLocal = False
 print(
@@ -58,6 +59,7 @@ class Master(object):
 		self.status = "INIT"
 		self.lastQR = 0
 		self.driver = None
+		self.masterService = None
 
 		asyncInit = Thread(target = self.initAsync,args = [profileDir])
 		asyncInit.start()
@@ -81,6 +83,10 @@ class Master(object):
 		else:
 			self.driver = WhatsAPIDriver(username="wholesomegarden",profile=None)
 		driver = self.driver
+
+		''' RUNNING MASTER SERVICE '''
+		self.masterService = MasterService(runLocal, self.db, self.services, self.driver, self)
+
 
 		print(''' ::: waiting for login ::: ''')
 		driver.wait_for_login()
@@ -217,133 +223,138 @@ class Master(object):
 			senderID = message.sender.id
 			fromGroup = False
 			if "c" in chatID:
-				print(
-				'''
-				===================================
-				   Incoming Messages from '''+senderID+" "+senderName+'''
-				===================================
-				'''
-				)
-				if message.type == "chat":
-					text = message.content
 
-					print("TTTTTXXXXXXXXXTTTTTTT",text)
-					''' subscribe to service '''
+				''' SEND TO MASTER SERVICE '''
+				self.masterService.Process(message)
 
-					''' SENT FROM GROUP CHAT '''
-
-					if "%%%!%%%" in text:
-						target = text.split(u"%%%!%%%")[1]
-						self.driver.sendMessage(chatID,"Adding Service to DB: "+target)
-						self.db["services"][target] = {"dbID":None,"incomingTarget":None}
-						self.LoadServices()
-						# self.serviceFuncs["services"][target] = None
-
-						self.backup(now = True)
-					else:
-						print("XXXXXXXXXXXXXXXXXXX")
-						print("XXXXXXXXXXXXXXXXXXX")
-						print("XXXXXXXXXXXXXXXXXXX")
-
-					if text[0] is "=":
-						''' person registering service with ='''
-						target = text[1:]
-						dbChanged = False
-						now = False
-
-						''' check target service in db '''
-						serviceFound = False
-						for service in self.services:
-							print("______________ ----------"+service)
-							print("")
-							if not serviceFound and target.lower() == service.lower():
-								target = service
-								''' service found '''
-								serviceFound = True
-
-								if chatID not in self.db["users"]:
-									self.db["users"][chatID] = {}
-									dbChanged = True
-									''' first time user '''
-									# self.db["users"][senderID] = {'services': {'Reminders': {'groupID': None}}}
-								else:
-									pass
-									''' known user '''
-
-
-								foundChat = None
-								if service in self.db["users"][chatID]:
-
-									serviceChat = self.db["users"][chatID][service]
-
-									# self.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
-									if serviceChat is not None:
-										try:
-											foundChat = self.driver.get_chat_from_id(serviceChat)
-										except:
-											print('chat could not be found')
-
-
-								chatName = target
-								welcome = "Thank you for Subscribing to "+target
-								try:
-									chatName = self.services[service]["obj"].name
-									welcome = "Thank you for Subscribing to "+chatName
-									welcome = self.services[service]["obj"].welcome
-								except:
-									pass
-
-								if foundChat is not None:
-									check_participents = False
-									if check_participents:
-										if senderID in foundChat.get_participants_ids() or True:
-											'''##### check that user is participant '''
-											self.driver.sendMessage(senderID,"You are already subscirbed to: "+chatName+" \nYou can unsubscribe with -"+target.lower())
-											self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
-										else:
-											foundChat = None
-									else:
-										self.driver.sendMessage(senderID,"You are already subscirbed to:\n"+chatName+" \n<Link>\nYou can unsubscribe with -"+target.lower())
-										self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
-
-
-								''' create new group '''
-								if foundChat is None:
-									groupName = service
-									if service in self.services and "obj" in self.services[service] and self.services[service]["obj"] is not None:
-										groupName = self.services[service]["obj"].name
-
-									newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = runLocal)
-									newGroupID = newGroup.id
-									self.newG = newGroupID
-
-									self.db["users"][chatID][service] = newGroupID
-									self.db["groups"][newGroupID] = target
-									dbChanged = True
-									now = True
-									print(
-									'''
-									===============================================
-									 ''' + senderID +" is NOW SUBSCRIBED TO "+ target +" :D "+'''
-									===============================================
-									'''
-									)
-
-									self.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n<Link>\nPlease check your new group :)")
-									self.driver.sendMessage(newGroupID,welcome)
-									# self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
-
-						if not serviceFound:
-							self.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
-							print(
-							'''
-							===============================================
-							  SERVICE '''+ target +" IS NOT AVAILABLE"+'''
-							===============================================
-							'''
-							)
-						if dbChanged:
-							self.backup(now=now)
+				#
+				# print(
+				# '''
+				# ===================================
+				#    Incoming Messages from '''+senderID+" "+senderName+'''
+				# ===================================
+				# '''
+				# )
+				# if message.type == "chat":
+				# 	text = message.content
+				#
+				# 	print("TTTTTXXXXXXXXXTTTTTTT",text)
+				# 	''' subscribe to service '''
+				#
+				# 	''' SENT FROM GROUP CHAT '''
+				#
+				# 	if "%%%!%%%" in text:
+				# 		target = text.split(u"%%%!%%%")[1]
+				# 		self.driver.sendMessage(chatID,"Adding Service to DB: "+target)
+				# 		self.db["services"][target] = {"dbID":None,"incomingTarget":None}
+				# 		self.LoadServices()
+				# 		# self.serviceFuncs["services"][target] = None
+				#
+				# 		self.backup(now = True)
+				# 	else:
+				# 		print("XXXXXXXXXXXXXXXXXXX")
+				# 		print("XXXXXXXXXXXXXXXXXXX")
+				# 		print("XXXXXXXXXXXXXXXXXXX")
+				#
+				# 	if text[0] is "=":
+				# 		''' person registering service with ='''
+				# 		target = text[1:]
+				# 		dbChanged = False
+				# 		now = False
+				#
+				# 		''' check target service in db '''
+				# 		serviceFound = False
+				# 		for service in self.services:
+				# 			print("______________ ----------"+service)
+				# 			print("")
+				# 			if not serviceFound and target.lower() == service.lower():
+				# 				target = service
+				# 				''' service found '''
+				# 				serviceFound = True
+				#
+				# 				if chatID not in self.db["users"]:
+				# 					self.db["users"][chatID] = {}
+				# 					dbChanged = True
+				# 					''' first time user '''
+				# 					# self.db["users"][senderID] = {'services': {'Reminders': {'groupID': None}}}
+				# 				else:
+				# 					pass
+				# 					''' known user '''
+				#
+				#
+				# 				foundChat = None
+				# 				if service in self.db["users"][chatID]:
+				#
+				# 					serviceChat = self.db["users"][chatID][service]
+				#
+				# 					# self.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
+				# 					if serviceChat is not None:
+				# 						try:
+				# 							foundChat = self.driver.get_chat_from_id(serviceChat)
+				# 						except:
+				# 							print('chat could not be found')
+				#
+				#
+				# 				chatName = target
+				# 				welcome = "Thank you for Subscribing to "+target
+				# 				try:
+				# 					chatName = self.services[service]["obj"].name
+				# 					welcome = "Thank you for Subscribing to "+chatName
+				# 					welcome = self.services[service]["obj"].welcome
+				# 				except:
+				# 					pass
+				#
+				# 				if foundChat is not None:
+				# 					check_participents = False
+				# 					if check_participents:
+				# 						if senderID in foundChat.get_participants_ids() or True:
+				# 							'''##### check that user is participant '''
+				# 							self.driver.sendMessage(senderID,"You are already subscirbed to: "+chatName+" \nYou can unsubscribe with -"+target.lower())
+				# 							self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
+				# 						else:
+				# 							foundChat = None
+				# 					else:
+				# 						self.driver.sendMessage(senderID,"You are already subscirbed to:\n"+chatName+" \n<Link>\nYou can unsubscribe with -"+target.lower())
+				# 						self.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
+				#
+				#
+				# 				''' create new group '''
+				# 				if foundChat is None:
+				# 					groupName = service
+				# 					if service in self.services and "obj" in self.services[service] and self.services[service]["obj"] is not None:
+				# 						groupName = self.services[service]["obj"].name
+				#
+				# 					newGroup = self.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = runLocal)
+				# 					newGroupID = newGroup.id
+				# 					self.newG = newGroupID
+				#
+				# 					self.db["users"][chatID][service] = newGroupID
+				# 					self.db["groups"][newGroupID] = target
+				# 					dbChanged = True
+				# 					now = True
+				# 					print(
+				# 					'''
+				# 					===============================================
+				# 					 ''' + senderID +" is NOW SUBSCRIBED TO "+ target +" :D "+'''
+				# 					===============================================
+				# 					'''
+				# 					)
+				#
+				# 					self.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n<Link>\nPlease check your new group :)")
+				# 					self.driver.sendMessage(newGroupID,welcome)
+				# 					# self.driver.sendMessage(serviceChat,"subscirbed to: "+target)
+				#
+				# 		if not serviceFound:
+				# 			self.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
+				# 			print(
+				# 			'''
+				# 			===============================================
+				# 			  SERVICE '''+ target +" IS NOT AVAILABLE"+'''
+				# 			===============================================
+				# 			'''
+				# 			)
+				# 		if dbChanged:
+				# 			self.backup(now=now)
 
 
 			# ''' Group Chat '''
@@ -656,6 +667,8 @@ class Master(object):
 		else:
 			self.driver = WhatsAPIDriver(username="wholesomegarden",profile=None)
 		driver = self.driver
+
+		self.masterService = MasterService(runLocal, self.db, self.services, self.driver, self)
 
 		print(''' ::: waiting for login ::: ''')
 		driver.wait_for_login()

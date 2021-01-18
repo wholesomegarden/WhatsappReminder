@@ -90,7 +90,7 @@ class MusicService(object):
 
 		# query = "sweet child"
 		thumnail = None
-		sendBack = "Sorry we could not find your song on Spotify for some reason.\n"
+		sendBack = "Sorry we could not find your song on Spotify for some reason.\n\n"
 		found = False
 		image = self.imageurl
 		try:
@@ -131,22 +131,19 @@ class MusicService(object):
 				vidID = ytres[0]['url_suffix']
 				title = ytres[0]['title']
 				ylink = "https://youtu.be"+vidID
-				desc = "yyy"
+				desc = ytres[0]['channel']
+				image = ytres[0]["thumbnails"][0]
 				if vidID is not None and len(vidID) > 0:
 					sendBack+="Youtube: *"+title+"*"+"\n"+ylink
 
 				''' thumnail for youtube '''
 				if not found or linkDefault is "youtube" or False:
-					thumnail = {"imageurl":image,"title":title,"Provided to Youtube by":desc,"link":ylink}
+
+					thumnail = {"imageurl":image,"title":title,"desc":desc,"link":ylink}
 
 			except Exception as e:
 				print("COULD NOT FIND SONG ON YOUTUBE", e)
 
-		withLink = True
-		if withLink:
-			answer = ":answerid:555"
-			myLink = self.api.genLink(origin, answer)
-			sendBack += "\n\n"+answer+":\n"+myLink
 		self.api.send(origin, sendBack, thumnail = thumnail)
 
 	def backup(self):

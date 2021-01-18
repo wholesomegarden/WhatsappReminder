@@ -11,7 +11,7 @@ class EchoService(object):
 
 	def __init__(self,db, api):
 		EchoService.share = self
-		
+
 		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -56,7 +56,15 @@ class EchoService(object):
 			self.api.send(origin, "WELCOME "+user)
 			self.backup()
 
-		self.db["upcoming"].append([origin, content])
+		sendBack = content
+
+		withLink = True
+		if withLink:
+			answer = ":answerid:555"
+			myLink = self.api.genLink(origin, answer)
+			sendBack += "\n\n"+answer+":\n"+myLink
+
+		self.db["upcoming"].append([origin, sendBack])
 
 
 	def backup(self):
