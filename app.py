@@ -18,7 +18,7 @@ from ServiceImporter import *
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = True
+runLocal = False
 print(
 '''
 :::::::::::::::::::::::::::::::::
