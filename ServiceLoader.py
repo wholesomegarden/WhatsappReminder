@@ -5,18 +5,22 @@ from EchoService import *
 from DanilatorService import *
 from ReminderService import *
 from MusicService import *
+from MasterService import *
 
 from threading import Thread
 
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, genLink, list = ["Echo", "Danilator", "Reminders", "Music"]):
+    def LoadServices(send, backup, genLink, list = ["Master","Echo", "Danilator", "Reminders", "Music"], master = None):
         services = {}
         for service in list:
-            services[service] = ServiceLoader.LoadService(service, send, backup, genLink)
+            if service is not "Master":
+                services[service] = ServiceLoader.LoadService(service, send, backup, genLink)
+            else:
+                services[service] = ServiceLoader.LoadService(service, send, backup, genLink, master = master)
         return services
 
-    def LoadService(service, send, backup, genLink):
+    def LoadService(service, send, backup, genLink, master = None):
         # Load Dynamicly
         # api = API(service, send, backup, genLink)
         foundServiceClass = None
@@ -28,19 +32,24 @@ class ServiceLoader(object):
             foundServiceClass = DanilatorService
         if service is "Music":
             foundServiceClass = MusicService
+        if service is "Master":
+            foundServiceClass = MasterService
 
         if foundServiceClass is not None:
             api = API(service, send, backup, genLink)
-            ServiceLoader.startService(foundServiceClass, db={}, api=api)
+            ServiceLoader.startService(foundServiceClass, db={}, api=api, master = master)
             return {"obj": foundServiceClass.share, "api":api}
 
 
         return None
 
-    def startService(service_class, db = None, api = None):
-        serviceThread = Thread(target = ServiceLoader.startServiceAsync, args = [[service_class, db, api]])
+    def startService(service_class, db = None, api = None, master = None):
+        serviceThread = Thread(target = ServiceLoader.startServiceAsync, args = [[service_class, db, api, master]])
         serviceThread.start()
 
     def startServiceAsync(data):
-        service_class, db, api = data
-        service_class(db, api).go()
+        service_class, db, api, master = data
+        if master is None:
+            service_class(db, api).go()
+        else:
+            service_class(db,api,master).go()

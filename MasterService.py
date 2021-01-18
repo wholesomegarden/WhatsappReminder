@@ -24,17 +24,27 @@ class MasterService(object):
 	# 	"groups": {"id":"service"},
 	# 	"id":"972547932000-1610379075@g.us"}
 	# services = {}
+	id = "Master"
+	name = "✨WhatsappMaster✨"
+	welcome = "Welcome to WhatsappMaster \nCheck out our services!"
+	help = "send a message to get it back"
+	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmaJKloEMiBpQRA9woJw4XnuWXCWeN2BO70w&usqp=CAU"
+	share = None
 
 	''' start master driver and log in '''
-	def __init__(self, runLocal, master):
-		self.runLocal = runLocal
+	def __init__(self, db, api, master):
+		MasterService.share = self
+		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! MasterService",MasterService.share)
+
+		self.db = db
+		self.api = api
+		self.runLocal = master.runLocal
 		# self.master.db = db
 		# self.master.services = services
 		# self.master.driver = driver
 		self.master = master
 
 		self.commands = {"subscribe":None,"group":self.createGroup,"=":self.subscribeToService,"-":self.unsubscribe, "/":self.findElement}
-
 
 
 	def findElement(self, data):
@@ -66,11 +76,12 @@ class MasterService(object):
 			if not serviceFound and target.lower() == service.lower():
 				target = service
 
+
 				''' service found '''
 				serviceFound = True
 
 				if chatID not in self.master.db["users"]:
-					self.master.db["users"][chatID] = {}
+					self.master.db["users"][senderID] = {}
 					dbChanged = True
 					''' first time user '''
 					# self.master.db["users"][senderID] = {'services': {'Reminders': {'groupID': None}}}
@@ -80,8 +91,8 @@ class MasterService(object):
 
 
 				foundChat = None
-				if service in self.master.db["users"][chatID]:
-					serviceChat = self.master.db["users"][chatID][service]
+				if service in self.master.db["users"][senderID]:
+					serviceChat = self.master.db["users"][senderID][service]
 
 					# self.master.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
 					if serviceChat is not None:
@@ -101,15 +112,15 @@ class MasterService(object):
 					pass
 
 				if foundChat is not None:
-					check_participents = False
-					if check_participents:
-						if senderID in foundChat.get_participants_ids() or True:
-							'''##### check that user is participant '''
-							self.master.driver.sendMessage(senderID,"You are already subscirbed to: "+chatName+" \nYou can unsubscribe with -"+target.lower())
-							self.master.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
-						else:
-							foundChat = None
-					else:
+					# check_participents = False
+					# if check_participents:
+					# 	if senderID in foundChat.get_participants_ids() or True:
+					# 		'''##### check that user is participant '''
+					# 		self.master.driver.sendMessage(chatID,"You are already subscirbed to: "+chatName+" \nYou can unsubscribe with -"+target.lower())
+					# 		self.master.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
+					# 	else:
+					# 		foundChat = None
+					if True:
 						gotLink = False
 						groupName = service
 						path = self.download_image()
@@ -134,9 +145,9 @@ class MasterService(object):
 						content+="\n"+"You can unsubscribe with -"+target.lower()
 
 						if gotLink:
-							res = self.master.driver.send_message_with_thumbnail(path,senderID,url=inviteLink,title="Open  "+groupName,description="xxx",text=content)
+							res = self.master.driver.send_message_with_thumbnail(path,chatID,url=inviteLink,title="Open  "+groupName,description="xxx",text=content+"\n"+chatID+" / "+senderID)
 						else:
-							self.master.driver.sendMessage(senderID,content)
+							self.master.driver.sendMessage(chatID,content+"\n"+chatID+" / "+senderID)
 						self.master.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
 
 
@@ -149,6 +160,8 @@ class MasterService(object):
 					===============================================
 					'''
 					)
+					self.master.driver.sendMessage(chatID,"Creating group: "+chatName+" \nPlease wait a moment :)")
+
 					groupName = service
 					path = self.download_image()
 					if service in self.master.services and "obj" in self.master.services[service] and self.master.services[service]["obj"] is not None:
@@ -166,7 +179,7 @@ class MasterService(object):
 					self.newG = newGroupID
 
 					self.master.db["users"][senderID][service] = newGroupID
-					self.master.db["groups"][newGroupID] = {"service":target, "invite":groupInvite}
+					self.master.db["groups"][newGroupID] = {"service":target, "invite":groupInvite, "user":senderID, "link":self.master.newRandomID()}
 					dbChanged = True
 					now = True
 					print(
@@ -177,7 +190,7 @@ class MasterService(object):
 					'''
 					)
 
-					res = self.master.driver.send_message_with_thumbnail(path,senderID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
+					res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
 					# self.master.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
 					self.master.driver.sendMessage(newGroupID,welcome)
 					# self.master.driver.sendMessage(serviceChat,"subscirbed to: "+target)
@@ -213,7 +226,7 @@ class MasterService(object):
 				''' service found '''
 				serviceFound = True
 
-				if chatID not in self.master.db["users"]:
+				if senderID not in self.master.db["users"]:
 					self.master.db["users"][chatID] = {}
 					dbChanged = True
 					''' first time user '''
@@ -224,16 +237,20 @@ class MasterService(object):
 
 				foundChat = None
 				if chatID in self.master.db["groups"]:
-					if "service" in self.master.db["groups"][chatID]:
+					if "service" in self.master.db["groups"][chatID] and target == self.master.db["groups"][chatID]["service"]:
 						self.master.db["groups"][chatID]["service"] = None
 
-				if service in self.master.db["users"][chatID]:
-					serviceChat = self.master.db["users"][chatID][service]
+				if service in self.master.db["users"][senderID]:
+					serviceChat = self.master.db["users"][senderID][service]
 
 					# self.master.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
 					if serviceChat is not None:
 						try:
-							self.master.db["users"][chatID].pop(service)
+							oldGroup = self.master.db["users"][senderID].pop(service)
+							if oldGroup in self.master.db["groups"]:
+								self.master.db["groups"].pop(oldGroup)
+								self.master.driver.sendMessage(oldGroup,"Unsubscribing from: *"+service+"*")
+
 							self.master.driver.sendMessage(chatID,"Unsubscribing from: *"+service+"*")
 							print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
 							print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
@@ -247,7 +264,7 @@ class MasterService(object):
 						except:
 							print('chat could not be found')
 				else:
-					self.master.driver.sendMessage(chatID,"you are not subscirbed to: *"+service+"*")
+					self.master.driver.sendMessage(chatID,"you are not subscirbed to: *"+service+"*"+"\n"+chatID+" / "+senderID)
 
 		if not serviceFound:
 			self.master.driver.sendMessage(chatID,"you are not subscirbed to: *"+service+"*")
@@ -257,6 +274,25 @@ class MasterService(object):
 
 	def createGroup(self, data, service = "Master", masterGroup = True, emptyNumber ="972543610404"):
 		text, chatID, senderID = data
+
+		if text is not None and len(text.split("group")) > 1:
+
+			check = text.split("group")[1]
+			print("CCCCCCCCCCCCCCCC",check)
+			print("CCCCCCCCCCCCCCCC",check)
+			print("CCCCCCCCCCCCCCCC",check)
+			print("CCCCCCCCCCCCCCCC",check)
+			if len(check) > 1:
+				if "/" is check[0]:
+					check = check[1:]
+
+				foundService = None
+				for serv in self.master.services:
+					print(check.lower(), serv.lower())
+					if check.lower() == serv.lower():
+						foundService = serv
+				if foundService is not None:
+					service = foundService
 
 		if masterGroup:
 			senderID = emptyNumber
@@ -288,16 +324,16 @@ class MasterService(object):
 
 		self.newG = newGroupID
 
-		if not masterGroup:
-			self.master.db["users"][senderID][service] = newGroupID
-			self.master.db["groups"][newGroupID] = {"service":target, "invite":groupInvite}
-		print(
-		'''
-		===============================================
-		 ''' + senderID +" is NOW SUBSCRIBED TO "+ target +" :D "+'''
-		===============================================
-		'''
-		)
+		# if service is not "Master":
+		# 	self.master.db["users"][senderID][service] = newGroupID
+		# 	self.master.db["groups"][newGroupID] = {"service":target, "invite":groupInvite, "link":self.master.newRandomID(), "user":senderID}
+		# print(
+		# '''
+		# ===============================================
+		#  ''' + senderID +" is NOW SUBSCRIBED TO "+ target +" :D "+'''
+		# ===============================================
+		# '''
+		# )
 		if chatID is not None:
 			res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Thank you! you are now subscribed to: "+groupName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
 		# self.master.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
@@ -306,18 +342,20 @@ class MasterService(object):
 		if masterGroup:
 			if "availableChats" not in self.master.db:
 				self.master.db["availableChats"] = {}
+			if service not in self.master.db["availableChats"]:
+				self.master.db["availableChats"][service] = {}
 			# time.sleep(1)
 			# self.master.driver.remove_participant_group(newGroupID,senderID+"@c.us")
 			code = "WAPI.removeParticipantGroup('"+newGroupID+"', '"+senderID+"@c.us"+"')"
 			self.master.driver.driver.execute_script(script=code)
 			# time.sleep(1)
 			print("##############################")
-			self.master.db["availableChats"][newGroupID] = groupInvite
+			self.master.db["availableChats"][service][newGroupID] = groupInvite
 			print("##############################")
 			print(self.master.db["availableChats"])
 			# self.waitForNewParticipant(newGroupID)
 
-		self.master.backup(now=True)
+		self.master.backup()
 
 
 	def runCommands(self, text, chatID, senderID):
@@ -327,6 +365,9 @@ class MasterService(object):
 			cmd = text[0]
 		else:
 			cmd = text.split("/")[0]
+		#
+		# if "/" in text:
+		# 	cmd = text.split("/")[0]
 
 		print("RUNNING COMMANDS....")
 		if cmd in self.commands:
@@ -337,8 +378,8 @@ class MasterService(object):
 
 		return foundCommand
 
-	def Process(self,message):
-		print("MMMMMMMMMM",message)
+	def ProcessChat(self,message):
+		print("MMMMMMMMMMX",message)
 		chatID = ""
 		if self.runLocal:
 			chatID = message.chat_id["_serialized"]
@@ -358,7 +399,7 @@ class MasterService(object):
 		senderID = message.sender.id
 		fromGroup = False
 		print("!!!!!!!!!!!!!!!!!!!",chatID)
-		if "c" in chatID:
+		if "c" in chatID or True:
 			print(
 			'''
 			===================================
@@ -375,100 +416,84 @@ class MasterService(object):
 					print("======== NO COMMANDS FOUND =======", text)
 				''' SENT FROM GROUP CHAT '''
 
-				# if "%%%!%%%" in text:
-				# 	target = text.split(u"%%%!%%%")[1]
-				# 	self.master.driver.sendMessage(chatID,"Adding Service to DB: "+target)
-				# 	self.master.db["services"][target] = {"dbID":None,"incomingTarget":None}
-				# 	self.LoadServices()
-				# 	# self.serviceFuncs["services"][target] = None
-				#
-				# 	self.backup(now = True)
+	def go(self):
+		while(False):
+			time.sleep(1)
+
+	def process(self, info):
+		origin, user, content = None, None, None
+		if "origin" in info:
+			origin = info["origin"]
+		if "user" in info:
+			user = info["user"]
+		if "content" in info:
+			content = info["content"]
+		print("@@@@@@")
+		print("@@@@@@")
+		print("@@@@@@")
+
+		run = self.runCommands(content, origin, user)
+
+		if not run:
+			print("======== NO COMMANDS FOUND =======", content)
+
+		print("@@@@@@")
+		print("@@@@@@")
+		# self.api.send(origin, "WHATSAPPMASTER SERVICE\n"+content, thumnail = "test")
+
+		print("XXXXXXXXXXXXXXXZ")
+		print("XXXXXXXXXXXXXXXZ")
+		print("XXXXXXXXXXXXXXXZ")
+		print("XXXXXXXXXXXXXXXZ")
+		print("XXXXXXXXXXXXXXXZ")
+		# if "users" not in self.db:
+		# 	self.db["users"] = {}
+		#
+		# if user not in self.db["users"]:
+		# 	self.db["users"][user] = user
+		# 	self.api.send(origin, "WELCOME "+user)
+		# 	self.backup()
+
+		sendBack = content
+		myLink = ""
+		withLink = True
+		if withLink:
+			answer = content
+			myLink = self.api.genLink(origin, answer, newLink = "a")
+			sendBack += "\n\n"+answer+":\n"+myLink
 
 		#
-		# # ''' Group Chat '''
-		# elif "g" in chatID:
-		# 	fromGroup = True
-		# 	print(
-		# 	'''
-		# 	===============================================
-		# 	   Incoming Messages in Group \"'''+senderName+" from "+senderID+'''
-		# 	===============================================
-		# 	'''
-		# 	)
-		# 	if message.type == "chat":
-		# 		text = message.content
-		#
-		# 		''' GOT REGISTRATION COMMAND '''
-		# 		if text[0] is "=":
-		# 			foundService = None
-		# 			target = text[1:]
-		#
-		# 			''' register group to service '''
-		# 			for service in self.master.services:
-		# 				if target.lower() == service.lower():
-		# 					foundService = service
-		#
-		# 					foundChat = False
-		# 					if chatID in self.master.db["groups"]:
-		# 						targetService = self.master.db["groups"][chatID]
-		# 						print("TTTTTTTTTTTTTTTTTTTT")
-		# 						print(targetService, service)
-		# 						if targetService is not None:
-		# 							if targetService.lower() == service.lower():
-		# 								foundChat = True
-		# 								self.master.driver.sendMessage(chatID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
-		#
-		# 					if not foundChat:
-		# 						print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
-		# 						print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
-		# 						print("SSSSSSSSSSSSSSSSSSSSSSsxxxxx")
-		# 						self.master.driver.sendMessage(chatID,"Subscribing to service: "+service)
-		# 						self.master.db["groups"][chatID] = service
-		# 						self.backup()
-		#
-		# 			if foundService is None:
-		# 				self.master.driver.sendMessage(chatID,"service: "+target+" Not Found")
-		#
-		# 		''' Chat is not registered first time'''
-		# 		if chatID not in self.master.db["groups"]:
-		# 			# print("SSSSSSSSSSSSSSSSSSSSSS")
-		# 			self.master.driver.sendMessage(chatID,"This chat is not registered with any service yet\nYou can register it by sending =service_name")
-		# 			# print("JJJJJJJJJJJJJJ")
-		# 			self.master.db["groups"][chatID] = None
-		# 			# print("SSSSSSSSSSSSSSSSSSSSSS")
-		# 			self.backup()
-		#
-		# 		if self.master.db["groups"][chatID] is not None:
-		# 			''' Chat is known '''
-		# 			target = self.master.db["groups"][chatID]
-		# 			print("MMMMMMMMMMMMMMMM",target)
-		# 			''' adding new user to service from group'''
-		#
-		# 			foundService = None
-		# 			for service in self.master.services:
-		# 				if target.lower() == service.lower():
-		# 					foundService = service
-		#
-		# 					''' CHAT IS REGISTERED TO SERVICE! '''
-		# 					''' PROCESS INCOMNG MESSAGE in SERVICE '''
-		# 					if foundService is not None and text[0] is not "=":
-		#
-		# 						''' this is where the magic happens - send to service'''
-		#
-		# 						if "obj" in self.master.services[foundService]:
-		# 							obj = self.master.services[foundService]["obj"]
-		# 							if obj is not None:
-		# 								#Get Nicknames
-		#
-		# 								self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text})
-		# 								# obj.process({"origin":chatID, "user":senderID, "content":text})
-		#
-		# 						# self.ProcessServiceAsync(service,chatID,text)
-		#
-		#
-		# 			if foundService is None:
-		# 				self.master.driver.sendMessage(chatID,target+" : is not recognized as a service "+target)
+		self.master.driver.sendMessage(origin,sendBack)
 
+		''' invite tests '''
+		service = "Master"
+		groupName = service
+		myLink = "https://akeyo.io/w?join"
+
+		path = None
+		if service in self.master.services and "obj" in self.master.services[service] and self.master.services[service]["obj"] is not None:
+			groupName = self.master.services[service]["obj"].name
+			imageurl = self.master.services[service]["obj"].imageurl
+			if imageurl is not None:
+				path = self.download_image(service=service,pic_url=imageurl)
+		if path is None:
+			path = self.download_image()
+		imagepath = path
+
+		#
+		# res = self.master.driver.send_message_with_thumbnail(path,origin,url=myLink,title="Invite to "+groupName,description="BBBBBBBB",text="This is a link to join: "+groupName+" \n"+str(myLink)+"\nPlease check it out :)")
+
+
+		# self.api.send(origin, sendBack)
+
+		# self.db["upcoming"].append([origin, sendBack])
+
+
+	def backup(self):
+		self.api.backup(self.db)
+
+	def updateDB(self, db):
+		self.db = db
 
 
 	def makeDirs(self, filename):
