@@ -26,10 +26,15 @@ class MasterService(object):
 	# services = {}
 	id = "Master"
 	name = "✨WhatsappMaster✨"
-	welcome = "Welcome to WhatsappMaster \nCheck out our services!"
+	welcome = "Welcome to ✨WhatsappMaster✨ \nCheck out our services!"
 	help = "send a message to get it back"
 	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmaJKloEMiBpQRA9woJw4XnuWXCWeN2BO70w&usqp=CAU"
+	shortDescription = "Whatsapp Service Platform"
 	share = None
+
+	examples = {"services":{"text":"Show Public Services","thumbnail":None}}
+
+	# publicServices =  ["Danilator", "Reminders", "Music"]
 
 	''' start master driver and log in '''
 	def __init__(self, db, api, master):
@@ -44,7 +49,7 @@ class MasterService(object):
 		# self.master.driver = driver
 		self.master = master
 
-		self.commands = {"subscribe":None,"group":self.createGroup,"=":self.subscribeToService,"-":self.unsubscribe, "/":self.findElement}
+		self.commands = {"subscribe":None,"group":self.createGroup,"=":self.subscribeToService,"-":self.unsubscribe, "/":self.findElement, "services":self.showServices}
 
 
 	def findElement(self, data):
@@ -57,6 +62,22 @@ class MasterService(object):
 		print("##################################")
 		print("##################################", text)
 		dotsSide = self.master.driver.tryOut(self.master.driver.driver.find_element_by_xpath,text,click=True)
+
+	def showServices(self, data):
+		text, chatID, senderID = data
+
+		# self.master.sendMessage(chatID, text)
+		# time.sleep(1)
+
+		self.master.sendMessage(chatID, "*List of Public Services:*")
+		time.sleep(1.5)
+		for service in self.master.publicServices:
+			time.sleep(0.2)
+			text, thumb = self.master.inviteToService(service=service,fromChat = chatID)
+			print("TTTTTTTTTTTTTTTTTT")
+			print(text, thumb)
+			self.master.sendMessage(chatID, text, thumbnail = thumb)
+
 
 	def subscribeToService(self, data):
 		text, chatID, senderID = data
@@ -80,7 +101,7 @@ class MasterService(object):
 				''' service found '''
 				serviceFound = True
 
-				if chatID not in self.master.db["users"]:
+				if senderID not in self.master.db["users"]:
 					self.master.db["users"][senderID] = {}
 					dbChanged = True
 					''' first time user '''
@@ -93,6 +114,7 @@ class MasterService(object):
 				foundChat = None
 				if service in self.master.db["users"][senderID]:
 					serviceChat = self.master.db["users"][senderID][service]
+					print("#########################################################")
 
 					# self.master.driver.sendMessage(senderID,"You are already subscirbed to: "+target+" \nYou can unsubscribe with -"+target.lower())
 					if serviceChat is not None:
@@ -142,17 +164,17 @@ class MasterService(object):
 						content = "You are already subscirbed to:\n"+chatName+" \n"
 						if gotLink:
 							content+= inviteLink
-						content+="\n"+"You can unsubscribe with -"+target.lower()
+						# content+="\n"+"You can unsubscribe with -"+target.lower()
 
 						if gotLink:
-							res = self.master.driver.send_message_with_thumbnail(path,chatID,url=inviteLink,title="Open  "+groupName,description="xxx",text=content+"\n"+chatID+" / "+senderID)
+							res = self.master.driver.send_message_with_thumbnail(path,chatID,url=inviteLink,title="Open  "+groupName,description="xxx",text=content)
 						else:
-							self.master.driver.sendMessage(chatID,content+"\n"+chatID+" / "+senderID)
+							self.master.driver.sendMessage(chatID,content)
 						self.master.driver.sendMessage(serviceChat,"subscirbed to: "+chatName)
 
 
 				''' create new group '''
-				if foundChat is None:
+				if foundChat is None: #NGN
 					print(
 					'''
 					===============================================
@@ -164,12 +186,13 @@ class MasterService(object):
 
 					groupName = service
 					path = self.download_image()
+					obj = None
 					if service in self.master.services and "obj" in self.master.services[service] and self.master.services[service]["obj"] is not None:
-						groupName = self.master.services[service]["obj"].name
-						imageurl = self.master.services[service]["obj"].imageurl
+						obj = self.master.services[service]["obj"]
+						groupName = obj.name
+						imageurl = obj.imageurl
 						if imageurl is not None:
 							path = self.download_image(service=service,pic_url=imageurl)
-
 
 
 					imagepath = path
@@ -178,8 +201,10 @@ class MasterService(object):
 
 					self.newG = newGroupID
 
+					link = self.master.newRandomID()
+
 					self.master.db["users"][senderID][service] = newGroupID
-					self.master.db["groups"][newGroupID] = {"service":target, "invite":groupInvite, "user":senderID, "link":self.master.newRandomID()}
+					self.master.db["groups"][newGroupID] = {"service":target, "invite":groupInvite, "user":senderID, "link":link}
 					dbChanged = True
 					now = True
 					print(
@@ -191,8 +216,25 @@ class MasterService(object):
 					)
 
 					res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
+
 					# self.master.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
-					self.master.driver.sendMessage(newGroupID,welcome)
+
+					toAdd = ""
+					if obj is not None:
+						if len(obj.examples) > 0:
+							toAdd += "\n\n"
+							toAdd += "See Examples:\n"
+							for example in obj.examples:
+								key = example
+								answer = key
+								text = ""
+								if "answer" in obj.examples[key]:
+									answer = obj.examples[key]["answer"]
+								if "text" in obj.examples[key]:
+									text = obj.examples[key]["text"]
+								toAdd += "*"+answer+"* : "+text+"\n"
+								toAdd += self.master.baseURL + link +"/"+key + "\n\n"
+					self.master.driver.sendMessage(newGroupID,welcome+toAdd)
 					# self.master.driver.sendMessage(serviceChat,"subscirbed to: "+target)
 
 		if not serviceFound:
@@ -335,8 +377,9 @@ class MasterService(object):
 		# '''
 		# )
 		if chatID is not None:
-			res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Thank you! you are now subscribed to: "+groupName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
+			res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Creating empty group: "+groupName+" \n"+str(groupInvite)+"\nCheck it out :)")
 		# self.master.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
+
 		self.master.driver.sendMessage(newGroupID,welcome)
 
 		if masterGroup:
@@ -453,32 +496,6 @@ class MasterService(object):
 		# 	self.db["users"][user] = user
 		# 	self.api.send(origin, "WELCOME "+user)
 		# 	self.backup()
-
-		sendBack = content
-		myLink = ""
-		withLink = True
-		if withLink:
-			answer = content
-			myLink = self.api.genLink(origin, answer, newLink = "a")
-			sendBack += "\n\n"+answer+":\n"+myLink
-
-		#
-		self.master.driver.sendMessage(origin,sendBack)
-
-		''' invite tests '''
-		service = "Master"
-		groupName = service
-		myLink = "https://akeyo.io/w?join"
-
-		path = None
-		if service in self.master.services and "obj" in self.master.services[service] and self.master.services[service]["obj"] is not None:
-			groupName = self.master.services[service]["obj"].name
-			imageurl = self.master.services[service]["obj"].imageurl
-			if imageurl is not None:
-				path = self.download_image(service=service,pic_url=imageurl)
-		if path is None:
-			path = self.download_image()
-		imagepath = path
 
 		#
 		# res = self.master.driver.send_message_with_thumbnail(path,origin,url=myLink,title="Invite to "+groupName,description="BBBBBBBB",text="This is a link to join: "+groupName+" \n"+str(myLink)+"\nPlease check it out :)")

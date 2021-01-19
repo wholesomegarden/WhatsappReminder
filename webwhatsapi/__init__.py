@@ -985,7 +985,7 @@ class WhatsAPIDriver(object):
 		"""
 		return self.wapi_functions.sendMessageToID(recipient, message)
 
-	def convert_to_base64(self, path, is_thumbnail=False):
+	def convert_to_base64(self, path, is_thumbnail=False, inv = False):
 		"""
 		:param path: file path
 		:return: returns the converted string and formatted for the send media function send_media
@@ -997,8 +997,11 @@ class WhatsAPIDriver(object):
 		if is_thumbnail:
 			path = self._resize_image(path, f"{path}.bkp")
 		with open(path, "rb") as image_file:
-			archive = b64encode(image_file.read())
-			archive = archive.decode("utf-8")
+			if inv:
+				archive = b64encode()
+			else:
+				archive = b64encode(image_file.read())
+				archive = archive.decode("utf-8")
 		if is_thumbnail:
 			return archive
 		return "data:" + content_type + ";base64," + archive
@@ -1027,7 +1030,13 @@ class WhatsAPIDriver(object):
 		:param text: under thumbnail
 		:return:
 		"""
-		imgBase64 = self.convert_to_base64(path, is_thumbnail=True)
+		imgBase64 = ""
+		if path is None or path is "":
+			# imgBase64 = self.convert_to_base64(path, is_thumbnail=True, inv=True)
+			pass
+		else:
+			imgBase64 = self.convert_to_base64(path, is_thumbnail=True)
+
 		if url not in text:
 			print("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
 		# 	return False

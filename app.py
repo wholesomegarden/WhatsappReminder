@@ -47,16 +47,22 @@ if runLocal:
 
 class Master(object):
 	shares = []
-	db = {
-		"masters":["972512170493", "972547932000"],
-		"users":{"id":{"services":{"groupID":None}}},
-		"services":{"Reminders":{"dbID":None,"incomingTarget":None},"Proxy":{"dbID":None,"incomingTarget":None},"Danilator":{"dbID":None,"incomingTarget":None}},
-		"groups": {"id":"service"},
-		"id":"972547932000-1610379075@g.us"}
+	# groups {"service":target, "invite":groupInvite, "user":senderID, "link":self.master.newRandomID()}
+	# db = {
+	# 	"masters":["972512170493", "972547932000"],
+	# 	"users":{"id":{"services":{"groupID":None}}},
+	# 	"services":{"Reminders":{"dbID":None,"incomingTarget":None},"Proxy":{"dbID":None,"incomingTarget":None},"Danilator":{"dbID":None,"incomingTarget":None}},
+	# 	"groups": {"id":"service"},
+	# 	"id":"972547932000-1610379075@g.us"}
+
+	db = {'masters': ['972512170493', '972547932000'], 'system': ['972512170493', '972543610404'], 'users': {}, 'groups': {}, 'id': '972547932000-1610379075@g.us', 'lastBackup': 1611071801.4876792, 'init': 1611071653.7335632, 'backupInterval': 0, 'backupDelay': 3, 'lastBackupServices': 0, 'servicesDB': {'Echo': {'dbID': '972512170493-1610802351@g.us'}, 'Danilator': {'dbID': '972512170493-1610802360@g.us'}, 'Reminders': {'dbID': '972512170493-1610802365@g.us'}, 'Music': {'dbID': '972512170493-1610802370@g.us'}, 'Master': {'dbID': '972512170493-1610965551@g.us'}, 'Experimental': {'dbID': '972512170493-1611059017@g.us'}}, 'availableChats': {'Master': {'972512170493-1611068831@g.us': 'https://chat.whatsapp.com/GhTABLFn3Aq18MI89MFBU8', '972512170493-1611071667@g.us': 'https://chat.whatsapp.com/LGABshra2Wd8rpZ8AduhuX'}, 'Music': {'972512170493-1611071128@g.us': 'https://chat.whatsapp.com/G3VQkKSrsuZJ3OiRz3Iof9', '972512170493-1611071137@g.us': 'https://chat.whatsapp.com/JN4juvGVYbbLVOoehExtTY'}, 'Experimental': {'972512170493-1611059125@g.us': 'https://chat.whatsapp.com/GIUwJiF3iCg1vioSHkkkQ8', '972512170493-1611059200@g.us': 'https://chat.whatsapp.com/IZXOC41bg112sKwE5UcoQO'}}}
+
 	services = {}
 	links = {}
 	runningSubscriptions = 0
+	baseURL = "akeyo.io/w?"
 	# availableChats = {}
+	publicServices = ["Music","Danilator","Reminders"]
 
 	''' start master driver and log in '''
 	def __init__(self, profileDir = "/app/session/rprofile2"):
@@ -73,6 +79,49 @@ class Master(object):
 
 		asyncInit = Thread(target = self.initAsync,args = [profileDir])
 		asyncInit.start()
+
+	def inviteToService(self, service = "Master" ,beta = " (Beta)", noImage = True, fromChat = None):
+		if service in self.services and "obj" in self.services[service] and self.services[service]["obj"] is not None:
+
+			print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs",service)
+			obj = self.services[service]["obj"]
+			groupName = obj.name
+			serviceInvite = "/"+service.lower()
+
+			title = "Join  " + groupName
+			desc = obj.shortDescription
+			if "master" in service.lower():
+				serviceInvite = ""
+				# title += beta
+			else:
+				title += "  Service"
+
+			# image = self.download_image(pic_url=obj.imageurl)
+			text = ""
+			link = "https://"+self.baseURL
+			if fromChat is not None and fromChat in self.db["groups"] and self.db["groups"][fromChat] is not None and "link" in self.db["groups"][fromChat] and self.db["groups"][fromChat]["link"] is not None:
+				noImage = False
+				text = "Join "+groupName+ beta
+				link += self.db["groups"][fromChat]["link"] + "/="+service.lower()
+
+			else:
+				text = "Enjoying "+groupName+ " ?!"
+				link += "join" + serviceInvite
+			text +="\n" + link
+			if not fromChat:
+				text +="\nShare it with friends you love!✨" + beta
+
+			imageurl = obj.imageurl
+			if noImage:
+				imageurl = ""
+			thumbnail = {"imageurl":imageurl,"title":title,"desc":desc,"link":link}
+
+			print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs",service,"text",text,"thumb",thumbnail)
+			return text, thumbnail
+
+		return None, None
+
+
 
 	def initAsync(self, profileDir = "/app/session/rprofile2"):
 
@@ -283,18 +332,44 @@ class Master(object):
 							invite = self.db["availableChats"][service].pop(firstKey)
 
 							# service = "Master"
+							if newParticipant not in self.db["users"]:
+								self.db["users"][newParticipant] = {}
 
+							link = self.newRandomID()
 							self.db["users"][newParticipant][service] = newGroupID
-							self.db["groups"][newGroupID] = {"service":service, "invite":invite, "link":self.newRandomID(), "user":newParticipant}
-							self.links
+							self.db["groups"][newGroupID] = {"service":service, "invite":invite, "link":link, "user":newParticipant, "links":{}}
+							#
+							# if "links" not in self.db["groups"][target]:
+							# 	self.db["groups"][target]["links"] = {}
+							#
+							linkDataGroup = {"service":service, "chatID":newGroupID, "answer":"", "invite":invite, "user":newParticipant}
+							self.db["groups"][newGroupID]["links"][link] = linkDataGroup
+							self.links[link] = linkDataGroup
 
 							print(newParticipant," IS NOW REGISTED",firstKey,invite)
 
 							# chatName = self.master.services[service]["obj"].name
 							# welcome = "Thank you for Subscribing to "+chatName
 							welcome = self.services[service]["obj"].welcome #A
+							obj = None
+							if "obj" in self.services[service]:
+								obj = self.services[service]["obj"]
 
-							self.driver.sendMessage(newGroupID, welcome)
+							toAdd = ""
+							if obj is not None:
+								if len(obj.examples) > 0:
+									toAdd += "\n\n"
+									toAdd += "See Examples:\n"
+									for example in obj.examples:
+										key = exampleanswer = key
+										text = ""
+										if "answer" in obj.examples[key]:
+											answer = obj.examples[key]["answer"]
+										if "text" in obj.examples[key]:
+											text = obj.examples[key]["text"]
+										toAdd += "*"+answer+"* : "+text+"\n"
+										toAdd += self.baseURL + link +"/"+key + "\n\n"
+							self.driver.sendMessage(newGroupID, welcome+toAdd)
 							self.backup(now = True)
 							self.runningSubscriptions-=1
 
@@ -319,6 +394,8 @@ class Master(object):
 	def download_image(self, service="test", pic_url="https://img-authors.flaticon.com/google.jpg", img_name = 'thumnail.jpg'):
 		if service is None or pic_url is None or img_name is None:
 			return None
+		if pic_url is "":
+			return pic_url
 
 		final_path = service+"/"+img_name
 		self.makeDirs(final_path)
@@ -336,6 +413,36 @@ class Master(object):
 	def send(self, api, service, target, content, thumnail = None):
 		sendThread = Thread(target = self.sendAsync, args = [[api, service, target, content, thumnail]])
 		sendThread.start()
+		return True
+
+	def sendMessage(self, chatID, content, thumbnail = None, service = "test"):
+		if thumbnail is not None:
+			imageurl = "https://media1.tenor.com/images/7528819f1bcc9a212d5c23be19be5bf6/tenor.gif"
+			title = "AAAAAAAAAA"
+			desc = "BBBBBBB"
+			link = imageurl
+			path = ""
+
+			sendAttachment = False
+			if "imageurl" in thumbnail and thumbnail["imageurl"] is not None:
+				imageurl = thumbnail["imageurl"]
+				path = self.download_image(service = service, pic_url=imageurl)
+				if "title" in thumbnail and thumbnail["title"] is not None:
+					title = thumbnail["title"]
+					if "desc" in thumbnail and thumbnail["desc"] is not None:
+						desc = thumbnail["desc"]
+						if "link" in thumbnail and thumbnail["link"] is not None:
+							link = thumbnail["link"]
+							sendAttachment = True
+
+			if sendAttachment:
+				res = self.driver.send_message_with_thumbnail(path,chatID,url=link,title=title,description=desc,text=content)
+				print(res)
+				print("!!!!!!!!!!!!!!")
+				return res
+
+		return self.driver.sendMessage(chatID, content)
+
 
 	#UX WELCOME AFTER SUBSCIBING TO
 	def sendAsync(self, data):
@@ -344,35 +451,9 @@ class Master(object):
 		if service in self.services:
 			if self.services[service]["api"] is api:
 				if target in self.db["groups"] and "service" in self.db["groups"][target] and service.lower() == self.db["groups"][target]["service"].lower():
-					if thumbnail is not None:
-						print("T T T T T T")
-						print("T T T T T T")
-						print("T T T T T T")
-						imageurl = "https://media1.tenor.com/images/7528819f1bcc9a212d5c23be19be5bf6/tenor.gif"
-						title = "AAAAAAAAAA"
-						desc = "BBBBBBB"
-						link = imageurl
-						if "imageurl" in thumbnail:
-							imageurl = thumbnail["imageurl"]
-						if "title" in thumbnail:
-							title = thumbnail["title"]
-						if "desc" in thumbnail:
-							desc = thumbnail["desc"]
-						if "link" in thumbnail:
-							link = thumbnail["link"]
 
-						path = self.download_image(service = service, pic_url=imageurl)
+					return self.sendMessage(target, content, thumbnail=thumbnail, service = service)
 
-						# metadata = self.driver.get_group_metadata(target)
-						# print()
-						# print(metadata)
-						# print()
-
-						res = self.driver.send_message_with_thumbnail(path,target,url=link,title=title,description=desc,text=content)
-						print(res)
-						print("!!!!!!!!!!!!!!")
-						return res
-					return self.driver.sendMessage(target, content)
 
 
 
@@ -1147,6 +1228,14 @@ def all_routes(text):
 					else:
 						if len(text.split("/")) > 1:
 							toSend += "/".join(text.split("/")[1:])
+
+					if toSend in obj.examples:
+						print("EEEEEXXXXXXAMMMPLEEEEEE XMPL")
+						if "answer" in obj.examples[toSend]:
+							toSend = obj.examples[toSend]["answer"]
+
+						master.sendMessage(chatID, toSend)
+						time.sleep(1)
 
 					master.ProcessServiceAsync(obj,{"origin":chatID, "user":user, "content":toSend})
 

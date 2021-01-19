@@ -6,18 +6,19 @@ from DanilatorService import *
 from ReminderService import *
 from MusicService import *
 from MasterService import *
+from ExperimentalService import *
 
 from threading import Thread
 
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, genLink, list = ["Master","Echo", "Danilator", "Reminders", "Music"], master = None):
+    def LoadServices(send, backup, genLink, list = ["Master","Echo", "Danilator", "Reminders", "Music", "Experimental"], master = None):
         services = {}
         for service in list:
-            if service is not "Master":
-                services[service] = ServiceLoader.LoadService(service, send, backup, genLink)
-            else:
+            if service is "Master" or service is "Experimental":
                 services[service] = ServiceLoader.LoadService(service, send, backup, genLink, master = master)
+            else:
+                services[service] = ServiceLoader.LoadService(service, send, backup, genLink)
         return services
 
     def LoadService(service, send, backup, genLink, master = None):
@@ -34,6 +35,8 @@ class ServiceLoader(object):
             foundServiceClass = MusicService
         if service is "Master":
             foundServiceClass = MasterService
+        if service is "Experimental":
+            foundServiceClass = ExperimentalService
 
         if foundServiceClass is not None:
             api = API(service, send, backup, genLink)

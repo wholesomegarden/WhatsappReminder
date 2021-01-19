@@ -21,10 +21,13 @@ from threading import Thread
 class DanilatorService():
 	id = "Danilator"
 	name = "💚 Danilator 💚"
-	welcome =  "*Welcome to Danilator 💚 Service*\nYou can now send a name of a song to get it's lyrics translations :)\nתוכלו לשלוח שם של שיר כדי לקבל תרגום למילים שלו :)\nYou could also share a song from Youtube or Spotify!\nתוכלו גם לשתף שיר ישר מיוטוב או ספוטיפיי!"
+	welcome =  "*Welcome to Danilator 💚 Service*\n\nYou can now send the name of a song to get its lyrics translations :)\n*תוכלו לשלוח שם של שיר כדי לקבל תרגום למילים שלו :)*\n\nYou could also share a song from Youtube or Spotify!\n*תוכלו גם לשלוח לפה שיר ישר מיוטוב או ספוטיפיי!*"
 	help = "Danilator help message"
+	shortDescription = "English->Hebrew תרגום שירים"
 	imageurl = "https://i.imgur.com/j1SkVVt.png"
 	share = None
+
+	examples = {"example1":{"text":"","thumbnail":None, "answer":"sweet child"}}
 
 	def __init__(self,db, api):
 		DanilatorService.share = self

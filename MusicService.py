@@ -7,10 +7,13 @@ from youtube_search import YoutubeSearch
 class MusicService(object):
 	id = "Music"
 	name = "🔊 Music 🔊"
-	welcome = "*Welcome to Music 🔊 Service!* \nSend us the name of a song to get *Youtube* and *Spotify* Links :)"
+	welcome = "*Welcome to Music 🔊 Service!* \n\nSend us the name of a song to get *Youtube* and *Spotify* Links :)"+"\n*שלחו שם של שיר :)*"
 	help = "send a message to get it back"
 	imageurl = "https://i.imgur.com/lpjQPk5.jpg"
+	shortDescription = "Just get your music"
 	share = None
+
+	examples = {"example1":{"text":"","thumbnail":None, "answer":"sweet child"}, "example2":{"text":"","thumbnail":None, "answer":"כחולת עינים"}}
 
 	def __init__(self,db, api):
 		MusicService.share = self

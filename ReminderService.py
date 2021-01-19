@@ -23,11 +23,14 @@ days = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(",")
 class ReminderService():
 	id = "Reminders"
 	name = "🔔 Reminders 🔔"
-	welcome =  "*Welcome to Reminders 🔔 Service*\nYou can now send a message and we will *send* you a reminder :)\n*שלחו* הודעה ואנחנו כבר נזכיר לכם :)\n\nFor example:לדוגמה\n\n*This is awesome in 5 seconds*\n*להתקשר לברוך מחר בבוקר*"
+	welcome =  "*Welcome to Reminders 🔔 Service*\nYou can now send a message and we will *send* you a reminder :)\n*שלחו* הודעה ואנחנו כבר נזכיר לכם :)"
 	help = "Reminders help message"
+	shortDescription = "Get your reminders as whatsapp messages!"
 	imageurl = "https://cdn4.iconfinder.com/data/icons/conversation-3/100/Reminder-512.png"
 
 	share = None
+
+	examples = {"example1":{"text":"","thumbnail":None, "answer":"This is awesome in 5 seconds"}, "example2":{"text":"","thumbnail":None, "answer":"להתקשר לברוך מחר בבוקר"}}
 
 	def __init__(self,db, api):
 		ReminderService.share = self
@@ -76,7 +79,7 @@ class ReminderService():
 			user = self.db["users"][userID]
 			if remID in user.reminders["unsent"]:
 				rem = user.reminders["unsent"][remID]
-				print("!!!!!!!",rem)
+				print("!!!!!!!",rem,rem.message)
 				if self.api.send(userID,rem.message):
 					if user.markSent(remID):
 						if combID in self.db["upcoming"]:

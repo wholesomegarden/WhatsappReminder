@@ -62,4 +62,4 @@ class Reminder(JSONEncoder):
 		self.repeat      = repeat
 		self.hasTime     = sendTime is not None
 
-		print("NEW REMINDER CREATED!",self, self.i, self.userID, self.message, self.sendTime, self.repeat, self.hasTime,'\n')
+		print("NEW REMINDER CREATED!",self, self.id, self.userID, self.message, self.sendTime, self.repeat, self.hasTime,'\n')

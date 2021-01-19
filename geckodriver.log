@@ -23618,3 +23618,1932 @@ JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: 
 Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
+1610994555041	geckodriver	INFO	Listening on 127.0.0.1:35481
+1610994555047	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilepIKeAN"
+
+(firefox:15901): Gtk-WARNING **: 20:29:15.095: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:15968): Gtk-WARNING **: 20:29:15.726: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:16002): Gtk-WARNING **: 20:29:15.826: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1610994556553	Marionette	INFO	Listening on port 41581
+1610994556695	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+(/usr/lib/firefox/firefox:16102): Gtk-WARNING **: 13:55:56.620: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611058828069	geckodriver	INFO	Listening on 127.0.0.1:39033
+1611058828077	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6T5aeT"
+
+(firefox:20861): Gtk-WARNING **: 14:20:28.152: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:20928): Gtk-WARNING **: 14:20:29.382: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:20948): Gtk-WARNING **: 14:20:29.552: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611058830731	Marionette	INFO	Listening on port 46603
+1611058830829	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 697))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611058871334	geckodriver	INFO	Listening on 127.0.0.1:44665
+1611058871401	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileAkGn2w"
+
+(firefox:21207): Gtk-WARNING **: 14:21:11.483: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:21276): Gtk-WARNING **: 14:21:12.708: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:21296): Gtk-WARNING **: 14:21:12.881: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611058874088	Marionette	INFO	Listening on port 41535
+1611058874147	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611058991372	geckodriver	INFO	Listening on 127.0.0.1:50193
+1611058991508	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYyvaqG"
+
+(firefox:21695): Gtk-WARNING **: 14:23:11.779: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:21773): Gtk-WARNING **: 14:23:13.023: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:21794): Gtk-WARNING **: 14:23:13.139: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611058994286	Marionette	INFO	Listening on port 46329
+1611058994358	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611059279874	geckodriver	INFO	Listening on 127.0.0.1:36085
+1611059279885	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilejL1eNU"
+
+(firefox:22335): Gtk-WARNING **: 14:27:59.979: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:22404): Gtk-WARNING **: 14:28:01.218: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:22424): Gtk-WARNING **: 14:28:01.380: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611059282556	Marionette	INFO	Listening on port 35333
+1611059282629	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611059509129	geckodriver	INFO	Listening on 127.0.0.1:57367
+1611059510191	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileU4lntK"
+
+(firefox:22911): Gtk-WARNING **: 14:31:50.308: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:22979): Gtk-WARNING **: 14:31:51.534: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:23000): Gtk-WARNING **: 14:31:51.681: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611059512942	Marionette	INFO	Listening on port 34745
+1611059513047	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611059735790	geckodriver	INFO	Listening on 127.0.0.1:36769
+1611059735813	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6lFzhI"
+
+(firefox:23447): Gtk-WARNING **: 14:35:36.006: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:23528): Gtk-WARNING **: 14:35:39.441: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:23548): Gtk-WARNING **: 14:35:39.850: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611059742799	Marionette	INFO	Listening on port 33371
+1611059742941	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611059993986	geckodriver	INFO	Listening on 127.0.0.1:35405
+1611059994011	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile649TNg"
+
+(firefox:23982): Gtk-WARNING **: 14:39:54.329: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:24063): Gtk-WARNING **: 14:39:57.270: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:24084): Gtk-WARNING **: 14:39:57.584: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611060000178	Marionette	INFO	Listening on port 43227
+1611060000321	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611060188690	geckodriver	INFO	Listening on 127.0.0.1:37293
+1611060188765	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGqmD5U"
+
+(firefox:24603): Gtk-WARNING **: 14:43:08.968: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:24670): Gtk-WARNING **: 14:43:11.833: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:24701): Gtk-WARNING **: 14:43:12.165: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611060194662	Marionette	INFO	Listening on port 35269
+1611060194759	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611060717964	geckodriver	INFO	Listening on 127.0.0.1:36827
+1611060718050	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilehUAzoh"
+
+(firefox:25163): Gtk-WARNING **: 14:51:58.281: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:25278): Gtk-WARNING **: 14:52:01.281: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:25299): Gtk-WARNING **: 14:52:01.656: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611060724003	Marionette	INFO	Listening on port 41593
+1611060724141	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611060892137	geckodriver	INFO	Listening on 127.0.0.1:46471
+1611060892214	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileCO2dQl"
+
+(firefox:25608): Gtk-WARNING **: 14:54:52.534: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:25697): Gtk-WARNING **: 14:54:55.468: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:25718): Gtk-WARNING **: 14:54:55.814: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611060898122	Marionette	INFO	Listening on port 38215
+1611060898253	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611060983580	geckodriver	INFO	Listening on 127.0.0.1:53143
+1611060983602	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6SOaan"
+
+(firefox:25998): Gtk-WARNING **: 14:56:23.874: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:26099): Gtk-WARNING **: 14:56:26.761: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:26120): Gtk-WARNING **: 14:56:27.143: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611060989665	Marionette	INFO	Listening on port 36659
+1611060989799	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611061222577	geckodriver	INFO	Listening on 127.0.0.1:49323
+1611061222584	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileRrEw26"
+
+(firefox:27121): Gtk-WARNING **: 15:00:22.629: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:27179): Gtk-WARNING **: 15:00:23.253: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:27210): Gtk-WARNING **: 15:00:23.322: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611061224008	Marionette	INFO	Listening on port 37197
+1611061224110	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611061441832	geckodriver	INFO	Listening on 127.0.0.1:43333
+1611061441839	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6Z6il9"
+
+(firefox:27589): Gtk-WARNING **: 15:04:01.874: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:27652): Gtk-WARNING **: 15:04:02.546: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:27672): Gtk-WARNING **: 15:04:02.607: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611061443356	Marionette	INFO	Listening on port 44841
+1611061443494	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611061720521	geckodriver	INFO	Listening on 127.0.0.1:45905
+1611061720527	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegwbIM5"
+
+(firefox:28071): Gtk-WARNING **: 15:08:40.563: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:28138): Gtk-WARNING **: 15:08:41.203: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:28158): Gtk-WARNING **: 15:08:41.274: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611061721788	Marionette	INFO	Listening on port 36225
+1611061721845	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611061804066	geckodriver	INFO	Listening on 127.0.0.1:33867
+1611061804072	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileaQHnYC"
+
+(firefox:28810): Gtk-WARNING **: 15:10:04.109: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:28876): Gtk-WARNING **: 15:10:04.752: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:28896): Gtk-WARNING **: 15:10:04.828: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611061805337	Marionette	INFO	Listening on port 39993
+1611061805391	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611061946700	geckodriver	INFO	Listening on 127.0.0.1:32967
+1611061946707	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMHvx9L"
+
+(firefox:29600): Gtk-WARNING **: 15:12:26.762: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:29661): Gtk-WARNING **: 15:12:27.379: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:29681): Gtk-WARNING **: 15:12:27.456: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611061948161	Marionette	INFO	Listening on port 38251
+1611061948225	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611062756510	geckodriver	INFO	Listening on 127.0.0.1:45987
+1611062756570	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGiTWUR"
+
+(firefox:30199): Gtk-WARNING **: 15:25:56.616: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:30263): Gtk-WARNING **: 15:25:57.241: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:30284): Gtk-WARNING **: 15:25:57.318: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611062757995	Marionette	INFO	Listening on port 45833
+1611062758087	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611064324427	geckodriver	INFO	Listening on 127.0.0.1:42055
+1611064324451	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile0AKOQ8"
+
+(firefox:31130): Gtk-WARNING **: 15:52:04.617: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:31207): Gtk-WARNING **: 15:52:07.551: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:31227): Gtk-WARNING **: 15:52:07.887: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611064330425	Marionette	INFO	Listening on port 41847
+1611064330550	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611064434450	geckodriver	INFO	Listening on 127.0.0.1:43689
+1611064434477	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileRffvdP"
+
+(firefox:31519): Gtk-WARNING **: 15:53:54.752: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:31595): Gtk-WARNING **: 15:53:57.713: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:31622): Gtk-WARNING **: 15:53:58.113: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611064440425	Marionette	INFO	Listening on port 41933
+1611064440566	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611064530503	geckodriver	INFO	Listening on 127.0.0.1:53977
+1611064530578	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileXgCKtV"
+
+(firefox:31918): Gtk-WARNING **: 15:55:30.842: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:31989): Gtk-WARNING **: 15:55:33.803: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32009): Gtk-WARNING **: 15:55:34.104: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611064536504	Marionette	INFO	Listening on port 46093
+1611064536675	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611064570914	geckodriver	INFO	Listening on 127.0.0.1:57613
+1611064570933	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileT7CiPx"
+
+(firefox:32237): Gtk-WARNING **: 15:56:11.190: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32306): Gtk-WARNING **: 15:56:14.071: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32327): Gtk-WARNING **: 15:56:14.424: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611064576737	Marionette	INFO	Listening on port 43445
+1611064576851	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611064627140	geckodriver	INFO	Listening on 127.0.0.1:49377
+1611064627225	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilen0SfAm"
+
+(firefox:32599): Gtk-WARNING **: 15:57:07.538: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32705): Gtk-WARNING **: 15:57:10.455: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32725): Gtk-WARNING **: 15:57:10.851: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611064633265	Marionette	INFO	Listening on port 42379
+1611064633431	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611066922918	geckodriver	INFO	Listening on 127.0.0.1:34475
+1611066922924	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile9pRr8T"
+
+(firefox:1147): Gtk-WARNING **: 16:35:22.962: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:1214): Gtk-WARNING **: 16:35:23.591: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:1253): Gtk-WARNING **: 16:35:23.676: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+1611066924182	Marionette	INFO	Listening on port 45225
+1611066924242	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611066947004	geckodriver	INFO	Listening on 127.0.0.1:49085
+1611066947065	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileAdLKqf"
+
+(firefox:1430): Gtk-WARNING **: 16:35:47.101: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:1498): Gtk-WARNING **: 16:35:47.745: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:1524): Gtk-WARNING **: 16:35:47.825: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+1611066948557	Marionette	INFO	Listening on port 36321
+1611066948583	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611066977303	geckodriver	INFO	Listening on 127.0.0.1:37019
+1611066977307	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileFx7wlc"
+
+(firefox:1849): Gtk-WARNING **: 16:36:17.346: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:1916): Gtk-WARNING **: 16:36:17.983: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:1936): Gtk-WARNING **: 16:36:18.079: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611066978838	Marionette	INFO	Listening on port 32845
+1611066978955	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+console.error: Region.jsm: "Error fetching region" (new AbortError("The operation was aborted. ", (void 0), 697))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 351))
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611067852521	geckodriver	INFO	Listening on 127.0.0.1:53025
+1611067852528	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileXWR5Fh"
+
+(firefox:2671): Gtk-WARNING **: 16:50:52.580: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:2778): Gtk-WARNING **: 16:50:53.177: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:2822): Gtk-WARNING **: 16:50:53.263: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611067854018	Marionette	INFO	Listening on port 45421
+1611067854048	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611068131298	geckodriver	INFO	Listening on 127.0.0.1:60355
+1611068131305	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile3wai7V"
+
+(firefox:3243): Gtk-WARNING **: 16:55:31.345: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:3306): Gtk-WARNING **: 16:55:31.976: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:3333): Gtk-WARNING **: 16:55:32.064: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611068132746	Marionette	INFO	Listening on port 35273
+1611068132822	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611068578258	geckodriver	INFO	Listening on 127.0.0.1:48535
+1611068578263	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilekrDWnR"
+
+(firefox:3909): Gtk-WARNING **: 17:02:58.306: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:3973): Gtk-WARNING **: 17:02:58.929: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:3993): Gtk-WARNING **: 17:02:59.001: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611068579692	Marionette	INFO	Listening on port 35931
+1611068579780	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611068646148	geckodriver	INFO	Listening on 127.0.0.1:56419
+1611068646210	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiletL27Yx"
+
+(firefox:4220): Gtk-WARNING **: 17:04:06.269: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:4308): Gtk-WARNING **: 17:04:06.879: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:4335): Gtk-WARNING **: 17:04:06.968: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611068647650	Marionette	INFO	Listening on port 34567
+1611068647727	Marionette	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611068675032	geckodriver	INFO	Listening on 127.0.0.1:37503
+1611068675038	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile5XhFNO"
+
+(firefox:4501): Gtk-WARNING **: 17:04:35.076: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:4564): Gtk-WARNING **: 17:04:35.705: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:4584): Gtk-WARNING **: 17:04:35.770: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611068676519	Marionette	INFO	Listening on port 33777
+1611068676564	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611069283061	geckodriver	INFO	Listening on 127.0.0.1:37509
+1611069283066	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilemVUKyG"
+
+(firefox:5221): Gtk-WARNING **: 17:14:43.115: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:5281): Gtk-WARNING **: 17:14:43.761: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:5301): Gtk-WARNING **: 17:14:43.815: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611069284520	Marionette	INFO	Listening on port 45117
+1611069284589	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611069725155	geckodriver	INFO	Listening on 127.0.0.1:35747
+1611069725161	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMuc38a"
+
+(firefox:5785): Gtk-WARNING **: 17:22:05.199: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:5845): Gtk-WARNING **: 17:22:05.834: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:5865): Gtk-WARNING **: 17:22:05.906: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611069726703	Marionette	INFO	Listening on port 42611
+1611069726809	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611069976941	geckodriver	INFO	Listening on 127.0.0.1:50933
+1611069976946	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilef2xohP"
+
+(firefox:6281): Gtk-WARNING **: 17:26:16.988: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6343): Gtk-WARNING **: 17:26:17.604: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6363): Gtk-WARNING **: 17:26:17.706: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611069978398	Marionette	INFO	Listening on port 39013
+1611069978470	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611070032077	geckodriver	INFO	Listening on 127.0.0.1:52765
+1611070032083	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilee1RprJ"
+
+(firefox:6637): Gtk-WARNING **: 17:27:12.119: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6700): Gtk-WARNING **: 17:27:12.742: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:6720): Gtk-WARNING **: 17:27:12.834: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611070033560	Marionette	INFO	Listening on port 44039
+1611070033605	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611071006759	geckodriver	INFO	Listening on 127.0.0.1:48047
+1611071006764	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilew7sqhn"
+
+(firefox:7366): Gtk-WARNING **: 17:43:26.802: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:7431): Gtk-WARNING **: 17:43:27.415: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:7451): Gtk-WARNING **: 17:43:27.517: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611071008166	Marionette	INFO	Listening on port 38097
+1611071008184	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611071582405	geckodriver	INFO	Listening on 127.0.0.1:54767
+1611071582410	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileWlDzAL"
+
+(firefox:8050): Gtk-WARNING **: 17:53:02.446: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8114): Gtk-WARNING **: 17:53:03.064: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8134): Gtk-WARNING **: 17:53:03.188: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611071583839	Marionette	INFO	Listening on port 41769
+1611071583932	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611071641062	geckodriver	INFO	Listening on 127.0.0.1:51943
+1611071641123	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewHLGKz"
+
+(firefox:8424): Gtk-WARNING **: 17:54:01.160: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8484): Gtk-WARNING **: 17:54:01.785: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:8504): Gtk-WARNING **: 17:54:01.859: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611071642526	Marionette	INFO	Listening on port 44977
+1611071642641	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611072804758	geckodriver	INFO	Listening on 127.0.0.1:54891
+1611072804763	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileNB5KvU"
+
+(firefox:9227): Gtk-WARNING **: 18:13:24.806: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:9294): Gtk-WARNING **: 18:13:25.860: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:9316): Gtk-WARNING **: 18:13:25.930: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611072806480	Marionette	INFO	Listening on port 42259
+1611072806580	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611072827186	geckodriver	INFO	Listening on 127.0.0.1:58739
+1611072827246	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiles7whsR"
+
+(firefox:9533): Gtk-WARNING **: 18:13:47.281: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:9595): Gtk-WARNING **: 18:13:47.907: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:9618): Gtk-WARNING **: 18:13:47.983: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611072828646	Marionette	INFO	Listening on port 35135
+1611072828687	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611073003006	geckodriver	INFO	Listening on 127.0.0.1:43873
+1611073003067	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileMfDbra"
+
+(firefox:9978): Gtk-WARNING **: 18:16:43.105: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:10043): Gtk-WARNING **: 18:16:43.712: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:10063): Gtk-WARNING **: 18:16:43.786: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611073004463	Marionette	INFO	Listening on port 44737
+1611073004486	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+Exiting due to channel error.
+Exiting due to channel error.
+1611073057331	geckodriver	INFO	Listening on 127.0.0.1:50565
+1611073057337	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilessFiN8"
+
+(firefox:10384): Gtk-WARNING **: 18:17:37.375: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:10446): Gtk-WARNING **: 18:17:38.009: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:10466): Gtk-WARNING **: 18:17:38.097: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611073058758	Marionette	INFO	Listening on port 44665
+1611073058853	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611073732293	geckodriver	INFO	Listening on 127.0.0.1:53597
+1611073732300	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileuWoPvh"
+
+(firefox:10993): Gtk-WARNING **: 18:28:52.338: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:11055): Gtk-WARNING **: 18:28:53.067: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:11077): Gtk-WARNING **: 18:28:53.142: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611073733610	Marionette	INFO	Listening on port 35669
+1611073733718	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611073880339	geckodriver	INFO	Listening on 127.0.0.1:44901
+1611073880399	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileeljL9j"
+
+(firefox:11420): Gtk-WARNING **: 18:31:20.436: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:11482): Gtk-WARNING **: 18:31:21.087: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:11502): Gtk-WARNING **: 18:31:21.160: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611073881842	Marionette	INFO	Listening on port 44221
+1611073881916	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611074710968	geckodriver	INFO	Listening on 127.0.0.1:55021
+1611074710972	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilepZIODE"
+
+(firefox:12181): Gtk-WARNING **: 18:45:11.039: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:12246): Gtk-WARNING **: 18:45:11.670: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:12266): Gtk-WARNING **: 18:45:11.752: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611074712396	Marionette	INFO	Listening on port 37117
+1611074712503	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611074964883	geckodriver	INFO	Listening on 127.0.0.1:44143
+1611074964890	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilegC99Y8"
+
+(firefox:12689): Gtk-WARNING **: 18:49:24.929: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:12746): Gtk-WARNING **: 18:49:25.511: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:12778): Gtk-WARNING **: 18:49:25.611: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611074966128	Marionette	INFO	Listening on port 45299
+1611074966212	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611075306767	geckodriver	INFO	Listening on 127.0.0.1:45473
+1611075306773	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile6EHDTz"
+
+(firefox:13199): Gtk-WARNING **: 18:55:06.820: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:13255): Gtk-WARNING **: 18:55:07.401: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:13288): Gtk-WARNING **: 18:55:07.507: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611075308239	Marionette	INFO	Listening on port 41205
+1611075308291	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611075499233	geckodriver	INFO	Listening on 127.0.0.1:38707
+1611075499239	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileFRwpSV"
+
+(firefox:13581): Gtk-WARNING **: 18:58:19.276: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:13637): Gtk-WARNING **: 18:58:19.868: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:13666): Gtk-WARNING **: 18:58:19.976: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611075500683	Marionette	INFO	Listening on port 45333
+1611075500768	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x680008,name=PMessagePort::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 235: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611075830144	geckodriver	INFO	Listening on 127.0.0.1:44729
+1611075830148	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilesrmRCa"
+
+(firefox:14075): Gtk-WARNING **: 19:03:50.210: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:14137): Gtk-WARNING **: 19:03:50.840: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:14157): Gtk-WARNING **: 19:03:50.915: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611075831615	Marionette	INFO	Listening on port 46657
+1611075831666	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611075924988	geckodriver	INFO	Listening on 127.0.0.1:58919
+1611075925049	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilewnqm4z"
+
+(firefox:14630): Gtk-WARNING **: 19:05:25.094: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:14693): Gtk-WARNING **: 19:05:25.715: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:14713): Gtk-WARNING **: 19:05:25.801: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611075926476	Marionette	INFO	Listening on port 36339
+1611075926567	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611075987534	geckodriver	INFO	Listening on 127.0.0.1:40983
+1611075987594	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileRrLcGO"
+
+(firefox:15010): Gtk-WARNING **: 19:06:27.629: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:15073): Gtk-WARNING **: 19:06:28.256: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:15093): Gtk-WARNING **: 19:06:28.341: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611075989013	Marionette	INFO	Listening on port 36083
+1611075989111	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.

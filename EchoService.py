@@ -7,7 +7,10 @@ class EchoService(object):
 	welcome = "Welcome to Echo! Service \nWe echo what you send..."
 	help = "send a message to get it back"
 	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmaJKloEMiBpQRA9woJw4XnuWXCWeN2BO70w&usqp=CAU"
+	shortDescription = "Echo Echo Echo"
 	share = None
+
+	examples = {"services":{"text":"Show Public Services","thumbnail":None}}
 
 	def __init__(self,db, api):
 		EchoService.share = self
