@@ -361,7 +361,8 @@ class Master(object):
 									toAdd += "\n\n"
 									toAdd += "See Examples:\n"
 									for example in obj.examples:
-										key = exampleanswer = key
+										key = example
+										answer = key
 										text = ""
 										if "answer" in obj.examples[key]:
 											answer = obj.examples[key]["answer"]
