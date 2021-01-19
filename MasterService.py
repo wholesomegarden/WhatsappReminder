@@ -422,7 +422,7 @@ class MasterService(object):
 		return foundCommand
 
 	def ProcessChat(self,message):
-		print("MMMMMMMMMMX",message)
+		print("MMMMMMMMMMX",message.content)
 		chatID = ""
 		if self.runLocal:
 			chatID = message.chat_id["_serialized"]

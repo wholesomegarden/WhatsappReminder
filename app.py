@@ -460,7 +460,7 @@ class Master(object):
 
 	def Process(self,contact):
 		for message in contact.messages:
-			print("MMMMMMMMMM",message)
+			print("MMMMMMMMMM",message.content)
 
 			if runLocal:
 				chatID = message.chat_id["_serialized"]
