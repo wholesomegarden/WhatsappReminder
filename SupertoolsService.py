@@ -101,25 +101,25 @@ class SupertoolsService(object):
 					print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
 					print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
 					print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
-				if "users" not in self.db:
-					self.db["users"] = {}
-					print("XXXXXXXXXXXXXXXXXXXXXXXXXxUUUU")
-					print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
-					print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
-					print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
-					print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
+				if "users" in self.db and len(self.db["users"]) > 0:
+					# # self.db["users"] = {}
+					# print("XXXXXXXXXXXXXXXXXXXXXXXXXxUUUU")
+					# print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
+					# print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
+					# print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
+					# print("XXXXXXXXXXXXXXXXXXXXXXXXXx")
 				# print("##########################",self.db)
 				# print("##########################",self.db)
 				# print("##########################",self.db)
-				if link not in self.db["permalinks"]:
-					print("NEW PERMALINK",link)
-					print("NEW PERMALINK",link)
-					print("NEW PERMALINK",link)
-					print("NEW PERMALINK",link)
-					print("NEW PERMALINK",link)
-					linksToPush[link] = siteDB[link]
-					self.db["permalinks"][link] = link
-					backup = True
+					if link not in self.db["permalinks"]:
+						print("NEW PERMALINK",link)
+						print("NEW PERMALINK",link)
+						print("NEW PERMALINK",link)
+						print("NEW PERMALINK",link)
+						print("NEW PERMALINK",link)
+						linksToPush[link] = siteDB[link]
+						self.db["permalinks"][link] = link
+						backup = True
 
 			while(len(linksToPush)>0):
 				next = linksToPush.popitem()

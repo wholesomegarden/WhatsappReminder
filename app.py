@@ -17,6 +17,9 @@ from pprint import pprint
 # from ServiceImporter import *
 
 # export PATH="$HOME/wholesomegarden/WhatsappReminder:$PATH"
+# heroku config:set WEB_CONCURRENCY=1
+# heroku config:add TZ="Asia/Jerusalem" -a whatsappreminder
+
 from ServiceLoader import *
 from MasterService import *
 
