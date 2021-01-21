@@ -41,7 +41,7 @@ class ServiceLoader(object):
             foundServiceClass = ExperimentalService
         if service is "Supertools":
             foundServiceClass = SupertoolsService
-        if service is "InovationService"
+        if service is "Inovation":
             foundServiceClass = InovationService
 
         if foundServiceClass is not None:
