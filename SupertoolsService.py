@@ -118,7 +118,7 @@ class SupertoolsService(object):
 						print("NEW PERMALINK",link)
 						print("NEW PERMALINK",link)
 						linksToPush[link] = siteDB[link]
-						self.db["permalinks"][link] = link
+						self.db["permalinks"][link] = "Seen"
 						backup = True
 
 			while(len(linksToPush)>0):
