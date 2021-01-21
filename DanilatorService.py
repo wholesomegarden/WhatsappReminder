@@ -553,6 +553,8 @@ class DanilatorService():
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		if "users" not in self.db:
+			self.db["users"] = {}
 		if origin not in self.db["users"]:
 			self.db["users"][origin] = origin
 			self.backup()

@@ -12,15 +12,6 @@ class ExperimentalService(object):
 
 	examples = {"services":{"text":"Show Public Services","thumbnail":None}}
 
-	def welcomeUser(self, origin):
-		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
-		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
-		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
-		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
-		if origin not in self.db["users"]:
-			self.db["users"][origin] = origin
-			self.backup()
-
 	def __init__(self,db, api, master):
 		ExperimentalService.share = self
 
@@ -121,3 +112,14 @@ class ExperimentalService(object):
 	def updateDB(self, db):
 		self.db = db
 		# self.db = User.jsonUsersToUsers(db)
+
+	def welcomeUser(self, origin):
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		if "users" not in self.db:
+			self.db["users"] = {}
+		if origin not in self.db["users"]:
+			self.db["users"][origin] = origin
+			self.backup()
