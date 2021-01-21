@@ -301,84 +301,93 @@ class Master(object):
 				self.db["availableChats"] = {}
 
 			# print("AVAILABLE GROUPS",self.db["availableChats"])
+			goBackup = False
 			try:
 				for service in self.db["availableChats"]:
 					for chat in self.db["availableChats"][service]:
-						participants = self.driver.group_get_participants_ids(chat)
-						# print("CHAT",chat,"PARTICIPANTS",participants)
-						newParticipant = None
+						delChat = None
+						try:
+							participants = self.driver.group_get_participants_ids(chat)
+						except:
+							delChat = chat
 
-						for participant in participants:
-							# print(participant)
-							chatID = ""
-							try:
-								if runLocal:
-									chatID = participant["_serialized"]
-								else:
-									chatID = participant
-							except:
+						if delChat is None:
+							# print("CHAT",chat,"PARTICIPANTS",participants)
+							newParticipant = None
+
+							for participant in participants:
+								# print(participant)
+								chatID = ""
 								try:
-									chatID = participant["user"]+"@c.us"
+									if runLocal:
+										chatID = participant["_serialized"]
+									else:
+										chatID = participant
 								except:
-									pass
-							if chatID is not "" and chatID.split("@")[0] not in self.db["system"]:
-								newParticipant = chatID
+									try:
+										chatID = participant["user"]+"@c.us"
+									except:
+										pass
+								if chatID is not "" and chatID.split("@")[0] not in self.db["system"]:
+									newParticipant = chatID
 
-						if newParticipant is not None:
-							print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
-							print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
-							print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
-							print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
-							print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP",participant)
+							if newParticipant is not None:
+								print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
+								print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
+								print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
+								print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP")
+								print("NEEEEEEWWWWWWW USSERRRRR IN GROUUUP",participant)
 
-							firstKey = list(self.db["availableChats"][service])[0]
-							newGroupID = firstKey
-							invite = self.db["availableChats"][service].pop(firstKey)
+								firstKey = list(self.db["availableChats"][service])[0]
+								newGroupID = firstKey
+								invite = self.db["availableChats"][service].pop(firstKey)
 
-							# service = "Master"
-							if newParticipant not in self.db["users"]:
-								self.db["users"][newParticipant] = {}
+								# service = "Master"
+								if newParticipant not in self.db["users"]:
+									self.db["users"][newParticipant] = {}
 
-							link = self.newRandomID()
-							self.db["users"][newParticipant][service] = newGroupID
-							self.db["groups"][newGroupID] = {"service":service, "invite":invite, "link":link, "user":newParticipant, "links":{}}
-							#
-							# if "links" not in self.db["groups"][target]:
-							# 	self.db["groups"][target]["links"] = {}
-							#
-							linkDataGroup = {"service":service, "chatID":newGroupID, "answer":"", "invite":invite, "user":newParticipant}
-							self.db["groups"][newGroupID]["links"][link] = linkDataGroup
-							self.links[link] = linkDataGroup
+								link = self.newRandomID()
+								self.db["users"][newParticipant][service] = newGroupID
+								self.db["groups"][newGroupID] = {"service":service, "invite":invite, "link":link, "user":newParticipant, "links":{}}
+								#
+								# if "links" not in self.db["groups"][target]:
+								# 	self.db["groups"][target]["links"] = {}
+								#
+								linkDataGroup = {"service":service, "chatID":newGroupID, "answer":"", "invite":invite, "user":newParticipant}
+								self.db["groups"][newGroupID]["links"][link] = linkDataGroup
+								self.links[link] = linkDataGroup
 
-							print(newParticipant," IS NOW REGISTED",firstKey,invite)
+								print(newParticipant," IS NOW REGISTED",firstKey,invite)
 
-							# chatName = self.master.services[service]["obj"].name
-							# welcome = "Thank you for Subscribing to "+chatName
-							welcome = self.services[service]["obj"].welcome #A
-							obj = None
-							if "obj" in self.services[service]:
-								obj = self.services[service]["obj"]
+								# chatName = self.master.services[service]["obj"].name
+								# welcome = "Thank you for Subscribing to "+chatName
+								welcome = self.services[service]["obj"].welcome #A
+								obj = None
+								if "obj" in self.services[service]:
+									obj = self.services[service]["obj"]
 
-							toAdd = ""
-							if obj is not None:
-								if len(obj.examples) > 0:
-									toAdd += "\n\n"
-									toAdd += "See Examples:\n"
-									for example in obj.examples:
-										key = example
-										answer = key
-										text = ""
-										if "answer" in obj.examples[key]:
-											answer = obj.examples[key]["answer"]
-										if "text" in obj.examples[key]:
-											text = obj.examples[key]["text"]
-										toAdd += "*"+answer+"* : "+text+"\n"
-										toAdd += self.baseURL + link +"/"+key + "\n\n"
-								obj.welcomeUser(newGroupID)
-							self.driver.sendMessage(newGroupID, welcome+toAdd)
-
-							self.backup(now = True)
-							self.runningSubscriptions-=1
+								toAdd = ""
+								if obj is not None:
+									if len(obj.examples) > 0:
+										toAdd += "\n\n"
+										toAdd += "See Examples:\n"
+										for example in obj.examples:
+											key = example
+											answer = key
+											text = ""
+											if "answer" in obj.examples[key]:
+												answer = obj.examples[key]["answer"]
+											if "text" in obj.examples[key]:
+												text = obj.examples[key]["text"]
+											toAdd += "*"+answer+"* : "+text+"\n"
+											toAdd += self.baseURL + link +"/"+key + "\n\n"
+									obj.welcomeUser(newGroupID)
+								self.driver.sendMessage(newGroupID, welcome+toAdd)
+								goBackup = True
+								self.runningSubscriptions-=1
+						else:
+							self.db["availableChats"][service].pop(delChat)
+							goBackup = True
 
 					if len(self.db["availableChats"][service]) < minAvailable:
 						self.masterService.createGroup([None,None,None], service = service)
@@ -387,6 +396,9 @@ class Master(object):
 			except Exception as e:
 				print("EEEEEEEEEEEEEEEE checking available groups",e)
 				traceback.print_exc()
+
+			if goBackup:
+				self.backup(now = True)
 
 			time.sleep(1)
 
