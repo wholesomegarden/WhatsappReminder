@@ -3,17 +3,19 @@
 import time
 import json
 import requests
+import traceback
 
 class SupertoolsService(object):
 	id = "Supertools"
 	name = "🚀Supertools🚀"
-	welcome = "Welcome to Echo! Service \nWe echo what you send..."
+	welcome = "ברוכים הבאים *לסופרטולז לוואטסאפ!* 🚀 \nחדשים כאן? >> תרשמו לסופרטולז אונבורדינג:\nhttps://mailchi.mp/3b8bd6eb28cd/st10\n\nסופרטולז היא קהילה שנועדה לאגד אנשים שרוצים כוחות־על בעולם דיגיטלי. כאלה שרוצים להפוך לצבא של איש אחד דרך כלים טכנולוגיים משני־חיים. כאלה שרוצים להטמיע את אותם כלים כאן ועכשיו. בלי כל הדיבורים באוויר.\n\nכל פוסט חדש שעולה לסופרטולז ישלח כאן בקבוצה :)"
 	help = "send a message to get it back"
 	imageurl = "https://scontent.ftlv6-1.fna.fbcdn.net/v/t1.0-9/s960x960/90941246_10158370682234287_4145441832110653440_o.jpg?_nc_cat=110&ccb=2&_nc_sid=825194&_nc_ohc=8s_3FhJStQUAX-yKU8c&_nc_ht=scontent.ftlv6-1.fna&tp=7&oh=cc43986a0035414deb90a706d7b7fc2b&oe=602D4239"
-	shortDescription = "Echo Echo Echo"
+	shortDescription = "קבלו את הפוסטים ישר לווטסאפ"
 	share = None
 	db = {}
-	examples = {"services":{"text":"Show Public Services","thumbnail":None}}
+	examples = {}
+	# examples = {"services":{"text":"Show Public Services","thumbnail":None}}
 
 	def __init__(self, db, api):
 		SupertoolsService.share = self
@@ -81,8 +83,14 @@ class SupertoolsService(object):
 
 		while(True):
 			backup = False
+			siteDB = {}
+			try:
+				print("getting permalinks")
+				siteDB = self.getPermalinks()
+				print("got permalinks", len(siteDB), list(siteDB.keys()))
+			except:
+				traceback.print_exc()
 
-			siteDB = self.getPermalinks()
 			linksToPush = {}
 			for link in siteDB:
 				# print(self.db)
@@ -104,8 +112,13 @@ class SupertoolsService(object):
 				# print("##########################",self.db)
 				# print("##########################",self.db)
 				if link not in self.db["permalinks"]:
+					print("NEW PERMALINK",link)
+					print("NEW PERMALINK",link)
+					print("NEW PERMALINK",link)
+					print("NEW PERMALINK",link)
+					print("NEW PERMALINK",link)
 					linksToPush[link] = siteDB[link]
-					self.db["permalinks"][link] = siteDB[link]
+					self.db["permalinks"][link] = link
 					backup = True
 
 			while(len(linksToPush)>0):

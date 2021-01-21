@@ -27674,3 +27674,35 @@ JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1
 Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
+1611187709958	geckodriver	INFO	Listening on 127.0.0.1:44279
+1611187711039	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofile42J4GJ"
+
+(firefox:32093): Gtk-WARNING **: 02:08:31.916: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32172): Gtk-WARNING **: 02:08:35.485: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32192): Gtk-WARNING **: 02:08:35.863: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611187718767	Marionette	INFO	Listening on port 45453
+1611187718946	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/, line 198: unreachable code after return statement
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1611187762718	geckodriver	INFO	Listening on 127.0.0.1:56439
+1611187762744	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileGb2a7v"
+
+(firefox:32464): Gtk-WARNING **: 02:09:23.121: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32546): Gtk-WARNING **: 02:09:26.448: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+
+(/usr/lib/firefox/firefox:32566): Gtk-WARNING **: 02:09:26.936: Theme parsing error: gtk.css:3601:22: 'none' is not a valid color name
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1611187770076	Marionette	INFO	Listening on port 40435
+1611187770246	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/app.eb2b27c260683f39a1e0.js, line 1: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/, line 198: unreachable code after return statement
+JavaScript warning: https://web.whatsapp.com/, line 198: unreachable code after return statement
