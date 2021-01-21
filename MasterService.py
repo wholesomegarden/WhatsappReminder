@@ -223,7 +223,7 @@ class MasterService(object):
 					if obj is not None:
 						if len(obj.examples) > 0:
 							toAdd += "\n\n"
-							toAdd += "See Examples:\n"
+							toAdd += "See Examples: (click the link or type)\n"
 							for example in obj.examples:
 								key = example
 								answer = key
