@@ -80,6 +80,8 @@ class SupertoolsService(object):
 			print("##########################",self.db)
 			print("##########################",self.db)
 			print("##########################",self.db)
+
+		# Give time for DB to load properly
 		time.sleep(10)
 		while(True):
 			backup = False
@@ -174,7 +176,7 @@ class SupertoolsService(object):
 			self.db["users"] = {}
 		if origin not in self.db["users"]:
 			# self.api.send(origin, "YO!")
-			self.db["users"][origin] = newOrigin
+			self.db["users"][origin] = origin
 			self.backup()
 
 	def backup(self):
