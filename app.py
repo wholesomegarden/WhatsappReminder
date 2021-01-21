@@ -80,7 +80,7 @@ class Master(object):
 		asyncInit = Thread(target = self.initAsync,args = [profileDir])
 		asyncInit.start()
 
-	def inviteToService(self, service = "Master" ,beta = " (Beta)", noImage = True, fromChat = None):
+	def inviteToService(self, service = "Master" ,beta = " (Beta)", noImage = True, fromChat = None, public = False):
 		if service in self.services and "obj" in self.services[service] and self.services[service]["obj"] is not None:
 
 			print("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSs",service)
@@ -99,7 +99,7 @@ class Master(object):
 			# image = self.download_image(pic_url=obj.imageurl)
 			text = ""
 			link = "https://"+self.baseURL
-			if fromChat is not None and fromChat in self.db["groups"] and self.db["groups"][fromChat] is not None and "link" in self.db["groups"][fromChat] and self.db["groups"][fromChat]["link"] is not None:
+			if not public and fromChat is not None and fromChat in self.db["groups"] and self.db["groups"][fromChat] is not None and "link" in self.db["groups"][fromChat] and self.db["groups"][fromChat]["link"] is not None:
 				noImage = False
 				text = "Join "+groupName+ beta
 				link += self.db["groups"][fromChat]["link"] + "/="+service.lower()

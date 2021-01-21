@@ -4,7 +4,7 @@ import time
 class InnovationService(object):
 	id = "Innovation"
 	name = "✨Innovation✨"
-	welcome = "Welcome to ✨WhatsappMaster Innovation Channel✨ !\nאם הגעתם כי יש לכם בקשה או רעיון, אם הגעתם כדי להשקיע, ואם החברה שלכם תשמח להשתמש בווטסאפ אצלה במערכת\nמוזמנים לכתוב לי ונדבר על זה!\nתודה רבה על התעניינות, באהבה גדולה,\nתמי"
+	welcome = "Welcome to ✨WhatsappMaster Innovation Channel✨ !\nבין אם הגעתם כי יש לכם בקשה או רעיון, או הגעתם כדי להשקיע, אם החברה שלכם תשמח להשתמש בווטסאפ אצלה במערכת או פשוט יש לכם שאלה\nמוזמנים לכתוב לי ונדבר על זה!\nתודה רבה על התעניינות, באהבה גדולה,\nתמי🌀"
 	help = "send a message to get it back"
 	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnPIAyp1vEo_mbJy_xyAC0fy4hSVA6tjLqrg&usqp=CAU"
 	shortDescription = "יש לכם רעיון שיעבוד טוב בווטסאפ?! כתבי לי כאן"

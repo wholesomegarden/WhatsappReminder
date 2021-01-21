@@ -26,7 +26,7 @@ class ReminderService():
 	welcome =  "*Welcome to Reminders 🔔 Service*\nYou can now send a message and we will *send* you a reminder :)\n*שלחו* הודעה ואנחנו כבר נזכיר לכם :)"
 	help = "Reminders help message"
 	shortDescription = "Get your reminders as whatsapp messages!"
-	imageurl = "https://cdn4.iconfinder.com/data/icons/conversation-3/100/Reminder-512.png"
+	imageurl = "https://i.pinimg.com/originals/f9/e5/d2/f9e5d2f17f4cb6d050fea1a7f7a874fd.png"
 
 	share = None
 

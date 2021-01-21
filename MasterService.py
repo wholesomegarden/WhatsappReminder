@@ -73,7 +73,7 @@ class MasterService(object):
 		time.sleep(1.5)
 		for service in self.master.publicServices:
 			time.sleep(0.2)
-			text, thumb = self.master.inviteToService(service=service,fromChat = chatID)
+			text, thumb = self.master.inviteToService(service=service,fromChat = chatID, public = True)
 			print("TTTTTTTTTTTTTTTTTT")
 			print(text, thumb)
 			self.master.sendMessage(chatID, text, thumbnail = thumb)
