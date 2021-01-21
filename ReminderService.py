@@ -651,3 +651,12 @@ class ReminderService():
 		user.lastRem = rem
 
 		return rem
+		
+	def welcomeUser(self, newOrigin):
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		if origin not in self.db["users"]:
+			self.db["users"][origin] = origin
+			self.backup()

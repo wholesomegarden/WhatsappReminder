@@ -12,6 +12,15 @@ class ExperimentalService(object):
 
 	examples = {"services":{"text":"Show Public Services","thumbnail":None}}
 
+	def welcomeUser(self, newOrigin):
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		if origin not in self.db["users"]:
+			self.db["users"][origin] = origin
+			self.backup()
+			
 	def __init__(self,db, api, master):
 		ExperimentalService.share = self
 

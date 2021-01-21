@@ -7,12 +7,13 @@ from ReminderService import *
 from MusicService import *
 from MasterService import *
 from ExperimentalService import *
+from SupertoolsService import *
 
 from threading import Thread
 
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, genLink, list = ["Master","Echo", "Danilator", "Reminders", "Music", "Experimental"], master = None):
+    def LoadServices(send, backup, genLink, list = ["Master","Echo", "Danilator", "Reminders", "Music", "Experimental", "Supertools"], master = None):
         services = {}
         for service in list:
             if service is "Master" or service is "Experimental":
@@ -37,6 +38,8 @@ class ServiceLoader(object):
             foundServiceClass = MasterService
         if service is "Experimental":
             foundServiceClass = ExperimentalService
+        if service is "Supertools":
+            foundServiceClass = SupertoolsService
 
         if foundServiceClass is not None:
             api = API(service, send, backup, genLink)
@@ -53,6 +56,8 @@ class ServiceLoader(object):
     def startServiceAsync(data):
         service_class, db, api, master = data
         if master is None:
-            service_class(db, api).go()
+            x = service_class(db, api)
+            x.go()
         else:
-            service_class(db,api,master).go()
+            x = service_class(db,api,master)
+            x.go()

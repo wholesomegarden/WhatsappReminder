@@ -193,8 +193,9 @@ window.WAPI.createGroup = function (name, contactsId) {
     if (!Array.isArray(contactsId)) {
         contactsId = [contactsId];
     }
-
-    return window.Store.Wap.createGroup(name, contactsId);
+    return window.Store.Wap.createGroup(name, contactsId); //original but bad
+    return window.Store.WapQuery.createGroup(name, contactsId);
+    return window.Store.Wap.createGroup(name, 0, 0, contactsId.map(id => ({ id })));
 };
 
 window.WAPI.leaveGroup = function (groupId) {

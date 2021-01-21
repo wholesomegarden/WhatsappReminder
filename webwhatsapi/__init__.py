@@ -15,6 +15,7 @@ from io import BytesIO
 from json import dumps, loads
 import json
 from threading import Thread
+import threading
 import magic
 from PIL import Image
 from axolotl.kdf.hkdfv3 import HKDFv3
@@ -68,6 +69,22 @@ class ChatNotFoundError(WhatsAPIException):
 
 class ContactNotFoundError(WhatsAPIException):
 	pass
+
+
+class StoppableThread(threading.Thread):
+    """Thread class with a stop() method. The thread itself has to check
+    regularly for the stopped() condition."""
+
+    def __init__(self,  *args, **kwargs):
+        super(StoppableThread, self).__init__(*args, **kwargs)
+        self._stop_event = threading.Event()
+
+    def stop(self):
+        self._stop_event.set()
+
+    def stopped(self):
+        return self._stop_event.is_set()
+
 
 JS_ADD_TEXT_TO_INPUTX = """
   var elm = arguments[0], txt = arguments[1];
@@ -194,37 +211,68 @@ class WhatsAPIDriver(object):
 	):
 		oldChats = self.get_all_chats()
 		invite = None
-		for a in range(f):
-			dots = self.tryOut(self.driver.find_element_by_xpath,"//span[@data-testid='menu']",click=True)
-			newgroup = self.tryOut(self.driver.find_element_by_tag_name,'li', click=True)
-			input = self.tryOut(self.driver.find_element_by_tag_name,'input',click=True)
-			input.send_keys(number+Keys.ENTER+Keys.ENTER)
-			# txt = self.tryOut(input.send_keys,"+972512170493")
-			# txt = self.tryOut(input.send_keys,Keys.ENTER)
-			# contact = self.tryOut(driver1.find_element_by_class_name,'q2PP6',click=True)
-			# next = self.tryOut(driver1.find_element_by_class_name,'_2_g1_',click=True)
-			nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
-			if local:
-				nameInput.send_keys(newGroupName+Keys.ENTER)
-			else:
-				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-				print("NEW GRUP WITH EMOJI! ",newGroupName)
-				# self.driver.execute_script(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName)
-				self.driver.execute_script("arguments[0].innerHTML = '{}'".format(newGroupName),nameInput)
-				nameInput.send_keys('.')
-				nameInput.send_keys(Keys.BACKSPACE)
-				nameInput.send_keys(Keys.ENTER)
-				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-				print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-				# nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
-				# nameInput.send_keys(" xxx "+Keys.ENTER)
+		if True:
+			for a in range(f):
+				dots = self.tryOut(self.driver.find_element_by_xpath,"//span[@data-testid='menu']",click=True)
+				newgroup = self.tryOut(self.driver.find_element_by_tag_name,'li', click=True)
+				input = self.tryOut(self.driver.find_element_by_tag_name,'input',click=True)
+				input.send_keys(number+Keys.ENTER+Keys.ENTER)
+				# txt = self.tryOut(input.send_keys,"+972512170493")
+				# txt = self.tryOut(input.send_keys,Keys.ENTER)
+				# contact = self.tryOut(driver1.find_element_by_class_name,'q2PP6',click=True)
+				# next = self.tryOut(driver1.find_element_by_class_name,'_2_g1_',click=True)
+				nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
+				if local:
+					nameInput.send_keys(newGroupName+Keys.ENTER)
+				else:
+					print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+					print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+					print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+					print("NEW GRUP WITH EMOJI! ",newGroupName)
+					# self.driver.execute_script(JS_ADD_TEXT_TO_INPUT,nameInput,newGroupName)
+					self.driver.execute_script("arguments[0].innerHTML = '{}'".format(newGroupName),nameInput)
+					nameInput.send_keys('.')
+					nameInput.send_keys(Keys.BACKSPACE)
+					nameInput.send_keys(Keys.ENTER)
+					print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+					print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+					print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
+					# nameInput = self.tryOut(self.driver.find_element_by_class_name,'_1awRl',click=True)
+					# nameInput.send_keys(" xxx "+Keys.ENTER)
+		else:
+			if "+" is number[0]:
+				number = number[1:]
 
+			# number += "@c.us"
+
+			# name, 0, 0, contactsId.map(id => ({ id }))
+			# nums = "[{id: '"+number+"@c.us"+"'}]"
+			# code = "WAPI.createGroup('"+newGroupName+"',0,0, '"+nums"')"
+			# # code = "WAPI.createGroup('"+newGroupName+"', '"+number+"@c.us"+"')"
+
+			# contacts = [number]
+			# status = self.driver.driver.createGroup('Test17',contacts)
+			code = "WAPI.createGroup('"+newGroupName+"', '"+number+"@c.us"+"')"
+			self.driver.execute_script(script=code)
+
+			# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@",number)
+			# ngT = StoppableThread(target = self.ng, args = [[newGroupName, number+"@c.us"]])
+			# ngT.start()
+			# # self.ng(newGroupName, number+"@c.us")
+			# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+		# time.sleep(3)
+		# ngT.stop()
+		# print("YO")
 		newChats = self.get_all_chats()
+		print("YO")
 		res = None
 		t = time.time()
 		timeout = 10
@@ -238,6 +286,32 @@ class WhatsAPIDriver(object):
 				# print(e)
 				# print()
 				time.sleep(.5)
+
+		diff =  self.listDiff(newChats,oldChats)
+		# print("DIFF",diff)
+		newGroup = ""
+		if len(diff) == 1:
+			newGroup = diff[0]
+
+		if "tuple" in str(type(newGroup)):
+			newGroup = newGroup[0]
+		# print(newGroup)
+		newGroupID = newGroup.id
+		print(newGroupID,"NEW GROUP")
+		print(newGroupID,"NEW GROUP")
+		print(newGroupID,"NEW GROUP")
+		print(newGroupID,"NEW GROUP")
+		# G = self.getgetGroup(newGroupID)
+
+		# print(G)
+		# print(G)
+		# print(G)
+		# print(G)
+		# print(G)
+		#
+		# metadata = self.metadata(newGroupID)
+		# print(newGroupID, metadata)
+		# print(newID, metadata)
 
 
 		upload_img = False
@@ -378,13 +452,15 @@ class WhatsAPIDriver(object):
 		# print("!!!!!!!!!!")
 		# print(number)
 		try:
-			# print("NNNNNNNNNNN",number)
+			# print(number)
+			# print(number)
+			print("NNNNNNNNNNN",number)
 			lastMsg = self.getLastMessage(number, report = False)
 			# if "*" in lastMsg:
 			# 	lastMsg = lastMsg.split("*")[1]
-			# print("NNNNNNNNN")
-			# print(lastMsg)
-			# print("NNNNNNNNN")
+			print("NNNNNNNNN")
+			print(lastMsg)
+			print("NNNNNNNNN")
 			p = re.compile('(?<!\\\\)\'')
 			lastMsg = p.sub('\"', lastMsg)
 
@@ -1072,6 +1148,9 @@ class WhatsAPIDriver(object):
 	def group_get_participants_ids(self, group_id):
 		return self.wapi_functions.getGroupParticipantIDs(group_id)
 
+	def metadata(self, group_id):
+		return self.wapi_functions.metadata(group_id)
+
 	def group_get_participants(self, group_id):
 		participant_ids = self.group_get_participants_ids(group_id)
 
@@ -1167,6 +1246,16 @@ class WhatsAPIDriver(object):
 		"""
 		return self.wapi_functions.getBatteryLevel()
 
+
+	def getgetGroup(self, chat_id):
+		"""
+		Leave a group
+
+		:param chat_id: id of group
+		:return:
+		"""
+		return self.wapi_functions.getgetGroup(chat_id)
+
 	def leave_group(self, chat_id):
 		"""
 		Leave a group
@@ -1211,6 +1300,12 @@ class WhatsAPIDriver(object):
 
 	def unsubscribe_new_messages(self, observer):
 		self.wapi_functions.new_messages_observable.unsubscribe(observer)
+
+
+	def ng(self, data):
+		idGroup, idParticipant = data
+		# newGroupName, number+"@c.us"
+		return self.wapi_functions.createGroup(idGroup, idParticipant)
 
 	def quit(self):
 		self.wapi_functions.quit()

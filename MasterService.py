@@ -650,7 +650,14 @@ class MasterService(object):
 	def Nothing(data):
 		print(":::Nothign::: DATA=",data)
 
-
+	def welcomeUser(self, newOrigin):
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		if origin not in self.db["users"]:
+			self.db["users"][origin] = origin
+			self.backup()
 	# def ProcessIncoming0(self, data):
 	# 	print(
 	# 	'''
@@ -957,8 +964,8 @@ class MasterService(object):
 	# def ProcessService0(self, data):
 		# try:
 		# service, chatID, text = data
-		obj, info = data
-		obj.process(info)
+		# obj, info = data
+		# obj.process(info)
 		# self.serviceFuncs["services"][service](chatID, text)
 
 		# except Exception as e:

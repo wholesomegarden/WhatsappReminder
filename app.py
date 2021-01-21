@@ -370,7 +370,9 @@ class Master(object):
 											text = obj.examples[key]["text"]
 										toAdd += "*"+answer+"* : "+text+"\n"
 										toAdd += self.baseURL + link +"/"+key + "\n\n"
+								obj.welcomeUser(newGroupID)
 							self.driver.sendMessage(newGroupID, welcome+toAdd)
+
 							self.backup(now = True)
 							self.runningSubscriptions-=1
 
@@ -452,7 +454,12 @@ class Master(object):
 		if service in self.services:
 			if self.services[service]["api"] is api:
 				if target in self.db["groups"] and "service" in self.db["groups"][target] and service.lower() == self.db["groups"][target]["service"].lower():
-
+					print("THUMB")
+					print("THUMB")
+					print("THUMB")
+					print("THUMB")
+					print("THUMB")
+					print(thumbnail)
 					return self.sendMessage(target, content, thumbnail=thumbnail, service = service)
 
 

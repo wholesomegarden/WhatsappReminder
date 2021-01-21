@@ -76,3 +76,12 @@ class EchoService(object):
 	def updateDB(self, db):
 		self.db = db
 		# self.db = User.jsonUsersToUsers(db)
+		
+	def welcomeUser(self, newOrigin):
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
+		if origin not in self.db["users"]:
+			self.db["users"][origin] = origin
+			self.backup()
