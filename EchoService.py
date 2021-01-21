@@ -76,8 +76,8 @@ class EchoService(object):
 	def updateDB(self, db):
 		self.db = db
 		# self.db = User.jsonUsersToUsers(db)
-		
-	def welcomeUser(self, newOrigin):
+
+	def welcomeUser(self, origin):
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")

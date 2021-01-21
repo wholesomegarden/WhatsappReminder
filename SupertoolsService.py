@@ -165,16 +165,16 @@ class SupertoolsService(object):
 		# self.db["upcoming"].append([origin, sendBack])
 		# self.api.send(origin, "WELCOME "+user)
 
-	def welcomeUser(self, newOrigin):
+	def welcomeUser(self, origin):
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		if "users" not in self.db:
 			self.db["users"] = {}
-		if newOrigin not in self.db["users"]:
-			self.api.send(newOrigin, "YO!")
-			self.db["users"][newOrigin] = newOrigin
+		if origin not in self.db["users"]:
+			# self.api.send(origin, "YO!")
+			self.db["users"][origin] = newOrigin
 			self.backup()
 
 	def backup(self):

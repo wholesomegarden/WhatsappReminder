@@ -651,8 +651,8 @@ class ReminderService():
 		user.lastRem = rem
 
 		return rem
-		
-	def welcomeUser(self, newOrigin):
+
+	def welcomeUser(self, origin):
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")

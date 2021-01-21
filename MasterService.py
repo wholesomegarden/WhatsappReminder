@@ -650,7 +650,7 @@ class MasterService(object):
 	def Nothing(data):
 		print(":::Nothign::: DATA=",data)
 
-	def welcomeUser(self, newOrigin):
+	def welcomeUser(self, origin):
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")

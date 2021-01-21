@@ -1,25 +1,25 @@
 #Service.py
 import time
 
-class InovationService(object):
-	id = "Inovation"
-	name = "✨Inovation✨"
-	welcome = "Welcome to ✨WhatsappMaster Inovation Channel✨ !\nאם הגעתם כי יש לכם בקשה או רעיון, אם הגעתם כדי להשקיע, ואם החברה שלכם תשמח להשתמש בווטסאפ אצלה במערכת\nמוזמנים לכתוב לי ונדבר על זה!\nתודה רבה על התעניינות, באהבה גדולה,\nתמי"
+class InnovationService(object):
+	id = "Innovation"
+	name = "✨Innovation✨"
+	welcome = "Welcome to ✨WhatsappMaster Innovation Channel✨ !\nאם הגעתם כי יש לכם בקשה או רעיון, אם הגעתם כדי להשקיע, ואם החברה שלכם תשמח להשתמש בווטסאפ אצלה במערכת\nמוזמנים לכתוב לי ונדבר על זה!\nתודה רבה על התעניינות, באהבה גדולה,\nתמי"
 	help = "send a message to get it back"
-	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmaJKloEMiBpQRA9woJw4XnuWXCWeN2BO70w&usqp=CAU"
+	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnPIAyp1vEo_mbJy_xyAC0fy4hSVA6tjLqrg&usqp=CAU"
 	shortDescription = "יש לכם רעיון שיעבוד טוב בווטסאפ?! כתבי לי כאן"
 	share = None
 
 	examples = {}
 
 	def __init__(self,db, api):
-		InovationService.share = self
+		InnovationService.share = self
 
 		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 		# print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Inovation",InovationService.share)
+		print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Innovation",InnovationService.share)
 		self.db = db
 		self.api = api
 		if "upcoming" not in self.db:
@@ -67,7 +67,7 @@ class InovationService(object):
 		self.db = db
 		# self.db = User.jsonUsersToUsers(db)
 
-	def welcomeUser(self, newOrigin):
+	def welcomeUser(self, origin):
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
 		print("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW")
