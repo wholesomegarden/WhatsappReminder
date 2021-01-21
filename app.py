@@ -105,6 +105,7 @@ class Master(object):
 				link += self.db["groups"][fromChat]["link"] + "/="+service.lower()
 
 			else:
+				noImage = False
 				text = "Enjoying "+groupName+ " ?!"
 				link += "join" + serviceInvite
 			text +="\n" + link
