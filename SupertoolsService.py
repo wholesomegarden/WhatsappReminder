@@ -127,7 +127,7 @@ class SupertoolsService(object):
 					text, thumb = self.formatPost(next)
 					self.api.send(user,text,thumb)
 
-			if backup and len(self.db["users"]>0):
+			if backup and len(self.db["users"])>0:
 				self.backup()
 
 			time.sleep(60)
