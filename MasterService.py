@@ -28,7 +28,8 @@ class MasterService(object):
 	name = "✨WhatsappMaster✨"
 	welcome = "Welcome to ✨WhatsappMaster✨ \nCheck out our services!"
 	help = "send a message to get it back"
-	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmaJKloEMiBpQRA9woJw4XnuWXCWeN2BO70w&usqp=CAU"
+	# imageurl = "https://businesstech.co.za/news/wp-content/uploads/2020/09/WhatsApp-logo.png"
+	imageurl = "https://www.nicepng.com/png/detail/5-52288_colores-del-logo-de-whatsapp-whatsapp-icon-red.png"
 	shortDescription = "Whatsapp Service Platform"
 	share = None
 
@@ -196,8 +197,8 @@ class MasterService(object):
 
 
 					imagepath = path
-					newGroup, groupInvite = self.master.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = self.runLocal, image=imagepath)
-					newGroupID = newGroup.id
+					newGroupID, groupInvite = self.master.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = self.runLocal, image=imagepath)
+					# newGroupID = newGroup.id
 
 					self.newG = newGroupID
 
@@ -351,7 +352,9 @@ class MasterService(object):
 
 		groupName = service
 		path = self.download_image()
+		obj = None
 		if service in self.master.services and "obj" in self.master.services[service] and self.master.services[service]["obj"] is not None:
+			obj = self.master.services[service]["obj"]
 			groupName = self.master.services[service]["obj"].name
 			imageurl = self.master.services[service]["obj"].imageurl
 			if imageurl is not None:
@@ -360,8 +363,8 @@ class MasterService(object):
 
 
 		imagepath = path
-		newGroup, groupInvite = self.master.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = self.runLocal, image=imagepath)
-		newGroupID = newGroup.id
+		newGroupID, groupInvite = self.master.driver.newGroup(newGroupName = groupName, number = "+"+senderID.split("@")[0], local = self.runLocal, image=imagepath)
+		# newGroupID = newGroup.id
 		welcome = "WELCOME TO WHATSAPP MASTER"
 
 		self.newG = newGroupID
@@ -376,12 +379,17 @@ class MasterService(object):
 		# ===============================================
 		# '''
 		# )
-		if chatID is not None:
-			res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Creating empty group: "+groupName+" \n"+str(groupInvite)+"\nCheck it out :)")
 		# self.master.driver.sendMessage(senderID,"Thank you! you are now subscribed to: "+chatName+" \n"+str(groupInvite)+"\nPlease check your new group :)")
 
-		self.master.driver.sendMessage(newGroupID,welcome)
-
+		if obj is not None:
+			# print("WAIT 5")
+			# time.sleep(1)
+			# imageurl = "https://scontent.ftlv6-1.fna.fbcdn.net/v/t1.0-9/s960x960/90941246_10158370682234287_4145441832110653440_o.jpg?_nc_cat=110&ccb=2&_nc_sid=825194&_nc_ohc=8s_3FhJStQUAX-yKU8c&_nc_ht=scontent.ftlv6-1.fna&tp=7&oh=cc43986a0035414deb90a706d7b7fc2b&oe=602D4239"
+			#
+			# time.sleep(5)
+			# self.master.setGroupIcon(newGroupID, obj.imageurl)
+			# print("WAIT 5")
+			pass
 		if masterGroup:
 			if "availableChats" not in self.master.db:
 				self.master.db["availableChats"] = {}
@@ -391,12 +399,27 @@ class MasterService(object):
 			# self.master.driver.remove_participant_group(newGroupID,senderID+"@c.us")
 			code = "WAPI.removeParticipantGroup('"+newGroupID+"', '"+senderID+"@c.us"+"')"
 			self.master.driver.driver.execute_script(script=code)
+
+			if obj is not None:
+				imageurl = obj.imageurl
+				# imageurl = "https://aux2.iconspalace.com/uploads/whatsapp-flat-icon-256.png"
+				# imageurl = ""
+				self.master.setGroupIcon(newGroupID, imageurl)
+
+
 			# time.sleep(1)
+			# code = "WAPI.getMetadata('"+newGroupName+"', '"+number+"@c.us"+"')"
+
+			# time.sleep(10)
+			self.master.driver.sendMessage(newGroupID,welcome)
 			print("##############################")
 			self.master.db["availableChats"][service][newGroupID] = groupInvite
 			print("##############################")
 			print(self.master.db["availableChats"])
 			# self.waitForNewParticipant(newGroupID)
+		if chatID is not None:
+			res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Creating empty group: "+groupName+" \n"+str(groupInvite)+"\nCheck it out :)")
+
 
 		self.master.backup()
 
@@ -424,7 +447,7 @@ class MasterService(object):
 	def ProcessChat(self,message):
 		print("MMMMMMMMMMX",message.content)
 		chatID = ""
-		if self.runLocal:
+		if self.runLocal and False: #for firefox
 			chatID = message.chat_id["_serialized"]
 		else:
 			chatID = message.chat_id
@@ -582,51 +605,52 @@ class MasterService(object):
 		if number is None:
 			number = self.master.db["id"]
 		return self.master.driver.loadDB(number = number)
-
-	def backupService(self, db = None, service = None, api = None):
-		data = [db,service]
-		# self.backupServiceAsync(data)
-		if service in self.master.services:
-			if self.master.services[service]["api"] is api:
-				bT = Thread(target = self.backupServiceAsync,args = [data])
-				bT.start()
-
-	def backupServiceAsync(self,data):
-		time.sleep(self.master.db["backupDelay"])
-		db, service = data
-		print("SSSSSSSSS",service,db)
-		if time.time() - self.master.db["lastBackupServices"] < self.master.db["backupInterval"]:
-			return False
-
-		if service is None or len(service) == 0:
-			return None
-
-		backupChat = None
-		if service in self.master.db["servicesDB"]:
-			chatID = self.master.db["servicesDB"][service]["dbID"]
-			if chatID is not None:
-				bchat = None
-				try:
-					bchat = self.master.driver.getChat(chatID)
-				except Exception as e:
-					print(" ::: ERROR - COULD NOT GET BACKUPCHAT",e," ::: ","\n")
-				if bchat is not None:
-					print("FFFFFFFFFFFFFFFUCKKK")
-					# self.master.driver.sendMessage(chatID,"FFFFFFFFFFFFFFFUCKKK")
-
-					backupChat = chatID
-			else:
-				print(" ::: ERROR - SERVICE HAS NO BACKUPCHAT"+" ::: ","\n")
-
-
-		if backupChat is not None:
-			if db is not None:
-				return self.master.driver.updateDB(db,number=backupChat)
-			else:
-				return self.loadDB(backupChat)
-		else:
-			print(" ::: ERROR - BackupChat NOT FOUND for :"+service+": service ::: \n")
-		self.master.db["lastBackupServices"] = time.time()
+	#
+	# def backupService(self, db = None, service = None, api = None):
+	# 	data = [db,service]
+	# 	# self.backupServiceAsync(data)
+	# 	if service in self.master.services:
+	# 		if self.master.services[service]["api"] is api:
+	# 			bT = Thread(target = self.backupServiceAsync,args = [data])
+	# 			bT.start()
+	#
+	# def backupServiceAsync(self,data):
+	# 	time.sleep(self.master.db["backupDelay"])
+	# 	db, service = data
+	# 	print("SSSSSSSSS",service,db)
+	# 	if time.time() - self.master.db["lastBackupServices"] < self.master.db["backupInterval"]:
+	# 		return False
+	#
+	# 	if service is None or len(service) == 0:
+	# 		return None
+	#
+	# 	backupChat = None
+	# 	if service in self.master.db["servicesDB"]:
+	# 		chatID = self.master.db["servicesDB"][service]["dbID"]
+	# 		if chatID is not None:
+	# 			bchat = None
+	# 			try:
+	# 				bchat = self.master.driver.getChat(chatID)
+	# 			except Exception as e:
+	# 				print(" ::: ERROR - COULD NOT GET BACKUPCHAT",e," ::: ","\n")
+	# 				traceback.print_exc()
+	# 			if bchat is not None:
+	# 				print("FFFFFFFFFFFFFFFUCKKK")
+	# 				# self.master.driver.sendMessage(chatID,"FFFFFFFFFFFFFFFUCKKK")
+	#
+	# 				backupChat = chatID
+	# 		else:
+	# 			print(" ::: ERROR - SERVICE HAS NO BACKUPCHAT"+" ::: ","\n")
+	#
+	#
+	# 	if backupChat is not None:
+	# 		if db is not None:
+	# 			return self.master.driver.updateDB(db,number=backupChat)
+	# 		else:
+	# 			return self.loadDB(backupChat)
+	# 	else:
+	# 		print(" ::: ERROR - BackupChat NOT FOUND for :"+service+": service ::: \n")
+	# 	self.master.db["lastBackupServices"] = time.time()
 
 	# def backup(self, now = None):
 	# 	bT = Thread(target = self.backupAsync,args = [now])

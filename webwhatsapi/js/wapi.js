@@ -21,6 +21,7 @@ if (!window.Store) {
                 { id: "Conn", conditions: (module) => (module.default && module.default.ref && module.default.refTTL) ? module.default : null },
                 { id: "WapQuery", conditions: (module) => (module.queryExist) ? module : ((module.default && module.default.queryExist) ? module.default : null) },
                 { id: "CryptoLib", conditions: (module) => (module.decryptE2EMedia) ? module : null },
+                { id: "GroupInvite", conditions: (module) => (module.queryGroupInviteCode) ? module : null},
                 { id: "OpenChat", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.openChat) ? module.default : null },
                 { id: "UserConstructor", conditions: (module) => (module.default && module.default.prototype && module.default.prototype.isServer && module.default.prototype.isUser) ? module.default : null },
                 { id: "SendTextMsgToChat", conditions: (module) => (module.sendTextMsgToChat) ? module.sendTextMsgToChat : null },
@@ -193,8 +194,9 @@ window.WAPI.createGroup = function (name, contactsId) {
     if (!Array.isArray(contactsId)) {
         contactsId = [contactsId];
     }
-    return window.Store.Wap.createGroup(name, contactsId); //original but bad
     return window.Store.WapQuery.createGroup(name, contactsId);
+    return window.Store.Wap.createGroup(name, contactsId); //original but bad
+    return window.Store.Wap.createGroup(name, 0, 0, contactsId);
     return window.Store.Wap.createGroup(name, 0, 0, contactsId.map(id => ({ id })));
 };
 
@@ -552,6 +554,7 @@ window.WAPI.getGroupMetadata = async function (id, done) {
 };
 
 
+
 /**
  * Fetches group participants
  *
@@ -563,6 +566,44 @@ window.WAPI._getGroupParticipants = async function (id) {
     const metadata = await WAPI.getGroupMetadata(id);
     return metadata.participants;
 };
+
+/**
+ * Fetches group participants
+ *
+ * @param id ID of group
+ * @returns {Promise.<*>} Yields group metadata
+ * @private
+ */
+window.WAPI._getMeta = async function (id) {
+    const metadata = await WAPI.getGroupMetadata(id);
+    return metadata;
+};
+
+
+/**
+ * Fetches IDs of group participants
+ *
+ * @param id ID of group
+ * @param done Optional callback function for async execution
+ * @returns {Promise.<Array|*>} Yields list of IDs
+ */
+window.WAPI.getMetadata0 = async function (id, done) {
+    const output = await WAPI._getMeta(id)
+
+    if (done !== undefined) done(output);
+    return output;
+};
+
+window.WAPI.getMetadata = async function (chatId, done) {
+  var chat = Store.Chat.get(chatId);
+  if (!chat.isGroup) return false;
+  const output = await Store.GroupInvite.queryGroupInviteCode(chat);
+
+  if (done !== undefined) done(`https://chat.whatsapp.com/${chat.inviteCode}`);
+  return `https://chat.whatsapp.com/${chat.inviteCode}`;
+  return `https://chat.whatsapp.com/${chat.inviteCode}`
+}
+
 
 /**
  * Fetches IDs of group participants
@@ -578,6 +619,18 @@ window.WAPI.getGroupParticipantIDs = async function (id, done) {
     if (done !== undefined) done(output);
     return output;
 };
+
+/** Change the icon for the group chat
+ * @param groupId 123123123123_1312313123@g.us The id of the group
+ * @param imgData 'data:image/jpeg;base64,...` The base 64 data uri
+ * @returns boolean true if it was set, false if it didn't work. It usually doesn't work if the image file is too big.
+ */
+window.WAPI.setGroupIcon = async function(groupId, imgData) {
+    const {status} = await Store.WapQuery.sendSetPicture(groupId,imgData,imgData);
+    return status==200;
+}
+
+
 
 window.WAPI.getGroupAdmins = async function (id, done) {
     const output = (await WAPI._getGroupParticipants(id))

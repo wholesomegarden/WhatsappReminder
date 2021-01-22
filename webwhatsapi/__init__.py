@@ -10,6 +10,7 @@ import os
 import time
 import shutil
 import tempfile
+import traceback
 from base64 import b64decode, b64encode
 from io import BytesIO
 from json import dumps, loads
@@ -202,6 +203,20 @@ class WhatsAPIDriver(object):
 		return diffList
 
 
+	def groupIcon(self, group_id, imagepath):
+		print("SETTING GROUP ICON!")
+		# imagepath = self.download_image(pic_url=imageurl)
+		# res = self.driver.set_group_icon(group_id, imagepath)
+		base64 = image = self.convert_to_base64(imagepath,is_thumbnail=True, hardresize=True)
+		code = "WAPI.setGroupIcon('"+group_id+"', '"+base64+"')"
+		res = self.driver.execute_script(script = code)
+		# self.driver.execute_script(script=code)
+		print("SETTING GROUP ICON! SET",str(res))
+
+		return res
+
+
+
 	def newGroup(self,
 	f = 1,
 	newGroupName = 'New Group Name',
@@ -211,8 +226,9 @@ class WhatsAPIDriver(object):
 	):
 		oldChats = self.get_all_chats()
 		invite = None
+		local = False
 
-		if True:
+		if False:
 			for a in range(f):
 				dots = self.tryOut(self.driver.find_element_by_xpath,"//span[@data-testid='menu']",click=True)
 				newgroup = self.tryOut(self.driver.find_element_by_tag_name,'li', click=True)
@@ -254,19 +270,23 @@ class WhatsAPIDriver(object):
 
 			# contacts = [number]
 			# status = self.driver.driver.createGroup('Test17',contacts)
-			code = "WAPI.createGroup('"+newGroupName+"', '"+number+"@c.us"+"')"
-			self.driver.execute_script(script=code)
+
+
+
 
 			# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@",number)
 			# ngT = StoppableThread(target = self.ng, args = [[newGroupName, number+"@c.us"]])
 			# ngT.start()
-			# # self.ng(newGroupName, number+"@c.us")
-			# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+			code = "WAPI.createGroup('"+newGroupName+"', '"+number+"@c.us"+"')"
+			self.driver.execute_script(script=code)
+			# self.ng(newGroupName, number+"@c.us")
+			# print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")(
 			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-			print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
 
 		# time.sleep(3)
 		# ngT.stop()
@@ -296,8 +316,8 @@ class WhatsAPIDriver(object):
 		if "tuple" in str(type(newGroup)):
 			newGroup = newGroup[0]
 		# print(newGroup)
+		print(newGroup,"NEW GROUP")
 		newGroupID = newGroup.id
-		print(newGroupID,"NEW GROUP")
 		print(newGroupID,"NEW GROUP")
 		print(newGroupID,"NEW GROUP")
 		print(newGroupID,"NEW GROUP")
@@ -313,38 +333,35 @@ class WhatsAPIDriver(object):
 		# print(newGroupID, metadata)
 		# print(newID, metadata)
 
+		if False:
+			upload_img = False
+			dotsSide = self.tryOut(self.driver.find_element_by_xpath,"//div[@class='VPvMz']/div/div/div/span[@data-testid='menu']",click=True)
+			groupInfo = self.tryOut(self.driver.find_element_by_xpath,"//li",click=True)
+			# if image is not None and upload_img:
+			# 	print("!!!!!!!")
+			#
+			# 	changePhoto = self.tryOut(self.driver.find_element_by_xpath,"//div[@class='_1huBh']",click=True)
+			# 	# time.sleep(3)
+			# 	# print("!!!!!!!")
+			# 	uploadPicture = self.tryOut(self.driver.find_element_by_xpath,"//div[@title='Upload photo']",click=True)
+			# 	uploadPicture.send_keys(image)
+			# 	# time.sleep(3)
+			# 	# print("!!!!!!!")
+			# 	# uploadPicture.send_keys(image+Keys.ENTER)
 
-		upload_img = False
-		dotsSide = self.tryOut(self.driver.find_element_by_xpath,"//div[@class='VPvMz']/div/div/div/span[@data-testid='menu']",click=True)
-		groupInfo = self.tryOut(self.driver.find_element_by_xpath,"//li",click=True)
-		if image is not None and upload_img:
-			print("!!!!!!!")
-			changePhoto = self.tryOut(self.driver.find_element_by_xpath,"//div[@class='_1huBh']",click=True)
-			# time.sleep(3)
-			# print("!!!!!!!")
-			uploadPicture = self.tryOut(self.driver.find_element_by_xpath,"//div[@title='Upload photo']",click=True)
-			uploadPicture.send_keys(image)
-			# time.sleep(3)
-			# print("!!!!!!!")
-			# uploadPicture.send_keys(image+Keys.ENTER)
-
-		''' try to get invite '''
-		inviteToChat = self.tryOut(self.driver.find_element_by_xpath,"//div[text()='Invite to group via link']",click=True)
-		inviteURL = self.tryOut(self.driver.find_element_by_xpath,"//a[@id='group-invite-link-anchor']",click=True)
-		invite = inviteURL.get_attribute('outerHTML').split("</a>")[0].split(">")[1]
-		back = self.tryOut(self.driver.find_element_by_xpath,"//button[@class='hYtwT']",click=True)
-		back = self.tryOut(self.driver.find_element_by_xpath,"//button[@class='hYtwT']",click=True)
+			''' try to get invite '''
+			inviteToChat = self.tryOut(self.driver.find_element_by_xpath,"//div[text()='Invite to group via link']",click=True)
+			time.sleep(0.3)
+			inviteURL = self.tryOut(self.driver.find_element_by_xpath,"//a[@id='group-invite-link-anchor']",click=True)
+			time.sleep(0.3)
+			invite = inviteURL.get_attribute('outerHTML').split("</a>")[0].split(">")[1]
+			time.sleep(0.3)
+			back = self.tryOut(self.driver.find_element_by_xpath,"//button[@class='hYtwT']",click=True)
+			time.sleep(0.3)
+			back = self.tryOut(self.driver.find_element_by_xpath,"//button[@class='hYtwT']",click=True)
 
 		# xit = self.tryOut(self.driver.find_element_by_xpath,"//button[@data-testid='x']",click=True)
 
-		print("XXXXXXXXXXXXXXXXXX")
-		print("    NEW GROUP     ")
-		print("XXXXXXXXXXXXXXXXXX")
-		print("XXXXXXXXXXXXXXXXXX")
-		print("XXXXXXXXXXXXXXXXXX")
-		print("XXXXXXXXXXXXXXXXXX")
-		print("XXXXXXXXXXXXXXXXXX")
-		print("XXXXXXXXXXXXXXXXXX",invite)
 
 		# invite
 
@@ -354,6 +371,23 @@ class WhatsAPIDriver(object):
 		# print("NEW",len(newChats),newChats)
 		# diff =  self.tryOut(self.dictDiff(newChats,oldChats))
 		diff =  self.listDiff(newChats,oldChats)
+
+		# newGroupID = diff[0]
+		invite = meta = self.metadata(newGroupID)
+		print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+		print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@",meta)
+		print("XXXXXXXXXXXXXXXXXX")
+		print("    NEW GROUP     ")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX")
+		print("XXXXXXXXXXXXXXXXXX",invite)
+		if image is not None:
+			self.groupIcon(newGroupID,image)
+			print("ICON SETTING")
+		return newGroupID, invite
 		# print("DIFF",diff)
 		if len(diff) == 1:
 			return diff[0], invite
@@ -564,6 +598,7 @@ class WhatsAPIDriver(object):
 		extra_params=None,
 		chrome_options=None,
 		# executable_path="/app/vendor/geckodriver/"
+		binPath = None,
 		executable_path=None
 	):
 		"""Initialises the webdriver"""
@@ -634,19 +669,53 @@ class WhatsAPIDriver(object):
 				)
 
 		elif self.client == "chrome":
-			self._profile = webdriver.ChromeOptions()
-			if self._profile_path is not None:
-				self._profile.add_argument("user-data-dir=%s" % self._profile_path)
-			if proxy is not None:
-				self._profile.add_argument("--proxy-server=%s" % proxy)
-			if headless:
-				self._profile.add_argument("headless")
-			if chrome_options is not None:
-				self._profile = chrome_options
-				## for option in chrome_options:
-				##     self._profile.add_argument(option)
-			self.logger.info("Starting webdriver")
-			self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=self._profile, **extra_params)
+			if binPath is None:
+				self._profile = webdriver.ChromeOptions()
+				if self._profile_path is not None:
+					self._profile.add_argument("user-data-dir=%s" % self._profile_path)
+				if proxy is not None:
+					self._profile.add_argument("--proxy-server=%s" % proxy)
+				if headless:
+					self._profile.add_argument("headless")
+				if chrome_options is not None:
+					self._profile = chrome_options
+					## for option in chrome_options:
+					##     self._profile.add_argument(option)
+				self.logger.info("Starting webdriver")
+				bPath = ""
+				bPath = os.environ.get("CHROMEDRIVER_PATH")
+				self.driver = webdriver.Chrome(executable_path=bPath,chrome_options=self._profile, **extra_params)
+			else:
+				chrome_options = webdriver.ChromeOptions()
+				executable_path = "/home/magic/wholesomegarden/WhatsappReminder/chromedriver"
+				binPath = "/usr/bin/google-chrome"
+				profileDir = "/session/rprofile2"
+				profileDir = "/home/magic/wholesomegarden/WhatsappReminder"+profileDir
+				print(binPath, executable_path)
+				print(binPath, executable_path)
+				print(binPath, executable_path)
+				print(binPath, executable_path)
+				# input()
+				chrome_options.binary_location = binPath
+				# chrome_options.add_argument('incognito')
+				# chrome_options.add_argument('headless')
+				# if not runLocal:
+				# 	chrome_options.add_argument("--headless")
+				chrome_options.add_argument("--disable-dev-shm-usage")
+				chrome_options.add_argument("--no-sandbox")
+				chrome_options.add_argument("--window-size=1420,3600")
+				chrome_options.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
+				# user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+				# chrome_options.add_argument('user-agent={0}'.format(user_agent))
+				chrome_options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US;q=0.9'})
+
+				# chrome_options.add_argument("--user-agent=New User Agent")
+				chrome_options.add_argument("user-data-dir="+profileDir);
+				chrome_options.add_argument('--profile-directory='+profileDir+"rprofile2/Profile 1")
+
+				self.driver = webdriver.Chrome(executable_path,chrome_options=chrome_options)
+
+
 
 		elif client == "remote":
 			if self._profile_path is not None:
@@ -1061,7 +1130,7 @@ class WhatsAPIDriver(object):
 		"""
 		return self.wapi_functions.sendMessageToID(recipient, message)
 
-	def convert_to_base64(self, path, is_thumbnail=False, inv = False):
+	def convert_to_base64(self, path, is_thumbnail=False, inv = False, hardresize = False):
 		"""
 		:param path: file path
 		:return: returns the converted string and formatted for the send media function send_media
@@ -1071,7 +1140,16 @@ class WhatsAPIDriver(object):
 		content_type = mime.from_file(path)
 		archive = ""
 		if is_thumbnail:
-			path = self._resize_image(path, f"{path}.bkp")
+			if hardresize:
+				try:
+					path = self._resize_image(path, f"{path}.bkp", size = [400,400])
+				except:
+					try:
+						path = self._resize_image(path, f"{path}.bkp", size = [299,299])
+					except:
+						traceback.print_exc()
+			else:
+				path = self._resize_image(path, f"{path}.bkp")
 		with open(path, "rb") as image_file:
 			if inv:
 				archive = b64encode()
@@ -1148,8 +1226,12 @@ class WhatsAPIDriver(object):
 	def group_get_participants_ids(self, group_id):
 		return self.wapi_functions.getGroupParticipantIDs(group_id)
 
+	def set_group_icon(self, group_id, imagepath):
+		image = self.convert_to_base64(imagepath)
+		return self.wapi_functions.setGroupIcon(group_id, image)
+
 	def metadata(self, group_id):
-		return self.wapi_functions.metadata(group_id)
+		return self.wapi_functions.getMetadata(group_id)
 
 	def group_get_participants(self, group_id):
 		participant_ids = self.group_get_participants_ids(group_id)
@@ -1302,7 +1384,12 @@ class WhatsAPIDriver(object):
 		self.wapi_functions.new_messages_observable.unsubscribe(observer)
 
 
-	def ng(self, data):
+	def ng(self, idGroup, idParticipant):
+		# idGroup, idParticipant = data
+		# newGroupName, number+"@c.us"
+		return self.wapi_functions.createGroup(idGroup, idParticipant)
+
+	def ng0(self, data):
 		idGroup, idParticipant = data
 		# newGroupName, number+"@c.us"
 		return self.wapi_functions.createGroup(idGroup, idParticipant)

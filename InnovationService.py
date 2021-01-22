@@ -6,7 +6,7 @@ class InnovationService(object):
 	name = "✨Innovation✨"
 	welcome = "Welcome to ✨WhatsappMaster Innovation Channel✨ !\nבין אם הגעתם כי יש לכם בקשה או רעיון, או הגעתם כדי להשקיע, אם החברה שלכם תשמח להשתמש בווטסאפ אצלה במערכת או פשוט יש לכם שאלה\nמוזמנים לכתוב לי ונדבר על זה!\nתודה רבה על התעניינות, באהבה גדולה,\nתמי🌀"
 	help = "send a message to get it back"
-	imageurl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnPIAyp1vEo_mbJy_xyAC0fy4hSVA6tjLqrg&usqp=CAU"
+	imageurl = "https://www.nicepng.com/png/full/207-2076261_campfire-icon-illustrator-pennsylvania.png"
 	shortDescription = "יש לכם רעיון שיעבוד טוב בווטסאפ?! כתבי לי כאן"
 	share = None
 

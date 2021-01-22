@@ -12,7 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from webwhatsapi import WhatsAPIDriver
 
-from pprint import pprint
+from pprint import pprint as pp
 
 # from ServiceImporter import *
 
@@ -144,7 +144,34 @@ class Master(object):
 		if not runLocal:
 			self.driver = WhatsAPIDriver(profile = profileDir, client='chrome', chrome_options=chrome_options,username="wholesomegarden")
 		else:
-			self.driver = WhatsAPIDriver(username="wholesomegarden",profile=None)
+			profileDir = "/"+"/".join(profileDir.split("/")[2:])+"L"
+			chrome_options = webdriver.ChromeOptions()
+			executable_path = "/home/magic/wholesomegarden/WhatsappReminder/chromedriver"
+			binPath = "/usr/bin/google-chrome"
+			profileDir = "/home/magic/wholesomegarden/WhatsappReminder"+profileDir
+
+			print(binPath, executable_path)
+			# input()
+			chrome_options.binary_location = binPath
+			# chrome_options.add_argument('incognito')
+			# chrome_options.add_argument('headless')
+			# chrome_options.add_argument("--headless")
+			chrome_options.add_argument("--disable-dev-shm-usage")
+			chrome_options.add_argument("--no-sandbox")
+			chrome_options.add_argument("--window-size=1420,3600")
+			chrome_options.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
+			# user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+			# chrome_options.add_argument('user-agent={0}'.format(user_agent))
+			chrome_options.add_experimental_option('prefs', {'intl.accept_languages': 'en,en_US;q=0.9'})
+
+			# chrome_options.add_argument("--user-agent=New User Agent")
+			chrome_options.add_argument("user-data-dir="+profileDir);
+			chrome_options.add_argument('--profile-directory='+profileDir+"rprofile2/Profile 1")
+			self.driver = WhatsAPIDriver(profile = profileDir, client='chrome', chrome_options=chrome_options,username="wholesomegarden", binPath = binPath)
+
+			# self.driver = webdriver.Chrome(executable_path,chrome_options=chrome_options)
+			# self.driver = WhatsAPIDriver(username="wholesomegarden",profile=None)
+
 		driver = self.driver
 
 
@@ -287,7 +314,7 @@ class Master(object):
 			process = Thread(target = self.ProcessIncoming, args=[None])
 			process.start()
 
-			''' process incoming '''
+			''' check available groups '''
 			process2 = Thread(target = self.checkAvailableGroups, args=[None])
 			process2.start()
 		else:
@@ -302,15 +329,20 @@ class Master(object):
 
 			# print("AVAILABLE GROUPS",self.db["availableChats"])
 			goBackup = False
+			# pp(self.db["availableChats"])
 			try:
-				for service in self.db["availableChats"]:
+				for service in self.services:
+					if service not in self.db["availableChats"]:
+						self.db["availableChats"][service] = {}
+
 					for chat in self.db["availableChats"][service]:
 						delChat = None
 						try:
 							participants = self.driver.group_get_participants_ids(chat)
 						except:
 							delChat = chat
-
+							traceback.print_exc()
+						# pp(["PPPPPPPPPPPPP",participants])
 						if delChat is None:
 							# print("CHAT",chat,"PARTICIPANTS",participants)
 							newParticipant = None
@@ -319,7 +351,7 @@ class Master(object):
 								# print(participant)
 								chatID = ""
 								try:
-									if runLocal:
+									if runLocal and False:
 										chatID = participant["_serialized"]
 									else:
 										chatID = participant
@@ -328,7 +360,9 @@ class Master(object):
 										chatID = participant["user"]+"@c.us"
 									except:
 										pass
+								# print("CCCCCCCCCCCC",chatID)
 								if chatID is not "" and chatID.split("@")[0] not in self.db["system"]:
+									print("CCCCCCCCCCCC",chatID)
 									newParticipant = chatID
 
 							if newParticipant is not None:
@@ -368,6 +402,8 @@ class Master(object):
 
 								toAdd = ""
 								if obj is not None:
+									# self.setGroupIcon(newGroupID, obj.imageurl)
+
 									if len(obj.examples) > 0:
 										toAdd += "\n\n"
 										toAdd += "See Examples: (click the link or type)\n"
@@ -389,6 +425,7 @@ class Master(object):
 							self.db["availableChats"][service].pop(delChat)
 							goBackup = True
 
+				for service in self.db["availableChats"]:
 					if len(self.db["availableChats"][service]) < minAvailable:
 						self.masterService.createGroup([None,None,None], service = service)
 
@@ -409,6 +446,19 @@ class Master(object):
 		    except OSError as exc: # Guard against race condition
 		        if exc.errno != errno.EEXIST:
 		            raise
+
+	def setGroupIcon(self, group_id, imageurl):
+		print("SETTING GROUP ICON!")
+		imagepath = self.download_image(pic_url=imageurl)
+		return self.driver.groupIcon(group_id, imagepath)
+
+		# res = self.driver.set_group_icon(group_id, imagepath)
+		base64 = image = self.driver.convert_to_base64(imagepath,is_thumbnail=True, hardresize=True)
+		code = "WAPI.setGroupIcon('"+group_id+"', '"+base64+"')"
+		res = self.driver.driver.execute_script(script = code)
+		# self.driver.execute_script(script=code)
+		print("SETTING GROUP ICON! SET",str(res))
+
 
 	def download_image(self, service="test", pic_url="https://img-authors.flaticon.com/google.jpg", img_name = 'thumnail.jpg'):
 		if service is None or pic_url is None or img_name is None:
@@ -485,7 +535,7 @@ class Master(object):
 		for message in contact.messages:
 			print("MMMMMMMMMM",message.content)
 
-			if runLocal:
+			if runLocal and False: ## FOR FIREFOX
 				chatID = message.chat_id["_serialized"]
 			else:
 				chatID = message.chat_id
@@ -758,6 +808,8 @@ class Master(object):
 				if message.type == "chat":
 					text = message.content
 
+
+
 					# ''' GOT REGISTRATION COMMAND '''
 					# if text[0] is "=":
 					# 	foundService = None
@@ -841,7 +893,6 @@ class Master(object):
 											obj = self.services[foundService]["obj"]
 											if obj is not None:
 												#Get Nicknames
-
 												self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text})
 												# obj.process({"origin":chatID, "user":senderID, "content":text})
 
@@ -962,12 +1013,12 @@ class Master(object):
 					print("-------------------------------")
 					groupName = service
 
-					newGroup = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1], local = runLocal)
-					print(newGroup)
-					if "tuple" in str(type(newGroup)):
-						newGroup = newGroup[0]
-					print(newGroup)
-					newGroupID = newGroup.id
+					newGroupID,invite = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1], local = runLocal)
+					# print(newGroup)
+					# if "tuple" in str(type(newGroup)):
+					# 	newGroup = newGroup[0]
+					# print(newGroup)
+					# newGroupID = newGroup.id
 					self.db["servicesDB"][service]["dbID"] = newGroupID
 					db = {"init":True}
 					self.driver.sendMessage(newGroupID, json.dumps(db))
@@ -1081,7 +1132,8 @@ class Master(object):
 				try:
 					bchat = self.driver.getChat(chatID)
 				except Exception as e:
-					print(" ::: ERROR - COULD NOT GET BACKUPCHAT",e," ::: ","\n")
+					print(" ::: ERROR - COULD NOT GET BACKUPCHAT",service,e," ::: ","\n")
+					traceback.print_exc()
 				if bchat is not None:
 					print("FFFFFFFFFFFFFFFUCKKK")
 					# self.driver.sendMessage(chatID,"FFFFFFFFFFFFFFFUCKKK")
