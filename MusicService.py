@@ -635,8 +635,12 @@ class MusicService(object):
 				history[songID]["artist"] = artist
 
 			linkDefault = "spotify"
-
-			ytres = YoutubeSearch(search, max_results=1).to_dict()
+			ytres = None
+			try:
+				ytres = YoutubeSearch(search, max_results=1).to_dict()
+			except :
+				traceback.print_exc()
+				
 			if ytres is not None and len(ytres) == 1:
 				try:
 					print("# # # # # # # # ")
