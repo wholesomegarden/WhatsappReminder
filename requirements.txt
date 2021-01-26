@@ -47,4 +47,3 @@ lxml==4.6.2
 google==3.0.0
 google_trans_new==1.1.9
 youtube-title-parse==1.0.0
-imageio-2.9.0
