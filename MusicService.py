@@ -529,10 +529,10 @@ class MusicService(object):
 								else:
 									header += "*\n\n"
 
-								print("songInfo", songInfo)
-								print("songInfo", songInfo)
-								print("songInfo", songInfo)
-								print("songInfo", songInfo)
+								# print("songInfo", songInfo)
+								# print("songInfo", songInfo)
+								# print("songInfo", songInfo)
+								# print("songInfo", songInfo)
 								print("songInfo", songInfo)
 								self.api.send(origin, header+fullT)
 								# self.api.send("Scraper"+"/"+origin, ":googlelyrics:"+title+" "+artist+" lyrics")
@@ -608,8 +608,8 @@ class MusicService(object):
 			try:
 				results = self.spotify.search(content)
 				print("# # # # # # # # ")
-				pp(results)
-				print("# # # # # # # # ")
+				# pp(results)
+				# print("# # # # # # # # ")
 				if len(results) > 0:
 					res = results['tracks']['items'][0]
 					slink = res['external_urls']['spotify']
@@ -640,7 +640,7 @@ class MusicService(object):
 				ytres = YoutubeSearch(search, max_results=1).to_dict()
 			except :
 				traceback.print_exc()
-				
+
 			if ytres is not None and len(ytres) == 1:
 				try:
 					print("# # # # # # # # ")
