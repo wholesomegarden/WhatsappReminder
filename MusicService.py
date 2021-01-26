@@ -410,7 +410,12 @@ class MusicService(object):
 			if not sent:
 				self.api.send(lastOrigin.split("/")[0], add+"\n"+content)
 		else:
+
+			if origin not in self.db["users"]:
+				self.db["users"][origin] = {"history":{}}
+
 			history = self.db["users"][origin]["history"]
+
 			# self.api.send(origin, "ECHO |"+content+"|")
 
 		print("::::::::::::::::::::::::::::::::::::::::::::::::::::::")
