@@ -411,8 +411,8 @@ class MusicService(object):
 				self.api.send(lastOrigin.split("/")[0], add+"\n"+content)
 		else:
 
-			if origin not in self.db["users"]:
-				self.db["users"][origin] = {"history":{}}
+			if origin not in self.db["users"] or "history" not in self.db["users"][origin]:
+				self.db["users"][origin] = {"history":{}}				
 
 			history = self.db["users"][origin]["history"]
 
@@ -689,6 +689,8 @@ class MusicService(object):
 			# sendLinks += "Get Chords: "+link+"\n"
 			time.sleep(1.5)
 			self.api.send(origin, sendLinks, thumnail = None)
+			time.sleep(1.5)
+			self.backup()
 
 	def backup(self):
 		self.api.backup(self.db)
