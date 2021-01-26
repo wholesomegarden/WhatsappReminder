@@ -23,7 +23,7 @@ from pprint import pprint as pp
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = False
+runLocal = True
 print(
 '''
 :::::::::::::::::::::::::::::::::
@@ -479,10 +479,6 @@ class Master(object):
 
 		return os.path.abspath(final_path)
 
-	def send(self, api, service, target, content, thumnail = None):
-		sendThread = Thread(target = self.sendAsync, args = [[api, service, target, content, thumnail]])
-		sendThread.start()
-		return True
 
 	def sendMessage(self, chatID, content, thumbnail = None, service = "test"):
 		if thumbnail is not None:
@@ -512,6 +508,11 @@ class Master(object):
 
 		return self.driver.sendMessage(chatID, content)
 
+	def send(self, api, service, target, content, thumnail = None):
+		sendThread = Thread(target = self.sendAsync, args = [[api, service, target, content, thumnail]])
+		sendThread.start()
+		return True
+
 
 	#UX WELCOME AFTER SUBSCIBING TO
 	def sendAsync(self, data):
@@ -519,7 +520,19 @@ class Master(object):
 		print("!!!!!!!!!!!!")
 		if service in self.services:
 			if self.services[service]["api"] is api:
-				if target in self.db["groups"] and "service" in self.db["groups"][target] and service.lower() == self.db["groups"][target]["service"].lower():
+				targetIsService = False
+				subscribed = target in self.db["groups"] and "service" in self.db["groups"][target] and service.lower() == self.db["groups"][target]["service"].lower()
+				if len(target.split("/")) > 1 and len(target.split("/")[0]) > 0 and len(target.split("/")[1]) > 0:
+					if target.split("/")[0] in self.services:
+						targetService = target.split("/")[0]
+						link = "/".join(target.split("/")[1:])
+						if "obj" in self.services[targetService]:
+							obj = self.services[targetService]["obj"]
+							if obj is not None:
+								#Get Nicknames
+								self.ProcessServiceAsync(obj,{"origin":service+"/"+link, "user":link, "content":content})
+
+				elif subscribed:
 					print("THUMB")
 					print("THUMB")
 					print("THUMB")
@@ -1105,9 +1118,10 @@ class Master(object):
 					self.links[linkBase] = linkDataGroup
 
 
-					self.backup(now=True)
+					self.backup()
 
-					sub = "akeyo.io/w?"
+					# sub = "akeyo.io/w?"
+					sub = self.baseURL
 					fullurl = sub + fullLink
 
 					return fullurl

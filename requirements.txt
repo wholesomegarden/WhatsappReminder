@@ -41,5 +41,10 @@ Pillow>=7.1.2
 timg==1.1.4
 scikit-image==0.17.2
 imgur-uploader==0.3.0
-spotipy==2.8.0
+spotipy==2.16.1
 youtube-search==1.1.1
+lxml==4.6.2
+google==3.0.0
+google_trans_new==1.1.9
+youtube-title-parse==1.0.0
+imageio-2.9.0

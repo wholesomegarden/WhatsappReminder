@@ -23,6 +23,7 @@ class ExperimentalService(object):
 		self.db = db
 		self.api = api
 		self.master = master
+		self.coms = ["Scraper"]
 		#
 		# if "upcoming" not in self.db:
 		# 	self.db["upcoming"] = []
@@ -70,7 +71,22 @@ class ExperimentalService(object):
 		# 	sendBack += "\n\n"+answer+":\n"+myLink
 
 		# self.db["upcoming"].append([origin, sendBack])
+		if origin.split("/")[0] in self.coms:
+			lastOrigin = "/".join(origin.split("/")[1:])
+			self.api.send(lastOrigin.split("/")[0], "back from Scraper:\n "+content)
 
+
+
+		else:
+
+			''' service-service communicatins '''
+			# answer = "yo!"
+			# myLink = self.api.genLink(origin, answer, newLink = "yo")
+			# idFromLink = myLink.split("?")[1].split["/yo"][0]
+
+			self.api.send("Scraper"+"/"+origin, "yo "+content+" from "+self.name)
+
+		return True
 
 		sendBack = content
 		myLink = ""
