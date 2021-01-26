@@ -130,7 +130,7 @@ class MusicService(object):
 			print(query,"!!!!!!!!!!!!!!!!!!!")
 			query = str(re.search("(?P<url>https?://[^\s]+)", query).group("url"))
 			print(query,"!!!!!!!!!!!!!!!!!!!!")
-			html = getHTML(query)
+			html = self.getHTML(query)
 			try:
 				if "spotify" in query:
 					full = html.title.string
@@ -412,7 +412,7 @@ class MusicService(object):
 		else:
 
 			if origin not in self.db["users"] or "history" not in self.db["users"][origin]:
-				self.db["users"][origin] = {"history":{}}				
+				self.db["users"][origin] = {"history":{}}
 
 			history = self.db["users"][origin]["history"]
 
