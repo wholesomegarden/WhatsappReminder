@@ -508,7 +508,8 @@ class WhatsAPIDriver(object):
 	def updateDB(self, data, number="DB"):
 		if "dict" in str(type(data)):
 			js = self.dictToJson(data)
-			print("jjjjjjjjjjssssssss",js)
+			traceback.print_exc()
+			# print("jjjjjjjjjjssssssss",js)
 			p = re.compile('(?<!\\\\)\'')
 			js = p.sub('\"', js)
 
