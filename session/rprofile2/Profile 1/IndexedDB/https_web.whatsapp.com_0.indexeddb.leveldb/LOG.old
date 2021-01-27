@@ -1,3 +1,22 @@
-2021/01/26-14:45:13.108 4089 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/01/26-14:45:13.109 4089 Recovering log #264
-2021/01/26-14:45:13.229 4089 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000264.log 
+2021/01/27-10:13:04.470 38cc Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/01/27-10:13:04.470 38cc Recovering log #273
+2021/01/27-10:13:04.561 38cc Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000273.log 
+2021/01/27-10:13:07.389 38d2 Level-0 table #283: started
+2021/01/27-10:13:07.428 38d2 Level-0 table #283: 1315040 bytes OK
+2021/01/27-10:13:07.435 38d2 Delete type=0 #273
+2021/01/27-10:13:09.323 38d2 Compacting 1@1 + 6@2 files
+2021/01/27-10:13:09.499 38d2 Generated table #284@1: 38041 keys, 2241689 bytes
+2021/01/27-10:13:09.625 38d2 Generated table #285@1: 33904 keys, 2243328 bytes
+2021/01/27-10:13:09.709 38d2 Generated table #286@1: 33731 keys, 2245315 bytes
+2021/01/27-10:13:09.838 38d2 Generated table #287@1: 43680 keys, 2245911 bytes
+2021/01/27-10:13:09.936 38d2 Generated table #288@1: 92961 keys, 2243826 bytes
+2021/01/27-10:13:09.973 38d2 Generated table #289@1: 13399 keys, 710467 bytes
+2021/01/27-10:13:09.973 38d2 Compacted 1@1 + 6@2 files => 11930536 bytes
+2021/01/27-10:13:09.977 38d2 compacted to: files[ 0 0 6 0 0 0 0 ]
+2021/01/27-10:13:09.977 38d2 Delete type=2 #275
+2021/01/27-10:13:09.977 38d2 Delete type=2 #279
+2021/01/27-10:13:09.977 38d2 Delete type=2 #276
+2021/01/27-10:13:09.977 38d2 Delete type=2 #277
+2021/01/27-10:13:09.977 38d2 Delete type=2 #283
+2021/01/27-10:13:09.978 38d2 Delete type=2 #278
+2021/01/27-10:13:09.978 38d2 Delete type=2 #280

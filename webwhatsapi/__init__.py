@@ -1148,9 +1148,20 @@ class WhatsAPIDriver(object):
 					try:
 						path = self._resize_image(path, f"{path}.bkp", size = [299,299])
 					except:
-						traceback.print_exc()
+						try:
+							path = self._resize_image(path, f"{path}.bkp", size = [100,100])
+						except:
+							traceback.print_exc()
+
 			else:
-				path = self._resize_image(path, f"{path}.bkp")
+				try:
+					path = self._resize_image(path, f"{path}.bkp")
+				except:
+					try:
+						path = self._resize_image(path, f"{path}.bkp", size = [100,100])
+					except:
+						traceback.print_exc
+
 		with open(path, "rb") as image_file:
 			if inv:
 				archive = b64encode()

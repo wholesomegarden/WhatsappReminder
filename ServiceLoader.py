@@ -11,12 +11,12 @@ from SupertoolsService import *
 from InnovationService import *
 from ScraperService import *
 from PistonService import *
-
+from StockService import *
 from threading import Thread
 
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, genLink, list = ["Master", "Echo", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Supertools","Innovation", "Scraper"], master = None):
+    def LoadServices(send, backup, genLink, list = ["Master", "Echo", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Supertools","Innovation", "Scraper","Stock"], master = None):
         services = {}
         for service in list:
             if service is "Master" or service is "Experimental":
@@ -49,6 +49,8 @@ class ServiceLoader(object):
             foundServiceClass = ScraperService
         if service is "Piston":
             foundServiceClass = PistonService
+        if service is "Stock":
+            foundServiceClass = StockService
 
         if foundServiceClass is not None:
             api = API(service, send, backup, genLink)

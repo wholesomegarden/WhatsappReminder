@@ -1,22 +1,3 @@
-2021/01/26-14:47:44.659 43f9 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/01/26-14:47:44.660 43f9 Recovering log #264
-2021/01/26-14:47:44.840 43f9 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000264.log 
-2021/01/26-14:51:58.371 4967 Level-0 table #274: started
-2021/01/26-14:51:58.448 4967 Level-0 table #274: 1295028 bytes OK
-2021/01/26-14:51:58.456 4967 Delete type=0 #264
-2021/01/26-14:52:04.211 4967 Compacting 1@1 + 6@2 files
-2021/01/26-14:52:04.416 4967 Generated table #275@1: 37772 keys, 2240007 bytes
-2021/01/26-14:52:04.627 4967 Generated table #276@1: 34263 keys, 2242514 bytes
-2021/01/26-14:52:04.825 4967 Generated table #277@1: 33648 keys, 2246435 bytes
-2021/01/26-14:52:05.003 4967 Generated table #278@1: 48392 keys, 2245467 bytes
-2021/01/26-14:52:05.185 4967 Generated table #279@1: 92961 keys, 2244473 bytes
-2021/01/26-14:52:05.213 4967 Generated table #280@1: 3501 keys, 457454 bytes
-2021/01/26-14:52:05.213 4967 Compacted 1@1 + 6@2 files => 11676350 bytes
-2021/01/26-14:52:05.216 4967 compacted to: files[ 0 0 6 0 0 0 0 ]
-2021/01/26-14:52:05.217 4967 Delete type=2 #269
-2021/01/26-14:52:05.217 4967 Delete type=2 #267
-2021/01/26-14:52:05.217 4967 Delete type=2 #274
-2021/01/26-14:52:05.217 4967 Delete type=2 #271
-2021/01/26-14:52:05.217 4967 Delete type=2 #266
-2021/01/26-14:52:05.217 4967 Delete type=2 #268
-2021/01/26-14:52:05.217 4967 Delete type=2 #270
+2021/01/27-10:17:16.975 3b4b Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/01/27-10:17:16.975 3b4b Recovering log #282
+2021/01/27-10:17:16.993 3b4b Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000282.log 

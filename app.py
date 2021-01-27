@@ -65,7 +65,7 @@ class Master(object):
 	runningSubscriptions = 0
 	baseURL = "akeyo.io/w?"
 	# availableChats = {}
-	publicServices = ["Music","Danilator","Reminders","Supertools","Innovation"]
+	publicServices = ["Music","Danilator","Reminders","Stock"]
 
 	''' start master driver and log in '''
 	def __init__(self, profileDir = "/app/session/rprofile2"):
