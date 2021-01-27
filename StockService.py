@@ -60,7 +60,7 @@ class StockService(object):
 		# content = "AAPL"
 		t = yf.Ticker(content).info
 
-		res = {"dayHigh":"","dayLow":"", "open":"", "regularMarketPrice":""}
+		res = {"dayHigh":"","dayLow":"", "open":"", "regularMarketPrice":"","volume":"","averageVolume10days":""}
 		if t is not None:
 			name = t["longName"]
 			for k in res:
