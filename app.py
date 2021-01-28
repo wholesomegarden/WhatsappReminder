@@ -461,7 +461,9 @@ class Master(object):
 
 
 	def download_image(self, service="test", pic_url="https://img-authors.flaticon.com/google.jpg", img_name = 'thumnail.jpg'):
-		if service is None or pic_url is None or img_name is None:
+		if  pic_url is None:
+			return ""
+		if service is None or img_name is None:
 			return None
 		if pic_url is "":
 			return pic_url
@@ -489,9 +491,14 @@ class Master(object):
 			path = ""
 
 			sendAttachment = False
-			if "imageurl" in thumbnail and thumbnail["imageurl"] is not None:
-				imageurl = thumbnail["imageurl"]
+			if "imageurl" in thumbnail:
+				if thumbnail["imageurl"] is None:
+					thumbnail["imageurl"] = ""
+					imageurl = ""
+				else:
+					imageurl = thumbnail["imageurl"]
 				path = self.download_image(service = service, pic_url=imageurl)
+				print("PPPPPPPPPPPPPPPPPPP",path)
 				if "title" in thumbnail and thumbnail["title"] is not None:
 					title = thumbnail["title"]
 					if "desc" in thumbnail and thumbnail["desc"] is not None:
@@ -503,7 +510,7 @@ class Master(object):
 			if sendAttachment:
 				res = self.driver.send_message_with_thumbnail(path,chatID,url=link,title=title,description=desc,text=content)
 				print(res)
-				print("!!!!!!!!!!!!!!")
+				print("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT", path, "LINK",link,"TEXT",content)
 				return res
 
 		return self.driver.sendMessage(chatID, content)
@@ -1023,6 +1030,17 @@ class Master(object):
 				dbID = self.db["servicesDB"][service]["dbID"]
 				''' create new db group '''
 				db = {}
+				if dbID is not None:
+					try:
+						db = self.loadDB(dbID)
+					except:
+						db = None
+						traceback.print_exc()
+
+					if db is None:
+						db = {}
+						dbID = None
+
 				if dbID is None:
 					print("-------------------------------")
 					print("     CREATING NEW DB GROUP   "+service)
@@ -1041,8 +1059,7 @@ class Master(object):
 					self.driver.sendMessage(newGroupID, json.dumps(db))
 					if service is not None:
 						return newGroupID
-				else:
-					db = self.loadDB(dbID)
+
 
 				print("-------------------------------")
 				print("service: ",service,"  dbID: ",dbID)

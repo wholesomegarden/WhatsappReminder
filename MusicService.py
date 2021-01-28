@@ -477,10 +477,11 @@ class MusicService(object):
 							sendLinks = ""
 							link = song["link"]
 
-							sendLinks += "Looking for other Artist?:\n"+link+":other"+"\n\n"
-							sendLinks += "Get Song Lyrics:\n"+link+":lyrics"+"\n"
-							sendLinks += "Lyrics Translation:\n"+link+":danilator"+"\n"
-							sendLinks += "Get Chords:\n"+link+":chords"+"\n"
+							sendLinks += "👯‍ *Covers* and *Other Artists*\n"+link+":other"+"\n\n"
+
+							sendLinks += "📖 *Song Lyrics*:\n"+link+":lyrics"+"\n"
+							sendLinks += "🌐 *Lyrics Translation*:\n"+link+":danilator"+"\n"
+							sendLinks += "🎸 *Get Chords*:\n"+link+":chords"+"\n"
 							#
 							# answer = ":lyrics:"+str(songID)
 							# link = self.api.genLink(origin, answer, newLink = str(songID)+"-lyrics")
@@ -683,13 +684,13 @@ class MusicService(object):
 				except Exception as e:
 					print("COULD NOT FIND SONG ON YOUTUBE", e)
 
-			self.api.send(origin, sendBack, thumnail = thumnail)
+			# self.api.send(origin, sendBack, thumnail = thumnail)
 
 
 			sendLinks = ""
 			answer = str(songID)
 
-			sendLinks += link+":more"
+			sendLinks += "https://"+link+":more"
 
 
 			#
@@ -709,10 +710,14 @@ class MusicService(object):
 			# answer = ":chords:"+str(songID)
 			# link = self.api.genLink(origin, answer, newLink = str(songID)+"-chords")
 			# sendLinks += "Get Chords: "+link+"\n"
-			seeMore = "See More - "+history[songID]["title"]
-			time.sleep(1.5)
-			self.api.send(origin, sendLinks, thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics, Chords","link":link+":more"}
-)
+			seeMore = "See More Options ("+history[songID]["title"]+")"
+			self.api.send(origin, sendBack, thumnail = thumnail)
+			time.sleep(1.7)
+			self.api.send(origin, "🍀 "+sendLinks, thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics and Chords","link":"https://"+link+":more"})
+			# time.sleep(1.5)
+
+			# self.api.send(origin, sendLinks, thumnail = {"imageurl":image,"title":"seeMore","desc":"Other Artists, Covers","link":link+":more"}
+
 			time.sleep(1.5)
 			self.backup()
 

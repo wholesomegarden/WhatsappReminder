@@ -398,6 +398,8 @@ class WhatsAPIDriver(object):
 
 
 	def getChat(self, nameOrNumber):
+		if nameOrNumber is None:
+			return None
 		chat = None
 		if str(nameOrNumber).isnumeric():
 			chat = self.get_chat_from_phone_number(nameOrNumber, createIfNotFound=False)
@@ -1136,6 +1138,9 @@ class WhatsAPIDriver(object):
 		:param path: file path
 		:return: returns the converted string and formatted for the send media function send_media
 		"""
+		if inv:
+			return "base64," + ""
+			return b64encode("".encode())
 
 		mime = magic.Magic(mime=True)
 		content_type = mime.from_file(path)
@@ -1198,9 +1203,14 @@ class WhatsAPIDriver(object):
 		"""
 		imgBase64 = ""
 		if path is None or path is "":
+			imgBase64 = ""
+			print("EMPTYYYYYYYYYYYYYYYYYYYYYYYYYY IMG")
+			print("EMPTYYYYYYYYYYYYYYYYYYYYYYYYYY IMG")
+			print("EMPTYYYYYYYYYYYYYYYYYYYYYYYYYY IMG")
 			# imgBase64 = self.convert_to_base64(path, is_thumbnail=True, inv=True)
 			pass
 		else:
+			print("XXXXXXXXXXX"+path+"XXXX")
 			imgBase64 = self.convert_to_base64(path, is_thumbnail=True)
 
 		if url not in text:
