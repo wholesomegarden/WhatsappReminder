@@ -365,6 +365,7 @@ class MusicService(object):
 		if origin not in self.db["users"]:
 			self.db["users"][origin] = {"history":{}}
 
+		content = content.replace("+"," ")
 		hasCMD = False
 		sent = False
 		if origin.split("/")[0] in self.coms:
@@ -496,7 +497,7 @@ class MusicService(object):
 							# time.sleep(1.5)
 							self.api.send(origin, sendLinks, thumnail = None)
 						if cmd == "other":
-							self.api.send(origin, "FINDING OTHER ARTIST FOR "+title+" "+artist)
+							# self.api.send(origin, "FINDING OTHER ARTIST FOR "+title+" "+artist)
 							newArtists = []
 							if "artist" in song:
 								results = self.spotify.search(song["search"])
@@ -508,17 +509,25 @@ class MusicService(object):
 										if song["artist"].lower() == newArtist.lower():
 											pass
 										else:
-											newArtists.append(res["name"]+" "+newArtist)
+											newArtists.append(res["name"]+"~"+newArtist)
 										# image = res["album"]["images"][1]['url']
-							title = song["search"]
+							title = song["title"]
 							sendArtist = ""
 
+							baselink = song["link"].split(":")[0]
 							for nA in newArtists:
+								tit, art = nA.split("~")
 
-								link = "link"+" "+nA
-								sendArtist +=  "*"+nA+"* : \n"+ link+"\n"
+								artist_title = get_artist_title(nA.replace("~"," "))
+								if artist_title is not None:
+									print("@@@@@@@@@@@@@@@@@@@@",artist_title)
+									art, tit = artist_title
 
-							self.api.send(origin, "More Artist:\n"+sendArtist)
+								link = baselink+tit.replace(" ","+")+"+"+art.replace(" ","+")
+								sendArtist +=  "*"+tit+" - "+art+"* : \n"
+								sendArtist += link+"\n"
+
+							self.api.send(origin, "*Covers* and *Other Artists*:\n\n"+sendArtist)
 
 						if cmd == "lyrics":
 							print("LLLLLLLLLLLLLLLLLLLLLLLLLLL")

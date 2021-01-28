@@ -1,6 +1,19 @@
-2021/01/28-16:53:24.322 7567 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/01/28-16:53:24.322 7567 Recovering log #327
-2021/01/28-16:53:24.392 7567 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000327.log 
-2021/01/28-16:59:48.820 7774 Level-0 table #337: started
-2021/01/28-16:59:48.847 7774 Level-0 table #337: 1241779 bytes OK
-2021/01/28-16:59:48.850 7774 Delete type=0 #327
+2021/01/28-17:29:27.624 4d2 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/01/28-17:29:27.625 4d2 Recovering log #336
+2021/01/28-17:29:27.625 4d2 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000336.log 
+2021/01/28-17:29:28.385 4cd Compacting 1@1 + 6@2 files
+2021/01/28-17:29:28.622 4cd Generated table #339@1: 38724 keys, 2242223 bytes
+2021/01/28-17:29:28.819 4cd Generated table #340@1: 33804 keys, 2245630 bytes
+2021/01/28-17:29:29.030 4cd Generated table #341@1: 34026 keys, 2245877 bytes
+2021/01/28-17:29:29.223 4cd Generated table #342@1: 35845 keys, 2247939 bytes
+2021/01/28-17:29:29.444 4cd Generated table #343@1: 77925 keys, 2246104 bytes
+2021/01/28-17:29:29.614 4cd Generated table #344@1: 68159 keys, 2066269 bytes
+2021/01/28-17:29:29.614 4cd Compacted 1@1 + 6@2 files => 13294042 bytes
+2021/01/28-17:29:29.615 4cd compacted to: files[ 0 0 6 0 0 0 0 ]
+2021/01/28-17:29:29.616 4cd Delete type=2 #337
+2021/01/28-17:29:29.617 4cd Delete type=2 #332
+2021/01/28-17:29:29.617 4cd Delete type=2 #333
+2021/01/28-17:29:29.617 4cd Delete type=2 #334
+2021/01/28-17:29:29.617 4cd Delete type=2 #330
+2021/01/28-17:29:29.617 4cd Delete type=2 #331
+2021/01/28-17:29:29.617 4cd Delete type=2 #329
