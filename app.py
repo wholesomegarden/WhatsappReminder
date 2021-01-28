@@ -23,7 +23,7 @@ from pprint import pprint as pp
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = False
+runLocal = True
 print(
 '''
 :::::::::::::::::::::::::::::::::
@@ -1004,8 +1004,11 @@ class Master(object):
 			loopc += 1; loopc = loopc % 120
 			time.sleep(delay)
 
-	def initServicesDB(self):
-		for service in self.services:
+	def initServicesDB(self, service = None):
+		check = self.services
+		if service is not None:
+			check = [service]
+		for service in check:
 			# try:
 			if True:
 				if "servicesDB" not in self.db:
@@ -1148,6 +1151,7 @@ class Master(object):
 				except Exception as e:
 					print(" ::: ERROR - COULD NOT GET BACKUPCHAT",service,e," ::: ","\n")
 					traceback.print_exc()
+					self.initServicesDB(service = service)
 				if bchat is not None:
 					print("FFFFFFFFFFFFFFFUCKKK")
 					# self.driver.sendMessage(chatID,"FFFFFFFFFFFFFFFUCKKK")

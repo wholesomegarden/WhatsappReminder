@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 import requests
 import lxml, urllib
 
+from threading import Thread
 
 import os, requests, uuid, json, re
 import requests
@@ -57,12 +58,29 @@ class MusicService(object):
 			self.db["users"] = {}
 
 		self.spotify = None
-		try:
-			token = spotipy.SpotifyClientCredentials(client_id ='d419f4fe1de143c0ab7561734322fbe2', client_secret='a5738d2f12a44336b74153cc96a1946e')
-			cache_token = token.get_access_token()
-			self.spotify = spotipy.Spotify(cache_token)
-		except Exception as e:
-			print("EEEEEEEEEEEEEE spotify init",e)
+		self.spotiAlive()
+
+	''' restarts spotify to keep it alive '''
+	def spotiAliveAsync(self, data):
+		while(True):
+			try:
+				token = spotipy.SpotifyClientCredentials(client_id ='d419f4fe1de143c0ab7561734322fbe2', client_secret='a5738d2f12a44336b74153cc96a1946e')
+				cache_token = token.get_access_token()
+				self.spotify = spotipy.Spotify(cache_token)
+			except Exception as e:
+				print()
+				print("EEEEEEEEEEEEEE spotify init",e)
+				print("EEEEEEEEEEEEEE spotify init",e)
+				print("EEEEEEEEEEEEEE spotify init",e)
+				print()
+				print()
+				traceback.print_exc()
+			time.sleep(30*60)
+
+
+	def spotiAlive(self):
+		st = Thread(target = self.spotiAliveAsync, args = [None])
+		st.start()
 
 	def go(self):
 		while(False):
