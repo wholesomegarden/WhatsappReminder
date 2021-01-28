@@ -23,7 +23,7 @@ from pprint import pprint as pp
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = True
+runLocal = False
 print(
 '''
 :::::::::::::::::::::::::::::::::
@@ -1037,8 +1037,10 @@ class Master(object):
 					# newGroupID = newGroup.id
 					self.db["servicesDB"][service]["dbID"] = newGroupID
 					db = {"init":True}
-					self.driver.sendMessage(newGroupID, json.dumps(db))
 					self.backup()
+					self.driver.sendMessage(newGroupID, json.dumps(db))
+					if service is not None:
+						return newGroupID
 				else:
 					db = self.loadDB(dbID)
 
@@ -1148,12 +1150,18 @@ class Master(object):
 				bchat = None
 				try:
 					bchat = self.driver.getChat(chatID)
-				except Exception as e:
-					print(" ::: ERROR - COULD NOT GET BACKUPCHAT",service,e," ::: ","\n")
-					traceback.print_exc()
-					self.initServicesDB(service = service)
+				except Exception as ex:
+					# print(" ::: ERROR - COULD NOT GET BACKUPCHAT",service,e," ::: ","\n")
+					# traceback.print_exc()
+					try:
+						chatID = self.initServicesDB(service = service)
+						bchat = self.driver.getChat(chatID)
+						self.db["servicesDB"][service]["dbID"] = chatID
+					except Exception as e:
+						print(" ::: ERROR - COULD NOT INIT BACKUPCHAT",service,e," ::: ","\n")
+						traceback.print_exc()
 				if bchat is not None:
-					print("FFFFFFFFFFFFFFFUCKKK")
+					print("FFFFFFFFFFFFFFFUCKKK yea")
 					# self.driver.sendMessage(chatID,"FFFFFFFFFFFFFFFUCKKK")
 
 					backupChat = chatID
