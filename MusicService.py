@@ -721,7 +721,7 @@ class MusicService(object):
 			# sendLinks += "Get Chords: "+link+"\n"
 			seeMore = "See More Options ("+history[songID]["title"]+")"
 			self.api.send(origin, sendBack, thumnail = thumnail)
-			time.sleep(1.7)
+			time.sleep(1.2)
 			self.api.send(origin, "🍀 "+sendLinks, thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics and Chords","link":"https://"+link+":more"})
 			# time.sleep(1.5)
 
