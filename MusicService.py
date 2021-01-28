@@ -711,7 +711,7 @@ class MusicService(object):
 			# sendLinks += "Get Chords: "+link+"\n"
 			seeMore = "See More - "+history[songID]["title"]
 			time.sleep(1.5)
-			self.api.send(origin, sendLinks, thumnail = thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics, Chords","link":link+":more"}
+			self.api.send(origin, sendLinks, thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics, Chords","link":link+":more"}
 )
 			time.sleep(1.5)
 			self.backup()
