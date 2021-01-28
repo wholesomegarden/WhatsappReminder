@@ -689,7 +689,7 @@ class MusicService(object):
 			sendLinks = ""
 			answer = str(songID)
 
-			sendLinks += "Other Artist, Lyrics, and Chords:\n"+link+":more"+"\n\n"
+			sendLinks += link+":more"
 
 
 			#
@@ -709,8 +709,10 @@ class MusicService(object):
 			# answer = ":chords:"+str(songID)
 			# link = self.api.genLink(origin, answer, newLink = str(songID)+"-chords")
 			# sendLinks += "Get Chords: "+link+"\n"
+			seeMore = "See More - "+history[songID]["title"]
 			time.sleep(1.5)
-			self.api.send(origin, sendLinks, thumnail = None)
+			self.api.send(origin, sendLinks, thumnail = thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics, Chords","link":link+":more"}
+)
 			time.sleep(1.5)
 			self.backup()
 
