@@ -23,7 +23,7 @@ from pprint import pprint as pp
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = True
+runLocal = False
 production = False
 print(
 '''
