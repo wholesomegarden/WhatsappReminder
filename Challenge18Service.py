@@ -140,7 +140,7 @@ class Challenge18Service():
 				print("x"+char+"x")
 				sum += self.emojiValue(char)
 
-		return len(msg)
+		return sum
 
 
 	def rate(self,group, msg, user):
