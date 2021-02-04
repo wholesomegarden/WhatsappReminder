@@ -61,7 +61,12 @@ class Master(object):
 
 	# db = {'masters': ['972512170493', '972547932000'], 'system': ['972512170493', '972543610404'], 'users': {}, 'groups': {}, 'id': '972547932000-1610379075@g.us', 'lastBackup': 1611071801.4876792, 'init': 1611071653.7335632, 'backupInterval': 0, 'backupDelay': 3, 'lastBackupServices': 0, 'servicesDB': {'Echo': {'dbID': '972512170493-1610802351@g.us'}, 'Danilator': {'dbID': '972512170493-1610802360@g.us'}, 'Reminders': {'dbID': '972512170493-1610802365@g.us'}, 'Music': {'dbID': '972512170493-1610802370@g.us'}, 'Master': {'dbID': '972512170493-1610965551@g.us'}, 'Experimental': {'dbID': '972512170493-1611059017@g.us'}}, 'availableChats': {'Master': {'972512170493-1611068831@g.us': 'https://chat.whatsapp.com/GhTABLFn3Aq18MI89MFBU8', '972512170493-1611071667@g.us': 'https://chat.whatsapp.com/LGABshra2Wd8rpZ8AduhuX'}, 'Music': {'972512170493-1611071128@g.us': 'https://chat.whatsapp.com/G3VQkKSrsuZJ3OiRz3Iof9', '972512170493-1611071137@g.us': 'https://chat.whatsapp.com/JN4juvGVYbbLVOoehExtTY'}, 'Experimental': {'972512170493-1611059125@g.us': 'https://chat.whatsapp.com/GIUwJiF3iCg1vioSHkkkQ8', '972512170493-1611059200@g.us': 'https://chat.whatsapp.com/IZXOC41bg112sKwE5UcoQO'}}}
 
-	db = {'masters': ['972512170493', '972547932000'], 'system': ['972512170493', '972543610404'], 'users': {}, 'groups': {}, 'id': '972547932000-1610379075@g.us'}
+	# db = {'masters': ['972512170493', '972547932000'], 'system': ['972512170493', '972543610404'], 'users': {}, 'groups': {}, 'id': '972547932000-1610379075@g.us'}
+	# mynumber = '972512170493'
+	mynumber = '972584422646'
+	operator = '972547932000'
+	emptyNumber = '972543610404'
+	db = {'masters': [mynumber, operator], 'system': [mynumber, emptyNumber], 'users': {}, 'groups': {}, 'id': '972584422646-1612438185@g.us'}
 
 	 # 'lastBackup': 1611071801.4876792, 'init': 1611071653.7335632, 'backupInterval': 0, 'backupDelay': 3, 'lastBackupServices': 0, 'servicesDB': {'Echo': {'dbID': '972512170493-1610802351@g.us'}, 'Danilator': {'dbID': '972512170493-1610802360@g.us'}, 'Reminders': {'dbID': '972512170493-1610802365@g.us'}, 'Music': {'dbID': '972512170493-1610802370@g.us'}, 'Master': {'dbID': '972512170493-1610965551@g.us'}, 'Experimental': {'dbID': '972512170493-1611059017@g.us'}}, 'availableChats': {'Master': {'972512170493-1611068831@g.us': 'https://chat.whatsapp.com/GhTABLFn3Aq18MI89MFBU8', '972512170493-1611071667@g.us': 'https://chat.whatsapp.com/LGABshra2Wd8rpZ8AduhuX'}, 'Music': {'972512170493-1611071128@g.us': 'https://chat.whatsapp.com/G3VQkKSrsuZJ3OiRz3Iof9', '972512170493-1611071137@g.us': 'https://chat.whatsapp.com/JN4juvGVYbbLVOoehExtTY'}, 'Experimental': {'972512170493-1611059125@g.us': 'https://chat.whatsapp.com/GIUwJiF3iCg1vioSHkkkQ8', '972512170493-1611059200@g.us': 'https://chat.whatsapp.com/IZXOC41bg112sKwE5UcoQO'}}}
 
@@ -1063,6 +1068,8 @@ class Master(object):
 					print("-------------------------------")
 					groupName = service
 
+					# if "masters" not in self.db:
+						# self.db["masters"] =
 					newGroupID,invite = self.driver.newGroup(newGroupName = service+"_DB", number = "+"+self.db["masters"][1], local = runLocal)
 					# print(newGroup)
 					# if "tuple" in str(type(newGroup)):
@@ -1086,10 +1093,27 @@ class Master(object):
 
 			# except Exception as e:
 			else:
-				print(" ::: ERROR - LOAD SERVICES ::: ","\n",e,e.args,"\n")
+				print(" ::: ERROR - LOAD SERVICES ::: ","\n",e,e.args,"umbm\n")
 
 	def loadDB(self, number = None):
 		if number is None:
+			if "id" not in self.db or self.db["id"] is None:
+				newGroupID,invite = self.driver.newGroup(newGroupName = "DB", number = "+"+self.db["masters"][1], local = runLocal)
+
+				code = "WAPI.removeParticipantGroup('"+newGroupID+"', '"+self.db["masters"][1]+"@c.us"+"')"
+				self.driver.driver.execute_script(script=code)
+
+				self.db["id"] = newGroupID
+
+				self.sendMessage(newGroupID, "NEW DB\n"+newGroupID+"\n"+invite)
+				self.sendMessage(newGroupID, str(self.db))
+				self.backup(now=True)
+				# if obj is not None:
+				# 	imageurl = obj.imageurl
+				# 	# imageurl = "https://aux2.iconspalace.com/uploads/whatsapp-flat-icon-256.png"
+				# 	# imageurl = ""
+				# 	self.master.setGroupIcon(newGroupID, imageurl)
+			# else:
 			number = self.db["id"]
 		return self.driver.loadDB(number = number)
 
