@@ -127,9 +127,10 @@ class Challenge18Service():
 
 		sum = 0
 		for char in msg:
-			print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",msg)
-			print("x"+char+"x")
-			sum += self.emojiValue(char)
+			if char.isalpha():
+				print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",msg)
+				print("x"+char+"x")
+				sum += self.emojiValue(char)
 
 		return len(msg)
 
