@@ -229,7 +229,7 @@ class Challenge18Service():
 
 
 
-			res = ssearch_dates("next monday 20:00", add_detected_language=True)
+			res = search_dates("next monday 20:00", add_detected_language=True)
 			if res is not None:
 				res= res[0][1]
 			else:
