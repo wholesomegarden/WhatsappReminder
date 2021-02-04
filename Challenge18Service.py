@@ -134,13 +134,14 @@ class Challenge18Service():
 		# 	msg = nmsg
 
 		sum = 0
+		backmsg = ""
 		for char in msg:
 			if self.char_is_emoji(char):
 				print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",msg)
 				print("x"+char+"x")
 				sum += self.emojiValue(char)
-
-		return sum
+				backmsg += char
+		return sum, backmsg
 
 
 	def rate(self,group, msg, user):
@@ -154,7 +155,7 @@ class Challenge18Service():
 				msg = m
 
 			''' max by day '''
-			score = self.getScore(msg.replace(" ","").replace("❤️","@"), max = 6)
+			score, backmsg = self.getScore(msg.replace(" ","").replace("❤️","@"), max = 6)
 			self.prepUser(user, day)
 
 			''' get score - later check by task'''
@@ -162,7 +163,8 @@ class Challenge18Service():
 			self.db["users"][user]["days"][day] += score
 
 			''' for now just thankyou - later add custom message based on score / random '''
-			sendBack = "*"+self.name+"*\n\n*Thank you! "+user.split("@")[0]+"\nyour current score is now "+str(self.db["users"][user]["score"])+"*"
+			# sendBack = "🙏🌍 *Challenge18* 🐋🌸"+"\n\n*Thank you!* "+user.split("@")[0]+"\n*your current score is now "+str(self.db["users"][user]["score"])+"*"
+			sendBack = "🙏🌍 *Challenge18* 🐋🌸"+"\n"+"Day "+str(day)+" - "+backmsg+"\n*Thank you!* "+"\n*your current score is now "+str(self.db["users"][user]["score"])+"*"
 
 			''' for now send directly to user - later in group '''
 			self.api.send(user,sendBack) # send to user
@@ -197,9 +199,9 @@ class Challenge18Service():
 
 		user = self.db["users"][userID]
 
-		if dbChanged:
-			self.backup()
-			# self.api.backup(self.db)
+		# if dbChanged:
+		self.backup()
+		# self.api.backup(self.db)
 
 	def backup(self):
 		self.api.backup(self.db)
