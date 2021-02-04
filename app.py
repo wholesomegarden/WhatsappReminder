@@ -24,6 +24,7 @@ from ServiceLoader import *
 from MasterService import *
 
 runLocal = False
+production = False
 print(
 '''
 :::::::::::::::::::::::::::::::::
@@ -68,6 +69,10 @@ class Master(object):
 	links = {}
 	runningSubscriptions = 0
 	baseURL = "akeyo.io/w?"
+	if production:
+		baseURL = "akeyo.io/p?"
+	else:
+		print("::::::::::STAGING::::::::::::::")
 	# availableChats = {}
 	publicServices = ["Music","Danilator","Reminders","Stock", "Challenge18"]
 	sendToAny = ["Challenge18"]

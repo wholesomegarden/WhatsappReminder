@@ -102,7 +102,7 @@ class ExperimentalService(object):
 		''' invite tests '''
 		service = "Master"
 		groupName = service
-		myLink = "https://akeyo.io/w?join"
+		myLink = "https://akeyo.io/p?join"
 
 		path = None
 		if service in self.master.services and "obj" in self.master.services[service] and self.master.services[service]["obj"] is not None:
