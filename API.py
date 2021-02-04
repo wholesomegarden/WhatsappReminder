@@ -12,7 +12,7 @@ class API(object):
     def backup(self, db):
         return self.backupFunc(api = self, db = db, service = self.service)
 
-    def genLink(self, chatID, answer, newLink = None):
+    def genLink(self, chatID, answer="", newLink = ""):
         if newLink is None:
             return self.newLink(api = self,service = self.service, chatID = chatID, answer = answer)
         return self.newLink(api = self,service = self.service, chatID = chatID, answer = answer, newLink = newLink)

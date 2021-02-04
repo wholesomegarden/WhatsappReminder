@@ -248,7 +248,7 @@ class MasterService(object):
 			'''
 			)
 		if dbChanged:
-			self.master.backup(now=now)
+			self.master.backup()
 
 	def unsubscribe(self,data):
 		text, chatID, senderID = data
@@ -313,7 +313,7 @@ class MasterService(object):
 			self.master.driver.sendMessage(chatID,"you are not subscirbed to: *"+service+"*")
 
 		if dbChanged:
-			self.master.backup(now=now)
+			self.master.backup()
 
 	def createGroup(self, data, service = "Master", masterGroup = True, emptyNumber ="972543610404"):
 		text, chatID, senderID = data

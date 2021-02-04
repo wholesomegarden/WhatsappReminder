@@ -42,6 +42,7 @@ class MusicService(object):
 	examples = {"example1":{"text":"","thumbnail":None, "answer":"sweet child"}, "example2":{"text":"","thumbnail":None, "answer":"כחולת עינים"}}
 	coms = ["Scraper"]
 
+
 	def __init__(self,db, api):
 		MusicService.share = self
 
@@ -59,6 +60,10 @@ class MusicService(object):
 
 		self.spotify = None
 		self.spotiAlive()
+
+		self.commands = {"more":None,"lyrics":None,"danilator":None,"chords":None, "other":None}
+		self.activity = False
+
 
 	''' restarts spotify to keep it alive '''
 	def spotiAliveAsync(self, data):
@@ -83,19 +88,23 @@ class MusicService(object):
 		st.start()
 
 	def go(self):
-		while(False):
-			if "upcoming" not in self.db:
-				self.db["upcoming"] = []
-			if "users" not in self.db:
-				self.db["users"] = {}
-
-			while len(self.db["upcoming"]) > 0:
-				item = self.db["upcoming"].pop(0)
-				origin, content = item
-				self.api.send(origin, content)
-				# self.api.backup(self.db)
-
-			time.sleep(1)
+		while(True):
+			if self.activity:
+				self.activity = False
+				self.backup()
+				time.sleep(60*3)
+			# if "upcoming" not in self.db:
+			# 	self.db["upcoming"] = []
+			# if "users" not in self.db:
+			# 	self.db["users"] = {}
+			#
+			# while len(self.db["upcoming"]) > 0:
+			# 	item = self.db["upcoming"].pop(0)
+			# 	origin, content = item
+			# 	self.api.send(origin, content)
+			# 	# self.api.backup(self.db)
+			#
+			# time.sleep(1)
 
 
 	def artistInHebrew(self,q, s = 20, lang = None):
@@ -362,8 +371,16 @@ class MusicService(object):
 		if "users" not in self.db:
 			self.db["users"] = {}
 
-		if origin not in self.db["users"]:
+		if origin not in self.db["users"] or "dict" not in str(type(self.db["users"][origin])):
 			self.db["users"][origin] = {"history":{}}
+
+		print("SELF>DB")
+		print(self.db)
+		print("ORIGIN")
+		print(self.db["users"][origin])
+		if "settings" not in self.db["users"][origin]:
+			self.db["users"][origin]["settings"] = {"defaults":{"more":False,"lyrics":False,"danilator":False,"chords":False}}
+
 
 		content = content.replace("+"," ")
 		hasCMD = False
@@ -433,7 +450,7 @@ class MusicService(object):
 			if origin not in self.db["users"] or "history" not in self.db["users"][origin]:
 				self.db["users"][origin] = {"history":{}}
 
-			history = self.db["users"][origin]["history"]
+		history = self.db["users"][origin]["history"]
 
 			# self.api.send(origin, "ECHO |"+content+"|")
 
@@ -452,6 +469,30 @@ class MusicService(object):
 		print(content)
 		print()
 		print()
+		if content.split(" ")[0].lower() in self.commands:
+			# cmdd = content.split(" ")[0]
+			lastID = None
+			if len(history) >= 1:
+				lastID = str(len(history)-1)
+
+			''' before first song '''
+			if lastID is None:
+				pass
+			else:
+				if len(content.split(" "))>1 and content.split(" ")[0].lower() in self.db["users"][origin]["settings"]["defaults"]:
+					second = content.split(" ")[1]
+					d = {"on":True,"off":False, "toggle": not self.db["users"][origin]["settings"]["defaults"][content.split(" ")[0].lower()]}
+					if second.lower() in d:
+						op = d[second.lower()]
+						self.db["users"][origin]["settings"]["defaults"][content.split(" ")[0].lower()] = op
+
+						return 	self.api.send(origin, "Changed Default Settings: "+content.split(" ")[0]+" is "+second, thumnail = None)
+
+
+
+				content = ":"+lastID+":"+content
+
+
 		if ":" == content[0]:
 			if len(content.split(":")) > 2 and len(content.split(":")[2])>0:
 
@@ -459,7 +500,7 @@ class MusicService(object):
 				l = content.split(":")
 				id = l[1]
 				try:
-					cmd = l[2]
+					cmd = l[2].lower()
 					print("CMD",cmd,"id",id,"HIST",history)
 					if len(history) >= int(id)+1:
 						song = history[id]
@@ -478,11 +519,11 @@ class MusicService(object):
 							sendLinks = ""
 							link = song["link"]
 
-							sendLinks += "👯‍ *Covers* and *Other Artists*\n"+link+":other"+"\n\n"
+							sendLinks += "👯‍ *Covers* and *Other Artists*\n"+link+"other"+"\n\n"
 
-							sendLinks += "📖 *Song Lyrics*:\n"+link+":lyrics"+"\n"
-							sendLinks += "🌐 *Lyrics Translation*:\n"+link+":danilator"+"\n"
-							sendLinks += "🎸 *Get Chords*:\n"+link+":chords"+"\n"
+							sendLinks += "📖 *Song Lyrics*:\n"+link+"lyrics"+"\n"
+							sendLinks += "🌐 *Lyrics Translation*:\n"+link+"danilator"+"\n"
+							sendLinks += "🎸 *Get Chords*:\n"+link+"chords"+"\n"
 							#
 							# answer = ":lyrics:"+str(songID)
 							# link = self.api.genLink(origin, answer, newLink = str(songID)+"-lyrics")
@@ -515,9 +556,19 @@ class MusicService(object):
 							sendArtist = ""
 
 							baselink = song["link"].split(":")[0]
-							for nA in newArtists:
-								tit, art = nA.split("~")
 
+
+							link = baselink+song["search"].replace(" ","+")+"+Karaoke"
+							sendArtist +=  "🎤 *"+title+" - Kareoke* : \n"
+							# sendArtist +=   *Acoustic Version* : \n"
+							sendArtist += link+"\n\n"
+
+							link = baselink+song["search"].replace(" ","+")+"+Acoustic+Cover"
+							sendArtist +=  "🎺 *Acoustic Version* : \n"
+							sendArtist += link+"\n\n"
+							for nA in newArtists:
+
+								tit, art = nA.split("~")
 								artist_title = get_artist_title(nA.replace("~"," "))
 								if artist_title is not None:
 									print("@@@@@@@@@@@@@@@@@@@@",artist_title)
@@ -615,7 +666,7 @@ class MusicService(object):
 				except:
 					traceback.print_exc()
 
-			link = self.api.genLink(origin, ":"+str(songID)+":", newLink = ":"+str(songID))
+			link = self.api.genLink(origin) + ":"+str(songID)+":"
 			history[songID] = {"search":content, "language":lang, "link":link}
 
 
@@ -683,6 +734,16 @@ class MusicService(object):
 					desc = ytres[0]['channel']
 					image = ytres[0]["thumbnails"][0]
 					if vidID is not None and len(vidID) > 0:
+
+						artist_title = get_artist_title(title)
+						if artist_title is not None:
+							print("@@@@@@@@@@@@@@@@@@@@",artist_title)
+							art, tit = artist_title
+							if "title" not in history[songID]:
+								history[songID]["title"] = tit
+							if "artist" not in history[songID]:
+								history[songID]["artist"] = art
+
 						sendBack+="Youtube: *"+title+"*"+"\n"+ylink
 
 					''' thumnail for youtube '''
@@ -699,7 +760,7 @@ class MusicService(object):
 			sendLinks = ""
 			answer = str(songID)
 
-			sendLinks += "https://"+link+":more"
+			sendLinks += "https://"+link+"more"
 
 
 			#
@@ -722,13 +783,20 @@ class MusicService(object):
 			seeMore = "See More Options ("+history[songID]["title"]+")"
 			self.api.send(origin, sendBack, thumnail = thumnail)
 			time.sleep(1.2)
-			self.api.send(origin, "🍀 "+sendLinks, thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics and Chords","link":"https://"+link+":more"})
+
+			for cmd in self.db["users"][origin]["settings"]["defaults"]:
+				if self.db["users"][origin]["settings"]["defaults"][cmd]:
+					self.process({"origin":origin,"user":user,"content":":"+songID+":"+cmd})
+
+			if False:
+				self.api.send(origin, "🍀 "+sendLinks, thumnail = {"imageurl":None,"title":seeMore,"desc":"Other Artists, Covers, Lyrics and Chords","link":"https://"+link+":more"})
+
+
 			# time.sleep(1.5)
 
 			# self.api.send(origin, sendLinks, thumnail = {"imageurl":image,"title":"seeMore","desc":"Other Artists, Covers","link":link+":more"}
 
-			time.sleep(1.5)
-			self.backup()
+			self.activity = True
 
 	def backup(self):
 		self.api.backup(self.db)
@@ -745,5 +813,5 @@ class MusicService(object):
 		if "users" not in self.db:
 			self.db["users"] = {}
 		if origin not in self.db["users"]:
-			self.db["users"][origin] = origin
+			self.db["users"][origin] = {}
 			self.backup()

@@ -1,7 +1,11 @@
 #Service.py
 import time
 import yfinance as yf
+from datetime import datetime, timedelta, date
+import time
+from cryptocmd import CmcScraper
 
+import traceback
 
 class StockService(object):
 	id = "Stock"
@@ -12,7 +16,7 @@ class StockService(object):
 	shortDescription = "Stock Stock Stock"
 	share = None
 
-	examples = {"AAPL":{"text":"","thumbnail":None}, "TSLA":{"text":"","thumbnail":None}}
+	examples = {"AAPL":{"text":"","thumbnail":None}, "TSLA":{"text":"","thumbnail":None},"TSLA":{"btc":"","thumbnail":None}}
 
 	def __init__(self,db, api):
 		StockService.share = self
@@ -58,10 +62,22 @@ class StockService(object):
 
 		self.api.send(origin, "Fetching Stock for: *"+content+"*")
 		# content = "AAPL"
-		t = yf.Ticker(content).info
+
+		today = date.today()
+		yesterday = datetime.now() - timedelta(1)
+		scraper = CmcScraper(content, yesterday.strftime("%d-%m-%Y"),today.strftime("%d-%m-%Y"))
+		# scraper = CmcScraper("btc", "28-1-2021","29-1-2021")
+		# headers, data = scraper.get_data()
+		# scraper.get_data("json")[1:-1]
+		# self.api.send(origin, "Could not fetch info for: "+content)
+		t = None
+		try:
+			t = yf.Ticker(content).info
+		except :
+			return self.api.send(origin, "Could not fetch info for: "+content)
 
 		res = {"dayHigh":"","dayLow":"", "open":"", "regularMarketPrice":"","volume":"","averageVolume10days":""}
-		if t is not None:
+		if t is not None and content.lower() not in ["eth"]:
 			name = t["longName"]
 			for k in res:
 				res[k] = t[k]
@@ -74,7 +90,29 @@ class StockService(object):
 			self.api.send(origin, "*"+name+"*\n"+sendBack,thumnail = {"imageurl":logoURL,"title":name+" Stock","desc":"Get More Stock Info","link":logoURL})
 
 		else:
-			self.api.send(origin, "Could not fetch stock for: "+content)
+			data = None
+			try:
+				try:
+					headers, data = scraper.get_data()
+				except:
+					headers, data = scraper.get_data()
+			except:
+				traceback.print_exc()
+
+			if data is not None:
+				res = {}
+				ch = 0
+				for h in headers:
+					res[h] = data[-1][ch]
+					ch+=1
+				name = content.upper()
+				res.pop("Date")
+				sendBack = str(res).replace("{","").replace("}","").replace(", ","\n").replace("'","")
+				# self.api.send(origin, "*"+name+"*\n"+sendBack,thumnail = {"imageurl":logoURL,"title":name+" Crypto","desc":"Get More Stock Info","link":logoURL})
+				return self.api.send(origin, "*"+name+"*\n"+sendBack,thumnail = None)
+			else:
+				self.api.send(origin, "Could not fetch info for: "+content)
+
 		#
 		#
 		# sendBack = content

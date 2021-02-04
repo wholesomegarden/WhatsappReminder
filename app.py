@@ -58,14 +58,19 @@ class Master(object):
 	# 	"groups": {"id":"service"},
 	# 	"id":"972547932000-1610379075@g.us"}
 
-	db = {'masters': ['972512170493', '972547932000'], 'system': ['972512170493', '972543610404'], 'users': {}, 'groups': {}, 'id': '972547932000-1610379075@g.us', 'lastBackup': 1611071801.4876792, 'init': 1611071653.7335632, 'backupInterval': 0, 'backupDelay': 3, 'lastBackupServices': 0, 'servicesDB': {'Echo': {'dbID': '972512170493-1610802351@g.us'}, 'Danilator': {'dbID': '972512170493-1610802360@g.us'}, 'Reminders': {'dbID': '972512170493-1610802365@g.us'}, 'Music': {'dbID': '972512170493-1610802370@g.us'}, 'Master': {'dbID': '972512170493-1610965551@g.us'}, 'Experimental': {'dbID': '972512170493-1611059017@g.us'}}, 'availableChats': {'Master': {'972512170493-1611068831@g.us': 'https://chat.whatsapp.com/GhTABLFn3Aq18MI89MFBU8', '972512170493-1611071667@g.us': 'https://chat.whatsapp.com/LGABshra2Wd8rpZ8AduhuX'}, 'Music': {'972512170493-1611071128@g.us': 'https://chat.whatsapp.com/G3VQkKSrsuZJ3OiRz3Iof9', '972512170493-1611071137@g.us': 'https://chat.whatsapp.com/JN4juvGVYbbLVOoehExtTY'}, 'Experimental': {'972512170493-1611059125@g.us': 'https://chat.whatsapp.com/GIUwJiF3iCg1vioSHkkkQ8', '972512170493-1611059200@g.us': 'https://chat.whatsapp.com/IZXOC41bg112sKwE5UcoQO'}}}
+	# db = {'masters': ['972512170493', '972547932000'], 'system': ['972512170493', '972543610404'], 'users': {}, 'groups': {}, 'id': '972547932000-1610379075@g.us', 'lastBackup': 1611071801.4876792, 'init': 1611071653.7335632, 'backupInterval': 0, 'backupDelay': 3, 'lastBackupServices': 0, 'servicesDB': {'Echo': {'dbID': '972512170493-1610802351@g.us'}, 'Danilator': {'dbID': '972512170493-1610802360@g.us'}, 'Reminders': {'dbID': '972512170493-1610802365@g.us'}, 'Music': {'dbID': '972512170493-1610802370@g.us'}, 'Master': {'dbID': '972512170493-1610965551@g.us'}, 'Experimental': {'dbID': '972512170493-1611059017@g.us'}}, 'availableChats': {'Master': {'972512170493-1611068831@g.us': 'https://chat.whatsapp.com/GhTABLFn3Aq18MI89MFBU8', '972512170493-1611071667@g.us': 'https://chat.whatsapp.com/LGABshra2Wd8rpZ8AduhuX'}, 'Music': {'972512170493-1611071128@g.us': 'https://chat.whatsapp.com/G3VQkKSrsuZJ3OiRz3Iof9', '972512170493-1611071137@g.us': 'https://chat.whatsapp.com/JN4juvGVYbbLVOoehExtTY'}, 'Experimental': {'972512170493-1611059125@g.us': 'https://chat.whatsapp.com/GIUwJiF3iCg1vioSHkkkQ8', '972512170493-1611059200@g.us': 'https://chat.whatsapp.com/IZXOC41bg112sKwE5UcoQO'}}}
+
+	db = {'masters': ['972512170493', '972547932000'], 'system': ['972512170493', '972543610404'], 'users': {}, 'groups': {}, 'id': '972547932000-1610379075@g.us'}
+
+	 # 'lastBackup': 1611071801.4876792, 'init': 1611071653.7335632, 'backupInterval': 0, 'backupDelay': 3, 'lastBackupServices': 0, 'servicesDB': {'Echo': {'dbID': '972512170493-1610802351@g.us'}, 'Danilator': {'dbID': '972512170493-1610802360@g.us'}, 'Reminders': {'dbID': '972512170493-1610802365@g.us'}, 'Music': {'dbID': '972512170493-1610802370@g.us'}, 'Master': {'dbID': '972512170493-1610965551@g.us'}, 'Experimental': {'dbID': '972512170493-1611059017@g.us'}}, 'availableChats': {'Master': {'972512170493-1611068831@g.us': 'https://chat.whatsapp.com/GhTABLFn3Aq18MI89MFBU8', '972512170493-1611071667@g.us': 'https://chat.whatsapp.com/LGABshra2Wd8rpZ8AduhuX'}, 'Music': {'972512170493-1611071128@g.us': 'https://chat.whatsapp.com/G3VQkKSrsuZJ3OiRz3Iof9', '972512170493-1611071137@g.us': 'https://chat.whatsapp.com/JN4juvGVYbbLVOoehExtTY'}, 'Experimental': {'972512170493-1611059125@g.us': 'https://chat.whatsapp.com/GIUwJiF3iCg1vioSHkkkQ8', '972512170493-1611059200@g.us': 'https://chat.whatsapp.com/IZXOC41bg112sKwE5UcoQO'}}}
 
 	services = {}
 	links = {}
 	runningSubscriptions = 0
 	baseURL = "akeyo.io/w?"
 	# availableChats = {}
-	publicServices = ["Music","Danilator","Reminders","Stock"]
+	publicServices = ["Music","Danilator","Reminders","Stock", "Challenge18"]
+	sendToAny = ["Challenge18"]
 
 	''' start master driver and log in '''
 	def __init__(self, profileDir = "/app/session/rprofile2"):
@@ -79,6 +84,10 @@ class Master(object):
 		self.masterService = None
 
 		self.runLocal = runLocal
+		self.startBackup = False
+		self.activity = False
+		self.backupNow = False
+
 
 		asyncInit = Thread(target = self.initAsync,args = [profileDir])
 		asyncInit.start()
@@ -529,6 +538,8 @@ class Master(object):
 			if self.services[service]["api"] is api:
 				targetIsService = False
 				subscribed = target in self.db["groups"] and "service" in self.db["groups"][target] and service.lower() == self.db["groups"][target]["service"].lower()
+				if service in self.sendToAny:
+					subscribed = True
 				if len(target.split("/")) > 1 and len(target.split("/")[0]) > 0 and len(target.split("/")[1]) > 0:
 					if target.split("/")[0] in self.services:
 						targetService = target.split("/")[0]
@@ -1100,7 +1111,7 @@ class Master(object):
 				res = rand
 		return res
 
-	def genLink(self, api = None, service = None, chatID = None, answer = None, newLink = "AAA", asMaster = False):
+	def genLink(self, api = None, service = None, chatID = None, answer = "", newLink = "", asMaster = False):
 		if asMaster is False:
 			if api is None or service is None or chatID is None or answer is None:
 				return "https://google.com/x"
@@ -1196,17 +1207,36 @@ class Master(object):
 		self.db["lastBackupServices"] = time.time()
 
 	def backup(self, now = None):
+		if not self.startBackup:
+			self.startBackup = True
+			self.backupstart()
+
+		self.activity = True
+		if now:
+			self.backupNow = True
+
+	def backupstart(self, now = None):
 		bT = Thread(target = self.backupAsync,args = [now])
 		bT.start()
 
-	def backupAsync(self,data):
-		now = data
-		if now is None:
-			time.sleep(self.db["backupDelay"])
-			if time.time() - self.db["lastBackup"] < self.db["backupInterval"]:
-				return False
-		self.db["lastBackup"] = time.time()
-		return self.driver.updateDB(self.db,number=self.db["id"])
+	def backupAsync(self,data, delay = 4*60):
+		while(True):
+			t = time.time()
+			while(time.time()-t < delay and not self.backupNow):
+				time.sleep(10)
+			if self.activity or self.backupNow:
+				self.activity = False
+				self.backupNow = False
+				self.db["lastBackup"] = time.time()
+				self.driver.updateDB(self.db,number=self.db["id"])
+
+
+		# now = data
+		# if now is not None:
+		# else:
+		# 	time.sleep(self.db["backupDelay"])
+		# 	if time.time() - self.db["lastBackup"] < self.db["backupInterval"]:
+		# 		return False
 
 	def ProcessServiceAsync(self, obj, info):
 		serviceT = Thread(target = self.ProcessService, args = [[obj,info]])
