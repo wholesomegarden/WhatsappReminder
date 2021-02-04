@@ -11,6 +11,8 @@ import time
 import datetime
 import re
 
+import emoji
+
 from threading import Thread
 
 known = {"morning":"at 08:00","afternoon":"at 16:00", "evening":"at 18:00", "in in":"in","at at":"at", "בבוקר":"08:00", "בצהריים":"12:00", "בערב":"18:00"}
@@ -113,6 +115,12 @@ class Challenge18Service():
 				return k
 		return 0
 
+
+	def char_is_emoji(self, character):
+		return character in emoji.UNICODE_EMOJI
+
+
+
 	def getScore(self, msg, max = 6):
 		''' count hearts and emoji values '''
 
@@ -127,7 +135,7 @@ class Challenge18Service():
 
 		sum = 0
 		for char in msg:
-			if char.isalpha():
+			if self.char_is_emoji(char):
 				print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",msg)
 				print("x"+char+"x")
 				sum += self.emojiValue(char)
