@@ -24,7 +24,7 @@ from ServiceLoader import *
 from MasterService import *
 
 runLocal = False
-production = False
+production = True
 print(
 '''
 :::::::::::::::::::::::::::::::::
