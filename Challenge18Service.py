@@ -87,7 +87,7 @@ class Challenge18Service():
 
 				sent = []
 				for up in challenge["upcoming"]:
-					print("UP",up)
+					# print("UP",up)
 
 					timeDiff = time.time() - search_dates(up)[0][1].timestamp()
 					passedTime = timeDiff > 0 and timeDiff < lastHour
