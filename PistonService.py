@@ -2,6 +2,16 @@
 import time
 import requests
 
+
+pheaders = {
+'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36',
+'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+'Accept-Language' : 'en-US,en;q=0.5',
+'Accept-Encoding' : 'gzip',
+"Cache-Control": "no-cache",
+"Pragma": "no-cache",
+'DNT' : '1', # Do Not Track Request Header
+'Connection' : 'close' }
 class PistonService(object):
 	id = "Piston"
 	name = "Piston!"
@@ -41,9 +51,12 @@ class PistonService(object):
 
 	def piston(self,code = "print('Hello World')", data = {"language": "python"}, purl = "https://emkc.org/api/v1/piston/execute"):
 		if "source" not in data:
-			data["source"] = code
-		r = requests.post(purl, data)
-		if r.status_code ==200:
+			data["source"] = ""
+		data["source"] = code
+
+		print("SENDING DATA:",str(data))
+		r = requests.post(purl, data, headers=pheaders)
+		if r.status_code == 200:
 			out = r.json()
 			# out = "".join("".join(r.json()["output"].split("[")[1:])[::-1].split("]")[1:])[::-1]
 			return True, out
@@ -68,19 +81,15 @@ class PistonService(object):
 		# 	self.backup()
 		pre = ""
 		if len(content) < 2:
-			res, dic = self.piston()
-			output = dic.pop("output")
-			extra = dic
-
-			self.api.send(origin, pre+"Code Finished: "+str(res)+"\n"+output+"\n"+"\n"+str(extra))
+			res, dict = self.piston()
 		else:
-			res, dic = self.piston(code = content)
+			res, dict = self.piston(code = content)
 			# pre = "X"
 
-			output = dic.pop("output")
-			extra = dic
+		output = dict.pop("output")
+		extra = dict
 
-			self.api.send(origin, pre+"Code Finished: "+str(res)+"\n"+output+"\n"+"\n"+str(extra))
+		self.api.send(origin, pre+"Code Finished: "+str(res)+"\n"+output+"\n"+"\n"+str(extra))
 		# sendBack = content
 		#
 		# withLink = True

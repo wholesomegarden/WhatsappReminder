@@ -1,3 +1,28 @@
-2021/02/05-21:32:01.538 7153 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/02/05-21:32:01.538 7153 Recovering log #583
-2021/02/05-21:32:01.562 7153 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000583.log 
+2021/02/05-21:44:15.497 76cd Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/02/05-21:44:15.497 76cd Recovering log #583
+2021/02/05-21:44:15.551 76cd Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000583.log 
+2021/02/05-21:48:10.108 76cb Level-0 table #596: started
+2021/02/05-21:48:10.132 76cb Level-0 table #596: 1270854 bytes OK
+2021/02/05-21:48:10.135 76cb Delete type=0 #583
+2021/02/05-21:48:18.905 76cc Compacting 1@1 + 9@2 files
+2021/02/05-21:48:18.968 76cc Generated table #597@1: 39332 keys, 2241351 bytes
+2021/02/05-21:48:19.021 76cc Generated table #598@1: 32770 keys, 2242744 bytes
+2021/02/05-21:48:19.080 76cc Generated table #599@1: 35649 keys, 2248728 bytes
+2021/02/05-21:48:19.139 76cc Generated table #600@1: 33678 keys, 2244116 bytes
+2021/02/05-21:48:19.201 76cc Generated table #601@1: 35471 keys, 2247802 bytes
+2021/02/05-21:48:19.258 76cc Generated table #602@1: 34092 keys, 2248341 bytes
+2021/02/05-21:48:19.307 76cc Generated table #603@1: 90560 keys, 2245976 bytes
+2021/02/05-21:48:19.357 76cc Generated table #604@1: 93357 keys, 2244171 bytes
+2021/02/05-21:48:19.377 76cc Generated table #605@1: 20135 keys, 1145746 bytes
+2021/02/05-21:48:19.377 76cc Compacted 1@1 + 9@2 files => 19108975 bytes
+2021/02/05-21:48:19.379 76cc compacted to: files[ 0 0 9 0 0 0 0 ]
+2021/02/05-21:48:19.379 76cc Delete type=2 #591
+2021/02/05-21:48:19.379 76cc Delete type=2 #593
+2021/02/05-21:48:19.379 76cc Delete type=2 #589
+2021/02/05-21:48:19.379 76cc Delete type=2 #592
+2021/02/05-21:48:19.379 76cc Delete type=2 #596
+2021/02/05-21:48:19.379 76cc Delete type=2 #588
+2021/02/05-21:48:19.379 76cc Delete type=2 #587
+2021/02/05-21:48:19.379 76cc Delete type=2 #586
+2021/02/05-21:48:19.380 76cc Delete type=2 #585
+2021/02/05-21:48:19.380 76cc Delete type=2 #590
