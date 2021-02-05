@@ -1,3 +1,28 @@
-2021/02/05-20:54:44.410 6287 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/02/05-20:54:44.410 6287 Recovering log #571
-2021/02/05-20:54:44.459 6287 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000571.log 
+2021/02/05-20:56:04.540 6436 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/02/05-20:56:04.540 6436 Recovering log #571
+2021/02/05-20:56:04.590 6436 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000571.log 
+2021/02/05-20:56:04.746 64ea Level-0 table #584: started
+2021/02/05-20:56:04.763 64ea Level-0 table #584: 1227638 bytes OK
+2021/02/05-20:56:04.765 64ea Delete type=0 #571
+2021/02/05-20:56:05.219 64e8 Compacting 1@1 + 9@2 files
+2021/02/05-20:56:05.284 64e8 Generated table #585@1: 39715 keys, 2242600 bytes
+2021/02/05-20:56:05.326 64e8 Generated table #586@1: 32673 keys, 2242220 bytes
+2021/02/05-20:56:05.366 64e8 Generated table #587@1: 35950 keys, 2248119 bytes
+2021/02/05-20:56:05.407 64e8 Generated table #588@1: 33495 keys, 2243568 bytes
+2021/02/05-20:56:05.460 64e8 Generated table #589@1: 35259 keys, 2247956 bytes
+2021/02/05-20:56:05.506 64e8 Generated table #590@1: 36731 keys, 2250210 bytes
+2021/02/05-20:56:05.556 64e8 Generated table #591@1: 93000 keys, 2243685 bytes
+2021/02/05-20:56:05.603 64e8 Generated table #592@1: 93357 keys, 2245384 bytes
+2021/02/05-20:56:05.627 64e8 Generated table #593@1: 9552 keys, 875482 bytes
+2021/02/05-20:56:05.627 64e8 Compacted 1@1 + 9@2 files => 18839224 bytes
+2021/02/05-20:56:05.629 64e8 compacted to: files[ 0 0 9 0 0 0 0 ]
+2021/02/05-20:56:05.629 64e8 Delete type=2 #579
+2021/02/05-20:56:05.629 64e8 Delete type=2 #574
+2021/02/05-20:56:05.629 64e8 Delete type=2 #580
+2021/02/05-20:56:05.629 64e8 Delete type=2 #581
+2021/02/05-20:56:05.629 64e8 Delete type=2 #576
+2021/02/05-20:56:05.629 64e8 Delete type=2 #584
+2021/02/05-20:56:05.629 64e8 Delete type=2 #578
+2021/02/05-20:56:05.629 64e8 Delete type=2 #577
+2021/02/05-20:56:05.629 64e8 Delete type=2 #575
+2021/02/05-20:56:05.629 64e8 Delete type=2 #573

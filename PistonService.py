@@ -68,15 +68,19 @@ class PistonService(object):
 		# 	self.backup()
 		pre = ""
 		if len(content) < 2:
-			res, dict = self.piston()
+			res, dic = self.piston()
+			output = dic.pop("output")
+			extra = dic
+
+			self.api.send(origin, pre+"Code Finished: "+str(res)+"\n"+output+"\n"+"\n"+str(extra))
 		else:
-			res, dict = self.piston(code = content)
-			pre = "X"
+			res, dic = self.piston(code = content)
+			# pre = "X"
 
-		output = dict.pop("output")
-		extra = dict
+			output = dic.pop("output")
+			extra = dic
 
-		self.api.send(origin, pre+"Code Finished: "+str(res)+"\n"+output+"\n"+"\n"+str(extra))
+			self.api.send(origin, pre+"Code Finished: "+str(res)+"\n"+output+"\n"+"\n"+str(extra))
 		# sendBack = content
 		#
 		# withLink = True
