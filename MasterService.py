@@ -412,10 +412,10 @@ class MasterService(object):
 
 			# time.sleep(10)
 			self.master.driver.sendMessage(newGroupID,welcome)
-			print("##############################")
+			# print("##############################")
 			self.master.db["availableChats"][service][newGroupID] = groupInvite
-			print("##############################")
-			print(self.master.db["availableChats"])
+			# print("##############################")
+			# print(self.master.db["availableChats"])
 			# self.waitForNewParticipant(newGroupID)
 		if chatID is not None:
 			res = self.master.driver.send_message_with_thumbnail(path,chatID,url=groupInvite,title="Open  "+groupName,description="BBBBBBBB",text="Creating empty group: "+groupName+" \n"+str(groupInvite)+"\nCheck it out :)")

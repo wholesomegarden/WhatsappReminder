@@ -14,9 +14,15 @@ import re
 import emoji
 
 from threading import Thread
+import traceback
+from pprint import pprint as pp
+
+import C18Tasks
+
 
 known = {"morning":"at 08:00","afternoon":"at 16:00", "evening":"at 18:00", "in in":"in","at at":"at", "בבוקר":"08:00", "בצהריים":"12:00", "בערב":"18:00"}
 days = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday".split(",")
+cFormat = {"today":-1,"upcoming":{}}
 
 # class Challenge18Service(Service):
 class Challenge18Service():
@@ -32,11 +38,15 @@ class Challenge18Service():
 	# examples = {"example1":{"text":"","thumbnail":None, "answer":"This is awesome in 5 seconds"}, "example2":{"text":"","thumbnail":None, "answer":"להתקשר לברוך מחר בבוקר"}}
 	examples = {}
 
-	emojiValues = {1:["@🧡❤️💛💚💙💜🖤🤍🤎💔❣️💕💞💓💗💖💘💝💐🌷🌹🥀🌺🌸🌼🌻🪴🎍🍀☘️🌱🌿🌴🎋🍃🌳🌲🎄🌵"],
-		2:["🍒"],
-		3:["🌎🌍🌏🌐⚽👂🏃🏃‍♀️👟💸💵💴💶💷💰💳💎💲🤑📱🤳📲📞☎️📴📳📵💡🏐🏀🏈⚾🥎🎾🏉🎱🏓🥍🏏⛹️‍♀️⛹️🏌️‍♀️🏌️🥥🐜"],
-		18:["🤹‍♀️🤹‍♂️🥇⌛"],
-		10:["🎥"]}
+	emojiValues = {1:"@🧡❤️💛💚💙💜🖤🤍🤎💔❣️💕💞💓💗💖💘💝💐🌷🌹🥀🌺🌸🌼🌻🪴🎍🍀☘️🌱🌿🌴🎋🍃🌳🌲🎄🌵",
+	  2:"🍒",
+	  3:"🌎🌍🌏🌐⚽👂🏃🏃‍♀️👟💸💵💴💶💷💰💳💎💲🤑📱🤳📲📞☎️📴📳📵💡🏐🏀🏈⚾🥎🎾🏉🎱🏓🥍🏏⛹️‍♀️⛹️🏌️‍♀️🏌️🥥🐜",
+	  18:"🤹‍♀️🤹‍♂️🥇⌛",
+	  10:"🎥",
+	  17:"️👣",
+	  180:"🕉️"}
+
+	push = C18Tasks.international
 
 
 	def __init__(self,db, api):
@@ -52,32 +62,99 @@ class Challenge18Service():
 		self.name = Challenge18Service.name
 		self.welcome = Challenge18Service.welcome
 		self.imageurl = Challenge18Service.imageurl
+		# self.emojiValues = Challenge18Service.emojiValues
 		# self.help = Challenge18Service.help
+		self.managePush()
 
+	def managePush(self):
+		p = Thread(target = self.managePushAsync, args = [None])
+		p.start()
+
+	def managePushAsync(self, data):
+		needsBackup = False
+		while "challenges" not in self.db:
+			time.sleep(1)
+		print("##################################")
+		print("##################################")
+		print("##################################")
+		print("MANAGING PUSH FOR C18")
+		lastHour = 60*60
+		while(True):
+			for ch in self.db["challenges"]:
+				challenge = self.db["challenges"][ch]
+				if "upcoming" not in challenge:
+					challenge["upcoming"] = {}
+
+				sent = []
+				for up in challenge["upcoming"]:
+					print("UP",up)
+
+					timeDiff = time.time() - search_dates(up)[0][1].timestamp()
+					passedTime = timeDiff > 0 and timeDiff < lastHour
+					if passedTime:
+						try:
+							day = challenge["today"]
+							if day in self.push and up in self.push[day]:
+								content = self.push[day][up]
+								if content is not None:
+									content = content.replace("DDD",str(day)).replace("TTT",up)
+									print("#################### SENDING PUSH TO C18",ch, "DAY", day, "time",up)
+									sent.append(up)
+									self.api.send(ch,content) # send to user
+									needsBackup = True
+						except:
+							traceback.print_exc()
+				for up in sent:
+					challenge["upcoming"].pop(up)
+				# challenge["today"] += 1
+
+			time.sleep(5)
+			if needsBackup:
+				self.backup()
+				needsBackup = False
 
 	def go(self):
+		resetLast2000 = False
+		if "last2000" not in self.db or resetLast2000:
+			self.db["last2000"] = 0
+			# self.backup()
+			print("22222222222222222222222222222222222222222222000")
 		while(True):
-			if "last2000" not in self.db:
-				self.db["last2000"] = 0
 			# if "upcoming" not in self.db or "dict" not in str(type(self.db["upcoming"])):
 			# 	self.db["upcoming"] = {}
 			if "users" not in self.db :
 				self.db["users"] = {}
+
 
 			''' UPDATE CHALLENGE DAYS '''
 			''' SEND DAYLIES '''
 			''' USER engagment '''
 
 			''' check time after 20:00 '''
-
-			passed2000 = time.time() - search_dates("20:00")[0][1].timestamp() > 0
+			dayly = 60*60*23
+			# dayly = 60
+			atTime = "22:00"
+			# passed2000 = time.time() - search_dates("20:00")[0][1].timestamp() > 0
+			# print("C18",time.time(),"\nc18",search_dates(atTime)[0][1].timestamp(),"\n",self.db["last2000"])
+			passed2000 = time.time() - search_dates(atTime)[0][1].timestamp() > 0
 			try:
-				if passed2000 and time.time() - self.db["last2000"] > 60*60*23:
+				# print(passed2000, time.time() ,"\n", self.db["last2000"] ,"\n", dayly)
+				if passed2000 and time.time() - self.db["last2000"] > dayly:
 					self.db["last2000"] = time.time()
 					for challenge in self.db["challenges"]:
-						challenge["today"] += 1
+						self.db["challenges"][challenge]["today"] += 1
+						if self.db["challenges"][challenge]["today"] == 0:
+							self.db["challenges"][challenge]["today"] += 1
+						day = self.db["challenges"][challenge]["today"]
+						self.api.send(challenge,"CHALLENGE CHANGED TO DAY "+str(day)) # send to user
+						if day in self.push:
+							for tm in self.push[day]:
+								self.db["challenges"][challenge]["upcoming"][tm] = "_"
+
+						print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",challenge, "DAY: ",self.db["challenges"][challenge]["today"])
+					self.backup()
 			except :
-				pass
+				traceback.print_exc()
 			# passed2000 update day += 1
 
 
@@ -89,11 +166,11 @@ class Challenge18Service():
 			# 	if time.time()-t > 0:
 			# 		userID,remID = key.split("_")
 			# 		self.remind(userID, remID)
-			# 	# self.api.backup(self.db)
+
 			#
 			#
 			#
-			# time.sleep(1)
+			time.sleep(3)
 
 	def prepUser(self, user, day):
 		if "days" not in self.db["users"][user]:
@@ -113,7 +190,8 @@ class Challenge18Service():
 		for k in self.emojiValues:
 			if char in self.emojiValues[k]:
 				return k
-		return 0
+			print(char+" in "+str(self.emojiValues[k]))
+		return 1
 
 
 	def char_is_emoji(self, character):
@@ -136,12 +214,12 @@ class Challenge18Service():
 		sum = 0
 		backmsg = ""
 		for char in msg:
-			if self.char_is_emoji(char):
+			if self.char_is_emoji(char) or char is "@":
 				print("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC",msg)
 				print("x"+char+"x")
 				sum += self.emojiValue(char)
 				backmsg += char
-		return sum, backmsg
+		return sum, backmsg.replace("@","❤️")
 
 
 	def rate(self,group, msg, user):
@@ -183,7 +261,7 @@ class Challenge18Service():
 		if "users" not in self.db:
 			self.db["users"] = {}
 		if "challenges" not in self.db:
-			self.db["challenges"] = {"today":1}
+			self.db["challenges"] = cFormat
 
 		dbChanged = False
 
@@ -192,12 +270,11 @@ class Challenge18Service():
 			self.db["users"][userID] = {}
 			dbChanged = True
 		if origin not in self.db["challenges"]:
-			self.db["challenges"][origin] = {"today":1}
+			self.db["challenges"][origin] = cFormat
 			dbChanged = True
-
-		self.rate(origin, content,userID)
-
-		user = self.db["users"][userID]
+		else:
+			self.rate(origin, content,userID)
+			user = self.db["users"][userID]
 
 		# if dbChanged:
 		self.backup()
@@ -244,5 +321,5 @@ class Challenge18Service():
 			if res is not None:
 				res= res[0][1]
 			else:
-				self.db["challenges"][origin] = {"today":1}
+				self.db["challenges"][origin] = cFormat
 			dbChanged = True

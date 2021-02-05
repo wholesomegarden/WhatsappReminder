@@ -980,7 +980,10 @@ class Master(object):
 						cThread = Thread(target=self.processAsync, args = [contact])
 						cThread.start()
 					else:
-						self.Process(contact)
+						try:
+							self.Process(contact)
+						except:
+							traceback.print_exc()
 
 
 					'''

@@ -1,3 +1,8 @@
-2021/02/04-12:28:35.487 4497 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/Local Storage/leveldb/MANIFEST-000001
-2021/02/04-12:28:35.487 4497 Recovering log #55
-2021/02/04-12:28:35.488 4497 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/Local Storage/leveldb/000055.log 
+2021/02/05-20:56:02.925 6437 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/Local Storage/leveldb/MANIFEST-000001
+2021/02/05-20:56:02.926 6437 Recovering log #57
+2021/02/05-20:56:02.926 6437 Level-0 table #60: started
+2021/02/05-20:56:02.933 6437 Level-0 table #60: 27398 bytes OK
+2021/02/05-20:56:02.933 6437 Recovering log #60
+2021/02/05-20:56:02.933 6437 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/Local Storage/leveldb/000060.log 
+2021/02/05-20:56:02.935 6437 Delete type=2 #61
+2021/02/05-20:56:02.935 6437 Delete type=0 #57
