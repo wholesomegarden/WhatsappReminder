@@ -2,6 +2,8 @@
  * This script contains WAPI functions that need to be run in the context of the webpage
  */
 
+// https://github.com/open-wa/wa-automate-python/blob/master/src/js/wapi.js
+
 /**
  * Auto discovery the webpack object references of instances that contains all functions used by the WAPI
  * functions and creates the Store object.
@@ -341,6 +343,22 @@ window.WAPI.sendImageFromDatabasePicBot = function (picId, chatId, caption) {
 
     return true;
 };
+
+
+/**
+ * Automatically sends a link with the auto generated link preview. You can also add a custom message to be added.
+ * @param chatId
+ * @param url string A link, for example for youtube. e.g https://www.youtube.com/watch?v=61O-Galzc5M
+ * @param text string Custom text as body of the message, this needs to include the link or it will be appended after the link.
+ */
+window.WAPI.sendLinkWithAutoPreview = async function (chatId, url, text) {
+  var chatSend = WAPI.getChat(chatId);
+  if (chatSend === undefined) {
+    return false;
+  }
+  const linkPreview = await Store.WapQuery.queryLinkPreview(url);
+  return (await chatSend.sendMessage(text.includes(url) ? text : `${url}\n${text}`, {linkPreview})) == 'success'
+}
 
 window.WAPI.sendMessageWithThumb = function (thumb, url, title, description, text, chatId, done) {
     var chatSend = WAPI.getChat(chatId);

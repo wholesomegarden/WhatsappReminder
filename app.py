@@ -14,7 +14,10 @@ from webwhatsapi import WhatsAPIDriver
 
 from pprint import pprint as pp
 
+from pydub import AudioSegment
+import shazi
 # from ServiceImporter import *
+# https://github.com/open-wa/wa-automate-python
 
 # export PATH="$HOME/wholesomegarden/WhatsappReminder:$PATH"
 # heroku config:set WEB_CONCURRENCY=1
@@ -22,7 +25,8 @@ from pprint import pprint as pp
 
 from ServiceLoader import *
 from MasterService import *
-
+noFlask = False
+LAST = {0:None}
 runLocal = False
 production = False
 print(
@@ -460,11 +464,11 @@ class Master(object):
 
 	def makeDirs(self, filename):
 		if not os.path.exists(os.path.dirname(filename)):
-		    try:
-		        os.makedirs(os.path.dirname(filename))
-		    except OSError as exc: # Guard against race condition
-		        if exc.errno != errno.EEXIST:
-		            raise
+			try:
+				os.makedirs(os.path.dirname(filename))
+			except OSError as exc: # Guard against race condition
+				if exc.errno != errno.EEXIST:
+					raise
 
 	def setGroupIcon(self, group_id, imageurl):
 		print("SETTING GROUP ICON!")
@@ -490,13 +494,13 @@ class Master(object):
 		final_path = service+"/"+img_name
 		self.makeDirs(final_path)
 		with open(final_path, 'wb') as handle:
-		        response = requests.get(pic_url, stream=True)
-		        if not response.ok:
-		            print(response)
-		        for block in response.iter_content(1024):
-		            if not block:
-		                break
-		            handle.write(block)
+				response = requests.get(pic_url, stream=True)
+				if not response.ok:
+					print(response)
+				for block in response.iter_content(1024):
+					if not block:
+						break
+					handle.write(block)
 
 		return os.path.abspath(final_path)
 
@@ -574,7 +578,7 @@ class Master(object):
 
 	def Process(self,contact):
 		for message in contact.messages:
-			print("MMMMMMMMMM",message.content)
+			# print("MMMMMMMMMM",message.content)
 
 			if runLocal and False: ## FOR FIREFOX
 				chatID = message.chat_id["_serialized"]
@@ -950,6 +954,7 @@ class Master(object):
 			self.Process(contact)
 
 	def ProcessIncoming(self, data):
+		global LAST
 		print(
 		'''
 		===================================
@@ -986,46 +991,59 @@ class Master(object):
 							traceback.print_exc()
 
 
-					'''
-					lastm = message
-					print(json.dumps(message.get_js_obj(), indent=4))
-					for contact in self.driver.get_contacts():
-						# print("CCCC",contact.get_safe_name() )
-						if  sender in contact.get_safe_name():
-							chat = contact.get_chat()
-							# chat.send_message("Hi "+sender+" !!!*"+message.content+"*")
-					print()
-					print()
-					print(sender)
-					print()
-					print()
-					print("class", message.__class__.__name__)
-					print("message", message)
-					print("id", message.id)
-					print("type", message.type)
-					print("timestamp", message.timestamp)
-					print("chat_id", message.chat_id)
-					print("sender", message.sender)
-					print("sender.id", message.sender.id)
-					print("sender.safe_name", message.sender.get_safe_name())
-					if message.type == "chat":
-						print("-- Chat")
-						print("safe_content", message.safe_content)
-						print("content", message.content)
-						# Manager.process(message.sender.id,message.content)
-						# contact.chat.send_message(message.safe_content)
-					elif message.type == "image" or message.type == "video":
-						print("-- Image or Video")
-						print("filename", message.filename)
-						print("size", message.size)
-						print("mime", message.mime)
-						print("caption", message.caption)
-						print("client_url", message.client_url)
-						message.save_media("./")
-					else:
-						print("-- Other type:",str(message.type))
-					print("PROCESSING MESSAGE:",message)
-					'''
+					for message in contact.messages:
+						lastm = message
+						sender = message.sender.id
+						print(json.dumps(message.get_js_obj(), indent=4))
+						for contact in self.driver.get_contacts():
+							# print("CCCC",contact.get_safe_name() )
+							if  sender in contact.get_safe_name():
+								chat = contact.get_chat()
+								# chat.send_message("Hi "+sender+" !!!*"+message.content+"*")
+						print()
+						print()
+						print(sender)
+						print()
+						print()
+						print("class", message.__class__.__name__)
+						print("id", message.id)
+						print("type", message.type)
+						print("timestamp", message.timestamp)
+						print("chat_id", message.chat_id)
+						print("sender", message.sender)
+						print("sender.id", message.sender.id)
+						print("sender.safe_name", message.sender.get_safe_name())
+						if message.type == "chat":
+							print("message", message)
+							print("-- Chat")
+							print("safe_content", message.safe_content)
+							print("content", message.content)
+							print("PROCESSING MESSAGE:",message)
+							# Manager.process(message.sender.id,message.content)
+							# contact.chat.send_message(message.safe_content)
+						elif message.type == "image" or message.type == "video":
+							print("-- Image or Video")
+							print("filename", message.filename)
+							print("size", message.size)
+							print("mime", message.mime)
+							print("caption", message.caption)
+							print("client_url", message.client_url)
+							message.save_media("./")
+						else:
+							print("-- Other type:",str(message.type))
+							# pp(message)
+							self.sendMessage(message.chat_id, "Running Shazam Please Wait...")
+							LAST[0] = message
+							LAST["o"] = {}
+							ptt = self.driver.download_media(message.get_js_obj())
+							audio = AudioSegment.from_file(ptt)
+							path = "rec.mp3"
+							audio.export(path, format="mp3")
+							o = shazi.shazam(path)
+							while "title" not in o:
+								time.sleep(1)
+							self.sendMessage(message.chat_id, str(o["title"]+" - "+o["artist"]))
+
 
 			else:
 				pass
@@ -1485,21 +1503,23 @@ def flaskRunAsync(data):
 
 if __name__ == '__main__':
 	flaskRun(master)
-	print("STARTING APP")
-	# print("STARTING APP")
-	# print("STARTING APP")
-	# print("STARTING APP")
-	# print("STARTING APP")
-	if runLocal :
-		pass
-		app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	if not noFlask:
+		print("STARTING APP")
+		# print("STARTING APP")
+		# print("STARTING APP")
+		# print("STARTING APP")
+		# print("STARTING APP")
+		if runLocal :
+			pass
+			app.run(debug=True, host='0.0.0.0',use_reloader=False)
 	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
 else:
 	flaskRun(master)
-	if runLocal :
-		pass
-		app.run(debug=True, host='0.0.0.0',use_reloader=False)
-	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
+	if not noFlask:
+		if runLocal :
+			pass
+			app.run(debug=True, host='0.0.0.0',use_reloader=False)
+		# app.run(debug=True, host='0.0.0.0',use_reloader=False)
 	print("STARTING APP22222222222")
 	# print("STARTING APP22222222222")
 	# print("STARTING APP22222222222")

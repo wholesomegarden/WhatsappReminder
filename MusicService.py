@@ -28,6 +28,8 @@ translator = google_translator()
 
 import traceback
 
+import shazi
+# o = shazi.shazam("a.mp3")
 
 
 class MusicService(object):

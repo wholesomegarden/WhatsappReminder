@@ -4,6 +4,8 @@ WebWhatsAPI module
 .. moduleauthor:: Mukul Hase <mukulhase@gmail.com>, Adarsh Sanjeev <adarshsanjeev@gmail.com>
 """
 
+# https://github.com/open-wa/wa-automate-python/blob/master/src/__init__.py
+
 import binascii
 import logging
 import os
@@ -43,6 +45,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from .objects.chat import UserChat, factory_chat
 from .objects.contact import Contact
 from .objects.message import MessageGroup, factory_message
+from .objects.message import *
 from .objects.number_status import NumberStatus
 from .wapi_js_wrapper import WapiJsWrapper
 
@@ -73,18 +76,18 @@ class ContactNotFoundError(WhatsAPIException):
 
 
 class StoppableThread(threading.Thread):
-    """Thread class with a stop() method. The thread itself has to check
-    regularly for the stopped() condition."""
+	"""Thread class with a stop() method. The thread itself has to check
+	regularly for the stopped() condition."""
 
-    def __init__(self,  *args, **kwargs):
-        super(StoppableThread, self).__init__(*args, **kwargs)
-        self._stop_event = threading.Event()
+	def __init__(self,  *args, **kwargs):
+		super(StoppableThread, self).__init__(*args, **kwargs)
+		self._stop_event = threading.Event()
 
-    def stop(self):
-        self._stop_event.set()
+	def stop(self):
+		self._stop_event.set()
 
-    def stopped(self):
-        return self._stop_event.is_set()
+	def stopped(self):
+		return self._stop_event.is_set()
 
 
 JS_ADD_TEXT_TO_INPUTX = """
@@ -1189,6 +1192,10 @@ class WhatsAPIDriver(object):
 		filename = os.path.split(path)[-1]
 		return self.wapi_functions.sendImage(imgBase64, chatid, filename, caption)
 
+
+	def send_message_with_auto_preview(self, chat_id, url, text):
+		return self.wapi_functions.sendLinkWithAutoPreview(chat_id, url, text)
+
 	def send_message_with_thumbnail(self, path, chatid, url, title, description, text):
 		"""
 			converts the file to base64 and sends it using the sendImage function of wapi.js
@@ -1314,15 +1321,28 @@ class WhatsAPIDriver(object):
 			except AttributeError:
 				pass
 
-		file_data = self.download_file(media_msg.client_url)
+		if "dict" in str(type(media_msg)):
+			file_data = self.download_file(media_msg["clientUrl"])
 
-		if not file_data:
-			raise Exception("Impossible to download file")
 
-		media_key = b64decode(media_msg.media_key)
-		derivative = HKDFv3().deriveSecrets(
-			media_key, binascii.unhexlify(media_msg.crypt_keys[media_msg.type]), 112
-		)
+			if not file_data:
+				raise Exception("Impossible to download file")
+
+			media_key = b64decode(media_msg["mediaKey"])
+			derivative = HKDFv3().deriveSecrets(
+				media_key, binascii.unhexlify(MediaMessage.crypt_keys[media_msg["type"]]), 112
+			)
+
+		else:
+			file_data = self.download_file(media_msg.client_url)
+
+			if not file_data:
+				raise Exception("Impossible to download file")
+
+			media_key = b64decode(media_msg.media_key)
+			derivative = HKDFv3().deriveSecrets(
+				media_key, binascii.unhexlify(media_msg.crypt_keys[media_msg.type]), 112
+			)
 
 		parts = ByteUtil.split(derivative, 16, 32)
 		iv = parts[0]
