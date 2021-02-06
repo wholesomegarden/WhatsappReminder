@@ -1032,17 +1032,20 @@ class Master(object):
 						else:
 							print("-- Other type:",str(message.type))
 							# pp(message)
-							self.sendMessage(message.chat_id, "Running Shazam Please Wait...")
-							LAST[0] = message
-							LAST["o"] = {}
-							ptt = self.driver.download_media(message.get_js_obj())
-							audio = AudioSegment.from_file(ptt)
-							path = "rec.mp3"
-							audio.export(path, format="mp3")
-							o = shazi.shazam(path)
-							while "title" not in o:
-								time.sleep(1)
-							self.sendMessage(message.chat_id, str(o["title"]+" - "+o["artist"]))
+							try:
+								self.sendMessage(message.chat_id, "Running Shazam Please Wait...")
+								LAST[0] = message
+								LAST["o"] = {}
+								ptt = self.driver.download_media(message.get_js_obj())
+								audio = AudioSegment.from_file(ptt)
+								path = "rec.mp3"
+								audio.export(path, format="mp3")
+								o = shazi.shazam(path)
+								while "title" not in o:
+									time.sleep(1)
+								self.sendMessage(message.chat_id, str(o["title"]+" - "+o["artist"]))
+							except:
+								traceback.print_exc()
 
 
 			else:
