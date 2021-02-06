@@ -16,6 +16,10 @@ from pprint import pprint as pp
 
 from pydub import AudioSegment
 import shazi
+
+import speech_recognition as sr
+recognizer = sr.Recognizer()
+
 # from ServiceImporter import *
 # https://github.com/open-wa/wa-automate-python
 
@@ -25,9 +29,9 @@ import shazi
 
 from ServiceLoader import *
 from MasterService import *
-noFlask = False
+noFlask = True
 LAST = {0:None}
-runLocal = False
+runLocal = True
 production = False
 print(
 '''
@@ -1033,17 +1037,31 @@ class Master(object):
 							print("-- Other type:",str(message.type))
 							# pp(message)
 							try:
-								self.sendMessage(message.chat_id, "Running Shazam Please Wait...")
+								self.sendMessage(message.chat_id, "Analyzing Audio Please Wait...")
 								LAST[0] = message
 								LAST["o"] = {}
 								ptt = self.driver.download_media(message.get_js_obj())
 								audio = AudioSegment.from_file(ptt)
-								path = "rec.mp3"
-								audio.export(path, format="mp3")
+								path = "rec.wav"
+								audio.export(path, format="wav")
+								''' speech to '''
+
+								try:
+									with sr.AudioFile(path) as source:
+									    audio = recognizer.record(source)
+
+									text = recognizer.recognize_google(audio, language = 'iw-IL')
+									self.sendMessage(message.chat_id, "*FROM SPEECH:* "+text)
+								except:
+									traceback.print_exc()
+
+								''' shazam '''
 								o = shazi.shazam(path)
-								while "title" not in o:
+								tx = time.time()
+								while "title" not in o and time.time()-tx < 15:
 									time.sleep(1)
-								self.sendMessage(message.chat_id, str(o["title"]+" - "+o["artist"]))
+								self.sendMessage(message.chat_id, "*FROM SHAZAM:* "+str(o["title"]+" - "+o["artist"]))
+
 							except:
 								traceback.print_exc()
 
