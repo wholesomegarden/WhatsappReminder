@@ -29,10 +29,12 @@ recognizer = sr.Recognizer()
 
 from ServiceLoader import *
 from MasterService import *
-noFlask = True
-LAST = {0:None}
-runLocal = True
+
+runLocal = False
 production = False
+noFlask = runLocal
+
+LAST = {0:None}
 print(
 '''
 :::::::::::::::::::::::::::::::::
