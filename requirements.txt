@@ -50,3 +50,5 @@ youtube-title-parse==1.0.0
 yfinance==0.1.55
 cryptocmd==0.6.0
 emoji==0.6.0
+ShazamAPI==0.0.2
+pydub==0.24.1
