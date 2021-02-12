@@ -34,6 +34,10 @@ from MasterService import *
 
 runLocal = False
 production = False
+# Headless = True
+# noFlask = False
+
+Headless = not runLocal
 noFlask = runLocal
 
 LASTGROUP = {0:1000}
@@ -173,11 +177,17 @@ class Master(object):
 		chrome_options.add_argument("user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
 		chrome_options.add_argument("user-data-dir="+profileDir);
 		chrome_options.add_argument('--profile-directory='+profileDir)
-
+		print("HHHHHHHHHHHHHHHHHHHHH",Headless)
+		print("HHHHHHHHHHHHHHHHHHHHH",Headless)
+		print("HHHHHHHHHHHHHHHHHHHHH",Headless)
+		print("HHHHHHHHHHHHHHHHHHHHH",Headless)
+		print("HHHHHHHHHHHHHHHHHHHHH",Headless)
+		print("HHHHHHHHHHHHHHHHHHHHH",Headless)
 		if not runLocal:
-			self.driver = WhatsAPIDriver(profile = profileDir, client='chrome', chrome_options=chrome_options,username="wholesomegarden")
+			self.driver = WhatsAPIDriver(profile = profileDir, client='chrome', chrome_options=chrome_options,username="wholesomegarden", headless = Headless)
 		else:
-			profileDir = "/"+"/".join(profileDir.split("/")[2:])+"L"
+			# profileDir = "/"+"/".join(profileDir.split("/")[2:])+"L"
+			profileDir = "/"+"/".join(profileDir.split("/")[2:])
 			chrome_options = webdriver.ChromeOptions()
 			executable_path = "/home/magic/wholesomegarden/WhatsappReminder/chromedriver"
 			binPath = "/usr/bin/google-chrome"
@@ -200,7 +210,7 @@ class Master(object):
 			# chrome_options.add_argument("--user-agent=New User Agent")
 			chrome_options.add_argument("user-data-dir="+profileDir);
 			chrome_options.add_argument('--profile-directory='+profileDir+"rprofile2/Profile 1")
-			self.driver = WhatsAPIDriver(profile = profileDir, client='chrome', chrome_options=chrome_options,username="wholesomegarden", binPath = binPath)
+			self.driver = WhatsAPIDriver(profile = profileDir, client='chrome', chrome_options=chrome_options,username="wholesomegarden", binPath = binPath, headless = Headless)
 
 			# self.driver = webdriver.Chrome(executable_path,chrome_options=chrome_options)
 			# self.driver = WhatsAPIDriver(username="wholesomegarden",profile=None)

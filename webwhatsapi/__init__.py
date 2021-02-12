@@ -605,7 +605,7 @@ class WhatsAPIDriver(object):
 		chrome_options=None,
 		# executable_path="/app/vendor/geckodriver/"
 		binPath = None,
-		executable_path=None
+		executable_path=None, nv = "nv"
 	):
 		"""Initialises the webdriver"""
 
@@ -613,8 +613,9 @@ class WhatsAPIDriver(object):
 		print("((((((((((((((((()))))))))))))))))")
 		print("((((((((((((((((()))))))))))))))))")
 		print("((((((((((((((((()))))))))))))))))")
-		print("((((((((((((((((()))))))))))))))))")
+		print("((((((((((((((((())))))))))))))))) headless",headless,nv)
 		print("((((((((((((((((())))))))))))))))) STATTING WEBDRIVER profile - ",profile)
+
 		self.logger = logger or self.logger
 		extra_params = extra_params or {}
 
@@ -675,6 +676,13 @@ class WhatsAPIDriver(object):
 				)
 
 		elif self.client == "chrome":
+			print("HHHHHHHHHHHHHHHHHHHHHXXXXXXXXX",headless)
+			print("HHHHHHHHHHHHHHHHHHHHHXXXXXXXXX",headless)
+			print("HHHHHHHHHHHHHHHHHHHHHXXXXXXXXX",headless)
+			print("HHHHHHHHHHHHHHHHHHHHHXXXXXXXXX",headless)
+			print("HHHHHHHHHHHHHHHHHHHHHXXXXXXXXX",headless)
+			print("HHHHHHHHHHHHHHHHHHHHHXXXXXXXXX",headless)
+
 			if binPath is None:
 				self._profile = webdriver.ChromeOptions()
 				if self._profile_path is not None:
@@ -705,8 +713,8 @@ class WhatsAPIDriver(object):
 				chrome_options.binary_location = binPath
 				# chrome_options.add_argument('incognito')
 				# chrome_options.add_argument('headless')
-				# if not runLocal:
-				# 	chrome_options.add_argument("--headless")
+				if headless:
+					chrome_options.add_argument("--headless")
 				chrome_options.add_argument("--disable-dev-shm-usage")
 				chrome_options.add_argument("--no-sandbox")
 				chrome_options.add_argument("--window-size=1420,3600")
