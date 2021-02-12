@@ -709,6 +709,7 @@ class MusicService(object):
 
 			search = content
 			if found:
+
 				sendBack = "Spotify: *"+title+" - "+artist+"*\n"
 				sendBack += slink+"\n\n"
 				search = title+" "+artist
@@ -782,7 +783,10 @@ class MusicService(object):
 			# answer = ":chords:"+str(songID)
 			# link = self.api.genLink(origin, answer, newLink = str(songID)+"-chords")
 			# sendLinks += "Get Chords: "+link+"\n"
-			seeMore = "See More Options ("+history[songID]["title"]+")"
+			tit = search
+			if "title" in history[songID]:
+				tit = str(history[songID]["title"])
+			seeMore = "See More Options ("+tit+")"
 			self.api.send(origin, sendBack, thumnail = thumnail)
 			time.sleep(1.2)
 

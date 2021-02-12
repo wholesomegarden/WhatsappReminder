@@ -1,0 +1,34 @@
+2021/02/12-14:23:37.724 551e Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/02/12-14:23:37.724 551e Recovering log #881
+2021/02/12-14:23:37.728 551e Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 1/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000881.log 
+2021/02/12-14:55:33.217 56f3 Level-0 table #893: started
+2021/02/12-14:55:33.234 56f3 Level-0 table #893: 1271233 bytes OK
+2021/02/12-14:55:33.236 56f3 Delete type=0 #881
+2021/02/12-14:56:48.629 578b Compacting 1@0 + 0@1 files
+2021/02/12-14:56:48.693 578b Generated table #894@0: 21458 keys, 486687 bytes
+2021/02/12-14:56:48.696 578b Generated table #895@0: 2665 keys, 80019 bytes
+2021/02/12-14:56:48.696 578b Compacted 1@0 + 0@1 files => 566706 bytes
+2021/02/12-14:56:48.697 578b compacted to: files[ 0 2 13 0 0 0 0 ]
+2021/02/12-14:56:48.697 578b Delete type=2 #893
+2021/02/12-15:07:17.716 5a8d Compacting 1@1 + 6@2 files
+2021/02/12-15:07:17.762 5a8d Generated table #896@1: 39231 keys, 2240951 bytes
+2021/02/12-15:07:17.807 5a8d Generated table #897@1: 32985 keys, 2242419 bytes
+2021/02/12-15:07:17.852 5a8d Generated table #898@1: 34942 keys, 2248823 bytes
+2021/02/12-15:07:17.897 5a8d Generated table #899@1: 34976 keys, 2248364 bytes
+2021/02/12-15:07:17.940 5a8d Generated table #900@1: 34703 keys, 2246742 bytes
+2021/02/12-15:07:17.948 5a8d Generated table #901@1: 5867 keys, 410809 bytes
+2021/02/12-15:07:17.948 5a8d Compacted 1@1 + 6@2 files => 11638108 bytes
+2021/02/12-15:07:17.949 5a8d compacted to: files[ 0 1 13 0 0 0 0 ]
+2021/02/12-15:07:17.950 5a8d Delete type=2 #888
+2021/02/12-15:07:17.950 5a8d Delete type=2 #885
+2021/02/12-15:07:17.950 5a8d Delete type=2 #877
+2021/02/12-15:07:17.950 5a8d Delete type=2 #887
+2021/02/12-15:07:17.950 5a8d Delete type=2 #886
+2021/02/12-15:07:17.950 5a8d Delete type=2 #894
+2021/02/12-15:07:17.950 5a8d Delete type=2 #889
+2021/02/12-15:29:49.504 5ba2 Compacting 1@1 + 1@2 files
+2021/02/12-15:29:49.586 5ba2 Generated table #902@1: 12339 keys, 1116107 bytes
+2021/02/12-15:29:49.586 5ba2 Compacted 1@1 + 1@2 files => 1116107 bytes
+2021/02/12-15:29:49.587 5ba2 compacted to: files[ 0 0 13 0 0 0 0 ]
+2021/02/12-15:29:49.589 5ba2 Delete type=2 #890
+2021/02/12-15:29:49.589 5ba2 Delete type=2 #895

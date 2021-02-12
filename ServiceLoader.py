@@ -13,14 +13,17 @@ from ScraperService import *
 from PistonService import *
 from StockService import *
 from Challenge18Service import *
+from TofaatTevaService import *
+
 from threading import Thread
 
+masterServices = ["Master","Experimental","TofaatTeva"]
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, genLink, list = ["Master", "Echo", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock", "Challenge18"], master = None):
+    def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock", "Challenge18"], master = None):
         services = {}
         for service in list:
-            if service is "Master" or service is "Experimental":
+            if service in masterServices :
                 services[service] = ServiceLoader.LoadService(service, send, backup, genLink, master = master)
             else:
                 services[service] = ServiceLoader.LoadService(service, send, backup, genLink)
@@ -54,6 +57,8 @@ class ServiceLoader(object):
             foundServiceClass = StockService
         if service is "Challenge18":
             foundServiceClass = Challenge18Service
+        if service is "TofaatTeva":
+            foundServiceClass = TofaatTevaService
 
         if foundServiceClass is not None:
             api = API(service, send, backup, genLink)
