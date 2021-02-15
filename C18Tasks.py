@@ -237,7 +237,7 @@ The main thought for today:
 		'''
 		,
 
-		"20:00:13": "image/C18/1.mp3"
+		"20:00:13": "image/C18/1.opus"
 		,
 		"09:31:00":
 		'''
@@ -291,7 +291,7 @@ It is important to know that it is possible otherwise, that we can imagine and a
 The main thought for today: *"Who is a rich man? He who shares".*
 		'''
 		,
-		"20:00:13": "image/C18/2.mp3"
+		"20:00:13": "image/C18/2.opus"
 		,
 
 		},
@@ -361,7 +361,7 @@ What can you do now to become healthier, body, mind and spirit?
 The main thought for today: a healthy mind in a healthy body in a healthy world
 		'''
 		,
-		"20:00:13": "image/C18/3.mp3"
+		"20:00:13": "image/C18/3.opus"
 		,
 
 		},
@@ -419,7 +419,7 @@ Everyone wants to be heard and no one is listening. The corona crisis has helped
 		,
 		"20:00:08":
 
-		"20:00:13": "image/C18/4.mp3"
+		"20:00:13": "image/C18/4.opus"
 		,
 
 		},
@@ -487,7 +487,7 @@ Today we will focus on opportunities instead of obstacles. Today, we will focus 
 The main thought for today: *"We do not discriminate between people. We do not ask what a person's religion is, and what race he belongs to. He must be a human and for that we say enough"*. - Benjamin Zeev Herzl {From the book "Altneuland"}
 		'''
 		,
-		"12:00:13": "image/C18/5.mp3"
+		"12:00:13": "image/C18/5.opus"
 		,
 
 		},
@@ -548,7 +548,7 @@ The thought for today: *"Today and every day - I give what I want to attract int
 		,
 		"20:00:08":
 		,
-		"20:00:13": "image/C18/6.mp3"
+		"20:00:13": "image/C18/6.opus"
 		,
 
 		},
@@ -616,7 +616,7 @@ Listen to your heart, hear the answer and give trust in the right choice - becau
 The main thought for today: *"Today I make great choices because they are made with pure love"*
 		'''
 		,
-		"20:00:13": "image/C18/7.mp3"
+		"20:00:13": "image/C18/7.opus"
 		,
 
 		},
@@ -682,7 +682,7 @@ The main thought for today: *"If you will it, it is no dream; and if you don't, 
 		"20:00:08":
 
 		,
-		"20:00:13": "image/C18/8.mp3"
+		"20:00:13": "image/C18/8.opus"
 		,
 
 		},
@@ -747,7 +747,7 @@ The main thought for today: *"Focus is a key & Imagination is your wings"*
 
 		'''
 		,
-		"20:00:13": "image/C18/9.mp3"
+		"20:00:13": "image/C18/9.opus"
 		,
 
 		},
@@ -820,7 +820,7 @@ The main thought for today: *"I listen to my inner voice. The answers are inside
 		"20:00:08":
 
 		,
-		"20:00:13": "image/C18/10.mp3"
+		"20:00:13": "image/C18/10.opus"
 		,
 
 		},
@@ -880,7 +880,7 @@ The main thought for today: *"I have a dream as I care about my city, my country
 		"20:00:08":
 
 		,
-		"20:00:13": "image/C18/11.mp3"
+		"20:00:13": "image/C18/11.opus"
 		,
 
 		},
@@ -937,7 +937,7 @@ The main thought for today: *I stop to think (3) three times before I consume*
 		,
 		"20:00:08":
 		,
-		"20:00:13": "image/C18/12.mp3"
+		"20:00:13": "image/C18/12.opus"
 		,
 
 		},
@@ -1000,7 +1000,7 @@ The main thought for today: *"The climate crisis is also my challenge"*
 
 		'''
 		,
-		"20:00:13": "image/C18/13.mp3"
+		"20:00:13": "image/C18/13.opus"
 		,
 
 		},
@@ -1066,7 +1066,7 @@ Is it our responsibility to support people who depend on the oceans, whether the
 The main thought for today is, *“Life is a beautiful, magnificent thing, even to a jellyfish.”*
 		'''
 		,
-		"12:00:13": "image/C18/14.mp3"
+		"12:00:13": "image/C18/14.opus"
 		,
 
 		},
@@ -1124,7 +1124,7 @@ The main thought for today: *“Man is as the tree in the field - as the tree he
 		"20:00:08":
 
 		,
-		"20:00:13": "image/C18/15.mp3"
+		"20:00:13": "image/C18/15.opus"
 		,
 
 		},
@@ -1203,7 +1203,7 @@ Ting Global
 
 		'''
 		,
-		"20:00:13": "image/C18/16.mp3"
+		"20:00:13": "image/C18/16.opus"
 		,
 
 		},
@@ -1298,7 +1298,7 @@ The main thought for today: *"If you want to go fast - go alone*
 
 		'''
 		,
-		"20:00:15": "image/C18/17.mp3"
+		"20:00:15": "image/C18/17.opus"
 		,
 
 		},
@@ -1362,7 +1362,7 @@ Ting Global
 For more information contact me: +972 55-9721123 | ting.go.global@gmail.com
 		'''
 		,
-		"20:00:13": "image/C18/18.mp3"
+		"20:00:13": "image/C18/18.opus"
 		,
 
 		},
