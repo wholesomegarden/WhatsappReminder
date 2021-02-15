@@ -32,13 +32,13 @@ recognizer = sr.Recognizer()
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = False
+runLocal = True
 production = False
-# Headless = True
-# noFlask = False
 
 Headless = not runLocal
 noFlask = runLocal
+# Headless = True
+# noFlask = True
 
 LASTGROUP = {0:1000}
 
@@ -541,6 +541,15 @@ class Master(object):
 			desc = "BBBBBBB"
 			link = imageurl
 			path = ""
+
+			if "/" in content:
+				if "image" == content.split("/")[0]:
+					imagepath = "/".join(content.split("\n")[0].split("/")[1:])
+					sendBack = ""
+					if "\n" in content:
+						sendBack = "\n".join(content.split("\n")[1:])
+					return self.driver.send_media(imagepath,chatID,sendBack)
+					# self.driver.send_media(imagepath,chatID,content)
 
 			sendAttachment = False
 			if "imageurl" in thumbnail:

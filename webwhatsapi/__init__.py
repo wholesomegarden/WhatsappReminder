@@ -52,7 +52,7 @@ from .wapi_js_wrapper import WapiJsWrapper
 import re
 
 __version__ = "2.0.3"
-
+MLAST = {0:None}
 
 class WhatsAPIDriverStatus(object):
 	Unknown = "Unknown"
@@ -1316,12 +1316,15 @@ class WhatsAPIDriver(object):
 			return False
 
 	def download_file(self, url):
+		print("UUUUUUUUUUUUUUUUUUUU")
+		print(url)
 		return b64decode(self.wapi_functions.downloadFile(url))
 
 	def download_file_with_credentials(self, url):
 		return b64decode(self.wapi_functions.downloadFileWithCredentials(url))
 
 	def download_media(self, media_msg, force_download=False):
+		global MLAST
 		if not force_download:
 			try:
 				if media_msg.content:
@@ -1330,6 +1333,7 @@ class WhatsAPIDriver(object):
 				pass
 
 		if "dict" in str(type(media_msg)):
+			MLAST[0] = media_msg
 			file_data = self.download_file(media_msg["clientUrl"])
 
 
