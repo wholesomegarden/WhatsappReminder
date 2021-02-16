@@ -417,7 +417,6 @@ Goal #4 in the Global Goals states that by 2030, all boys and girls will complet
 Everyone wants to be heard and no one is listening. The corona crisis has helped us understand that without the dominant involvement of society, which will influence decision-making politicians, there is no chance for humanity to survive on Earth. We can learn from crises, and especially from listening to others. Thus, the main thought for today is: *I listen to the other, I listen as I care.*
 		'''
 		,
-		"20:00:08":
 
 		"20:00:13": "image/C18/4.opus"
 		,
@@ -546,8 +545,7 @@ The more you give, the more you will receive and grow.
 The thought for today: *"Today and every day - I give what I want to attract into my life."*
 		'''
 		,
-		"20:00:08":
-		,
+
 		"20:00:13": "image/C18/6.opus"
 		,
 
@@ -679,9 +677,7 @@ And finally, an important note, especially in a time like this: Give what you wa
 The main thought for today: *"If you will it, it is no dream; and if you don't, a dream it is and a dream it will stay."* - Theodor Herzl. In other words, “when there is a will - there's a way”.
 		'''
 		,
-		"20:00:08":
 
-		,
 		"20:00:13": "image/C18/8.opus"
 		,
 
@@ -817,9 +813,6 @@ The main thought for today: *"I listen to my inner voice. The answers are inside
 
 		'''
 		,
-		"20:00:08":
-
-		,
 		"20:00:13": "image/C18/10.opus"
 		,
 
@@ -876,8 +869,6 @@ I have a dream to live in a city that takes responsibility for its role in manag
 And you, in what city do you dream to live in?
 The main thought for today: *"I have a dream as I care about my city, my country and the whole world."*
 		'''
-		,
-		"20:00:08":
 
 		,
 		"20:00:13": "image/C18/11.opus"
@@ -935,8 +926,7 @@ It is obligatory upon each of us to take a decision and begin to reduce *our per
 The main thought for today: *I stop to think (3) three times before I consume*
 		'''
 		,
-		"20:00:08":
-		,
+
 		"20:00:13": "image/C18/12.opus"
 		,
 
@@ -1121,9 +1111,7 @@ The main thought for today: *“Man is as the tree in the field - as the tree he
 
 		'''
 		,
-		"20:00:08":
 
-		,
 		"20:00:13": "image/C18/15.opus"
 		,
 
