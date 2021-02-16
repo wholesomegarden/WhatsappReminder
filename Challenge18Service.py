@@ -100,7 +100,7 @@ class Challenge18Service():
 									content = content.replace("DDD",str(day)).replace("TTT",up)
 									print("#################### SENDING PUSH TO C18",ch, "DAY", day, "time",up)
 									sent.append(up)
-									self.api.send(ch,content) # send to user
+									self.api.send(ch, content, autoPreview = True) # send to user
 									needsBackup = True
 						except:
 							traceback.print_exc()

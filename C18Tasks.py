@@ -1,16 +1,9 @@
 # ‘’’ TASKS ‘’’
 
 
-# שעה 8 אפשר אפילו לשנות לשעה 6 אם זה אוטומטי - you can change to whichever time you want
-
-
-#please go over day 0 - make sure all the messages are as you like and change times to your liking
-
 
 # For Sharon:
 # make sure all msgs you want are included (15 min intro for example)
-# Add days 4-18+    I copy/pasted the first 3 days, the rest is day 3 copied over. Please copy directly from whatsapp so emojis will be correct. can also add days before start of the challenge like -1
-# Go over *Bold* sentences - add * to where you want it bold. I did days 1 and 2
 
 
 # For Tami:
@@ -21,7 +14,7 @@
 
 international = {
 
-			# ''' DAY -5 ''' one day before the challenge
+			# ''' DAY -5 ''' 5 dayד before the challenge
 		-5:{
 			"12:00:00": "image/C18/pre5.png"
 			,
@@ -33,7 +26,7 @@ Hello everyone, I am surprised and happy with the number of participants and hop
 			,
 
 		},
-			# ''' DAY -4 ''' one day before the challenge
+			# ''' DAY -4 ''' 4 dayד before the challenge
 		-4:{
 			"12:00:00": "image/C18/pre4.png"
 			,
@@ -58,7 +51,7 @@ Sharon Gal-Or
 			,
 
 		},
-			# ''' DAY -3 ''' one day before the challenge
+			# ''' DAY -3 ''' 3 dayד before the challenge
 		-3:{
 			"12:00:00": "image/C18/pre3.png"
 			,
@@ -71,7 +64,7 @@ Hello everyone, I am surprised and happy with the number of participants and hop
 
 		},
 
-			# ''' DAY -2 ''' one day before the challenge
+			# ''' DAY -2 ''' 2 dayד before the challenge
 		-2:{
 			"12:00:00": "image/C18/pre2.png"
 			,
@@ -112,9 +105,9 @@ May we all have an amazing and growing process of Sustainability & Leadership �
 
 			# ''' DAY -1 ''' one day before the challenge
 		-1:{
-			"12:00:00": "image/C18/pre1.png"
+			"12:00:07": "image/C18/pre1.png"
 			,
-			"12:00:05":
+			"12:00:09":
 			'''
 
 
@@ -124,7 +117,7 @@ I am surprised and happy with the number of participants and I hope that this pr
 			,
 
 		},
-			# ''' DAY 0 ''' one day before the challenge
+			# ''' DAY 0 ''' the challenge starting day
 		0:{
 			"12:00:00": "image/C18/pre0.png"
 			,
@@ -180,7 +173,7 @@ Starting tonight, and every day, I will send the tasks to be completed the next 
 The process requires loyalty to yourself and the group so commit to yourself and the group. *At the end of the practice, mark the number of the task/s (1-3 if you chose to do more than one task) and a flower or a heart emoji 🌻🌼🌸🌺🌹🌷💐🌾 ❤️❤️❤️❤️❤️ and for the next 18 days I will ask that this is all you will respond in the group*.
 As always, anyone who needs support or explanations is welcome to send messages in private
 May we all have an amazing and growing process of Sustainability & Leadership – Sharon Gal-Or
- 		'''
+		'''
 			,
 
 			"12:00:25":
@@ -238,7 +231,14 @@ The main thought for today:
 		,
 
 		"20:00:13": "image/C18/1.opus"
+
 		,
+
+
+		# ''' DAY 2 '''
+
+
+		
 		"09:31:00":
 		'''
 		Gooooooood morning ladies and gentlemen 🦔 I remind you the marking of the task (s) is until tonight, 20:00
@@ -352,7 +352,7 @@ Plank-it ⚽
 Example: The person who chose the challenge to avoid sweets from the second day until the end of the challenge marks in the group 🍒 every day. If you also chose the plank-it challenge on the third day, then in addition, mark it every day.
 		'''
 		,
-		"20:00:08":
+		"20:00:10":
 		'''
 		Welcome to the third day of the challenge - GOOD HEALTH & WELL BEING
 "Health is a basic human right" (International Health Organization), and a key indicator of sustainable development.
@@ -475,7 +475,7 @@ The letter must be handwritten.
 Good luck 🙏
 		'''
 		,
-		"12:00:08":
+		"12:00:10":
 		'''
 
 *Welcome to the fifth day of the challenge - GENDER EQUALITY*
@@ -602,7 +602,7 @@ https://youtu.be/N-yALPEpV4w
 
 		'''
 		,
-		"20:00:08":
+		"20:00:10":
 		'''
 
 *Welcome to the seventh day of the challenge - CLEAN ENERGY*
@@ -731,7 +731,7 @@ https://youtu.be/AyWtIwwEgS0
 A magical evening full of Sustainability, Leadership & Innovation 💕
 		'''
 		,
-		"20:00:08":
+		"20:00:10":
 		'''
 
 *Welcome to the ninth day of the challenge - Goal 9: Industry, Innovation and Infrastructure*
@@ -974,7 +974,7 @@ A magical evening full of sustainability, leadership and passing on the good �
 3. *Sharing is caring* - Today's task and until the end of the challenge is to share the challenge with friends, even 3 people each day are enough, although the more you share with more people the more powerful the energy in my eyes. Remember to share, experiences, impressions, what you learned new and so on. The mark for sharing is emoji 🐜 🐜 🐜 🐜 🐜 🐜
 		'''
 		,
-		"20:00:08":
+		"20:00:10":
 		'''
 WhatsApp message
 *Welcome to the thirteenth day of the challenge - Climate Action*
@@ -1044,7 +1044,7 @@ You can use the previous messages I sent. Mark it with 🤹🏻‍♂‍🥇⌛
 Remember that you will need to send the message and exercises of the notebook every day, and follow the people in your group who did the tasks (or take out of the group) - practice giving.
 		'''
 		,
-		"12:00:08":
+		"12:00:10":
 		'''
 
 *Welcome to the fourteenth day of the challenge - LIFE UNDERWATER*
@@ -1174,7 +1174,7 @@ She woke up with a 😀. Sophie was 😁.
 
 		'''
 		,
-		"20:00:08":
+		"20:00:10":
 		'''
 
 Sophie's emotional journey consists of three stages: Fear -> Empathy -> Happiness. Symbolic release of the human spirit from darkness to light.
@@ -1240,14 +1240,14 @@ AND this video: Fly on life, then write your thoughts and insights in a notebook
 https://youtu.be/rlwfd1ZaDJ4
 		'''
 		,
-		"20:00:08":
+		"20:00:10":
 		'''
 
 2. Read about a story *“Noah and the Flood"* - about how while they were in the arch it was time to rest, Noah’s family and the animals had time to chat about what the new world would look like when they descend the arch to land. Try to reply the  questions at the end of the article.
 https://blogs.timesofisrael.com/noahs-ark-the-global-goals/
 		'''
 		,
-		"20:00:11":
+		"20:00:13":
 		'''
 Today's task: *Ting method for interdisciplinary thinking combined with coding symbols*
 Contact group member/s - yes, do not be ashamed, even such friends that you do not know because we are climbing the same mountain, right here and right now, in our personal journey, and do the exercise together.
@@ -1274,7 +1274,7 @@ Global Cultural Ambassador
 Ting Global
 		'''
 		,
-		"20:00:13":
+		"20:00:15":
 		'''
 *Welcome to the seventeenth day of the challenge – Partnership for the Goals*
 *So what does collaboration mean?* The true meaning of collaboration is the joint performance of actions that connect us to a new significant abundance in places where it was not previously visible and could not be revealed when each party acted alone.
@@ -1286,7 +1286,7 @@ The main thought for today: *"If you want to go fast - go alone*
 
 		'''
 		,
-		"20:00:15": "image/C18/17.opus"
+		"20:00:17": "image/C18/17.opus"
 		,
 
 		},

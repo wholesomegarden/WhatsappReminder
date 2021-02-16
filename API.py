@@ -6,8 +6,8 @@ class API(object):
         self.backupFunc = backup
         self.newLink = newLink
 
-    def send(self, target, content, thumnail = None):
-        return self.sendFunc(self, self.service, target, content, thumnail = thumnail)
+    def send(self, target, content, thumnail = None, autoPreview = False):
+        return self.sendFunc(self, self.service, target, content, thumnail = thumnail, autoPreview = autoPreview)
 
     def backup(self, db):
         return self.backupFunc(api = self, db = db, service = self.service)

@@ -37,7 +37,8 @@ class EchoService(object):
 			while len(self.db["upcoming"]) > 0:
 				item = self.db["upcoming"].pop(0)
 				origin, content = item
-				self.api.send(origin, content, thumnail = "test")
+				self.api.send(origin, content, autoPreview = True)
+				# self.api.send(origin, content, thumnail = "test")
 				# self.api.backup(self.db)
 
 			time.sleep(1)
@@ -67,7 +68,8 @@ class EchoService(object):
 			myLink = self.api.genLink(origin, answer)
 			sendBack += "\n\n"+answer+":\n"+myLink
 
-		self.db["upcoming"].append([origin, sendBack])
+		self.db["upcoming"].append([origin, content])
+		# self.db["upcoming"].append([origin, sendBack])
 
 
 	def backup(self):

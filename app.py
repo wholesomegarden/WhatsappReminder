@@ -32,7 +32,7 @@ recognizer = sr.Recognizer()
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = True
+runLocal = False
 production = False
 
 Headless = not runLocal
@@ -533,14 +533,68 @@ class Master(object):
 
 		return os.path.abspath(final_path)
 
+	def sendPreview(self, data):
+		chatID, url, content = data
+		self.driver.send_message_with_auto_preview(chatID, url, content)
 
-	def sendMessage(self, chatID, content, thumbnail = None, service = "test"):
+
+
+	def getHTML(self, url):
+		headers_Get = {
+				'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
+				'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+				'Accept-Language': 'en-US,en;q=0.5',
+				'Accept-Encoding': 'gzip, deflate',
+				'DNT': '1',
+				'Connection': 'keep-alive',
+				'Upgrade-Insecure-Requests': '1'
+			}
+		searchPage = requests.get(url, headers=headers_Get)
+		html = BeautifulSoup(searchPage.text,'html.parser')
+		return html
+
+	def GetWebpagePreview(self, url):
+		site = self.getHTML(url)
+		props = {"og:image":"image","og:title":"title","og:description":"description",}
+		sendBack = {}
+		if site is not None:
+			for k in props:
+				found = site.findAll("meta",property=k)
+				# print("FOUND",k,found)
+				if found is not None and len(found) > 0 and "content" in found[0].attrs:
+					res = found[0].attrs["content"]
+					# print("RESSSSSS")
+					sendBack[props[k]] = res
+		return sendBack
+
+
+	def sendMessage(self, chatID, content, thumbnail = None, service = "test", autoPreview = False):
+		if autoPreview and "http" in content:
+			if thumbnail is None or "dict" not in type(thumbnail) or len(thumnbnail)==0:
+				thumbnail = {}
+			url = str(re.search("(?P<url>https?://[^\s]+)", content).group("url"))
+			preview = self.GetWebpagePreview(url)
+			if "image" in preview:
+				print("!!!!!!!",thumbnail,type(preview))
+				thumbnail["imageurl"] = preview["image"]
+			else:
+				thumbnail["imageurl"] = ""
+			if "title" in preview:
+				thumbnail["title"] = preview["title"]
+			if "description" in preview:
+				thumbnail["desc"] = preview["description"]
+			thumbnail["link"] = url
+
 		if thumbnail is not None:
 			imageurl = "https://media1.tenor.com/images/7528819f1bcc9a212d5c23be19be5bf6/tenor.gif"
 			title = "AAAAAAAAAA"
 			desc = "BBBBBBB"
 			link = imageurl
 			path = ""
+				#
+				# pT = Thread(target = self.sendPreview, args = [[chatID, url, content]])
+				# pT.start()
+				# return True
 
 			if "/" in content:
 				if "image" == content.split("/")[0]:
@@ -576,15 +630,15 @@ class Master(object):
 
 		return self.driver.sendMessage(chatID, content)
 
-	def send(self, api, service, target, content, thumnail = None):
-		sendThread = Thread(target = self.sendAsync, args = [[api, service, target, content, thumnail]])
+	def send(self, api, service, target, content, thumnail = None, autoPreview = False):
+		sendThread = Thread(target = self.sendAsync, args = [[api, service, target, content, thumnail, autoPreview ]])
 		sendThread.start()
 		return True
 
 
 	#UX WELCOME AFTER SUBSCIBING TO
 	def sendAsync(self, data):
-		api, service, target, content, thumbnail = data
+		api, service, target, content, thumbnail, autoPreview = data
 		print("!!!!!!!!!!!!")
 		if service in self.services:
 			if self.services[service]["api"] is api:
@@ -609,7 +663,7 @@ class Master(object):
 					print("THUMB")
 					print("THUMB")
 					print(thumbnail)
-					return self.sendMessage(target, content, thumbnail=thumbnail, service = service)
+					return self.sendMessage(target, content, thumbnail=thumbnail, service = service, autoPreview = autoPreview)
 
 
 	def AnalyzeAudio(self, message):
