@@ -173,8 +173,8 @@ class TofaatTevaService(object):
 						gName = group.get_messages(include_me=True)[0].get_js_obj()["chat"]["contact"]["name"]
 						pp(group)
 						TLAST[0] = group
-					
-					if "-" in gName and area in gName:
+
+					if "-" in gName and foundArea in gName:
 						print("")
 						self.master.sendMessage(group.id, content)
 						print("======== SENDING TO GROUP",gName,str(time.time()-gT),len(allGroups),"=======\n")

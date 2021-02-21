@@ -585,6 +585,15 @@ class Master(object):
 				thumbnail["desc"] = preview["description"]
 			thumbnail["link"] = url
 
+
+		if "/" in content:
+			if "image" == content.split("/")[0]:
+				imagepath = "/".join(content.split("\n")[0].split("/")[1:])
+				sendBack = ""
+				if "\n" in content:
+					sendBack = "\n".join(content.split("\n")[1:])
+				return self.driver.send_media(imagepath,chatID,sendBack)
+					# self.driver.send_media(imagepath,chatID,content)
 		if thumbnail is not None:
 			imageurl = "https://media1.tenor.com/images/7528819f1bcc9a212d5c23be19be5bf6/tenor.gif"
 			title = "AAAAAAAAAA"
@@ -595,15 +604,6 @@ class Master(object):
 				# pT = Thread(target = self.sendPreview, args = [[chatID, url, content]])
 				# pT.start()
 				# return True
-
-			if "/" in content:
-				if "image" == content.split("/")[0]:
-					imagepath = "/".join(content.split("\n")[0].split("/")[1:])
-					sendBack = ""
-					if "\n" in content:
-						sendBack = "\n".join(content.split("\n")[1:])
-					return self.driver.send_media(imagepath,chatID,sendBack)
-					# self.driver.send_media(imagepath,chatID,content)
 
 			sendAttachment = False
 			if "imageurl" in thumbnail:
