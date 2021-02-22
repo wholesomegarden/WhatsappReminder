@@ -68,6 +68,15 @@ class MusicService(object):
 		self.commands = {"more":None,"עוד":None,"lyrics":None,"מילים":None,"danilator":None,"translation":None,"תרגום":None,"chords":None,"אקורדים":None, "other":None,"אחרים":None}
 		self.activity = False
 
+		self.prePath = ""
+		on_heroku = False
+		if 'ON_HEROKU' in os.environ:
+			print("ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ")
+			print("ENV ENV ENV       HEROKU        ENV ENV ENV ENV ")
+			print("ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ")
+			on_heroku = True
+			self.prePath = "/app/"
+
 
 	''' restarts spotify to keep it alive '''
 	def spotiAliveAsync(self, data):
@@ -216,6 +225,7 @@ class MusicService(object):
 
 	def downloadImage(self=None,url= 'https://www.tab4u.com/tabs/songs/68069_יסמין_מועלם_-_מסיבה.html', savePath = "screenshot1.png"):
 		# driver = webdriver.Chrome()
+		savePath = self.prePath + savePath
 		songURL = url
 		st = time.time()
 		chrome_options = webdriver.ChromeOptions()
@@ -253,9 +263,9 @@ class MusicService(object):
 		print("TTTTTTTTTTTTT", time.time()-st)
 		driver.quit()
 		image = cv2.imread(savePath)
-		templateStart = cv2.imread("scroll.png")
-		templateStart2 = cv2.imread("scroll2.png")
-		templateFin = cv2.imread("taboola.png")
+		templateStart = cv2.imread(self.prePath+"scroll.png")
+		templateStart2 = cv2.imread(self.prePath+"scroll2.png")
+		templateFin = cv2.imread(self.prePath+"taboola.png")
 		# templateFin  = cv2.cvtColor(cv2.imread("taboola.png"), cv2.COLOR_BGR2GRAY)
 		# templateStart  = cv2.cvtColor(cv2.imread("scroll.png"), cv2.COLOR_BGR2GRAY)
 		resultF = cv2.matchTemplate(image,templateFin,cv2.TM_CCOEFF_NORMED)
@@ -272,7 +282,7 @@ class MusicService(object):
 		if startY > finY:
 			startY = 0
 		crop_img = image[startY:finY, startX+templateStart.shape[1]:finX+templateFin.shape[1]+5]
-		filename = 'Celement.jpg'
+		filename = self.prePath + 'Celement.jpg'
 		cv2.imwrite(filename, crop_img)
 		print("TTTTTTTTTTTTT", time.time()-st)
 		# return [filename]
