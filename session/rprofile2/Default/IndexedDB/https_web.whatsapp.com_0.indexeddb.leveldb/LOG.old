@@ -1,3 +1,5 @@
-2021/02/21-22:13:18.615 1ae0 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/02/21-22:13:18.615 1ae0 Recovering log #19
-2021/02/21-22:13:18.657 1ae0 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000019.log 
+2021/02/22-11:22:15.933 1670 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/02/22-11:22:15.933 1670 Recovering log #27
+2021/02/22-11:22:15.956 1670 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000027.log 
+2021/02/22-11:22:15.956 1670 Delete type=2 #28
+2021/02/22-11:22:15.956 1670 Delete type=2 #25

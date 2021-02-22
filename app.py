@@ -32,12 +32,12 @@ recognizer = sr.Recognizer()
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = False
+runLocal = True
 production = False
 
 Headless = not runLocal
 noFlask = runLocal
-# Headless = True
+Headless = True
 # noFlask = True
 
 LASTGROUP = {0:1000}
@@ -358,7 +358,7 @@ class Master(object):
 			process.start()
 
 			''' check available groups '''
-			checkAvailable = False
+			checkAvailable = True
 
 			if checkAvailable:
 				process2 = Thread(target = self.checkAvailableGroups, args=[None])

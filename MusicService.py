@@ -3,13 +3,13 @@ import time
 import spotipy
 import spotipy.util as util
 from youtube_search import YoutubeSearch
-from pprint import pprint as pp
 from google_trans_new import google_translator
 
 from bs4 import BeautifulSoup
+from pprint import pprint as pp
 import requests
-import lxml, urllib
 
+import lxml, urllib
 from threading import Thread
 
 import os, requests, uuid, json, re
@@ -63,7 +63,7 @@ class MusicService(object):
 		self.spotify = None
 		self.spotiAlive()
 
-		self.commands = {"more":None,"lyrics":None,"danilator":None,"chords":None, "other":None}
+		self.commands = {"more":True,"lyrics":None,"danilator":None,"chords":None, "other":None}
 		self.activity = False
 
 
@@ -186,6 +186,19 @@ class MusicService(object):
 			return " ", None, None
 		return processed_text, None, None
 
+	def getLTR(self, html):
+		c = 0
+		lyrics = []
+		done = False
+		for el in html.findAll("span", {"dir":"ltr"}):
+			if c >= 2 and not done:
+				if len(el.text) > 30:
+					for line in el.text.split("\n"):
+						lyrics.append(line)
+				else:
+					done = True
+			c+=1
+		return lyrics
 
 	def getHTML(self, url):
 		headers_Get = {
@@ -230,7 +243,13 @@ class MusicService(object):
 		if len(song_title) > 1:
 			songtitle = song_title[1].split(" lyrics ©")[0]
 			song_info.append(songtitle)
+		else:
+			try:
+				song_info.append(html.findAll("span",{"class":"BNeawe tAd8D AP7Wnd"})[0].text)
+			except:
+				print("error getting artist")
 		artists = []
+		# for paper in html.findAll("div",class_="wwUB2c PZPZlf"):
 		for paper in html.findAll("div",class_="wx62f PZPZlf x7XAkb"):
 			for desc in paper.descendants:
 				print("DDDDDDDD",desc)
@@ -241,6 +260,11 @@ class MusicService(object):
 		if len(artists) > 0:
 			artist = artists[0].replace("Song by ","")
 			song_info.append(artist)
+		else:
+			try:
+				song_info.append(html.findAll("span",{"class":"BNeawe s3v9rd AP7Wnd"})[1].text)
+			except:
+				print("error getting artist")
 		if len(song_info) < 2:
 			print("wwwwwwwwwwww",song_info)
 			song_info = []
@@ -251,15 +275,26 @@ class MusicService(object):
 				for i in info:
 					song_info.append(i)
 		lyrics=html.find_all("span", jsname="YS01Ge")
+		new_method = False
+		if lyrics==[]:
+			print('Couldn\'t get lyrics')
+			lyrics = self.getLTR(html)
+			new_method = True
 		if lyrics==[]:
 			print('Couldn\'t get lyrics')
 		else:
 			nlyr = ""
 			nl = ["; ","\n"]
 			c = 0
-			for i in lyrics:
+			if not new_method:
+				for i in lyrics:
+					# print(i.get_text())
+						nlyr += i.get_text() + nl[c%2]
+						c+=1
+			else:
+				for i in lyrics:
 				# print(i.get_text())
-					nlyr += i.get_text() + nl[c%2]
+					nlyr += i + nl[c%2]
 					c+=1
 			return nlyr, song_info
 
