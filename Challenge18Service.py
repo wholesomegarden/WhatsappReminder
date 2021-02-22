@@ -132,6 +132,7 @@ class Challenge18Service():
 
 			''' check time after 20:00 '''
 			dayly = 60*60*23
+			# dayly = 60*60*13
 			# dayly = 60
 			atTime = "19:30"
 			# passed2000 = time.time() - search_dates("20:00")[0][1].timestamp() > 0

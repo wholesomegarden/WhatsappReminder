@@ -50,6 +50,7 @@ def shazamAsync(data, round = 0):
 		if outDict is not None:
 			firstRes = None
 			try:
+				print(firstRes)
 				firstRes = outDict["out"][1]["track"]
 			except:
 				print("EEEEE SHAZAM COULD NOT FIND SONG")

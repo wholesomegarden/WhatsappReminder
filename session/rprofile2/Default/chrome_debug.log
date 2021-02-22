@@ -1,2 +1,0 @@
-[0222/112320.421815:INFO:CONSOLE(0)] "Uncaught (in promise) AbortError: Failed to register a ServiceWorker for scope ('https://web.whatsapp.com/') with script ('https://web.whatsapp.com/serviceworker.js'): Operation has been aborted", source: https://web.whatsapp.com/ (0)
-[0222/112320.887115:ERROR:service_worker_storage.cc(1753)] Failed to delete the database: Database IO error

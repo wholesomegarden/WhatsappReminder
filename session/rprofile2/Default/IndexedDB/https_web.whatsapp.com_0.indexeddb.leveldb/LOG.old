@@ -1,5 +1,25 @@
-2021/02/22-11:22:15.933 1670 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/02/22-11:22:15.933 1670 Recovering log #27
-2021/02/22-11:22:15.956 1670 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000027.log 
-2021/02/22-11:22:15.956 1670 Delete type=2 #28
-2021/02/22-11:22:15.956 1670 Delete type=2 #25
+2021/02/22-21:39:26.388 396f Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/02/22-21:39:26.388 396f Recovering log #65
+2021/02/22-21:39:26.428 396f Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000065.log 
+2021/02/22-21:39:49.962 3965 Level-0 table #71: started
+2021/02/22-21:39:49.983 3965 Level-0 table #71: 1216361 bytes OK
+2021/02/22-21:39:49.985 3965 Delete type=0 #65
+2021/02/22-21:39:50.459 396f Compacting 1@1 + 2@2 files
+2021/02/22-21:39:50.672 396f Generated table #72@1: 44258 keys, 2245925 bytes
+2021/02/22-21:39:50.713 396f Generated table #73@1: 56911 keys, 1945977 bytes
+2021/02/22-21:39:50.713 396f Compacted 1@1 + 2@2 files => 4191902 bytes
+2021/02/22-21:39:50.714 396f compacted to: files[ 0 0 2 0 0 0 0 ]
+2021/02/22-21:39:50.714 396f Delete type=2 #68
+2021/02/22-21:39:50.714 396f Delete type=2 #67
+2021/02/22-21:39:50.714 396f Delete type=2 #71
+2021/02/22-21:57:59.736 396f Level-0 table #75: started
+2021/02/22-21:57:59.754 396f Level-0 table #75: 1316334 bytes OK
+2021/02/22-21:57:59.756 396f Delete type=0 #70
+2021/02/22-21:58:00.779 3965 Compacting 1@1 + 2@2 files
+2021/02/22-21:58:00.832 3965 Generated table #76@1: 41319 keys, 2240821 bytes
+2021/02/22-21:58:01.101 3965 Generated table #77@1: 63841 keys, 2245588 bytes
+2021/02/22-21:58:01.101 3965 Compacted 1@1 + 2@2 files => 4486409 bytes
+2021/02/22-21:58:01.179 3965 compacted to: files[ 0 0 2 0 0 0 0 ]
+2021/02/22-21:58:01.179 3965 Delete type=2 #73
+2021/02/22-21:58:01.179 3965 Delete type=2 #75
+2021/02/22-21:58:01.179 3965 Delete type=2 #72

@@ -679,7 +679,9 @@ class Master(object):
 			self.sendMessage(message.chat_id, "Analyzing Audio Please Wait...")
 			LAST[0] = message
 			LAST["o"] = {}
-			ptt = self.driver.download_media(message.get_js_obj())
+			jobj = message.get_js_obj()
+			jobj["clientUrl"] = jobj["deprecatedMms3Url"]
+			ptt = self.driver.download_media(jobj)
 			audio = AudioSegment.from_file(ptt)
 			length = len(audio)
 			# audio = AudioSegment.from_file(ptt)
@@ -698,7 +700,7 @@ class Master(object):
 			except:
 				traceback.print_exc()
 
-			shazamLimit = 15
+			shazamLimit = 22
 			if length > shortRec * 1000:
 				''' shazam '''
 				o = shazi.shazam(path)

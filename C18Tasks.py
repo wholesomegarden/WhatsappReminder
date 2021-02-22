@@ -190,6 +190,12 @@ We will start with daily practice ... towards a new reality that awaits you, you
 		},
 			# ''' DAY 1 '''
 		1:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/1.png"
 		,
 		"20:00:05":
@@ -238,7 +244,7 @@ The main thought for today:
 		# ''' DAY 2 '''
 
 
-		
+
 		"09:31:00":
 		'''
 		Gooooooood morning ladies and gentlemen 🦔 I remind you the marking of the task (s) is until tonight, 20:00
@@ -261,6 +267,12 @@ https://chat.whatsapp.com/LLGHvVQ7Z5oAKJR329CeDt
 		# ''' DAY 2 '''
 
 		2:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/2.png"
 		,
 		"20:00:05":
@@ -316,6 +328,12 @@ The main thought for today: *"Who is a rich man? He who shares".*
 		# ''' DAY 3 '''
 
 		3:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/3.png"
 		,
 		"20:00:05":
@@ -388,6 +406,12 @@ The main thought for today: a healthy mind in a healthy body in a healthy world
 		# ''' DAY 4 '''
 
 		4:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/4.png"
 		,
 		"20:00:05":
@@ -444,6 +468,12 @@ Everyone wants to be heard and no one is listening. The corona crisis has helped
 		# ''' DAY 5 '''
 
 		5:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"12:00:00": "image/C18/5.png"
 		,
 		"12:00:05":
@@ -512,6 +542,12 @@ The main thought for today: *"We do not discriminate between people. We do not a
 		# ''' DAY 6 '''
 
 		6:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/6.png"
 		,
 		"20:00:05":
@@ -572,6 +608,12 @@ The thought for today: *"Today and every day - I give what I want to attract int
 		# ''' DAY 7 '''
 
 		7:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/7.png"
 		,
 		"20:00:05":
@@ -640,6 +682,12 @@ The main thought for today: *"Today I make great choices because they are made w
 		# ''' DAY 8 '''
 
 		8:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/8.png"
 		,
 		"20:00:05":
@@ -704,6 +752,12 @@ The main thought for today: *"If you will it, it is no dream; and if you don't, 
 		# ''' DAY 9 '''
 
 		9:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/9.png"
 		,
 		"20:00:05":
@@ -769,6 +823,12 @@ The main thought for today: *"Focus is a key & Imagination is your wings"*
 		# ''' DAY 10 '''
 
 		10:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/10.png"
 		,
 		"20:00:05":
@@ -839,6 +899,12 @@ The main thought for today: *"I listen to my inner voice. The answers are inside
 		# ''' DAY 11 '''
 
 		11:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/11.png"
 		,
 		"20:00:05":
@@ -897,6 +963,12 @@ The main thought for today: *"I have a dream as I care about my city, my country
 		# ''' DAY 12 '''
 
 		12:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/12.png"
 		,
 		"20:00:05":
@@ -953,6 +1025,12 @@ The main thought for today: *I stop to think (3) three times before I consume*
 		# ''' DAY 13 '''
 
 		13:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/13.png"
 		,
 		"20:00:05":
@@ -1016,6 +1094,12 @@ The main thought for today: *"The climate crisis is also my challenge"*
 		# ''' DAY 14 '''
 
 		14:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"12:00:00": "image/C18/14.png"
 		,
 		"12:00:05":
@@ -1082,6 +1166,12 @@ The main thought for today is, *“Life is a beautiful, magnificent thing, even 
 		# ''' DAY 15 '''
 
 		15:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/15.png"
 		,
 		"20:00:05":
@@ -1138,6 +1228,12 @@ The main thought for today: *“Man is as the tree in the field - as the tree he
 		# ''' DAY 16 '''
 
 		16:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/16.png"
 		,
 		"20:00:05":
@@ -1217,6 +1313,12 @@ Ting Global
 		# ''' DAY 17 '''
 
 		17:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/17.png"
 		,
 		"20:00:05":
@@ -1312,6 +1414,12 @@ The main thought for today: *"If you want to go fast - go alone*
 		# ''' DAY 18 '''
 
 		18:{
+		"18:00:00":
+		'''
+*Two hours left to complete today's tasks*
+_Rasing humanity on a new path - it all starts with you_ 🐋🌸🙏
+		'''
+		,
 		"20:00:00": "image/C18/18.png"
 		,
 		"20:00:05":
@@ -1390,3 +1498,4 @@ THANK YOU FOR SUCCESSFULLY FINISHING THE CHALLENGE
 
 
 }
+#https://docs.google.com/document/d/1DH2D7TbobiQDnjnoJM_TQ7tFBn4GIiftSz1Awz_UHVg/edit

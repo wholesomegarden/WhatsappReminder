@@ -27,6 +27,8 @@ from googlesearch import search
 translator = google_translator()
 
 import traceback
+import cv2
+import numpy as np
 
 import shazi
 # o = shazi.shazam("a.mp3")
@@ -63,7 +65,7 @@ class MusicService(object):
 		self.spotify = None
 		self.spotiAlive()
 
-		self.commands = {"more":True,"lyrics":None,"danilator":None,"chords":None, "other":None}
+		self.commands = {"more":None,"עוד":None,"lyrics":None,"מילים":None,"danilator":None,"translation":None,"תרגום":None,"chords":None,"אקורדים":None, "other":None,"אחרים":None}
 		self.activity = False
 
 
@@ -126,21 +128,6 @@ class MusicService(object):
 		return q
 
 
-
-	def downloadImage(self,songURL= 'https://www.tab4u.com/tabs/songs/68069_יסמין_מועלם_-_מסיבה.html'):
-		driver = webdriver.Chrome()
-		url = 'https://web-capture.net/'
-		driver.get(url)
-		l = driver.find_element_by_id("link")
-		l.send_keys(Keys.SHIFT+Keys.HOME)
-		l.send_keys(Keys.BACKSPACE)
-		l.send_keys(songURL+Keys.ENTER)
-		go = "https://web-capture.net/picture.php?pic_index=1&presentation_method=inline"
-		driver.get(go)
-		i = driver.find_element_by_tag_name("img")
-
-
-
 # l = driver.find_element_by_id("link")
 # l.send_keys(songURL+Keys.ENTER)
 
@@ -200,6 +187,18 @@ class MusicService(object):
 			c+=1
 		return lyrics
 
+
+
+	def searchGoogle(self, q, s = 5):
+		res = []
+		for r in self.google(q, s=s):
+			res.append(r)
+		return res
+
+
+	def google(self, q, s = 20, lang = None):
+		return search(q,stop = s)
+
 	def getHTML(self, url):
 		headers_Get = {
 				'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0',
@@ -213,6 +212,140 @@ class MusicService(object):
 		searchPage = requests.get(url, headers=headers_Get)
 		html = BeautifulSoup(searchPage.text,'html.parser')
 		return html
+
+
+	def downloadImage(self=None,url= 'https://www.tab4u.com/tabs/songs/68069_יסמין_מועלם_-_מסיבה.html', savePath = "screenshot1.png"):
+		# driver = webdriver.Chrome()
+		songURL = url
+		st = time.time()
+		chrome_options = webdriver.ChromeOptions()
+		chrome_options.add_argument('--headless')
+		chrome_options.add_argument('--start-maximized')
+		driver = webdriver.Chrome(chrome_options=chrome_options)
+		url = 'https://web-capture.net/'
+		print("TTTTTTTTTTTTT", time.time()-st)
+		# input()
+		# st = time.time()
+		fromCap = False
+		if fromCap:
+			driver.get(url)
+			print("TTTTTTTTTTTTT", time.time()-st)
+			l = driver.find_element_by_id("link")
+			l.send_keys(Keys.SHIFT+Keys.HOME)
+			l.send_keys(Keys.BACKSPACE)
+			l.send_keys(songURL+Keys.ENTER)
+			go = "https://web-capture.net/picture.php?pic_index=1&presentation_method=inline"
+			driver.get(go)
+			ele = i = driver.find_element_by_tag_name("img")
+			ele.click()
+		else:
+			# go = "https://web-capture.net/picture.php?pic_index=1&presentation_method=inline"
+			driver.get(songURL)
+			# ele = i = driver.find_element_by_tag_name("img")
+			ele = element = i = el = driver.find_element_by_id("taboola-below-article-thumbnails")
+			print("TTTTTTTTTTTTT", time.time()-st)
+			# ele.click()
+		total_height = ele.size["height"]+1000
+		print("total_height",total_height)
+		driver.set_window_size(1920, total_height)      #the trick
+		# time.sleep(2)
+		driver.save_screenshot(savePath)
+		print("TTTTTTTTTTTTT", time.time()-st)
+		driver.quit()
+		image = cv2.imread(savePath)
+		templateStart = cv2.imread("scroll.png")
+		templateStart2 = cv2.imread("scroll2.png")
+		templateFin = cv2.imread("taboola.png")
+		# templateFin  = cv2.cvtColor(cv2.imread("taboola.png"), cv2.COLOR_BGR2GRAY)
+		# templateStart  = cv2.cvtColor(cv2.imread("scroll.png"), cv2.COLOR_BGR2GRAY)
+		resultF = cv2.matchTemplate(image,templateFin,cv2.TM_CCOEFF_NORMED)
+		finY, finX = np.unravel_index(resultF.argmax(),resultF.shape)
+		resultS2 = cv2.matchTemplate(image,templateStart2,cv2.TM_CCOEFF_NORMED)
+		startY,startX, = np.unravel_index(resultS2.argmax(),resultS2.shape)
+		# crop_img = image[startY:finY, startX+200:-450]
+		print(startY, finY, startX+templateStart.shape[1],finX+templateFin.shape[1]+5)
+		# crop_img = image[startY-138-templateStart.shape[0]:finY, startX:finX+templateFin.shape[1]+5]
+		if startY > finY:
+			resultS = cv2.matchTemplate(image,templateStart,cv2.TM_CCOEFF_NORMED)
+			startY,startX, = np.unravel_index(resultS.argmax(),resultS.shape)
+			# crop_img = image[startY:finY, startX+200:-450]
+		if startY > finY:
+			startY = 0
+		crop_img = image[startY:finY, startX+templateStart.shape[1]:finX+templateFin.shape[1]+5]
+		filename = 'Celement.jpg'
+		cv2.imwrite(filename, crop_img)
+		print("TTTTTTTTTTTTT", time.time()-st)
+		# return [filename]
+		buffer = 15
+		divs = 1
+		fns = []
+		height = finY - startY
+		if height > 2400:
+			divs = 4
+		for i in range(divs):
+
+			min = startY + int(height/divs)*(i) - buffer
+			if min < 0:
+				min = 0
+			max = startY + int(height/divs)*(i+1) + buffer
+			if max > finY:
+				max = finY-2
+			nf = filename.split('.')[0]+str(i)+"."+filename.split('.')[1]
+			fns.append(nf)
+			print("NNNNNNN",finY,nf, min,max)
+			cv2.imwrite(nf, image[min:max, startX+templateStart.shape[1]:finX+templateFin.shape[1]+5])
+		# Using cv2.imwrite() method
+		# Saving the image
+		# cv2.imwrite(filename, crop_img)
+		print("TTTTTTTTTTTTT", time.time()-st)
+		return fns
+
+
+#
+#
+#
+#
+# 	driver.get(songURL)
+# 	# ele = i = driver.find_element_by_tag_name("img")
+# 	ele = element = i = el = driver.find_element_by_id("songContentTPL")
+# 	# element = html.find_element_by_id()
+# 	# element = driver.find_element_by_id("hplogo");
+# 	# element = el
+# 	location = element.location;
+# 	size = element.size;
+# 	driver.quit()
+# 	# driver.save_screenshot("pageImage.png");
+# 	# crop image
+# 	x = location['x'];
+# 	y = location['y'];
+# 	width = location['x']+size['width'];
+# 	height = location['y']+size['height'];
+# 	im = Image.open(savePath)
+# 	im = im.crop((int(x+200), int(y), int(width), int(height)))
+# 	im.save('element.png')
+# 	print("TTTTTTTTTTTTT", time.time()-st)
+# 	html = getHTML("",songURL)
+# 	return html, driver,i,total_height
+#
+#
+# html, driver,i,total_height = res = downloadImage("")
+#
+# image = cv2.imread("scrx.png")
+# templateFin = cv2.imread("taboola.png")
+# templateStart = cv2.imread("scroll.png")
+# resultS = cv2.matchTemplate(image,templateStart,cv2.TM_CCOEFF_NORMED)
+# resultF = cv2.matchTemplate(image,templateFin,cv2.TM_CCOEFF_NORMED)
+#
+# startY,startX, = np.unravel_index(resultS.argmax(),result.shape)
+# finY, finX = np.unravel_index(resultF.argmax(),result.shape)
+# crop_img = image[startY:finY, startX+200:-450]
+# print(startY)
+# crop_img = image[startY-138-templateStart.shape[0]:finY, startX:finX+templateFin.shape[1]+5]
+# filename = 'Celement.png'
+# # Using cv2.imwrite() method
+# # Saving the image
+# cv2.imwrite(filename, crop_img)
+
 
 	def getLyrics(self, title):
 		# return lyricwikia.get_lyrics('Led Zeppelin', 'Stairway to heaven')
@@ -300,9 +433,9 @@ class MusicService(object):
 
 
 	def chunks(self, lst, n):
-	    """Yield successive n-sized chunks from lst."""
-	    for i in range(0, len(lst), n):
-	        yield lst[i:i + n]
+		"""Yield successive n-sized chunks from lst."""
+		for i in range(0, len(lst), n):
+			yield lst[i:i + n]
 
 	def danilator(self, item, withTranslations = False, lang_tgt="he", lyrics = None):
 		if item == "":
@@ -416,7 +549,7 @@ class MusicService(object):
 		print("ORIGIN")
 		print(self.db["users"][origin])
 		if "settings" not in self.db["users"][origin]:
-			self.db["users"][origin]["settings"] = {"defaults":{"more":False,"lyrics":False,"danilator":False,"chords":False}}
+			self.db["users"][origin]["settings"] = {"defaults":{"more":True,"lyrics":False,"danilator":False,"chords":False}}
 
 
 		content = content.replace("+"," ")
@@ -552,7 +685,7 @@ class MusicService(object):
 						if title is "":
 							title = song["search"]
 
-						if cmd == "more":
+						if cmd == "more" or cmd == "עוד":
 							sendLinks = ""
 							link = song["link"]
 
@@ -574,7 +707,7 @@ class MusicService(object):
 							# sendLinks += "Get Chords: "+link+"\n"
 							# time.sleep(1.5)
 							self.api.send(origin, sendLinks, thumnail = None)
-						if cmd == "other":
+						if cmd == "other" or "אחר" in cmd:
 							# self.api.send(origin, "FINDING OTHER ARTIST FOR "+title+" "+artist)
 							newArtists = []
 							if "artist" in song:
@@ -617,7 +750,7 @@ class MusicService(object):
 
 							self.api.send(origin, "*Covers* and *Other Artists*:\n\n"+sendArtist)
 
-						if cmd == "lyrics":
+						if cmd == "lyrics" or cmd == "מילים":
 							print("LLLLLLLLLLLLLLLLLLLLLLLLLLL")
 							print("LLLLLLLLLLLLLLLLLLLLLLLLLLL")
 							print("LLLLLLLLLLLLLLLLLLLLLLLLLLL")
@@ -653,10 +786,35 @@ class MusicService(object):
 								self.api.send(origin, header+fullT)
 								# self.api.send("Scraper"+"/"+origin, ":googlelyrics:"+title+" "+artist+" lyrics")
 
-						if cmd == "chords":
+						if cmd == "chords" or cmd == "אקורדים":
+							sites = ["tab4u"]
 							self.api.send(origin, "FINDING CHORDS ARTIST FOR "+title+" "+artist)
+							q = title+" "+" Chords"
+							searches = self.searchGoogle(q,s=10)
+							foundURL = None
+							for s in searches:
+								print("SSSSSSS",s)
+								for k in sites:
 
-						if cmd == "danilator":
+									if k in s:
+										print("found",k)
+										foundURL = s
+									print("lastk",k)
+							if foundURL:
+								print("UUUUUUUUUUUUUUUUUUUUUU",foundURL)
+								print("UUUUUUUUUUUUUUUUUUUUUU",foundURL)
+								print("UUUUUUUUUUUUUUUUUUUUUU",foundURL)
+								fns = self.downloadImage(url = foundURL)
+								for dlp in fns:
+									print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",dlp)
+									self.api.send(origin, "image/"+dlp)
+									time.sleep(0.8)
+
+
+
+
+
+						if cmd == "danilator" or cmd == "תרגום":
 							if song["language"] is "english":
 								fullT, songInfo = self.danilator(title+" "+artist, withTranslations=True)
 								header = "*"+title

@@ -95,22 +95,28 @@ class ScraperService():
 		page = requests.get(url)
 		return BeautifulSoup(page.content, 'html.parser')
 
+	def searchGoogle(self, q, s = 5):
+		res = []
+		for r in self.google(q, s=s):
+			res.append(r)
+		return res
 
-	def google(self,q, s = 20, lang = None):
+
+	def google(self, q, s = 20, lang = None):
 		return search(q,stop = s)
 
-		text = urllib.parse.quote_plus(q)
-		url = 'https://google.com/search?q=' + text
-		if lang is not None:
-			url = url.replace(".com",lang)
-		response = requests.get(url)
-		soup = BeautifulSoup(response.text, 'lxml')
-		# print(soup.text)
-		for g in soup.find("body").findAll("div",{"class":'g'}):
-		    print(g.text)
-		    print('-----')
-		return soup
-		soup = google(None,"כחולת עינים LYRICS")
+		# text = urllib.parse.quote_plus(q)
+		# url = 'https://google.com/search?q=' + text
+		# if lang is not None:
+		# 	url = url.replace(".com",lang)
+		# response = requests.get(url)
+		# soup = BeautifulSoup(response.text, 'lxml')
+		# # print(soup.text)
+		# for g in soup.find("body").findAll("div",{"class":'g'}):
+		#     print(g.text)
+		#     print('-----')
+		# return soup
+		# soup = google(None,"כחולת עינים LYRICS")
 
 
 
