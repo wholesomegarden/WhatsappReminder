@@ -33,7 +33,15 @@ from ServiceLoader import *
 from MasterService import *
 
 # TODO CHECK Automatically
-runLocal = False
+runLocal = True
+on_heroku = False
+if 'ON_HEROKU' in os.environ:
+	print("ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ")
+	print("ENV ENV ENV       HEROKU        ENV ENV ENV ENV ")
+	print("ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ENV ")
+	on_heroku = True
+	runLocal = False
+
 production = False
 
 Headless = not runLocal

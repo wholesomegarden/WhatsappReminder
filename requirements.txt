@@ -53,3 +53,4 @@ emoji==0.6.0
 ShazamAPI==0.0.2
 pydub==0.24.1
 SpeechRecognition==3.8.1
+opencv-python==4.2.0.32
