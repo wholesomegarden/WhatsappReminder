@@ -257,6 +257,9 @@ class MusicService(object):
 			# ele.click()
 		total_height = ele.size["height"]+1000
 		print("total_height",total_height)
+		lowImage = True
+		if lowImage:
+			total_height = 2000
 		driver.set_window_size(1920, total_height)      #the trick
 		# time.sleep(2)
 		driver.save_screenshot(savePath)

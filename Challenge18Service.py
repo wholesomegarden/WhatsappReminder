@@ -115,12 +115,15 @@ class Challenge18Service():
 
 	def go(self):
 		resetLast2000 = False
+		while "challenges" not in self.db:
+			print("C18 waiting for db")
+			time.sleep(2)
 		if "last2000" not in self.db or resetLast2000:
 			self.db["last2000"] = 0
 			# self.backup()
 			print("22222222222222222222222222222222222222222222000")
 		while(True):
-			# if "upcoming" not in self.db or "dict" not in str(type(self.db["upcoming"])):
+			# if "upcoming" not in self.db or "0dict" not in str(type(self.db["upcoming"])):
 			# 	self.db["upcoming"] = {}
 			if "users" not in self.db :
 				self.db["users"] = {}
