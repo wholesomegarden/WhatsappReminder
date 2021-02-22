@@ -32,7 +32,8 @@ recognizer = sr.Recognizer()
 from ServiceLoader import *
 from MasterService import *
 
-runLocal = True
+# TODO CHECK Automatically
+runLocal = False
 production = False
 
 Headless = not runLocal
