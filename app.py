@@ -358,8 +358,11 @@ class Master(object):
 			process.start()
 
 			''' check available groups '''
-			process2 = Thread(target = self.checkAvailableGroups, args=[None])
-			process2.start()
+			checkAvailable = False
+
+			if checkAvailable:
+				process2 = Thread(target = self.checkAvailableGroups, args=[None])
+				process2.start()
 		else:
 			print(" ::: ERROR - COULD NOT LOG IN  ::: ","\n")
 
