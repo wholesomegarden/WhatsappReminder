@@ -145,13 +145,17 @@ class TofaatTevaService(object):
 			time.sleep(1)
 
 	def process(self, info):
-		origin, user, content = None, None, None
+		origin, user, content, id, mType = None, None, None, None, ""
 		if "origin" in info:
 			origin = info["origin"]
 		if "user" in info:
 			user = info["user"]
 		if "content" in info:
 			content = info["content"]
+		if "mID" in info:
+			id = info["mID"]
+		if "mType" in info:
+			mType = info["mType"]
 
 		foundArea = None
 		for area in self.db["areas"]:
@@ -165,6 +169,7 @@ class TofaatTevaService(object):
 
 			print("======== GETTING GROUPS TIME",str(time.time()-gT),len(allGroups),"=======\n")
 			print("LLLLLLLLLLLLLLLLLLLLLLL",len(allGroups))
+			self.master.driver.simulateTyping(origin,True)
 			for group in allGroups:
 				# pp(group)
 				if group is not None:
@@ -176,10 +181,23 @@ class TofaatTevaService(object):
 
 					if "-" in gName and foundArea in gName:
 						print("")
-						self.master.sendMessage(group.id, content)
+						old = False
+						if old:
+							self.master.sendMessage(group.id, content)
+						elif id:
+							print(id)
+							print("FORWARDING")
+							self.master.driver.forward_messages(group.id,id, "video" in mType)
+						else:
+							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
+							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
+							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
+							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
+							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
 						print("======== SENDING TO GROUP",gName,str(time.time()-gT),len(allGroups),"=======\n")
 
 
+			self.master.driver.simulateTyping(origin,False)
 			print("======== FINISHED SENDING TO GROUPS TIME",str(time.time()-gT),len(allGroups),"=======\n")
 
 		else:

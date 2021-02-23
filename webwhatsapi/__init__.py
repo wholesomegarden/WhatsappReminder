@@ -1188,6 +1188,35 @@ class WhatsAPIDriver(object):
 			return archive
 		return "data:" + content_type + ";base64," + archive
 
+	def getQuote(self,quotedStanzaID, res=['xxx']):
+		return self.wapi_functions.getMessageQuote(quotedStanzaID,res)
+
+	def forward_messages(self, chat_id_to, message_id, video=False):
+		if video:
+			code = "WAPI.forwardMessages('"+chat_id_to+"', '"+message_id+"')"
+			self.driver.execute_script(script=code)
+			print("done.....")
+		else:
+			code = "WAPI.ghostForward2('"+chat_id_to+"', '"+message_id+"')"
+			self.driver.execute_script(script=code)
+			print("done.....")
+
+		# self.wapi_functions.ghostForward(chat_id_to, message_id)
+		# return self.wapi_functions.forwardMessages(chat_id_to, message_ids, skip_my_messages)
+
+	def simulateTyping(self, chatID, isTyping = True):
+		s = 0
+		if isTyping:
+			s = 1
+
+		code = "WAPI.sendSeen('"+chatID+"')"
+		self.driver.execute_script(script=code)
+		code = "WAPI.simulateTyping('"+chatID+"', '"+str(s).lower()+"')"
+		self.driver.execute_script(script=code)
+		print("done.....")
+		# self.wapi_functions.ghostForward(chat_id_to, message_id)
+		# return self.wapi_functions.forwardMessages(chat_id_to, message_ids, skip_my_messages)
+
 	def send_media(self, path, chatid, caption):
 		"""
 			converts the file to base64 and sends it using the sendImage function of wapi.js

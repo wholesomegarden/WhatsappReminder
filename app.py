@@ -729,6 +729,7 @@ class Master(object):
 			mSenderID = message.sender.id
 			mSenderName = message.get_js_obj()["chat"]["contact"]["formattedName"]
 			mType = message.type
+			LAST[0] = message
 
 			if "ptt" in mType.lower() or "audio" in mType:
 				print("PPPPPTTTTTTTTTT")
@@ -1105,7 +1106,7 @@ class Master(object):
 												obj = self.services[foundService]["obj"]
 												if obj is not None:
 													#Get Nicknames
-													self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text})
+													self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text, "mID":message.id, "mType":mType})
 													# obj.process({"origin":chatID, "user":senderID, "content":text})
 
 											# self.ProcessServiceAsync(service,chatID,text)
