@@ -1106,7 +1106,11 @@ class Master(object):
 												obj = self.services[foundService]["obj"]
 												if obj is not None:
 													#Get Nicknames
-													self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text, "mID":message.id, "mType":mType})
+													quoted=None
+													j = message.get_js_obj()
+													if "quotedMsg" in j:
+														quoted = j["quotedMsg"]
+													self.ProcessServiceAsync(obj,{"origin":chatID, "user":senderID, "content":text, "mID":message.id, "mType":mType, "quotedMsg":quoted})
 													# obj.process({"origin":chatID, "user":senderID, "content":text})
 
 											# self.ProcessServiceAsync(service,chatID,text)

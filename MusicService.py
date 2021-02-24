@@ -31,6 +31,7 @@ import cv2
 import numpy as np
 
 import shazi
+from geniusLyrics import *
 # o = shazi.shazam("a.mp3")
 
 
@@ -484,10 +485,25 @@ class MusicService(object):
 				print("TTTTTTTTTTTTTTTTT")
 				# except:
 				# 	print("E: could not parse artist and title")
-				res = self.getLyrics(target)
+				# res = self.getLyrics(target)
+				res = None
+				gtry = 0
+				maxtries = 2
+				while not res and gtry < maxtries:
+					if gtry >= 2:
+						time.sleep(gtry)
+					try:
+						res = GeniusSearchLyrics(target)
+					except:
+						traceback.print_exc()
+
+					gtry +=1
+
 				mc+=1
 				if res is not None and len(res) > 1:
-					lyricsText, song_info = res
+					gtitle, gartist, lyricsText = res
+					# lyricsText, song_info = res
+					song_info = [gtitle, gartist]
 			chars = [["-"," "],["(",""],[")",""],["~",""],["\r",""]]
 			for c in chars:
 				lyricsText = lyricsText.replace(c[0],c[1])
@@ -543,13 +559,16 @@ class MusicService(object):
 		return "\n".join(fullL), song_info
 
 	def process(self, info):
-		origin, user, content = None, None, None
+		origin, user, content, quoted = None, None, None, None
 		if "origin" in info:
 			origin = info["origin"]
 		if "user" in info:
 			user = info["user"]
 		if "content" in info:
 			content = info["content"]
+		if "quotedMsg" in info:
+			quoted = info["quotedMsg"]
+
 
 		if "users" not in self.db:
 			self.db["users"] = {}
@@ -557,8 +576,8 @@ class MusicService(object):
 		if origin not in self.db["users"] or "dict" not in str(type(self.db["users"][origin])):
 			self.db["users"][origin] = {"history":{}}
 
-		print("SELF>DB")
-		print(self.db)
+		# print("SELF>DB")
+		# print(self.db)
 		print("ORIGIN")
 		print(self.db["users"][origin])
 		if "settings" not in self.db["users"][origin]:
@@ -658,6 +677,24 @@ class MusicService(object):
 			if len(history) >= 1:
 				lastID = str(len(history)-1)
 
+			if quoted and "body" in quoted:
+				if "*" in quoted["body"]:
+					find = quoted["body"].split("*")[1].lower()
+					foundID = None
+					print("FINDING",find)
+					for h in history:
+						print(h,history[h])
+						for k in history[h]:
+							if history[h][k].lower() in find or find in history[h][k].lower() or history[h][k].lower() in find.split("-")[0] or find.split("-")[0] in history[h][k].lower() or history[h][k].lower() in find.split(" ")[0] or find.split(" ")[0] in history[h][k].lower():
+								foundID = h
+						#
+						# if "search" in history[h] and find in history[h]["search"].lower() or ("title" in history[h] and find in history[h]["title"].lower()):
+						# elif "search" in history[h] and find.split(" ")[0] in history[h]["search".lower()	] or ("title" in history[h] and find.split(" ")[0] in history[h]["title"].lower()):
+						# 	foundID = h
+
+					if foundID:
+						print("GGGGGGGGGGOOOOOTTTTTTTTTT SSSSOOOONNNGGGGG IDDDD FROM REPLYYYYYY",foundID)
+						lastID = foundID
 			''' before first song '''
 			if lastID is None:
 				pass
@@ -697,6 +734,8 @@ class MusicService(object):
 
 						if title is "":
 							title = song["search"]
+
+						print("TTTTTTTTTTTTTTTT",title)
 
 						if cmd == "more" or cmd == "עוד":
 							sendLinks = ""
@@ -784,7 +823,23 @@ class MusicService(object):
 								# self.api.send("Scraper"+"/"+origin, ":shironet:"+song["search"]+" shironet")
 							else:
 
-								fullT, songInfo = self.danilator(title+" "+artist)
+								# fullT, songInfo = self.danilator(title+" "+artist)
+								fullT = "Could not load lyrics"
+								glyrics = None
+								try:
+									gtitle, gartist, glyrics = GeniusSearchLyrics(title+" "+artist)
+								except:
+									time.sleep(2)
+									try:
+										gtitle, gartist, glyrics = GeniusSearchLyrics(title+" "+artist)
+									except:
+										try:
+											gtitle, gartist, glyrics = GeniusSearchLyrics(title+" "+artist)
+										except:
+											traceback.print_exc()
+								if glyrics:
+									fullT = glyrics
+
 								header = "*"+title
 								if artist is not "":
 									header += " - "+artist+"*\n\n"
@@ -795,7 +850,7 @@ class MusicService(object):
 								# print("songInfo", songInfo)
 								# print("songInfo", songInfo)
 								# print("songInfo", songInfo)
-								print("songInfo", songInfo)
+								# print("songInfo", songInfo)
 								self.api.send(origin, header+fullT)
 								# self.api.send("Scraper"+"/"+origin, ":googlelyrics:"+title+" "+artist+" lyrics")
 
@@ -827,8 +882,14 @@ class MusicService(object):
 
 
 
-						if cmd == "danilator" or cmd == "תרגום":
-							if song["language"] is "english":
+						if cmd.lower() in ["danilator","תרגום","translation","translations","translate"]:
+							print("DDDDDDDDDDDDDDDDDDDDD")
+							print("DDDDDDDDDDDDDDDDDDDDD")
+							print("DDDDDDDDDDDDDDDDDDDDD",song)
+
+							if song["language"] is "hebrew":
+								self.api.send("Scraper"+"/"+origin+"/"+id+"/danilator/en", ":shironet:"+title+" "+artist+" shironet")
+							elif song["language"] is "english" or True:
 								fullT, songInfo = self.danilator(title+" "+artist, withTranslations=True)
 								header = "*"+title
 								if artist is not "":
@@ -842,8 +903,6 @@ class MusicService(object):
 								print("songInfo", songInfo)
 								print("songInfo", songInfo)
 								self.api.send(origin, header+fullT)
-							elif song["language"] is "hebrew":
-								self.api.send("Scraper"+"/"+origin+"/"+id+"/danilator/en", ":shironet:"+title+" "+artist+" shironet")
 
 
 					# self.api.send(origin, "FUCK YEA "+content)
