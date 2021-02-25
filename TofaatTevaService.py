@@ -2,6 +2,8 @@
 import time
 from pprint import pprint as pp
 TLAST = {0:None}
+from threading import Thread
+import traceback
 
 class TofaatTevaService(object):
 	id = "TofaatTeva"
@@ -33,6 +35,10 @@ class TofaatTevaService(object):
 		# 	self.db["users"] = {}
 		# self.commands = {"subscribe":None,"group":self.createGroup,"=":self.subscribeToService,"-":self.unsubscribe, "/":self.findElement, "services":self.showServices}
 		self.commands = {"אזור":self.newArea}
+		self.Q = {}
+
+		qT = Thread(target = self.startQAsync, args = [None])
+		qT.start()
 
 
 	def newArea(self, data, service = "Master", masterGroup = True, emptyNumber ="972543610404"):
@@ -129,6 +135,24 @@ class TofaatTevaService(object):
 		self.master.backup()
 		self.backup()
 
+	def startQAsync(self, data = None):
+		self.startQ(data)
+
+	def startQ(self, data = None):
+		while(True):
+			# print(self.Q)
+			try:
+				while(True):
+					for area in self.Q:
+						# print("area",area)
+						q = self.Q[area]
+						if len(q) > 0:
+							chatID, msgID, isMedia, gName = q.pop()
+							self.master.driver.forward_messages(chatID,msgID,isMedia)
+							print("======== SENDING TO GROUP ",gName,"=======\n")
+
+			except:
+				traceback.print_exc()
 	def go(self):
 		while(False):
 			if "upcoming" not in self.db:
@@ -170,6 +194,11 @@ class TofaatTevaService(object):
 			print("======== GETTING GROUPS TIME",str(time.time()-gT),len(allGroups),"=======\n")
 			print("LLLLLLLLLLLLLLLLLLLLLLL",len(allGroups))
 			self.master.driver.simulateTyping(origin,True)
+			if foundArea not in self.Q:
+				self.Q[foundArea] = []
+			testMax = 3
+			testCount = 0
+			withTestMax = True
 			for group in allGroups:
 				# pp(group)
 				if group is not None:
@@ -179,22 +208,29 @@ class TofaatTevaService(object):
 						pp(group)
 						TLAST[0] = group
 
-					if "-" in gName and foundArea in gName:
-						print("")
+					if foundArea in gName and group.id != origin:
+						# print(group.id)
+						# print(origin)
+						# print()
+						# print("")
 						old = False
 						if old:
 							self.master.sendMessage(group.id, content)
 						elif id:
-							print(id)
-							print("FORWARDING")
-							self.master.driver.forward_messages(group.id,id, "video" in mType)
+							if not withTestMax or testCount < testMax:
+								# print(id)
+								print("FORWARDING to group",gName)
+								self.Q[foundArea].append([group.id,id,"video" in mType, gName])
+								testCount+=1
+							else:
+								print(testCount)
+							# self.master.driver.forward_messages(group.id,id, "video" in mType)
 						else:
 							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
 							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
 							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
 							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
 							print("IIIIIIIIIIIIIIDDDDDDDDDDD IS NONNNEEEEEE")
-						print("======== SENDING TO GROUP",gName,str(time.time()-gT),len(allGroups),"=======\n")
 
 
 			self.master.driver.simulateTyping(origin,False)

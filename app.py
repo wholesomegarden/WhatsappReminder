@@ -47,7 +47,7 @@ production = False
 Headless = not runLocal
 noFlask = runLocal
 Headless = True
-# noFlask = True
+# noFlask = False
 
 LASTGROUP = {0:1000}
 
@@ -456,8 +456,15 @@ class Master(object):
 									obj = self.services[service]["obj"]
 
 								toAdd = ""
+								print("OOOOOOOOOOOOOOOOOOOOOOOOO")
 								if obj is not None:
 									# self.setGroupIcon(newGroupID, obj.imageurl)
+									# if "addMasters" in obj.__dir__():
+									# 	addMasters = obj.addMasters
+									# 	for m in addMasters:
+									# 		mID = m.replace("+",'')
+									# 		if "@" not in m:
+									# 			mID += "@c.us"
 
 									if len(obj.examples) > 0:
 										toAdd += "\n\n"
@@ -472,8 +479,11 @@ class Master(object):
 												text = obj.examples[key]["text"]
 											toAdd += "*"+answer+"* : "+text+"\n"
 											toAdd += self.baseURL + link +"/"+key + "\n\n"
+									self.driver.sendMessage(newGroupID, welcome+toAdd, quick = True)
+									self.driver.promote_participant_admin_group(newGroupID,newParticipant)
 									obj.welcomeUser(newGroupID)
-								self.driver.sendMessage(newGroupID, welcome+toAdd)
+
+								print("OOOOOOOOOOOOOOOOOOOOOOOOO DONE")
 								goBackup = True
 								self.runningSubscriptions-=1
 						else:
@@ -1574,6 +1584,10 @@ def all_routes(text):
 					foundService = serv
 			if foundService is not None:
 				service = foundService
+
+		while("availableChats" not in master.db):
+			print("NO AVAILABLE CHATS")
+			time.sleep(0.1)
 
 		while(len(master.db["availableChats"][service]) == 0 or place < master.runningSubscriptions):
 			time.sleep(0.5)

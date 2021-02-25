@@ -224,8 +224,10 @@ class MusicService(object):
 		return html
 
 
-	def downloadImage(self=None,url= 'https://www.tab4u.com/tabs/songs/68069_יסמין_מועלם_-_מסיבה.html', savePath = "screenshot1.png"):
+	# def downloadImage(self,url= 'https://www.tab4u.com/tabs/songs/68069_יסמין_מועלם_-_מסיבה.html',siteData, savePath = "screenshot1.png"):
+	def downloadImage(self,url,siteData, savePath = "screenshot1.png"):
 		# driver = webdriver.Chrome()
+		site, finElement = siteData
 		savePath = self.prePath + savePath
 		songURL = url
 		st = time.time()
@@ -253,7 +255,7 @@ class MusicService(object):
 			# go = "https://web-capture.net/picture.php?pic_index=1&presentation_method=inline"
 			driver.get(songURL)
 			# ele = i = driver.find_element_by_tag_name("img")
-			ele = element = i = el = driver.find_element_by_id("taboola-below-article-thumbnails")
+			ele = element = i = el = driver.find_element_by_id(finElement)
 			print("TTTTTTTTTTTTT", time.time()-st)
 			# ele.click()
 		total_height = ele.size["height"]+1000
@@ -267,26 +269,28 @@ class MusicService(object):
 		print("TTTTTTTTTTTTT", time.time()-st)
 		driver.quit()
 		image = cv2.imread(savePath)
-		templateStart = cv2.imread(self.prePath+"scroll.png")
-		templateStart2 = cv2.imread(self.prePath+"scroll2.png")
-		templateFin = cv2.imread(self.prePath+"taboola.png")
+		templateStart = cv2.imread(self.prePath+"websites/"+site+"/start.png")
+		templateStart2 = cv2.imread(self.prePath+"websites/"+site+"/start2.png")
+		templateFin = cv2.imread(self.prePath+"websites/"+site+"/finish.png")
 		# templateFin  = cv2.cvtColor(cv2.imread("taboola.png"), cv2.COLOR_BGR2GRAY)
 		# templateStart  = cv2.cvtColor(cv2.imread("scroll.png"), cv2.COLOR_BGR2GRAY)
+		print(image.shape)
+		print(templateStart.shape)
 		resultF = cv2.matchTemplate(image,templateFin,cv2.TM_CCOEFF_NORMED)
 		finY, finX = np.unravel_index(resultF.argmax(),resultF.shape)
-		resultS2 = cv2.matchTemplate(image,templateStart2,cv2.TM_CCOEFF_NORMED)
-		startY,startX, = np.unravel_index(resultS2.argmax(),resultS2.shape)
+		resultS = cv2.matchTemplate(image,templateStart2,cv2.TM_CCOEFF_NORMED)
+		startY,startX, = np.unravel_index(resultS.argmax(),resultS.shape)
 		# crop_img = image[startY:finY, startX+200:-450]
 		print(startY, finY, startX+templateStart.shape[1],finX+templateFin.shape[1]+5)
 		# crop_img = image[startY-138-templateStart.shape[0]:finY, startX:finX+templateFin.shape[1]+5]
 		if startY > finY:
-			resultS = cv2.matchTemplate(image,templateStart,cv2.TM_CCOEFF_NORMED)
-			startY,startX, = np.unravel_index(resultS.argmax(),resultS.shape)
+			resultS2 = cv2.matchTemplate(image,templateStart,cv2.TM_CCOEFF_NORMED)
+			startY,startX, = np.unravel_index(resultS2.argmax(),resultS2.shape)
 			# crop_img = image[startY:finY, startX+200:-450]
 		if startY > finY:
 			startY = 0
 		crop_img = image[startY:finY, startX+templateStart.shape[1]:finX+templateFin.shape[1]+5]
-		filename = self.prePath + 'Celement.jpg'
+		filename = self.prePath +"websites/"+site+'/Celement.jpg'
 		cv2.imwrite(filename, crop_img)
 		print("TTTTTTTTTTTTT", time.time()-st)
 		# return [filename]
@@ -855,24 +859,26 @@ class MusicService(object):
 								# self.api.send("Scraper"+"/"+origin, ":googlelyrics:"+title+" "+artist+" lyrics")
 
 						if cmd == "chords" or cmd == "אקורדים":
-							sites = ["tab4u"]
+							sites = [["tab4u","taboola-below-article-thumbnails"],["e-chords","request"]]
 							self.api.send(origin, "FINDING CHORDS ARTIST FOR "+title+" "+artist)
 							q = title+" "+" Chords"
-							searches = self.searchGoogle(q,s=10)
+							searches = self.searchGoogle(q,s=20)
 							foundURL = None
+							foundSite = None
 							for s in searches:
 								print("SSSSSSS",s)
 								for k in sites:
 
-									if k in s:
+									if k[0] in s:
 										print("found",k)
 										foundURL = s
+										foundSite = k
 									print("lastk",k)
 							if foundURL:
 								print("UUUUUUUUUUUUUUUUUUUUUU",foundURL)
 								print("UUUUUUUUUUUUUUUUUUUUUU",foundURL)
 								print("UUUUUUUUUUUUUUUUUUUUUU",foundURL)
-								fns = self.downloadImage(url = foundURL)
+								fns = self.downloadImage(url = foundURL, siteData = foundSite)
 								for dlp in fns:
 									print("FFFFFFFFFFFFFFFFFFFFFFFFFFF",dlp)
 									self.api.send(origin, "image/"+dlp)

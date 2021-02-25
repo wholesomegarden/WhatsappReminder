@@ -36,62 +36,66 @@ if (!window.Store) {
 									id: "ChatStates",
 									conditions: (module) => (module.sendChatStatePaused && module.sendChatStateRecording && module.sendChatStateComposing) ? module : null
 								},
+								{
+				          id: "Participants",
+				          conditions: (module) => (module.addParticipants && module.removeParticipants && module.promoteParticipants && module.demoteParticipants) ? module : null
+				        },
 						];
 						for (let idx in modules) {
-								if ((typeof modules[idx] === "object") && (modules[idx] !== null)) {
-										let first = Object.values(modules[idx])[0];
-										if ((typeof first === "object") && (first.exports)) {
-												for (let idx2 in modules[idx]) {
-														let module = modules(idx2);
-														if (!module) {
-																continue;
-														}
-														neededObjects.forEach((needObj) => {
-																if (!needObj.conditions || needObj.foundedModule)
-																		return;
-																let neededModule = needObj.conditions(module);
-																if (neededModule !== null) {
-																		foundCount++;
-																		needObj.foundedModule = neededModule;
-																}
-														});
-														if (foundCount == neededObjects.length) {
-																break;
-														}
-												}
+            if ((typeof modules[idx] === "object") && (modules[idx] !== null)) {
+                neededObjects.forEach((needObj) => {
+                    if (!needObj.conditions || needObj.foundedModule)
+                        return;
+                    let neededModule = needObj.conditions(modules[idx]);
+                    if (neededModule !== null) {
+                        foundCount++;
+                        needObj.foundedModule = neededModule;
+                    }
+                });
 
-												let neededStore = neededObjects.find((needObj) => needObj.id === "Store");
-												window.Store = neededStore.foundedModule ? neededStore.foundedModule : {};
-												neededObjects.splice(neededObjects.indexOf(neededStore), 1);
-												neededObjects.forEach((needObj) => {
-														if (needObj.foundedModule) {
-																window.Store[needObj.id] = needObj.foundedModule;
-														}
-												});
-												window.Store.sendMessage = function (e) {
-														return window.Store.SendTextMsgToChat(this, ...arguments);
-												};
-												return window.Store;
-										}
-								}
-						}
+                if (foundCount == neededObjects.length) {
+                    break;
+                }
+            }
+        }
+
+        let neededStore = neededObjects.find((needObj) => needObj.id === "Store");
+        window.Store = neededStore.foundedModule ? neededStore.foundedModule : {};
+        neededObjects.splice(neededObjects.indexOf(neededStore), 1);
+        neededObjects.forEach((needObj) => {
+            if (needObj.foundedModule) {
+                window.Store[needObj.id] = needObj.foundedModule;
+            }
+        });
+
+		window.Store.Chat.modelClass.prototype.sendMessage = function (e) {
+			window.Store.SendTextMsgToChat(this, ...arguments);
+		}
+
+        return window.Store;
+    }
+
+        if (typeof webpackJsonp === 'function') {
+            webpackJsonp([], {'parasite': (x, y, z) => getStore(z)}, ['parasite']);
+        } else {
+            let tag = new Date().getTime();
+			webpackChunkbuild.push([
+				["parasite" + tag],
+				{
+
+				},
+				function (o, e, t) {
+					let modules = [];
+					for (let idx in o.m) {
+						let module = o(idx);
+						modules.push(module);
+					}
+					getStore(modules);
 				}
+			]);
+        }
 
-				if (typeof webpackJsonp === 'function') {
-						webpackJsonp([], {'parasite': (x, y, z) => getStore(z)}, ['parasite']);
-				} else {
-						webpackJsonp.push([
-								['parasite'],
-								{
-										parasite: function (o, e, t) {
-												getStore(t);
-										}
-								},
-								[['parasite']]
-						]);
-				}
-
-		})();
+    })();
 }
 
 window.WAPI = {
@@ -1640,39 +1644,93 @@ window.WAPI.removeParticipantGroup = function (idGroup, idParticipant, done) {
 		})
 }
 
+
+/**
+ * Remove participant of Group
+ * @param {*} idGroup '0000000000-00000000@g.us'
+ * @param {*} idParticipant '000000000000@c.us'
+ */
+window.WAPI.removeParticipant = async function (idGroup, idParticipant) {
+  const chat = Store.Chat.get(idGroup);
+  const rm = chat.groupMetadata.participants.get(idParticipant);
+  await window.Store.Participants.removeParticipants(chat, [rm]);
+  return true;
+}
+
+
+/**
+ * Add participant to Group
+ * @param {*} idGroup '0000000000-00000000@g.us'
+ * @param {*} idParticipant '000000000000@c.us'
+ */
+window.WAPI.addParticipant = async function (idGroup, idParticipant) {
+  const chat = Store.Chat.get(idGroup);
+  const add = Store.Contact.get(idParticipant);
+  await window.Store.Participants.addParticipants(chat, [add]);
+  return true;
+}
+
 /**
  * Promote Participant to Admin in Group
  * @param {*} idGroup '0000000000-00000000@g.us'
  * @param {*} idParticipant '000000000000@c.us'
- * @param {*} done - function - Callback function to be called when a new message arrives.
  */
-window.WAPI.promoteParticipantAdminGroup = function (idGroup, idParticipant, done) {
-		window.Store.WapQuery.promoteParticipants(idGroup, [idParticipant]).then(() => {
-				const metaDataGroup = window.Store.GroupMetadata.get(id)
-				checkParticipant = metaDataGroup.participants._index[idParticipant];
-				if (checkParticipant !== undefined && checkParticipant.isAdmin) {
-						done(true); return true;
-				}
-				done(false); return false;
-		})
+window.WAPI.promoteParticipant = async function (idGroup, idParticipant) {
+  const chat = Store.Chat.get(idGroup);
+  const promote = chat.groupMetadata.participants.get(idParticipant);
+  await window.Store.Participants.promoteParticipants(chat, [promote]);
+  return true;
 }
 
 /**
  * Demote Admin of Group
  * @param {*} idGroup '0000000000-00000000@g.us'
  * @param {*} idParticipant '000000000000@c.us'
- * @param {*} done - function - Callback function to be called when a new message arrives.
  */
-window.WAPI.demoteParticipantAdminGroup = function (idGroup, idParticipant, done) {
-		window.Store.WapQuery.demoteParticipants(idGroup, [idParticipant]).then(() => {
-				const metaDataGroup = window.Store.GroupMetadata.get(id)
-				if (metaDataGroup === undefined) {
-						done(false); return false;
-				}
-				checkParticipant = metaDataGroup.participants._index[idParticipant];
-				if (checkParticipant !== undefined && checkParticipant.isAdmin) {
-						done(false); return false;
-				}
-				done(true); return true;
-		})
+window.WAPI.demoteParticipant = async function (idGroup, idParticipant) {
+  await window.Store.WapQuery.demoteParticipants(idGroup, [idParticipant])
+  const chat = Store.Chat.get(idGroup);
+  const demote = chat.groupMetadata.participants.get(idParticipant);
+  await window.Store.Participants.demoteParticipants(chat, [demote])
+  return true
+
 }
+
+
+//
+// /**
+//  * Promote Participant to Admin in Group
+//  * @param {*} idGroup '0000000000-00000000@g.us'
+//  * @param {*} idParticipant '000000000000@c.us'
+//  * @param {*} done - function - Callback function to be called when a new message arrives.
+//  */
+// window.WAPI.promoteParticipantAdminGroup = function (idGroup, idParticipant, done) {
+// 		window.Store.WapQuery.promoteParticipants(idGroup, [idParticipant]).then(() => {
+// 				const metaDataGroup = window.Store.GroupMetadata.get(id)
+// 				checkParticipant = metaDataGroup.participants._index[idParticipant];
+// 				if (checkParticipant !== undefined && checkParticipant.isAdmin) {
+// 						done(true); return true;
+// 				}
+// 				done(false); return false;
+// 		})
+// }
+//
+// /**
+//  * Demote Admin of Group
+//  * @param {*} idGroup '0000000000-00000000@g.us'
+//  * @param {*} idParticipant '000000000000@c.us'
+//  * @param {*} done - function - Callback function to be called when a new message arrives.
+//  */
+// window.WAPI.demoteParticipantAdminGroup = function (idGroup, idParticipant, done) {
+// 		window.Store.WapQuery.demoteParticipants(idGroup, [idParticipant]).then(() => {
+// 				const metaDataGroup = window.Store.GroupMetadata.get(id)
+// 				if (metaDataGroup === undefined) {
+// 						done(false); return false;
+// 				}
+// 				checkParticipant = metaDataGroup.participants._index[idParticipant];
+// 				if (checkParticipant !== undefined && checkParticipant.isAdmin) {
+// 						done(false); return false;
+// 				}
+// 				done(true); return true;
+// 		})
+// }

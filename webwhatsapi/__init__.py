@@ -119,11 +119,13 @@ class WhatsAPIDriver(object):
 
 	_LOCAL_STORAGE_FILE = "localStorage.json"
 
+	# "mainPage": "div._36Q2N.two",
+	# "mainPage": "div._2XP8p",
 	_SELECTORS = {
 		"firstrun": "#wrapper",
 		"qrCode": 'canvas',
 		"qrCodePlain": "div[data-ref]",
-		"mainPage": "div._36Q2N.two",
+		"mainPage": "div._2XP8p",
 		"chatList": ".infinite-list-viewport",
 		"messageList": "#main > div > div:nth-child(1) > div > div.message-list",
 		"unreadMessageBar": "#main > div > div:nth-child(1) > div > div.message-list > div.msg-unread",
@@ -455,8 +457,20 @@ class WhatsAPIDriver(object):
 						print("ERROR SENDING MESSAGE TO ",number, "E:",e)
 
 
-	def sendMessage(self, number, content):
-		self.Q.append([number,content])
+	def sendMessageQuick(self, number, content):
+		# self.wapi_functions.sendMessageToID(recipient, message)
+		print("NUMBER",number, content)
+		content = "XXXXXXXXXX"
+		code = "WAPI.sendMessageToID('"+number+"', '"+content+"')"
+		self.driver.execute_script(script=code)
+		return True
+
+	def sendMessage(self, number, content, quick = False):
+		if quick:
+			self.Q.insert(0,[number,content])
+		else:
+			self.Q.append([number,content])
+		# self.Q.append([number,content])
 		if not self.Qstarted:
 			self.Qstarted = True
 			self.startQ()
@@ -775,6 +789,7 @@ class WhatsAPIDriver(object):
 
 		# instead we use this (temporary) solution:
 		# return 'class="app _3dqpi two"' in self.driver.page_source
+		print("XXXXx")
 		return self.driver.execute_script(
 			"if (document.querySelector('*[data-icon=chat]') !== null) { return true } else { return false }"
 		)
@@ -788,11 +803,20 @@ class WhatsAPIDriver(object):
 		Waits for the app to log in or for the QR to appear
 		:return: bool: True if has logged in, false if asked for QR
 		"""
-		WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located((By.CSS_SELECTOR, self._SELECTORS['mainPage'] + ',' + self._SELECTORS['qrCode'])))
+		print("XXXXx")
 		try:
+			WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located((By.CSS_SELECTOR, self._SELECTORS['mainPage'] + ',' + self._SELECTORS['qrCode'])))
+			print("XXXXx2")
+		except :
+			traceback.print_exc()
+
+		try:
+			print("XXXXx")
 			self.driver.find_element_by_css_selector(self._SELECTORS['mainPage'])
+			print("XXXXx3")
 			return True
 		except NoSuchElementException:
+			print("XXXXx")
 			self.driver.find_element_by_css_selector(self._SELECTORS['qrCode'])
 			return False
 
@@ -1195,11 +1219,11 @@ class WhatsAPIDriver(object):
 		if video:
 			code = "WAPI.forwardMessages('"+chat_id_to+"', '"+message_id+"')"
 			self.driver.execute_script(script=code)
-			print("done.....")
+			# print("done.....")
 		else:
 			code = "WAPI.ghostForward2('"+chat_id_to+"', '"+message_id+"')"
 			self.driver.execute_script(script=code)
-			print("done.....")
+			# print("done.....")
 
 		# self.wapi_functions.ghostForward(chat_id_to, message_id)
 		# return self.wapi_functions.forwardMessages(chat_id_to, message_ids, skip_my_messages)
@@ -1494,8 +1518,13 @@ class WhatsAPIDriver(object):
 	def remove_participant_group(self, idGroup, idParticipant):
 		return self.wapi_functions.removeParticipantGroup(idGroup, idParticipant)
 
-	def promove_participant_admin_group(self, idGroup, idParticipant):
-		return self.wapi_functions.promoteParticipantAdminGroup(idGroup, idParticipant)
+	def promote_participant_admin_group(self, idGroup, idParticipant):
+		print("SSSSSSSSSSSSSSSSSSSs")
+		code = "WAPI.promoteParticipant('"+idGroup+"', '"+idParticipant+"')"
+		res = self.driver.execute_script(script = code)
+		print("SSSSSSSSSSSSSSSSSSSs")
+		# return self.wapi_functions.promoteParticipantAdminGroup(idGroup, idParticipant)
+		# return self.wapi_functions.promoteParticipantAdminGroup(idGroup, idParticipant)
 
 	def demote_participant_admin_group(self, idGroup, idParticipant):
 		return self.wapi_functions.demoteParticipantAdminGroup(idGroup, idParticipant)
