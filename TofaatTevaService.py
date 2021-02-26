@@ -198,7 +198,7 @@ class TofaatTevaService(object):
 				self.Q[foundArea] = []
 			testMax = 3
 			testCount = 0
-			withTestMax = True
+			withTestMax = False
 			for group in allGroups:
 				# pp(group)
 				if group is not None:
