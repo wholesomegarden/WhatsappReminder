@@ -1,22 +1,22 @@
-2021/02/28-16:44:26.112 5819 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/02/28-16:44:26.112 5819 Recovering log #265
-2021/02/28-16:44:26.195 5819 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000265.log 
-2021/02/28-16:44:42.290 581b Level-0 table #275: started
-2021/02/28-16:44:42.344 581b Level-0 table #275: 1223862 bytes OK
-2021/02/28-16:44:42.348 581b Delete type=0 #265
-2021/02/28-16:44:43.622 581b Compacting 1@1 + 6@2 files
-2021/02/28-16:44:43.759 581b Generated table #276@1: 39685 keys, 2236738 bytes
-2021/02/28-16:44:43.874 581b Generated table #277@1: 33610 keys, 2237594 bytes
-2021/02/28-16:44:43.974 581b Generated table #278@1: 35274 keys, 2245360 bytes
-2021/02/28-16:44:44.055 581b Generated table #279@1: 53250 keys, 2240816 bytes
-2021/02/28-16:44:44.136 581b Generated table #280@1: 89196 keys, 2267764 bytes
-2021/02/28-16:44:44.151 581b Generated table #281@1: 549 keys, 438213 bytes
-2021/02/28-16:44:44.151 581b Compacted 1@1 + 6@2 files => 11666485 bytes
-2021/02/28-16:44:44.154 581b compacted to: files[ 0 0 6 0 0 0 0 ]
-2021/02/28-16:44:44.154 581b Delete type=2 #275
-2021/02/28-16:44:44.154 581b Delete type=2 #269
-2021/02/28-16:44:44.154 581b Delete type=2 #272
-2021/02/28-16:44:44.154 581b Delete type=2 #267
-2021/02/28-16:44:44.154 581b Delete type=2 #271
-2021/02/28-16:44:44.154 581b Delete type=2 #268
-2021/02/28-16:44:44.154 581b Delete type=2 #270
+2021/02/28-19:02:03.082 7a69 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/02/28-19:02:03.082 7a69 Recovering log #274
+2021/02/28-19:02:03.124 7a69 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000274.log 
+2021/02/28-19:02:21.987 7a64 Level-0 table #284: started
+2021/02/28-19:02:22.010 7a64 Level-0 table #284: 1253537 bytes OK
+2021/02/28-19:02:22.012 7a64 Delete type=0 #274
+2021/02/28-19:02:25.094 7aa3 Compacting 1@1 + 6@2 files
+2021/02/28-19:02:25.161 7aa3 Generated table #285@1: 40411 keys, 2235490 bytes
+2021/02/28-19:02:25.200 7aa3 Generated table #286@1: 33248 keys, 2237895 bytes
+2021/02/28-19:02:25.238 7aa3 Generated table #287@1: 35610 keys, 2244520 bytes
+2021/02/28-19:02:25.277 7aa3 Generated table #288@1: 48309 keys, 2239993 bytes
+2021/02/28-19:02:25.319 7aa3 Generated table #289@1: 94347 keys, 2246842 bytes
+2021/02/28-19:02:25.331 7aa3 Generated table #290@1: 5540 keys, 704695 bytes
+2021/02/28-19:02:25.331 7aa3 Compacted 1@1 + 6@2 files => 11909435 bytes
+2021/02/28-19:02:25.333 7aa3 compacted to: files[ 0 0 6 0 0 0 0 ]
+2021/02/28-19:02:25.333 7aa3 Delete type=2 #279
+2021/02/28-19:02:25.333 7aa3 Delete type=2 #281
+2021/02/28-19:02:25.333 7aa3 Delete type=2 #284
+2021/02/28-19:02:25.333 7aa3 Delete type=2 #276
+2021/02/28-19:02:25.333 7aa3 Delete type=2 #277
+2021/02/28-19:02:25.333 7aa3 Delete type=2 #278
+2021/02/28-19:02:25.333 7aa3 Delete type=2 #280
