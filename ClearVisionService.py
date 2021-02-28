@@ -10,9 +10,9 @@ from websocket import create_connection
 
 
 
-import asyncio
-import time
-import websockets
+# import asyncio
+# import time
+# import websockets
 
 # data = {"command":"startPollingTags","tags":[{"header":"Amount Left to feed 2","tagName":"ROBOT_1_ROW10_AMOUNT_LEFT_TO_FEED_2"},{"header":"Daily amount 2","tagName":"ROBOT_1_ROW10_DAILY_AMOUNT_2"},{"header":"Accumulated amount 2","tagName":"ROBOT_1_ROW10_ACCUMULATED_AMOUNT_2"},{"header":"Meal amount 2","tagName":"ROBOT_1_ROW10_MEAL_AMOUNT_2"},{"header":"Last Day amount 2","tagName":"ROBOT_1_ROW10_LAST_DAY_AMOUNT_2"},{"header":"Amount Left to feed 3","tagName":"ROBOT_1_ROW10_AMOUNT_LEFT_TO_FEED_3"},{"header":"Daily amount 3","tagName":"ROBOT_1_ROW10_DAILY_AMOUNT_3"},{"header":"Accumulated amount 3","tagName":"ROBOT_1_ROW10_ACCUMULATED_AMOUNT_3"},{"header":"Meal amount 3","tagName":"ROBOT_1_ROW10_MEAL_AMOUNT_3"},{"header":"Last Day amount 3","tagName":"ROBOT_1_ROW10_LAST_DAY_AMOUNT_3"}],"sender":"web","id":5576}
 # cip = "wss://colors.crystalvision.co.il/ws/crystalweb"
