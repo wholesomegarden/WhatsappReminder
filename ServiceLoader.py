@@ -14,14 +14,14 @@ from PistonService import *
 from StockService import *
 from Challenge18Service import *
 from TofaatTevaService import *
-from ClearVisionService import *
+from CrystalVisionService import *
 
 from threading import Thread
 
 masterServices = ["Master","Experimental","TofaatTeva"]
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo", "ClearVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock", "Challenge18"], master = None):
+    def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo", "CrystalVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock", "Challenge18"], master = None):
         services = {}
         for service in list:
             if service in masterServices :
@@ -54,8 +54,8 @@ class ServiceLoader(object):
             foundServiceClass = ScraperService
         if service is "Piston":
             foundServiceClass = PistonService
-        if service is "ClearVision":
-            foundServiceClass = ClearVisionService
+        if service is "CrystalVision":
+            foundServiceClass = CrystalVisionService
         if service is "Stock":
             foundServiceClass = StockService
         if service is "Challenge18":

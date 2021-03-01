@@ -47,7 +47,7 @@ production = False
 Headless = not runLocal
 noFlask = runLocal
 Headless = True
-noFlask = False
+# noFlask = False
 
 LASTGROUP = {0:1000}
 
@@ -1557,10 +1557,15 @@ def all_routes(text):
 		try:
 			number = text.split("/")[1].replace("+","")
 			content = text.split("/")[2].replace("+"," ")
-			for v in verifiedNumbers:
-				if number in v:
-					master.sendMessage(v,content)
-					return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-16-512.png")
+			withVerify = False
+			if withVerify:
+				for v in verifiedNumbers:
+					if number in v:
+						master.sendMessage(v,content)
+						return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-16-512.png")
+			else:
+				master.sendMessage(number,content)
+				return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-16-512.png")
 		except:
 			traceback.print_exc()
 		return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-18-512.png")
