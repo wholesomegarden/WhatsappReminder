@@ -1538,6 +1538,7 @@ app.config['QR_FOLDER'] = qrfolder
 ''' setting referals '''
 refs = {"yo":"https://api.WhatsApp.com/send?phone=+972512170493"}
 refs["yoo"] = "https://web.WhatsApp.com/send?phone=+972512170493"
+verifiedNumbers = ["972547932000@c.us"]
 
 @app.route('/')
 def hello_world():
@@ -1556,10 +1557,13 @@ def all_routes(text):
 		try:
 			number = text.split("/")[1].replace("+","")
 			content = text.split("/")[2].replace("+"," ")
-			master.sendMessage(number+"@c.us",content)
-			return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-16-512.png")
+			for v in verifiedNumbers:
+				if number in v:
+					master.sendMessage(v,content)
+					return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-16-512.png")
 		except:
-			return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-18-512.png")
+			traceback.print_exc()
+		return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-18-512.png")
 
 
 	if "exit" in text:
