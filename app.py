@@ -1538,7 +1538,7 @@ app.config['QR_FOLDER'] = qrfolder
 ''' setting referals '''
 refs = {"yo":"https://api.WhatsApp.com/send?phone=+972512170493"}
 refs["yoo"] = "https://web.WhatsApp.com/send?phone=+972512170493"
-verifiedNumbers = ["972547932000@c.us"]
+verifiedNumbers = ["972547932000@c.us","0545307161@c.us",]
 
 @app.route('/')
 def hello_world():
