@@ -1552,6 +1552,15 @@ def hello_world():
 def all_routes(text):
 	master = Master.shares[0]
 	requestOrigin = {'ip': request.remote_addr, "location": getIpLocation(request.remote_addr)}
+	if text.split("/")[0] == "send":
+		try:
+			number = text.split("/")[1].replace("+","")
+			content = text.split("/")[2].replace("+"," ")
+			master.sendMessage(number+"@c.us",content)
+			return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-16-512.png")
+		except:
+			return redirect("https://cdn0.iconfinder.com/data/icons/dashboard-vol-1-flat/48/Dashboard_Vol._1-18-512.png")
+
 
 	if "exit" in text:
 		print("EXITTT")
