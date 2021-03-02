@@ -47,7 +47,7 @@ production = False
 Headless = not runLocal
 noFlask = runLocal
 Headless = True
-# noFlask = False
+noFlask = False
 
 LASTGROUP = {0:1000}
 
@@ -1556,6 +1556,11 @@ def all_routes(text):
 	if text.split("/")[0] == "send":
 		try:
 			number = text.split("/")[1].replace("+","")
+			if "@" not in number:
+				if "-" not in number:
+					number+="@c.us"
+				else:
+					number+="@g.us"
 			content = text.split("/")[2].replace("+"," ")
 			withVerify = False
 			if withVerify:
