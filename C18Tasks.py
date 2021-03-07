@@ -20,7 +20,7 @@ international = {
 			,
 			"12:00:05":
 			'''
-Hello everyone, I am surprised and happy with the number of participants and hope that this process will contribute to your growth and peace of mind in such a challenging period 🐋🌸🙏🙏🙏❤️🌻☀️🌎🧡💛💚💖
+Hello everyone, I am surprised and happy with the number of participants and hope that this process will contribute to your growth and peace of mind in such a challenging period 🐋🌸🙏🙏🙏❤️🌻☀️🌎💛💚💖
 
 			'''
 			,
@@ -57,7 +57,7 @@ Sharon Gal-Or
 			,
 			"12:00:05":
 			'''
-Hello everyone, I am surprised and happy with the number of participants and hope that this process will contribute to your growth and peace of mind in such a challenging period 🐋🌸🙏🙏🙏❤️🌻☀️🌎🧡💛💚💖
+Hello everyone, I am surprised and happy with the number of participants and hope that this process will contribute to your growth and peace of mind in such a challenging period 🐋🌸🙏🙏🙏❤️🌻☀️🌎💛💚💖
 
 			'''
 			,

@@ -46,8 +46,8 @@ production = False
 
 Headless = not runLocal
 noFlask = runLocal
-Headless = True
-noFlask = False
+# Headless = True
+# noFlask = False
 
 LASTGROUP = {0:1000}
 
@@ -694,7 +694,7 @@ class Master(object):
 		shortRec = 3.5
 		text = ""
 		try:
-			self.sendMessage(message.chat_id, "Analyzing Audio Please Wait...")
+			self.sendMessage(message.chat_id, "_Analyzing Audio Please Wait..._")
 			LAST[0] = message
 			LAST["o"] = {}
 			jobj = message.get_js_obj()
@@ -1024,7 +1024,7 @@ class Master(object):
 					print(
 					'''
 					===============================================
-					   Incoming Messages in Group \"'''+senderName+" from "+senderID+'''
+					   Incoming Messages in Group \"'''+mChatID+" "+senderName+" from "+senderID+'''
 					===============================================
 					'''
 					)
