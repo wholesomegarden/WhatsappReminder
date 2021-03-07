@@ -106,7 +106,7 @@ class Master(object):
 	else:
 		print("::::::::::STAGING::::::::::::::")
 	# availableChats = {}
-	publicServices = ["Music","Danilator","Reminders","Stock", "Challenge18"]
+	publicServices = ["Music","Danilator","Reminders","Stock", "Challenge18", "SpeechToText"]
 	sendToAny = ["Challenge18"]
 
 	''' start master driver and log in '''
