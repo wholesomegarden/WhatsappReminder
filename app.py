@@ -709,6 +709,7 @@ class Master(object):
 			audio.export(path, format="wav")
 			''' speech to '''
 
+			notSent = False
 			try:
 				with sr.AudioFile(path) as source:
 					rec = recognizer.record(source)
@@ -717,6 +718,7 @@ class Master(object):
 					self.sendMessage(message.chat_id, "Got from Speech:\n*"+text+"*")
 			except:
 				traceback.print_exc()
+				notSent = True
 
 			shazamLimit = 22
 			if length > shortRec * 1000:

@@ -182,9 +182,9 @@ We will start with daily practice ... towards a new reality that awaits you, you
 			# ''' DAY 1 '''
 		1:{
 
-		"20:00:00": "image/C18/1.png"
+		"19:59:50": "image/C18/1.png"
 		,
-		"20:00:05":
+		"19:59:57":
 		'''
 Hello everyone,
 We start ..... I wish you all good luck 🌻 and that you will get the most out of this magical process.
@@ -202,9 +202,9 @@ Write down everyone who is positive and who in your perception made you grow in 
 The list must be complete according to the level of commitment you have chosen. It is important to remember that even people who seemingly did you "bad" made you grow. (While doing this, you will understand with yourself what the reason is for choosing them on the list). Proceed calmly, remembering the good things in each person, and what he / she has brought into your life.
 Enjoy this activity!
 		''',
-		"20:00:08":
+		"20:00:07":
 		'''
-		*Welcome to the first day of the 18 days of Sustainability & Leadership challenge - NO POVERTY.*
+*Welcome to the first day of the 18 days of Sustainability & Leadership challenge - NO POVERTY.*
 Did you know that almost half of the world's population lives in poverty worldwide – and that there are over a billion people - who still live on $ 1.25 a day or less, and the number has risen since the corona.
 Should we blame those poor children who are born into such a reality?
 & how those children will grow up knowing they will never be able to escape their poverty?
@@ -222,7 +222,7 @@ The main thought for today:
 		'''
 		,
 
-		"20:00:13": "image/C18/1.opus"
+		"20:00:17": "image/C18/1.opus"
 
 		,
 
@@ -233,13 +233,14 @@ The main thought for today:
 
 		"09:31:00":
 		'''
-		Gooooooood morning ladies and gentlemen 🦔 I remind you the marking of the task (s) is until tonight, 20:00
- The score depends on the number of task (s) you have selected
- And it accumulates both in the individual journey and in the group 🙌🏻🎶🎵🥳
+		Gooooooood morning ladies and gentlemen!
+I remind you the marking of the task (s) is until tonight, 20:00
+The score depends on the number of task (s) you have selected
+And it accumulates both in the individual journey and in the group 🙌🏻🎶🎵🥳
 I encourage you all who has performed to mark: 1❤️ and raise the morale of the group and of yourselves as life is meaningful and powerful journey, never give up 🐋🌸🙌
 		'''
 		,
-		"09:31:05":
+		"09:31:10":
 		'''
 		🌻🌼🌸🌺🌹🌷💐🌾
 you are all welcome to join the community group where we share the personal experiences and talk whatever in out heart about making the world a better place :
@@ -414,7 +415,7 @@ https://youtu.be/Xe2nlti47kA
 
 3. *Thank you letter* - Write a letter to the teacher (teacher for life) that influenced you, in which you will express all your feelings, the feelings you have. Write everything you want. You are of course welcome to share with the group what you have written. Feel free to send the letter to the same teacher and watch the magic take place. Feel free to share here.
 May you all have a day full of Sustainability & Leadership 🌈🌈🌈
-❤️💜💛💙💚🤎💛💜💚❤️
+❤️💜💛💙💚💛💜💚❤️
 		''',
 		"20:00:08":
 		'''
@@ -916,7 +917,7 @@ Show the symbol you created to friends and try to see if they can understand wha
 
 3. *Letter to the mayor* - Write a letter to your mayor, stating everything you want to change in the city. You are of course welcome to share with the group what you have written and even send it to your city mayor.
 May you all have a day full of Sustainability & Leadership
-❤💜💛💙💚🤎💛💜💚❤
+❤💜💛💙💚💛💜💚❤
 
 		''',
 		"20:00:08":
