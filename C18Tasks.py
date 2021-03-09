@@ -88,7 +88,7 @@ https://chat.whatsapp.com/LLGHvVQ7Z5oAKJR329CeDt
 			,
 			"12:00:05":
 			'''
-I know for some of you this is not the first time 🥳🥳🥳, but it is still very important to do the exercises.
+I know for some of you this is not the first time , but it is still very important to do the exercises.
 I am sure that in light of the changing situation in the world, the awareness of performing the exercises will be different.
 This is a time when inner fears often float, so I guess on some days some of you will experience less pleasant moments. I have no doubt that maintaining a high level of awareness through performing the exercises will allow us to cope more easily🌸
 Starting tonight, and every day, I will send the tasks to be completed the next day:
@@ -114,7 +114,7 @@ I am surprised and happy with the number of participants and I hope that this pr
 			,
 			"12:00:05":
 			'''
-Dear and sustaining friends 🥳🥳🥳
+Dear and sustaining friends
 For those unfamiliar with this amazing journey named Challenge 18 - I will give you some information:
 *This is an 18-day process, in which you are sent 1-3 short daily tasks inspired by the SDG's – sustainable development goals, and alongside them, a basic background on the goals. Each evening I will send the task of the next day, and you will have 24 hours to perform and confirm in the group you did. Your confirmation is the day/goal number and next to it one or more emojis, according to the task/s you have chosen to perform.*
 For example: a heart in any color you choose or a 'green' environmental emoji of your choice. The score is according to the task number, so the maximum number accumulates from day to day.
@@ -138,7 +138,7 @@ Thank you all for the opportunity to give you from the heart ❤️ Anyone who n
 Morning everybody,
 Feel free to invite more change agents you think they would benefit from joining us.
 Further clarification friends,
-Every day at 20:00, the daily task will be sent to you, according to 1-3 commitment and difficulty levels. Choose one of them, with which you feel comfortable and you feel committed and connected to the process - you have 24 hours to do it and mark in the group you did it... *there is no need to be especially available every day at 20:00* 🌏🥥⚽💚🐋📱💸
+Every day at 20:00, the daily task will be sent to you, according to 1-3 commitment and difficulty levels. Choose one of them, with which you feel comfortable and you feel committed and connected to the process - you have 24 hours to do it and mark in the group you did it... *there is no need to be especially available every day at 20:00* 🌏⚽💚🐋📱💸
 
 
 			'''
@@ -155,7 +155,7 @@ A stunning day for everyone
 
 			"12:00:20":
 			'''
-I know for some of you this is not the first time 🥳🥳🥳, but it is still very important to do the exercises.
+I know for some of you this is not the first time, but it is still very important to do the exercises.
 I am sure that in light of the changing situation in the world, the awareness of performing the exercises will be different.
 This is a time when inner fears often float, so I guess on some days some of you will experience less pleasant moments. I have no doubt that maintaining a high level of awareness through performing the exercises will allow us to cope more easily🌸
 Starting tonight, and every day, I will send the tasks to be completed the next day:
@@ -236,7 +236,7 @@ The main thought for today:
 		Gooooooood morning ladies and gentlemen!
 I remind you the marking of the task (s) is until tonight, 20:00
 The score depends on the number of task (s) you have selected
-And it accumulates both in the individual journey and in the group 🙌🏻🎶🎵🥳
+And it accumulates both in the individual journey and in the group 🙌🏻🎶🎵
 I encourage you all who has performed to mark: 1❤️ and raise the morale of the group and of yourselves as life is meaningful and powerful journey, never give up 🐋🌸🙌
 		'''
 		,
@@ -630,7 +630,7 @@ First of all, I am proud of you for persevering and reaching the 7th day ... Be 
 1. *Watch the TED talk* - Why renewables can’t save the planet | Michael Shellenberger | TEDxDanubia | & reflect on what you saw. ❤️
 https://youtu.be/N-yALPEpV4w
 
-2. *Save energy* - Write in a notebook, ways you can save energy in your life, and commit to them until the end of the challenge. ❤️ ❤️
+2. *Save energy* - Write in a notebook, ways you can save energy in your life, and commit to them until the end of the challenge. E.g. not getting angry until the end ah ❤️ ❤️
 
 3. *Get rid of the barriers* - From the five inhibiting properties that you wrote down in the previous task, choose two that you feel draw the most energy from you, and that you would like to work on. Define your plan of action, by writing down at least two actions (daily concrete actions, or wide-ranging actions) that will help you get rid of the barriers. Implement them!  ❤️ ❤️ ❤️      ️
 
@@ -1261,11 +1261,11 @@ And even better - share the group if you want🌹🌹🌹 everything that comes 
 Sophie was 😨. She woke up 😭 from her dream.
 So she packed her  👜and set out on a journey to see the🌍 ,
 She first met a puppy 🐕; He asked for 💧 so she shared her 💧,
-She met a 🧍‍♂️ who was hungry, so she shared her 🍌,
+She met a boy 🧒 who was hungry, so she shared her 🍌,
 She met a 🐤 that had fallen from the 🌳. So she took off her 👟 and made a 🏠 for the 🐤,
-She met an 👴🏼 who was cold 🥶 so she gave him her 🧥,
+She met an old man  who was cold so she gave him her 🧥,
 She met a lost 🐑 who was crying so she sang her a happy 😁🎶🎵🎶 song,
-When it started to 🌧, she was sitting under a 🌳, she was thirsty, hungry, she was cold 🥶 and she only had one 👟, but she was no longer 😨. Sophie fell asleep  😴.
+When it started to 🌧, she was sitting under a 🌳, she was thirsty, hungry, she was cold and she only had one 👟, but she was no longer 😨. Sophie fell asleep  😴.
 She woke up with a 😀. Sophie was 😁.
 
 		'''
@@ -1500,3 +1500,4 @@ THANK YOU FOR SUCCESSFULLY FINISHING THE CHALLENGE
 
 }
 #https://docs.google.com/document/d/1DH2D7TbobiQDnjnoJM_TQ7tFBn4GIiftSz1Awz_UHVg/edit
+#XXX

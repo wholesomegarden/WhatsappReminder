@@ -46,7 +46,7 @@ production = False
 
 Headless = not runLocal
 noFlask = runLocal
-# Headless = True
+Headless = True
 # noFlask = False
 
 LASTGROUP = {0:1000}
