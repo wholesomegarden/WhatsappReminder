@@ -336,6 +336,7 @@ Regarding today's mission
 
 Task for the third day 💖 ⚽ 💖 - Good Health & Well Being - Choose one of the three tasks, the main thing is that you feel comfortable with it, committed and connected to the process.
 1. Watch the TED talk - Nurse Innovation: Saving the Future of Healthcare | Rebecca Love | TEDxBeaconStreet | & reflect on what you saw.
+https://youtu.be/IPBcRW8NQPY
 
 2. Happy life - Make a list, (this time it does not matter the number) of the people who, to your opinion, are considered prosperous and healthy, in your family or in your social environment. People who have achieved their life goals (all or part of them) and are happy.
 
@@ -1261,10 +1262,10 @@ And even better - share the group if you want🌹🌹🌹 everything that comes 
 Sophie was 😨. She woke up 😭 from her dream.
 So she packed her  👜and set out on a journey to see the🌍 ,
 She first met a puppy 🐕; He asked for 💧 so she shared her 💧,
-She met a boy 🧒 who was hungry, so she shared her 🍌,
+She met a boy 👦 who was hungry, so she shared her 🧥,
 She met a 🐤 that had fallen from the 🌳. So she took off her 👟 and made a 🏠 for the 🐤,
 She met an old man  who was cold so she gave him her 🧥,
-She met a lost 🐑 who was crying so she sang her a happy 😁🎶🎵🎶 song,
+She met a lost 🐑 who was 😢 so she sang her a happy 😁🎶🎵🎶 song,
 When it started to 🌧, she was sitting under a 🌳, she was thirsty, hungry, she was cold and she only had one 👟, but she was no longer 😨. Sophie fell asleep  😴.
 She woke up with a 😀. Sophie was 😁.
 
