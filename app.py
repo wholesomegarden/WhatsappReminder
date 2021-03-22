@@ -198,9 +198,11 @@ class Master(object):
 			# profileDir = "/"+"/".join(profileDir.split("/")[2:])+"L"
 			profileDir = "/"+"/".join(profileDir.split("/")[2:])
 			chrome_options = webdriver.ChromeOptions()
-			executable_path = "/home/magic/wholesomegarden/WhatsappReminder/chromedriver"
 			binPath = "/usr/bin/google-chrome"
-			profileDir = "/home/magic/wholesomegarden/WhatsappReminder"+profileDir
+			# executable_path = "/home/magic/wholesomegarden/WhatsappReminder/chromedriver"
+			# profileDir = "/home/magic/wholesomegarden/WhatsappReminder"+profileDir
+			executable_path = "/root/WhatsappReminder/chromedriver"
+			profileDir = "/root/WhatsappReminder"+profileDir
 
 			print(binPath, executable_path)
 			# input()
