@@ -22,7 +22,8 @@ from threading import Thread
 masterServices = ["Master","Experimental","TofaatTeva"]
 
 class ServiceLoader(object):
-    def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo","SpeechToText", "CrystalVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock", "Challenge18"], master = None):
+    # def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo","SpeechToText", "CrystalVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock", "Challenge18"], master = None):
+    def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo","SpeechToText", "CrystalVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock"], master = None):
         services = {}
         for service in list:
             if service in masterServices :
@@ -59,8 +60,8 @@ class ServiceLoader(object):
             foundServiceClass = CrystalVisionService
         if service is "Stock":
             foundServiceClass = StockService
-        if service is "Challenge18":
-            foundServiceClass = Challenge18Service
+        # if service is "Challenge18":
+        #     foundServiceClass = Challenge18Service
         if service is "TofaatTeva":
             foundServiceClass = TofaatTevaService
         if service is "SpeechToText":
