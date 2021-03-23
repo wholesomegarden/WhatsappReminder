@@ -821,7 +821,7 @@ class MusicService(object):
 								# 		title = song["title"] = translator.translate(song["title"],lang_tgt="he")
 								# except :
 								# 	traceback.print_exc()
-								self.api.send(origin, "FINDING LYRICS ARTIST FOR "+title+" "+artist)
+								self.api.send(origin, "*Searching for lyrics:* \n "+title+" "+artist)
 								print("LLLLLLLLLLLLLLLLLLLLLLLLLLL")
 								self.api.send("Scraper"+"/"+origin+"/"+id, ":shironet:"+title+" "+artist+" shironet")
 								# self.api.send("Scraper"+"/"+origin, ":shironet:"+song["search"]+" shironet")
@@ -860,7 +860,7 @@ class MusicService(object):
 
 						if cmd == "chords" or cmd == "אקורדים":
 							sites = [["tab4u","taboola-below-article-thumbnails"],["e-chords","request"]]
-							self.api.send(origin, "FINDING CHORDS ARTIST FOR "+title+" "+artist)
+							self.api.send(origin, "*Searching Chords for:* \n "+title+" "+artist)
 							q = title+" "+" Chords"
 							searches = self.searchGoogle(q,s=20)
 							foundURL = None
