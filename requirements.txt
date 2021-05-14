@@ -55,3 +55,4 @@ pydub==0.24.1
 SpeechRecognition==3.8.1
 opencv-python==4.2.0.32
 websocket_client==0.57.0
+pyopenssl==20.0.1

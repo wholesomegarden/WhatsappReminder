@@ -1,3 +1,37 @@
-2021/03/22-09:55:21.556 12bd Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 2/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2021/03/22-09:55:21.557 12bd Recovering log #33
-2021/03/22-09:55:21.577 12bd Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 2/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000033.log 
+2021/05/14-17:55:30.885 3fe9 Reusing MANIFEST /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 2/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/05/14-17:55:30.886 3fe9 Recovering log #38
+2021/05/14-17:55:31.202 3fe9 Reusing old log /home/magic/wholesomegarden/WhatsappReminder/session/rprofile2/Profile 2/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000038.log 
+2021/05/14-17:55:41.430 3fe4 Level-0 table #44: started
+2021/05/14-17:55:41.456 3fe4 Level-0 table #44: 1444062 bytes OK
+2021/05/14-17:55:41.458 3fe4 Delete type=0 #38
+2021/05/14-17:55:41.464 3fe4 Level-0 table #46: started
+2021/05/14-17:55:41.487 3fe4 Level-0 table #46: 1469899 bytes OK
+2021/05/14-17:55:41.489 3fe4 Delete type=0 #43
+2021/05/14-17:55:41.505 3fe4 Level-0 table #48: started
+2021/05/14-17:55:41.528 3fe4 Level-0 table #48: 1431511 bytes OK
+2021/05/14-17:55:41.532 3fe4 Delete type=0 #45
+2021/05/14-17:55:41.677 3ffa Level-0 table #50: started
+2021/05/14-17:55:41.709 3ffa Level-0 table #50: 1528356 bytes OK
+2021/05/14-17:55:41.711 3ffa Delete type=0 #47
+2021/05/14-17:55:42.415 3ffa Compacting 3@0 + 1@1 files
+2021/05/14-17:55:42.534 3ffa Generated table #51@0: 108754 keys, 2314047 bytes
+2021/05/14-17:55:42.547 3ffa Generated table #52@0: 18812 keys, 303030 bytes
+2021/05/14-17:55:42.547 3ffa Compacted 3@0 + 1@1 files => 2617077 bytes
+2021/05/14-17:55:42.549 3ffa compacted to: files[ 0 2 2 0 0 0 0 ]
+2021/05/14-17:55:42.549 3ffa Delete type=2 #48
+2021/05/14-17:55:42.549 3ffa Delete type=2 #46
+2021/05/14-17:55:42.549 3ffa Delete type=2 #44
+2021/05/14-17:55:42.550 3ffa Delete type=2 #50
+2021/05/14-17:55:53.963 4128 Compacting 1@1 + 1@2 files
+2021/05/14-17:55:54.017 4128 Generated table #53@1: 8333 keys, 293768 bytes
+2021/05/14-17:55:54.017 4128 Compacted 1@1 + 1@2 files => 293768 bytes
+2021/05/14-17:55:54.019 4128 compacted to: files[ 0 1 2 0 0 0 0 ]
+2021/05/14-17:55:54.019 4128 Delete type=2 #40
+2021/05/14-17:55:54.019 4128 Delete type=2 #51
+2021/05/14-17:55:56.758 4128 Compacting 1@1 + 2@2 files
+2021/05/14-17:55:56.775 4128 Generated table #54@1: 2558 keys, 272878 bytes
+2021/05/14-17:55:56.775 4128 Compacted 1@1 + 2@2 files => 272878 bytes
+2021/05/14-17:55:56.780 4128 compacted to: files[ 0 0 1 0 0 0 0 ]
+2021/05/14-17:55:56.780 4128 Delete type=2 #52
+2021/05/14-17:55:56.780 4128 Delete type=2 #53
+2021/05/14-17:55:56.780 4128 Delete type=2 #41

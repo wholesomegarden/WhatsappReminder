@@ -16,6 +16,7 @@ from Challenge18Service import *
 from TofaatTevaService import *
 from CrystalVisionService import *
 from SpeechToTextService import *
+from AsciService import *
 
 from threading import Thread
 
@@ -23,7 +24,7 @@ masterServices = ["Master","Experimental","TofaatTeva"]
 
 class ServiceLoader(object):
     # def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo","SpeechToText", "CrystalVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock", "Challenge18"], master = None):
-    def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo","SpeechToText", "CrystalVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock"], master = None):
+    def LoadServices(send, backup, genLink, list = ["Master", "TofaatTeva", "Echo", "Asci","SpeechToText", "CrystalVision", "Piston", "Danilator", "Reminders", "Music", "Experimental", "Scraper", "Stock"], master = None):
         services = {}
         for service in list:
             if service in masterServices :
@@ -66,6 +67,8 @@ class ServiceLoader(object):
             foundServiceClass = TofaatTevaService
         if service is "SpeechToText":
             foundServiceClass = SpeechToTextService
+        if service is "Asci":
+            foundServiceClass = AsciService
 
         if foundServiceClass is not None:
             api = API(service, send, backup, genLink)
