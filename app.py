@@ -22,6 +22,11 @@ import shazi
 import speech_recognition as sr
 recognizer = sr.Recognizer()
 
+# from OpenSSL import SSL
+# context = SSL.Context(SSL.TLSv1_2_METHOD)
+# context.use_privatekey_file('key.pem')
+# context.use_certificate_file('cert.pem')
+
 # from ServiceImporter import *
 # https://github.com/open-wa/wa-automate-python
 
@@ -689,7 +694,20 @@ class Master(object):
 					print(thumbnail)
 					return self.sendMessage(target, content, thumbnail=thumbnail, service = service, autoPreview = autoPreview)
 
-
+	def AnalyzeAudioFile(self, path, defLanguage = 'iw-IL'):
+		text = ""
+		try:
+			# audio.export(path, format="wav")
+			''' speech to '''
+			# notSent = False
+			with sr.AudioFile(path) as source:
+				rec = recognizer.record(source)
+				text = recognizer.recognize_google(rec, language = defLanguage)
+				# self.sendMessage(message.chat_id, "Got from Speech:\n*"+text+"*")
+		except:
+			traceback.print_exc()
+			# notSent = True
+		return text
 	def AnalyzeAudio(self, message):
 		if message is None:
 			return None
@@ -1525,6 +1543,30 @@ def getIpLocation(ip):
 		return res["country_name"]
 	return res
 
+def chat(txt):
+	back = "{"+txt+"}"
+	if txt is "":
+		back = ""
+	if "קוראים לי" in txt:
+		back = "היי " + txt.split("קוראים לי")[1].split(" ")[1] + "! לי קוראים דובי-חכם\nאיך שלומך היום?"
+	elif "שלום" in txt:
+		back = "שלום וברכה! \nשמח לדבר איתכם היום\nאיך קוראים לך?"
+	elif "שלומך" in txt:
+		back = "שלומי מצויין תודה!\nנחמד הדמו הזה אה? חח :)"
+	elif "שלומי" in txt:
+		back = "מצויין שמח לשמוע :)"
+	elif "מה השעה" in txt:
+		t = time.localtime()
+		current_time = time.strftime("%H:%M", t)
+		print(current_time)
+		back = "השעה עכשיו היא: "+str(current_time)
+	elif "תודה רבה" in txt:
+		t = time.localtime()
+		current_time = time.strftime("%H:%M", t)
+		print(current_time)
+		back = "בבקשה :)"
+	return back
+
 ''' running master '''
 master = None
 timeout = time.time()
@@ -1552,6 +1594,28 @@ def hello_world():
 		return render_template("loggedIn.html", user_image = full_filename, status = master.status)
 	else:
 		return render_template("index.html", user_image = full_filename, status = master.status)
+
+@app.route('/xxx',methods=["GET","POST"])
+def xxx():
+	print("XXXXXX")
+	# print("XXXXXX",request.data)
+	# with open('myfile.wav', mode='bx') as f:
+	with open('myfile.wav', mode='wb+') as f:
+		f.write(request.data)
+	print("XXXXXX")
+	master = Master.shares[0]
+	# res =  master.AnalyzeAudioFile('/home/magic/wholesomegarden/WhatsappReminder/myfile.wav')
+	res =  master.AnalyzeAudioFile('/root/WhatsappReminder/myfile.wav')
+	print(res)
+	print("XXXXXX")
+	# return "YOOOOOOOO"
+	return chat(str(res))
+
+	# full_filename = os.path.join(app.config['QR_FOLDER'], "QR"+str(master.lastQR)+".png")
+	# if master.status == "LoggedIn":
+	# 	return render_template("loggedIn.html", user_image = full_filename, status = master.status)
+	# else:
+	# 	return render_template("index.html", user_image = full_filename, status = master.status)
 
 @app.route('/<path:text>', methods=['GET', 'POST'])
 def all_routes(text):
@@ -1753,14 +1817,16 @@ if __name__ == '__main__':
 		# print("STARTING APP")
 		# print("STARTING APP")
 		if runLocal :
-			pass
+			# context = ('cert.pem', 'key.pem')
+			# app.run(debug=True, host='0.0.0.0', port = MYPORT ,use_reloader=False, ssl_context=context, threaded=True)
 			app.run(debug=True, host='0.0.0.0', port = MYPORT ,use_reloader=False)
 	# app.run(debug=True, host='0.0.0.0',use_reloader=False)
 else:
 	flaskRun(master)
 	if not noFlask:
 		if runLocal :
-			pass
+			# context = ('cert.pem', 'key.pem')
+			# app.run(debug=True, host='0.0.0.0', port = MYPORT ,use_reloader=False, ssl_context=context, threaded=True)
 			app.run(debug=True, host='0.0.0.0', port = MYPORT ,use_reloader=False)
 		# app.run(debug=True, host='0.0.0.0',use_reloader=False)
 	print("STARTING APP22222222222")
