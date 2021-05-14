@@ -21,6 +21,7 @@ import shazi
 
 import speech_recognition as sr
 recognizer = sr.Recognizer()
+from gtts import gTTS
 
 # from OpenSSL import SSL
 # context = SSL.Context(SSL.TLSv1_2_METHOD)
@@ -1573,7 +1574,8 @@ timeout = time.time()
 maxtimeout = 30
 
 ''' running front server '''
-from flask import Flask, render_template, redirect, request, jsonify
+from flask import Flask, render_template, redirect, request, jsonify, send_file
+
 
 
 app = Flask(__name__,template_folder='templates')
@@ -1604,12 +1606,21 @@ def xxx():
 		f.write(request.data)
 	print("XXXXXX")
 	master = Master.shares[0]
+	base = "/home/magic/wholesomegarden/WhatsappReminder/"
+	# base = "/root/WhatsappReminder/"
 	# res =  master.AnalyzeAudioFile('/home/magic/wholesomegarden/WhatsappReminder/myfile.wav')
-	res =  master.AnalyzeAudioFile('/root/WhatsappReminder/myfile.wav')
+	res =  master.AnalyzeAudioFile(base+'/myfile.wav')
 	print(res)
 	print("XXXXXX")
+	final = chat(str(res))
+	# tts = gTTS('hello world! this is an example thats shows how Natan is awesome!', lang='en')
+	tts = gTTS(final, lang='en')
+	# tts.save('/home/magic/wholesomegarden/WhatsappReminder/chat.mp3')
+	tts.save(base+"chat.mp3")
 	# return "YOOOOOOOO"
-	return chat(str(res))
+	# return chat(str(res))
+	return send_file(base+"chat.mp3")
+
 
 	# full_filename = os.path.join(app.config['QR_FOLDER'], "QR"+str(master.lastQR)+".png")
 	# if master.status == "LoggedIn":
