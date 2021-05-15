@@ -1551,10 +1551,10 @@ def chat(txt):
 	if "hello" in txt.lower():
 		back = "Hi there! what's your name ?"
 	elif "y name is " in txt:
-		back = "Hi " + txt.split("y name is ")[1].split(" ")[0]+"!\n"+ "My name is smart-a-bear \nhow are you doing ?"
+		back = "Hi " + txt.split("y name is ")[1].split(" ")[0]+"!\n"+ "My name is smart-a-bear. \nhow are you doing ?"
 
 	elif "how are you" in txt.lower():
-		back = "I'm doing very good, thank you! Love how this app turned out"
+		back = "I'm doing very good! Love how this app turned out"
 	elif "time is it" in txt.lower():
 		t = time.localtime()
 		current_time = time.strftime("%H:%M", t)
