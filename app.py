@@ -703,7 +703,7 @@ class Master(object):
 			# notSent = False
 			with sr.AudioFile(path) as source:
 				rec = recognizer.record(source)
-				text = recognizer.recognize_google(rec, language = defLanguage)
+				text = recognizer.recognize_google(rec)
 				# self.sendMessage(message.chat_id, "Got from Speech:\n*"+text+"*")
 		except:
 			traceback.print_exc()
@@ -1548,6 +1548,26 @@ def chat(txt):
 	back = "{"+txt+"}"
 	if txt is "":
 		back = ""
+	if "hello" in txt.lower():
+		back = "Hi there! what's your name ?"
+	elif "y name is " in txt:
+		back = "Hi " + txt.split("y name is ")[1].split(" ")[0]+"!\n"+ "My name is smart-a-bear \nhow are you doing ?"
+
+	elif "how are you" in txt.lower():
+		back = "I'm doing very good, thank you! Love how this app turned out"
+	elif "time is it" in txt.lower():
+		t = time.localtime()
+		current_time = time.strftime("%H:%M", t)
+		print(current_time)
+		back = "The time is now: "+str(current_time)
+	elif "thank you" in txt.lower() or "thanks" in txt.lower():
+		back = "You're very welcome! \nHave an awesome day!"
+	return back
+
+def chatHeb(txt):
+	back = "{"+txt+"}"
+	if txt is "":
+		back = ""
 	if "קוראים לי" in txt:
 		back = "היי " + txt.split("קוראים לי")[1].split(" ")[1] + "! לי קוראים דובי-חכם\nאיך שלומך היום?"
 	elif "שלום" in txt:
@@ -1597,36 +1617,103 @@ def hello_world():
 	else:
 		return render_template("index.html", user_image = full_filename, status = master.status)
 
+tTSdone = [True]
+xxxCounter = 1
+rollxxx = 0
+lastxxxf = None
+xxxText = [""]
 @app.route('/xxx',methods=["GET","POST"])
 def xxx():
-	print("XXXXXX")
-	# print("XXXXXX",request.data)
-	# with open('myfile.wav', mode='bx') as f:
-	with open('myfile.wav', mode='wb+') as f:
-		f.write(request.data)
-	print("XXXXXX")
-	master = Master.shares[0]
-	base = "/home/magic/wholesomegarden/WhatsappReminder/"
-	# base = "/root/WhatsappReminder/"
-	# res =  master.AnalyzeAudioFile('/home/magic/wholesomegarden/WhatsappReminder/myfile.wav')
-	res =  master.AnalyzeAudioFile(base+'/myfile.wav')
-	print(res)
-	print("XXXXXX")
-	final = chat(str(res))
-	# tts = gTTS('hello world! this is an example thats shows how Natan is awesome!', lang='en')
-	tts = gTTS(final, lang='en')
-	# tts.save('/home/magic/wholesomegarden/WhatsappReminder/chat.mp3')
-	tts.save(base+"chat.mp3")
-	# return "YOOOOOOOO"
-	# return chat(str(res))
-	return send_file(base+"chat.mp3")
+	base = "/root/WhatsappReminder/"
+	# global rollxxx, lastxxxf
+	# if rollxxx > 100:
+	# 	rollxxx = 0
+	try:
+		# base = "/home/magic/wholesomegarden/WhatsappReminder/"
+		# return send_file(base+"chat.mp3")
+		local = ""
+		inputFile = base + "myfile"+str(local)+".wav"
+		outFile = base + "chat"+str(local)+".mp3"
+		global xxxText
+		if True:
+			# tTSdone[0] = False
+			# local = rollxxx + 1
+			# local = local%5
+			# rollxxx+=1
+			# print("XXXXXX", local)
+			# print("LLL",len(request.data))
+			length = len(request.data)
+			# print("XXXXXX",request.data)
+			# with open('myfile.wav', mode='bx') as f:
+			f = ""
+			if length > 10:
+				with open(inputFile, mode='wb+') as f:
+					f.write(request.data)
+
+			# return send_file(base+"chat.mp3")
+			# return send_file(outFile)
 
 
-	# full_filename = os.path.join(app.config['QR_FOLDER'], "QR"+str(master.lastQR)+".png")
-	# if master.status == "LoggedIn":
-	# 	return render_template("loggedIn.html", user_image = full_filename, status = master.status)
-	# else:
-	# 	return render_template("index.html", user_image = full_filename, status = master.status)
+				# return send_file(base+'myfile.wav')
+				print("XXXXXX")
+				master = Master.shares[0]
+				# res =  master.AnalyzeAudioFile('/home/magic/wholesomegarden/WhatsappReminder/myfile.wav')
+				res =  master.AnalyzeAudioFile(inputFile, defLanguage = "en")
+				# res = "yo yo yo checking characters for the first file is a string"
+				print(res)
+				print("XXXXXX")
+				final = chat(str(res))
+				# tts = gTTS('hello world! this is an example thats shows how Natan is awesome!', lang='en')
+				# tts = gTTS('hello world! '+str(xxxCounter), lang='en')
+				# xxxCounter+=1
+				# tts = gTTS(res, lang='en')
+				print("FINAL:",final)
+				xxxText[0] = final
+				tts = gTTS(final, lang='en')
+				# tts.save('/home/magic/wholesomegarden/WhatsappReminder/chat.mp3')
+				# return "YOOOOOOOO"
+				tts.save(outFile)
+				# return chat(str(res))
+				# print("LEN F",len(f))
+				# time.sleep(1)
+				# lastxxxf = outFile
+			f = send_file(outFile)
+			tTSdone[0] = True
+			return f
+	except:
+		traceback.print_exc()
+		tts = gTTS(" .", lang='en')
+		# tts.save('/home/magic/wholesomegarden/WhatsappReminder/chat.mp3')
+		# return "YOOOOOOOO"
+		tts.save(outFile)
+		return ""
+
+@app.route('/xxx2',methods=["GET","POST"])
+def xxx2():
+	base = "/root/WhatsappReminder/"
+
+	try:
+		# base = "/home/magic/wholesomegarden/WhatsappReminder/"
+		# return send_file(base+"chat.mp3")
+		local = ""
+		inputFile = base + "myfile"+str(local)+".wav"
+		outFile = base + "chat"+str(local)+".mp3"
+
+		with open(inputFile, mode='wb') as f:
+			f.write(bytes())
+		global xxxText
+		if xxxText is None or len(xxxText) == 0 or xxxText[0] is None or len(xxxText[0]) == 0:
+			print("SSSSSSSS")
+			return ""
+		sendback = xxxText[0]
+		if "{" == sendback[0]:
+			sendback = "Got from speech:\n"+sendback
+
+		print("SSSSSSSS",sendback)
+		return sendback
+	except:
+		traceback.print_exc()
+		return ""
 
 @app.route('/<path:text>', methods=['GET', 'POST'])
 def all_routes(text):
